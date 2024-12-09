@@ -1,0 +1,61 @@
+---
+title: "Week 1 - Hands-On Examples"
+category: "excercises"
+---
+
+## Data
+
+We will use a gene expression data as example.
+
+The file is called "read-counts.csv" you can download it using this link: https://monashbioinformaticsplatform.github.io/r-more/r-more-files.zip
+
+The data comes from an experiment using PCR to study 44 genes.
+The results were measured to see which genes are active at different stages in Yeast cell cycling.
+Several strains were tested, including wildtype and some with specific genes knock-downs.
+Samples were taken at nine time points over two cell cycles (two hours).
+
+Source: https://monashbioinformaticsplatform.github.io/r-more/topics/tidyverse.html
+
+
+## Import into Rstudio
+
+1. Download the zipped file and unzipped it
+2. Upload the `read-counts.csv` to the folder of your choice
+3. Click on the file to "View" it, what is the separator of each column?
+4. Import the file into R and call it "counts"
+
+## Play with basic R commands
+
+1. What is the absolute file path of the count data?
+
+```{r}
+counts <- readr::read_csv("read-counts.csv")
+```
+
+2. What is the dimension of the data frame?
+
+```{r}
+dim(counts)
+```
+
+We can get the expression the the sample "WT:1" by using `counts[["WT:1"]]`.
+
+3. Try `typeof()` and `mode()` on the expression data of "WT:1":
+
+```{r}
+typeof(counts[["WT:1"]])
+mode(counts[["WT:1"]])
+```
+
+4. Generate a descriptive statistics of the data frame using `summary()`
+
+```{r}
+summary(counts[["WT:1"]])
+```
+
+5. Generate a histogram of the "WT:1" using `hist()` and what is the distribution?
+
+```{r}
+hist(counts[["WT:1"]])
+hist(log2(counts[["WT:1"]]))
+```

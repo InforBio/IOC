@@ -1,0 +1,151 @@
+---
+title: "IOC-R Week1 "
+subtitle: "Introduction to R"
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    logo: images/logoInforBio_fond_blanc.png
+    # css: styles.css
+category: "slides"
+---
+
+## Welcome to R!
+
+::: incremental
+- What is R?
+- Why learn R?
+- What do you need?
+:::
+
+## Rstudio
+
+![](images/screenshot_rstudio.png)
+
+
+## Rstudio
+
+::: columns
+::: {.column width="50%"}
+
+![](images/screenshot_rstudio1.png)
+
+:::
+
+::: {.column width="50%" .incremental style="font-size: 80%;"}
+1. Script Panel: Write your code here—it’s your "notebook".
+2. Console: This is where R "talks back" to you (shows results).
+3. Environment/History: Tracks your variables and past commands.
+4. Files/Plots/Packages: For managing your files, viewing graphs, or installing tools.
+:::
+:::
+
+## Rstudio {.smaller}
+
+Quick Tips:
+
+- Run code: Highlight it and press Ctrl + Enter (Windows) or Cmd + Enter (Mac).
+- Comment/ Uncomment code: Ctrl + Shift + C (Windows) or Cmd + Shift + C (Mac)
+- Help is your friend: Type `function_name` in the search box or `?function_name` in the console for the documentation.
+- Check all possible shortcuts: Tools -> Keyboard Shortcuts Help
+
+
+## Setting Up Your Project {.smaller}
+
+```r
+getwd() # Get working directory
+setwd() # Set working directory
+```
+
+Create an R project:
+
+![]()
+
+HERE: need a screen shot of creating project on the server,
+then create the sub folders (scripts, outputs, etc)
+then show the tree structure
+
+
+Tree structure:
+
+```sh
+project_IOC/
+├── README.md           # A short introduction of the project. 
+├── data                # Raw data files (e.g., experiment.csv)
+│   └── raw_count.tsv
+├── scripts             # Your R code files
+│   └── 01-analysis.R
+│   └── 02-figures.R
+└── outputs             # Results, graphs, or reports 
+    ├── 01-analysis.xlsx
+    └── 02-figures/
+```
+
+Separator: "/" (Linux/Mac) or "\\" (Windows)
+
+Example: `project_IOC/data/raw_count.tsv`
+
+```r
+file.exists("project_IOC/data/raw_count.tsv")
+basename("project_IOC/data/raw_count.tsv") # return the file name
+[1] "raw_count.tsv"
+dirname("project_IOC/data/raw_count.tsv")  # return the path
+[1] "project_IOC/data"
+```
+
+## Getting Started in R {auto-animate="true"}
+
+Basic commands:
+
+```r
+# Math with R:
+2 + 2    # Yes, R can do math!
+sqrt(16) # Square root.
+
+# Create a Variable:
+x <- 5 # Now x is 5. You can reuse it!
+
+# Inspect Your Environment:
+## Look at the "Environment" panel (top-right), do you see your x?
+
+# Quit RStudio Properly:
+q()
+```
+
+
+## Need Some Help? {.smaller}
+
+- Google it!
+- Ask your question via Slack
+- ChatGPT is your friend ;)
+
+**Key points**:
+
+- explain your question step-by-step
+- share the context
+- use keywords
+- try to rephrase the question
+
+
+::: {.notes}
+- what are you trying to do / what did you try?
+- the warning or error message / your code / your data structure
+- language name / function or package name / a specific problem
+- try and iterate
+:::
+
+## Quarto
+
+## Today's Goals
+
+- Get familiar with the RStudio's interface
+  - Copy a file via RStudio
+  - Import a data file into RStudio
+- Generate your first Quarto report
+
+
+# Let's Practice !
+
+

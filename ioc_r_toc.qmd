@@ -1,0 +1,14 @@
+---
+title: "Materials for the Courses"
+listing:
+  contents: ioc_r
+  sort: "date desc"
+  type: default
+  categories: numbered
+  sort-ui: false
+  filter-ui: false
+  # image-placeholder: pages/images/books.jpg
+page-layout: full
+title-block-banner: false
+---
+
