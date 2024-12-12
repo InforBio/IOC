@@ -1,5 +1,5 @@
 ---
-title: "Introduction to <br> R & RStudio"
+title: "Kickstart with ![](images/R_logo.png){width=4.5cm}:<br>Your Gateway to Data Science "
 subtitle: "IOC-R Week1"
 format:
   revealjs: 
@@ -13,8 +13,7 @@ format:
 category: "slides"
 ---
 
-
-# Unlock the Power of Your Data
+# Unlock the Power of Your Data with ![](images/R_logo.png){width=2.5cm}
 
 ## Welcome to R!
 
@@ -156,6 +155,7 @@ my_project/
 └── outputs/            # Results, graphs, or reports 
 ```
 
+
 :::{.notes}
 example of bad home organisation: pillow in kitchen and microoven in the bathroom
 The trunk is the main folder (your R Project).
@@ -195,7 +195,9 @@ What is the file path of "02-figures.R"?
 
 . . .
 
+::: {style="font-size:80%"}
 `scripts/02-figures.R`
+:::
 
 . . .
 
@@ -204,11 +206,13 @@ file.exists("scripts/02-figures.R")
 [1] TRUE
 ```
 
-## Getting Started in R
 
-Basic commands[^1]:
+## Getting Started in R {.smaller}
 
-``` {.r code-line-numbers="1-3|5-6|8-9|11-12"}
+- Create a new file[^1]: *File* -> *New File* -> *R Script*
+- Basic commands[^2]:
+
+``` {.r code-line-numbers="1-3|5-6|8-9|11-12|14-15|17-18"}
 # Math with R:
 2 + 2    # Yes, R can do math!
 sqrt(16) # Square root.
@@ -218,35 +222,48 @@ x <- 5 # Now x is 5. You can reuse it!
 
 # Inspect your environment:
 ## Look at the "Environment" pane, do you see your x?
+ls()
+
+# Load a package:
+library(stats)
+
+# Get help of a function (documentation):
+?mean
 
 # Quit RStudio properly
 q()
 ```
 
-[^1]: Shortcut to run code: highlight it and press *Ctrl + Enter* (Windows) or *Cmd + Enter* (Mac)
+
+[^1]: Shortcut to create new file: press *Shift + Ctrl + N* (Windows) or *Shift + Cmd + N* (Mac)
+[^2]: Shortcut to run code: highlight it and press *Ctrl + Enter* (Windows) or *Cmd + Enter* (Mac)
 
 
-## Need Some Help? {.smaller}
+## Import Dataset
 
-- Google it!
-- Ask/discuss your question via Slack
-- ChatGPT is your friend ;)
+::: columns
+::: {.column style="font-size: 60%;"}
 
-**Key points**:
+- Supported formats:  
+  - text files (.txt, .csv, *etc.*)
+  - Excel files
+  - data from other software (e.g., SAS)
 
-- Explain your question step-by-step
-- Share the context
-- Use keywords
-- Try to rephrase the question
+- Click-button methods:  
+  - From menu bar:
+    *File* -> *Import Dataset* -> Select the format -> Choose your file
+  - From the "Environment" Pane:
+    click "Import Dataset"  -> Select the format -> Choose your file
+  - From the "Files" Pane:
+    Navigate to your file location -> Click the file and select "Import Dataset"
 
-
-::: {.notes}
-google/forum stack overFlow
-- what are you trying to do / what did you try?
-- the warning or error message / your code / your data structure
-- language name / function or package name / a specific problem
-- try and iterate
 :::
+
+::: {.column}
+![](images/import_data.png)
+:::
+:::
+
 
 # Automated Reporting
 
@@ -272,12 +289,34 @@ google/forum stack overFlow
 Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/)
 
 
+## Need Some Help? {.smaller}
+
+- Google it!
+- Ask/discuss your question via Slack.
+- AI (like ChatGPT) is your friend 😉.
+
+**Key points**:
+
+- Explain your question step-by-step.
+- Share the context.
+- Use keywords.
+- Try to rephrase the question.
+
+
+::: {.notes}
+google/forum stack overFlow
+- what are you trying to do / what did you try?
+- the warning or error message / your code / your data structure
+- language name / function or package name / a specific problem
+- try and iterate
+:::
+
+
 # Let's Practice !
 
 ## Today's Goals
 
-- Get familiar with the RStudio's interface
-  - Create an R project in RStudio
-  - Upload a file via RStudio to your folder
-  - Import a data file into RStudio
+- Get familiar with the RStudio
+- Create an R project in RStudio
+- Upload and import data file into RStudio
 - Generate your first Quarto report
