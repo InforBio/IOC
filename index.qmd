@@ -33,7 +33,46 @@ confidence to run their own analyses independently.
 
 ### Zoom
 
+We will use Zoom for videoconferencing.
+
+Please follow the rules for usage:
+
+- Please be on time.
+- Technical setup:  
+  - Ensure your internet connection is stable.
+  - Test your camera and microphone before the session.
+- During the session:  
+  - Keep your microphone muted unless you're speaking to avoid background noise.
+  - Use the “Raise Hand” feature if you want to ask a question during the lecture.
+  - Keep your camera on if possible to create a more interactive environment.
+- Recorded sessions are for personal review only. Do not distribute them without permission.
+
+
 ### Slack
 
+Slack is a dedicated workspace for communication and staying connected between sessions.
+
+If you haven't already use it, you need to create a [Slack account](https://slack.com/get-started#/createnew).
+
+If you have a Slack account, you can either connect to the account using this [webpage](https://slack.com/signin#/signin), or use a desktop version on your computer. ([Slack Windows desktop](https://slack.com/intl/fr-fr/downloads/windows), [Slack Mac desktop](https://apps.apple.com/us/app/slack-for-desktop/id803453959?mt=12))
+
+And you will receive an invitation link to join the IOC Slack of your group.
+
+- Post messages in the correct channel, e.g., "questions" for asking about course content.
+- When asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.
+- When discussing a question, please reply in the thread to avoid flooding the channel.
+
+
 ### Trello
+
+Trello is a tool to help you stay organized and track your learning progress.
+
+You will be invited to join a Trello board for this IOC.
+We will create one list per student, 
+please add one card for each session to add your notes, summary, etc.
+
+
+<!-- ### Git? -->
+
+
 
