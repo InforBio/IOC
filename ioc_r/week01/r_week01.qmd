@@ -3,7 +3,49 @@ title: "Week 1 - Hands-On Examples"
 category: "excercises"
 ---
 
-## Data
+## Some RStudio Settings
+
+Go to *Tools* -> *Global Options...*
+
+- Under the *General* tab:
+  - Uncheck the box "Restore .RData..."
+  - Set "Save workspace to .RData on exit" to **Never**.
+  
+![](images/rstudio_setting1.png)
+
+- Under the *Code* tab:
+
+In the *Display* panel, check the box "Use rainbow parentheses"
+
+![](images/rstudio_setting2.png)
+- Under the *Appearance* tab:
+
+You can select a theme for you RStudio, e.g., the "Cobalt" for a dark theme.
+
+
+- Under the *Pane Layout* tab:
+
+You can arrange the four panels as you prefer.
+In addition, click "Add Column" lets you open an extra "Source" code column, allowing you to view your scripts side by side!
+
+![](images/rstudio_setting3.png)
+
+
+## Create an R project
+
+1. Create a new project in your folder.
+
+Some rules for naming your project:  
+- be descriptive and keep it short
+- use snake case (only lowercase letters and underscores allowed), avoid special characters (such as `!`, `#`, ) and spaces
+- the name cannot starts with numbers
+
+2. Create three new folders: `data`, `scripts`, `outputs`
+
+
+## Import Dataset
+
+### Data
 
 We will use a gene expression data as example.
 
@@ -17,12 +59,13 @@ Samples were taken at nine time points over two cell cycles (two hours).
 Source: https://monashbioinformaticsplatform.github.io/r-more/topics/tidyverse.html
 
 
-## Import into Rstudio
+### Import into Rstudio
 
 1. Download the zipped file and unzipped it
-2. Upload the `read-counts.csv` to the folder of your choice
+2. Upload the `read-counts.csv` to the folder `data` which you've just created
 3. Click on the file to "View" it, what is the separator of each column?
 4. Import the file into R and call it "counts"
+
 
 ## Play with basic R commands
 
@@ -47,15 +90,47 @@ typeof(counts[["WT:1"]])
 mode(counts[["WT:1"]])
 ```
 
-4. Generate a descriptive statistics of the data frame using `summary()`
+4. Calculate the average expression (`mean()`) and standard deviation (`sd()`) of genes from sample "WT:1".
+
+```{r}
+mean(counts[["WT:1"]])
+sd(counts[["WT:1"]])
+```
+
+5. Generate a descriptive statistics of the data frame using `summary()`
 
 ```{r}
 summary(counts[["WT:1"]])
 ```
 
-5. Generate a histogram of the "WT:1" using `hist()` and what is the distribution?
+6. Generate a histogram of the "WT:1" using `hist()` and what is the distribution?
 
 ```{r}
 hist(counts[["WT:1"]])
 hist(log2(counts[["WT:1"]]))
 ```
+
+## Get Your First Quarto Report
+
+Click the "Render" to generate the report!
+
+- Change something in this script and re-render it, is the output up-to-date?
+- Observe where is your report stored?
+- What to do if you want the report be store in a specified folder?
+  => use a configuration file for quarto.
+  
+Open a new text file and copy paste following code, save it as `_quarto.yml` in your project folder.
+
+```
+project:
+  output-dir: outputs/
+```
+
+Try "Render" again, now where is your report?
+
+
+---
+
+Good job! You've taken your first big steps into R, and you're off to a great start, keep it up! 👏👏👏
+
+
