@@ -1,22 +1,29 @@
 [
   {
+    "objectID": "ioc_scrnaseq.html",
+    "href": "ioc_scrnaseq.html",
+    "title": "IOC on Single-cell RNAseq Analysis",
+    "section": "",
+    "text": "Training on single-cell RNAseq analysis is upcoming!"
+  },
+  {
     "objectID": "index.html#what-is-ioc",
     "href": "index.html#what-is-ioc",
-    "title": "Welcome To the IOC-R Training!",
+    "title": "Welcome To the IOC Training!",
     "section": "What is IOC?",
     "text": "What is IOC?\nThe InforBio platform has developed an “Interactive Online Companionship” (IOC) specifically tailored to initiate researchers into bioinformatics. The IOC involved one-to-many virtual work sessions where companions are trained to analyze their own data.\nAll IOC programs are structured into a series of modules, with each module building upon the knowledge and skills acquired in the previous one. One module lasts one week, during which companions dive into online materials to ensure they understand and internalize the content. Companions then complete quizzes and exercises using both public and their own data to gauge their understanding, receiving personalized feedback on their work. To facilitate their learning, we provide access to computational resources such as Rstudio and Galaxy servers. The module wraps up with a 2.5 hours’ videoconference to recap the week’s material and address any questions. These videoconferences are recorded and made available for later viewing, ensuring continuous access to the learning resources.\nBy the end of an IOC, companions will be equipped with expertise and confidence to run their own analyses independently."
   },
   {
     "objectID": "index.html#ioc-tools",
     "href": "index.html#ioc-tools",
-    "title": "Welcome To the IOC-R Training!",
+    "title": "Welcome To the IOC Training!",
     "section": "IOC tools",
     "text": "IOC tools\n\nZoom\nWe will use Zoom for videoconferencing.\nPlease follow the rules for usage:\n\nPlease be on time.\nTechnical setup:\n\nEnsure your internet connection is stable.\nTest your camera and microphone before the session.\n\nDuring the session:\n\nKeep your microphone muted unless you’re speaking to avoid background noise.\nUse the “Raise Hand” feature if you want to ask a question during the lecture.\nKeep your camera on if possible to create a more interactive environment.\n\nRecorded sessions are for personal review only. Do not distribute them without permission.\n\n\n\nSlack\nSlack is a dedicated workspace for communication and staying connected between sessions.\nIf you haven’t already use it, you need to create a Slack account.\nIf you have a Slack account, you can either connect to the account using this webpage, or use a desktop version on your computer. (Slack Windows desktop, Slack Mac desktop)\nAnd you will receive an invitation link to join the IOC Slack of your group.\n\nPost messages in the correct channel, e.g., “questions” for asking about course content.\nWhen asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.\nWhen discussing a question, please reply in the thread to avoid flooding the channel.\n\n\n\nTrello\nTrello is a tool to help you stay organized and track your learning progress.\nYou will be invited to join a Trello board for this IOC. We will create one list per student, please add one card for each session to add your notes, summary, etc."
   },
   {
     "objectID": "ioc_bulk_rnaseq.html",
     "href": "ioc_bulk_rnaseq.html",
-    "title": "IOC on bulk RNAseq analysis",
+    "title": "IOC on Bulk RNAseq Analysis",
     "section": "",
     "text": "Training on bulk RNAseq analysis with Galaxy is upcoming!"
   },
@@ -175,17 +182,24 @@
     "text": "Calendar\n\nFrench Group\n\nStarts from: Wednesday, 8th January 2025\n\nTime slots: Wednesdays 9:30 am – 12:00 pm\nLocation: Online (Zoom link will be shared prior to the session by email)\nProvisional Schedule:\n\n\n\n\n\n\n\n\n\nWeek\nSession\nDate\nTime\n\n\n\n\nWeek 1\nKickstart with R: Your Gateway to Data Science\n8th January\n9:30 am – 12:00 pm\n\n\nWeek 2\nData Foundations: Vectors and Matrices\n15th January\n9:30 am – 12:00 pm\n\n\nWeek 3\nMore Complex Data Structures: Lists and Data Frames\n22nd January\n9:30 am – 12:00 pm\n\n\nWeek 4\nBuilding Logic: Operators, Conditions, and Functions\n29th January\n9:30 am – 12:00 pm\n\n\nWeek 5\nGraphing with {ggplot2}\n5th February\n9:30 am – 12:00 pm\n\n\nWeek 6\nR-fresh: Revisiting the Essentials\n12th February\n9:30 am – 12:00 pm\n\n\nWeek 7\nSmart Shortcuts: Mastering the apply Family\n5th March\n9:30 am – 12:00 pm\n\n\nWeek 8\nTidy Your Data: Exploring {tidyr} and {dplyr}\n12th March\n9:30 am – 12:00 pm\n\n\nWeek 9\nString Tricks & Final Review\n19nd March\n9:30 am – 12:00 pm\n\n\nWeek 10\nYour project presentation\nTBD\nTBD\n\n\n\n\n\n\nEnglish Group\n\nStarts from: Monday, 13th January 2025\n\nTime slots: Mondays 9:30 am – 12:00 pm\n\nLocation: Online (Zoom link will be shared prior to the session by email)\nProvisional Schedule:\n\n\n\n\n\n\n\n\n\nWeek\nSession\nDate\nTime\n\n\n\n\nWeek 1\nIntroduction to R\n13th January\n9:30 am – 12:00 pm\n\n\nWeek 2\nR Objects (Part 1)\n20th January\n9:30 am – 12:00 pm\n\n\nWeek 3\nR Objects (Part 2)\n27th January\n9:30 am – 12:00 pm\n\n\nWeek 4\nOperators, Conditions & Functions in R\n3rd February\n9:30 am – 12:00 pm\n\n\nWeek 5\nGraphing with ggplot2\n10th February\n9:30 am – 12:00 pm\n\n\nWeek 6\nRecap\n3rd March\n9:30 am – 12:00 pm\n\n\nWeek 7\nThe apply family\n10th March\n9:30 am – 12:00 pm\n\n\nWeek 8\nTidyverse (Part 1)\n17th March\n9:30 am – 12:00 pm\n\n\nWeek 9\nTidyverse (Part 2)\n24th March\n9:30 am – 12:00 pm\n\n\nWeek 10\nYour project presentation\nTBD\nTBD"
   },
   {
-    "objectID": "ioc_r_info.html#recommended-readings-and-resources",
-    "href": "ioc_r_info.html#recommended-readings-and-resources",
+    "objectID": "ioc_r_info.html#recommended-readings",
+    "href": "ioc_r_info.html#recommended-readings",
     "title": "IOC R Training Information",
-    "section": "Recommended Readings and Resources",
-    "text": "Recommended Readings and Resources\n\nR for Data Science by Hadley Wickham\nHands-On Programming with R by Garrett Grolemund\nggplot2: Elegant Graphics for Data Analysis by Hadley Wickham\nYaRrr! The Pirate’s Guide to R by Nathaniel D. Phillips\nCRAN R Documentation"
+    "section": "Recommended Readings",
+    "text": "Recommended Readings\n\nR for Data Science by Hadley Wickham\nHands-On Programming with R by Garrett Grolemund\nggplot2: Elegant Graphics for Data Analysis by Hadley Wickham\nYaRrr! The Pirate’s Guide to R by Nathaniel D. Phillips\nCRAN R Documentation"
   },
   {
     "objectID": "ioc_r_toc.html",
     "href": "ioc_r_toc.html",
-    "title": "Materials for the Courses",
+    "title": "Materials for the IOC-R",
     "section": "",
     "text": "Week 1 - Hands-On Examples\n\n\n\n\n\n\nweek01\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week1\n\n\n\nweek01\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "ioc_scrnaseq_info.html",
+    "href": "ioc_scrnaseq_info.html",
+    "title": "IOC Single-cell RNAseq Training Information",
+    "section": "",
+    "text": "Welcome to the IOC-scRNAseq Training!\nThe online course will be started from end March 2025. More details will be shared later."
   }
 ]

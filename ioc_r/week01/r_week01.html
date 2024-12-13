@@ -103,7 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -126,13 +125,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../ioc_r_info.html"> 
-<span class="menu-text">Calendar &amp; Info</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-calendar--info" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Calendar &amp; Info</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-calendar--info">    
+        <li>
+    <a class="dropdown-item" href="../../ioc_r_info.html">
+ <span class="dropdown-text">IOC-R Info</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../ioc_scrnaseq_info.html">
+ <span class="dropdown-text">IOC-scRNAseq Info</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../ioc_r_toc.html"> 
-<span class="menu-text">Slides &amp; Exercises</span></a>
+<span class="menu-text">IOC-R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ioc_scrnaseq.html"> 
+<span class="menu-text">IOC-scRNAseq</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/InforBio/IOC"> <i class="bi bi-github" role="img">
