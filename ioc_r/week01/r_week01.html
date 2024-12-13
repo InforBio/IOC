@@ -135,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Slides &amp; Exercises</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/InforBio/InforBio.github.io"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/InforBio/IOC"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#import-dataset" id="toc-import-dataset" class="nav-link" data-scroll-target="#import-dataset">Import Dataset</a>
   <ul class="collapse">
   <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a></li>
-  <li><a href="#import-into-rstudio" id="toc-import-into-rstudio" class="nav-link" data-scroll-target="#import-into-rstudio">Import into Rstudio</a></li>
+  <li><a href="#importing-into-rstudio" id="toc-importing-into-rstudio" class="nav-link" data-scroll-target="#importing-into-rstudio">Importing into Rstudio</a></li>
   </ul></li>
   <li><a href="#play-with-basic-r-commands" id="toc-play-with-basic-r-commands" class="nav-link" data-scroll-target="#play-with-basic-r-commands">Play with Basic R Commands</a></li>
   <li><a href="#get-your-first-quarto-report" id="toc-get-your-first-quarto-report" class="nav-link" data-scroll-target="#get-your-first-quarto-report">Get Your First Quarto Report</a></li>
@@ -239,28 +239,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="import-dataset">Import Dataset</h2>
 <section id="data-description" class="level3">
 <h3 class="anchored" data-anchor-id="data-description">Data Description</h3>
-<p>We will use a gene expression data as example.</p>
-<p>The file is called “read-counts.csv” you can download it using this <a href="https://monashbioinformaticsplatform.github.io/r-more/r-more-files.zip">link</a>.</p>
+<p>We’ll be working with a gene expression dataset as an example, sourced from this <a href="https://monashbioinformaticsplatform.github.io/r-more/">link</a>.</p>
+<p>The specific file we’ll use is named “<strong>read-counts.csv</strong>”, which you can download from this <a href="https://monashbioinformaticsplatform.github.io/r-more/r-more-files.zip">zipped folder</a>.</p>
 <p>The data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).</p>
-<p>Source: https://monashbioinformaticsplatform.github.io/r-more/topics/tidyverse.html</p>
 </section>
-<section id="import-into-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="import-into-rstudio">Import into Rstudio</h3>
+<section id="importing-into-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="importing-into-rstudio">Importing into Rstudio</h3>
 <ol type="1">
-<li>Download the zipped file to your computer and unzipped it.</li>
+<li>Download the zipped file to your computer and extract its contents.</li>
 <li>Upload the <code>read-counts.csv</code> to the folder <code>data</code> of your R project.</li>
-<li>Click on the file to “View” it, what is the separator of each column?</li>
-<li>Import the file into R and call it “counts”</li>
+<li>Click on the file to “View” it and identify the column separator.</li>
+<li>Import the file into R and call it “counts”.</li>
 </ol>
 </section>
 </section>
 <section id="play-with-basic-r-commands" class="level2">
 <h2 class="anchored" data-anchor-id="play-with-basic-r-commands">Play with Basic R Commands</h2>
 <ol type="1">
-<li>What is the absolute file path of the count data? Check your answer with the function <code>file.exists()</code>.</li>
+<li>What is the absolute file path of the count data? What is its absolute path? Verify your answer using the function <code>file.exists()</code>.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(<span class="st">"path/to/your/file"</span>) <span class="co"># replace the path by the yours</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(<span class="st">"relative_path/to/your/file"</span>) <span class="co"># replace the path by the yours</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(<span class="st">"absolute_path/to/your/file"</span>) <span class="co"># replace the path by the yours</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Check the “Environment” panel or use the function <code>dim()</code>. What is the dimension of the data frame?</li>
@@ -271,10 +271,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 45 41</code></pre>
 </div>
 </div>
-<p>Click on the tabular logo after the data to visualize the dataset.</p>
-<p>We can extract all genes’ expression of the sample named “WT:2” by using <code>counts[["WT:2"]]</code>.</p>
+<p>In the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.</p>
+<p>We can extract all gene expressions for the sample named “WT:2” using <code>counts[["WT:2"]]</code>.</p>
 <ol start="3" type="1">
-<li>Try <code>mode()</code> on the expression data of “WT:2”:</li>
+<li>Try <code>mode()</code> on the expression data for “WT:2”, what does it return?</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(counts[[<span class="st">"WT:2"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -283,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ol start="4" type="1">
-<li>Calculate the average expression (<code>mean()</code>) and standard deviation (<code>sd()</code>) of genes from sample “WT:2”.</li>
+<li>Calculate the average expression (<code>mean()</code>) and standard deviation (<code>sd()</code>) of genes from the sample “WT:2”.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(counts[[<span class="st">"WT:2"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ol start="5" type="1">
-<li>Generate a descriptive statistics of the data frame using <code>summary()</code></li>
+<li>Generate descriptive statistics for all genes from the sample “WT:2” using <code>summary()</code>.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(counts[[<span class="st">"WT:2"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -323,7 +323,7 @@ Stats Time!
 </div>
 </div>
 <ol start="6" type="1">
-<li>Generate a histogram of the “WT:2” using <code>hist()</code> and what is the distribution?</li>
+<li>Generate a histogram for the “WT:2” sample using <code>hist()</code>. What does the distribution look like?</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Stats Time!">
 <div class="callout-header d-flex align-content-center">
