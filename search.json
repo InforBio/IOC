@@ -14,74 +14,11 @@
     "text": "IOC tools\n\nZoom\nWe will use Zoom for videoconferencing.\nPlease follow the rules for usage:\n\nPlease be on time.\nTechnical setup:\n\nEnsure your internet connection is stable.\nTest your camera and microphone before the session.\n\nDuring the session:\n\nKeep your microphone muted unless you’re speaking to avoid background noise.\nUse the “Raise Hand” feature if you want to ask a question during the lecture.\nKeep your camera on if possible to create a more interactive environment.\n\nRecorded sessions are for personal review only. Do not distribute them without permission.\n\n\n\nSlack\nSlack is a dedicated workspace for communication and staying connected between sessions.\nIf you haven’t already use it, you need to create a Slack account.\nIf you have a Slack account, you can either connect to the account using this webpage, or use a desktop version on your computer. (Slack Windows desktop, Slack Mac desktop)\nAnd you will receive an invitation link to join the IOC Slack of your group.\n\nPost messages in the correct channel, e.g., “questions” for asking about course content.\nWhen asking questions, please be specific and clear with a minimal context, include screenshots or error message to help others understand the issue.\nWhen discussing a question, please reply in the thread to avoid flooding the channel.\n\n\n\nTrello\nTrello is a tool to help you stay organized and track your learning progress.\nYou will be invited to join a Trello board for this IOC. We will create one list per student, please add one card for each session to add your notes, summary, etc."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "ioc_bulk_rnaseq.html",
+    "href": "ioc_bulk_rnaseq.html",
+    "title": "IOC on bulk RNAseq analysis",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "ioc_r_info.html",
-    "href": "ioc_r_info.html",
-    "title": "IOC R Training Information",
-    "section": "",
-    "text": "Welcome to the IOC R Training! This page contains all the essential details for the training. Please bookmark this page for quick access."
-  },
-  {
-    "objectID": "ioc_r_info.html#calendar",
-    "href": "ioc_r_info.html#calendar",
-    "title": "IOC R Training Information",
-    "section": "Calendar",
-    "text": "Calendar\n\nFrench Group\n\nStarts from: Wednesday, 8th January 2025\n\nTime slots: Wednesdays 9:30 am – 12:00 pm\nLocation: Online (Zoom link will be shared prior to the session by email)\nProvisional Schedule:\n\n\n\n\n\n\n\n\n\nWeek\nSession\nDate\nTime\n\n\n\n\nWeek 1\nKickstart with R: Your Gateway to Data Science\n8th January\n9:30 am – 12:00 pm\n\n\nWeek 2\nData Foundations: Vectors and Matrices\n15th January\n9:30 am – 12:00 pm\n\n\nWeek 3\nMore Complex Data Structures: Lists and Data Frames\n22nd January\n9:30 am – 12:00 pm\n\n\nWeek 4\nBuilding Logic: Operators, Conditions, and Functions\n29th January\n9:30 am – 12:00 pm\n\n\nWeek 5\nGraphing with {ggplot2}\n5th February\n9:30 am – 12:00 pm\n\n\nWeek 6\nR-fresh: Revisiting the Essentials\n12th February\n9:30 am – 12:00 pm\n\n\nWeek 7\nSmart Shortcuts: Mastering the apply Family\n5th March\n9:30 am – 12:00 pm\n\n\nWeek 8\nTidy Your Data: Exploring {tidyr} and {dplyr}\n12th March\n9:30 am – 12:00 pm\n\n\nWeek 9\nString Tricks & Final Review\n19nd March\n9:30 am – 12:00 pm\n\n\nWeek 10\nYour project presentation\nTBD\nTBD\n\n\n\n\n\n\nEnglish Group\n\nStarts from: Monday, 13th January 2025\n\nTime slots: Mondays 9:30 am – 12:00 pm\n\nLocation: Online (Zoom link will be shared prior to the session by email)\nProvisional Schedule:\n\n\n\n\n\n\n\n\n\nWeek\nSession\nDate\nTime\n\n\n\n\nWeek 1\nIntroduction to R\n13th January\n9:30 am – 12:00 pm\n\n\nWeek 2\nR Objects (Part 1)\n20th January\n9:30 am – 12:00 pm\n\n\nWeek 3\nR Objects (Part 2)\n27th January\n9:30 am – 12:00 pm\n\n\nWeek 4\nOperators, Conditions & Functions in R\n3rd February\n9:30 am – 12:00 pm\n\n\nWeek 5\nGraphing with ggplot2\n10th February\n9:30 am – 12:00 pm\n\n\nWeek 6\nRecap\n3rd March\n9:30 am – 12:00 pm\n\n\nWeek 7\nThe apply family\n10th March\n9:30 am – 12:00 pm\n\n\nWeek 8\nTidyverse (Part 1)\n17th March\n9:30 am – 12:00 pm\n\n\nWeek 9\nTidyverse (Part 2)\n24th March\n9:30 am – 12:00 pm\n\n\nWeek 10\nYour project presentation\nTBD\nTBD"
-  },
-  {
-    "objectID": "ioc_r_info.html#recommended-readings-and-resources",
-    "href": "ioc_r_info.html#recommended-readings-and-resources",
-    "title": "IOC R Training Information",
-    "section": "Recommended Readings and Resources",
-    "text": "Recommended Readings and Resources\n\nR for Data Science by Hadley Wickham\nHands-On Programming with R by Garrett Grolemund\nggplot2: Elegant Graphics for Data Analysis by Hadley Wickham\nYaRrr! The Pirate’s Guide to R by Nathaniel D. Phillips\nCRAN R Documentation"
-  },
-  {
-    "objectID": "ioc_r/week01/r_week01.html",
-    "href": "ioc_r/week01/r_week01.html",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "",
-    "text": "Go to Tools -&gt; Global Options…\n\nUnder the General tab:\n\nUncheck the box “Restore .RData…”\nSet “Save workspace to .RData on exit” to Never.\n\n\n\n\nUnder the Code tab:\n\nIn the Display panel, check the box “Use rainbow parentheses”\n\n\nUnder the Appearance tab:\n\nYou can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.\n\nUnder the Pane Layout tab:\n\nYou can arrange the four panels as you prefer.\nIn addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!"
-  },
-  {
-    "objectID": "ioc_r/week01/r_week01.html#some-rstudio-settings",
-    "href": "ioc_r/week01/r_week01.html#some-rstudio-settings",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "",
-    "text": "Go to Tools -&gt; Global Options…\n\nUnder the General tab:\n\nUncheck the box “Restore .RData…”\nSet “Save workspace to .RData on exit” to Never.\n\n\n\n\nUnder the Code tab:\n\nIn the Display panel, check the box “Use rainbow parentheses”\n\n\nUnder the Appearance tab:\n\nYou can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.\n\nUnder the Pane Layout tab:\n\nYou can arrange the four panels as you prefer.\nIn addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!"
-  },
-  {
-    "objectID": "ioc_r/week01/r_week01.html#create-an-r-project",
-    "href": "ioc_r/week01/r_week01.html#create-an-r-project",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Create an R project",
-    "text": "Create an R project\n\nCreate a new project in your folder.\n\nSome rules for naming your project:\n\nbe descriptive and keep it short\nuse snake case (only lowercase letters and underscores allowed), avoid special characters (such as !, #, ) and spaces\nthe name cannot starts with numbers\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs."
-  },
-  {
-    "objectID": "ioc_r/week01/r_week01.html#import-dataset",
-    "href": "ioc_r/week01/r_week01.html#import-dataset",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Import Dataset",
-    "text": "Import Dataset\n\nData Description\nWe will use a gene expression data as example.\nThe file is called “read-counts.csv” you can download it using this link.\nThe data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).\nSource: https://monashbioinformaticsplatform.github.io/r-more/topics/tidyverse.html\n\n\nImport into Rstudio\n\nDownload the zipped file to your computer and unzipped it.\nUpload the read-counts.csv to the folder data of your R project.\nClick on the file to “View” it, what is the separator of each column?\nImport the file into R and call it “counts”"
-  },
-  {
-    "objectID": "ioc_r/week01/r_week01.html#play-with-basic-r-commands",
-    "href": "ioc_r/week01/r_week01.html#play-with-basic-r-commands",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Play with Basic R Commands",
-    "text": "Play with Basic R Commands\n\nWhat is the absolute file path of the count data? Check your answer with the function file.exists().\n\n\nfile.exists(\"path/to/your/file\") # replace the path by the yours\n\n\nCheck the “Environment” panel or use the function dim(). What is the dimension of the data frame?\n\n\ndim(counts)\n\n[1] 45 41\n\n\nClick on the tabular logo after the data to visualize the dataset.\nWe can extract all genes’ expression of the sample named “WT:2” by using counts[[\"WT:2\"]].\n\nTry mode() on the expression data of “WT:2”:\n\n\nmode(counts[[\"WT:2\"]])\n\n[1] \"numeric\"\n\n\n\nCalculate the average expression (mean()) and standard deviation (sd()) of genes from sample “WT:2”.\n\n\nmean(counts[[\"WT:2\"]])\n\n[1] 148\n\nsd(counts[[\"WT:2\"]])\n\n[1] 392.7854\n\n\n\nGenerate a descriptive statistics of the data frame using summary()\n\n\nsummary(counts[[\"WT:2\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      0       6      27     148     110    2527 \n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nWhat are quartiles?\nQuartiles are three values that split sorted data into four equal parts.\n\nIQR (Interquartile range) = Q3 - Q1\nIQR only includes the middle 50% of the data.\n\n\n\nGenerate a histogram of the “WT:2” using hist() and what is the distribution?\n\n\n\n\n\n\n\nStats Time!\n\n\n\nHistograms help us see how data is spread out. They show how many data points fall into different ranges, or bins. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.\n\n\n\nhist(counts[[\"WT:2\"]])\n\n\n\n\n\n\n\nhist(log2(counts[[\"WT:2\"]]))"
-  },
-  {
-    "objectID": "ioc_r/week01/r_week01.html#get-your-first-quarto-report",
-    "href": "ioc_r/week01/r_week01.html#get-your-first-quarto-report",
-    "title": "Week 1 - Hands-On Examples",
-    "section": "Get Your First Quarto Report",
-    "text": "Get Your First Quarto Report\nClick the “Render” to generate the report!\n\nChange something in this script and re-render it, is the report up-to-date?\nWhere is your report stored?\nWhat should you do if you want the report be stored in a specified folder? =&gt; use a configuration file for Quarto.\n\nOpen a new text file and copy paste following code, save it as _quarto.yml in your project folder.\nproject:\n  output-dir: outputs/\nTry “Render” again, now where is your report?\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
+    "text": "Training on bulk RNAseq analysis with Galaxy is upcoming!"
   },
   {
     "objectID": "ioc_r/week01/index.html#welcome-to-r",
@@ -182,17 +119,73 @@
     "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nUpload and import data file into RStudio\nGenerate your first Quarto report"
   },
   {
-    "objectID": "ioc_bulk_rnaseq.html",
-    "href": "ioc_bulk_rnaseq.html",
-    "title": "IOC on bulk RNAseq analysis",
+    "objectID": "ioc_r/week01/r_week01.html",
+    "href": "ioc_r/week01/r_week01.html",
+    "title": "Week 1 - Hands-On Examples",
     "section": "",
-    "text": "Training on bulk RNAseq analysis with Galaxy is upcoming!"
+    "text": "Go to Tools -&gt; Global Options…\n\nUnder the General tab:\n\nUncheck the box “Restore .RData…”\nSet “Save workspace to .RData on exit” to Never.\n\n\n\n\nUnder the Code tab:\n\nIn the Display panel, check the box “Use rainbow parentheses”\n\n\nUnder the Appearance tab:\n\nYou can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.\n\nUnder the Pane Layout tab:\n\nYou can arrange the four panels as you prefer.\nIn addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!"
+  },
+  {
+    "objectID": "ioc_r/week01/r_week01.html#some-rstudio-settings",
+    "href": "ioc_r/week01/r_week01.html#some-rstudio-settings",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "",
+    "text": "Go to Tools -&gt; Global Options…\n\nUnder the General tab:\n\nUncheck the box “Restore .RData…”\nSet “Save workspace to .RData on exit” to Never.\n\n\n\n\nUnder the Code tab:\n\nIn the Display panel, check the box “Use rainbow parentheses”\n\n\nUnder the Appearance tab:\n\nYou can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.\n\nUnder the Pane Layout tab:\n\nYou can arrange the four panels as you prefer.\nIn addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!"
+  },
+  {
+    "objectID": "ioc_r/week01/r_week01.html#create-an-r-project",
+    "href": "ioc_r/week01/r_week01.html#create-an-r-project",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Create an R project",
+    "text": "Create an R project\n\nCreate a new project in your folder.\n\nSome rules for naming your project:\n\nbe descriptive and keep it short\nuse snake case (only lowercase letters and underscores allowed), avoid special characters (such as !, #, ) and spaces\nthe name cannot starts with numbers\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs."
+  },
+  {
+    "objectID": "ioc_r/week01/r_week01.html#import-dataset",
+    "href": "ioc_r/week01/r_week01.html#import-dataset",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Import Dataset",
+    "text": "Import Dataset\n\nData Description\nWe will use a gene expression data as example.\nThe file is called “read-counts.csv” you can download it using this link.\nThe data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).\nSource: https://monashbioinformaticsplatform.github.io/r-more/topics/tidyverse.html\n\n\nImport into Rstudio\n\nDownload the zipped file to your computer and unzipped it.\nUpload the read-counts.csv to the folder data of your R project.\nClick on the file to “View” it, what is the separator of each column?\nImport the file into R and call it “counts”"
+  },
+  {
+    "objectID": "ioc_r/week01/r_week01.html#play-with-basic-r-commands",
+    "href": "ioc_r/week01/r_week01.html#play-with-basic-r-commands",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Play with Basic R Commands",
+    "text": "Play with Basic R Commands\n\nWhat is the absolute file path of the count data? Check your answer with the function file.exists().\n\n\nfile.exists(\"path/to/your/file\") # replace the path by the yours\n\n\nCheck the “Environment” panel or use the function dim(). What is the dimension of the data frame?\n\n\ndim(counts)\n\n[1] 45 41\n\n\nClick on the tabular logo after the data to visualize the dataset.\nWe can extract all genes’ expression of the sample named “WT:2” by using counts[[\"WT:2\"]].\n\nTry mode() on the expression data of “WT:2”:\n\n\nmode(counts[[\"WT:2\"]])\n\n[1] \"numeric\"\n\n\n\nCalculate the average expression (mean()) and standard deviation (sd()) of genes from sample “WT:2”.\n\n\nmean(counts[[\"WT:2\"]])\n\n[1] 148\n\nsd(counts[[\"WT:2\"]])\n\n[1] 392.7854\n\n\n\nGenerate a descriptive statistics of the data frame using summary()\n\n\nsummary(counts[[\"WT:2\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      0       6      27     148     110    2527 \n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nWhat are quartiles?\nQuartiles are three values that split sorted data into four equal parts.\n\nIQR (Interquartile range) = Q3 - Q1\nIQR only includes the middle 50% of the data.\n\n\n\nGenerate a histogram of the “WT:2” using hist() and what is the distribution?\n\n\n\n\n\n\n\nStats Time!\n\n\n\nHistograms help us see how data is spread out. They show how many data points fall into different ranges, or bins. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.\n\n\n\nhist(counts[[\"WT:2\"]])\n\n\n\n\n\n\n\nhist(log2(counts[[\"WT:2\"]]))"
+  },
+  {
+    "objectID": "ioc_r/week01/r_week01.html#get-your-first-quarto-report",
+    "href": "ioc_r/week01/r_week01.html#get-your-first-quarto-report",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "Get Your First Quarto Report",
+    "text": "Get Your First Quarto Report\nClick the “Render” to generate the report!\n\nChange something in this script and re-render it, is the report up-to-date?\nWhere is your report stored?\nWhat should you do if you want the report be stored in a specified folder? =&gt; use a configuration file for Quarto.\n\nOpen a new text file and copy paste following code, save it as _quarto.yml in your project folder.\nproject:\n  output-dir: outputs/\nTry “Render” again, now where is your report?\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
+  },
+  {
+    "objectID": "ioc_r_info.html",
+    "href": "ioc_r_info.html",
+    "title": "IOC R Training Information",
+    "section": "",
+    "text": "Welcome to the IOC R Training! This page contains all the essential details for the training. Please bookmark this page for quick access."
+  },
+  {
+    "objectID": "ioc_r_info.html#calendar",
+    "href": "ioc_r_info.html#calendar",
+    "title": "IOC R Training Information",
+    "section": "Calendar",
+    "text": "Calendar\n\nFrench Group\n\nStarts from: Wednesday, 8th January 2025\n\nTime slots: Wednesdays 9:30 am – 12:00 pm\nLocation: Online (Zoom link will be shared prior to the session by email)\nProvisional Schedule:\n\n\n\n\n\n\n\n\n\nWeek\nSession\nDate\nTime\n\n\n\n\nWeek 1\nKickstart with R: Your Gateway to Data Science\n8th January\n9:30 am – 12:00 pm\n\n\nWeek 2\nData Foundations: Vectors and Matrices\n15th January\n9:30 am – 12:00 pm\n\n\nWeek 3\nMore Complex Data Structures: Lists and Data Frames\n22nd January\n9:30 am – 12:00 pm\n\n\nWeek 4\nBuilding Logic: Operators, Conditions, and Functions\n29th January\n9:30 am – 12:00 pm\n\n\nWeek 5\nGraphing with {ggplot2}\n5th February\n9:30 am – 12:00 pm\n\n\nWeek 6\nR-fresh: Revisiting the Essentials\n12th February\n9:30 am – 12:00 pm\n\n\nWeek 7\nSmart Shortcuts: Mastering the apply Family\n5th March\n9:30 am – 12:00 pm\n\n\nWeek 8\nTidy Your Data: Exploring {tidyr} and {dplyr}\n12th March\n9:30 am – 12:00 pm\n\n\nWeek 9\nString Tricks & Final Review\n19nd March\n9:30 am – 12:00 pm\n\n\nWeek 10\nYour project presentation\nTBD\nTBD\n\n\n\n\n\n\nEnglish Group\n\nStarts from: Monday, 13th January 2025\n\nTime slots: Mondays 9:30 am – 12:00 pm\n\nLocation: Online (Zoom link will be shared prior to the session by email)\nProvisional Schedule:\n\n\n\n\n\n\n\n\n\nWeek\nSession\nDate\nTime\n\n\n\n\nWeek 1\nIntroduction to R\n13th January\n9:30 am – 12:00 pm\n\n\nWeek 2\nR Objects (Part 1)\n20th January\n9:30 am – 12:00 pm\n\n\nWeek 3\nR Objects (Part 2)\n27th January\n9:30 am – 12:00 pm\n\n\nWeek 4\nOperators, Conditions & Functions in R\n3rd February\n9:30 am – 12:00 pm\n\n\nWeek 5\nGraphing with ggplot2\n10th February\n9:30 am – 12:00 pm\n\n\nWeek 6\nRecap\n3rd March\n9:30 am – 12:00 pm\n\n\nWeek 7\nThe apply family\n10th March\n9:30 am – 12:00 pm\n\n\nWeek 8\nTidyverse (Part 1)\n17th March\n9:30 am – 12:00 pm\n\n\nWeek 9\nTidyverse (Part 2)\n24th March\n9:30 am – 12:00 pm\n\n\nWeek 10\nYour project presentation\nTBD\nTBD"
+  },
+  {
+    "objectID": "ioc_r_info.html#recommended-readings-and-resources",
+    "href": "ioc_r_info.html#recommended-readings-and-resources",
+    "title": "IOC R Training Information",
+    "section": "Recommended Readings and Resources",
+    "text": "Recommended Readings and Resources\n\nR for Data Science by Hadley Wickham\nHands-On Programming with R by Garrett Grolemund\nggplot2: Elegant Graphics for Data Analysis by Hadley Wickham\nYaRrr! The Pirate’s Guide to R by Nathaniel D. Phillips\nCRAN R Documentation"
   },
   {
     "objectID": "ioc_r_toc.html",
     "href": "ioc_r_toc.html",
     "title": "Materials for the Courses",
     "section": "",
-    "text": "Week 1 - Hands-On Examples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week1\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Week 1 - Hands-On Examples\n\n\n\n\n\n\nweek01\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week1\n\n\n\nweek01\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
