@@ -2,7 +2,7 @@
 title: "Materials for the Courses"
 listing:
   contents: ioc_r
-  sort: "date desc"
+  sort: "date"
   type: default
   categories: numbered
   sort-ui: false
