@@ -54,29 +54,31 @@ Some rules for naming your project:
 
 ### Data Description
 
-We will use a gene expression data as example.
+We'll be working with a gene expression dataset as an example,
+sourced from this [link](https://monashbioinformaticsplatform.github.io/r-more/).
 
-The file is called "read-counts.csv" you can download it using this [link](https://monashbioinformaticsplatform.github.io/r-more/r-more-files.zip).
+The specific file we'll use is named "**read-counts.csv**",
+which you can download from this
+[zipped folder](https://monashbioinformaticsplatform.github.io/r-more/r-more-files.zip).
+
 
 The data comes from an experiment using PCR to study 44 genes.
 The results were measured to see which genes are active at different stages in Yeast cell cycling.
 Several strains were tested, including wildtype and some with specific genes knock-downs.
 Samples were taken at nine time points over two cell cycles (two hours).
 
-Source: https://monashbioinformaticsplatform.github.io/r-more/topics/tidyverse.html
 
+### Importing into Rstudio
 
-### Import into Rstudio
-
-1. Download the zipped file to your computer and unzipped it.
+1. Download the zipped file to your computer and extract its contents.
 2. Upload the `read-counts.csv` to the folder `data` of your R project.
-3. Click on the file to "View" it, what is the separator of each column?
-4. Import the file into R and call it "counts"
+3. Click on the file to "View" it and identify the column separator.
+4. Import the file into R and call it "counts".
 
 
 ## Play with Basic R Commands
 
-1. What is the absolute file path of the count data? Check your answer with the function `file.exists()`.
+1. What is the absolute file path of the count data? What is its absolute path? Verify your answer using the function `file.exists()`.
 
 ```{r}
 #| echo: false
@@ -88,7 +90,8 @@ counts <- readr::read_csv("read-counts.csv")
 ```{r}
 #| eval: false
 
-file.exists("path/to/your/file") # replace the path by the yours
+file.exists("relative_path/to/your/file") # replace the path by the yours
+file.exists("absolute_path/to/your/file") # replace the path by the yours
 ```
 
 2. Check the "Environment" panel or use the function `dim()`.
@@ -98,24 +101,24 @@ What is the dimension of the data frame?
 dim(counts)
 ```
 
-Click on the tabular logo after the data to visualize the dataset.
+In the "Environment" panel, click on the tabular icon next to the dataset to visualize the it.
 
-We can extract all genes' expression of the sample named "WT:2" by using `counts[["WT:2"]]`.
+We can extract all gene expressions for the sample named "WT:2" using `counts[["WT:2"]]`.
 
-3. Try `mode()` on the expression data of "WT:2":
+3. Try `mode()` on the expression data for "WT:2", what does it return?
 
 ```{r}
 mode(counts[["WT:2"]])
 ```
 
-4. Calculate the average expression (`mean()`) and standard deviation (`sd()`) of genes from sample "WT:2".
+4. Calculate the average expression (`mean()`) and standard deviation (`sd()`) of genes from the sample "WT:2".
 
 ```{r}
 mean(counts[["WT:2"]])
 sd(counts[["WT:2"]])
 ```
 
-5. Generate a descriptive statistics of the data frame using `summary()`
+5. Generate descriptive statistics for all genes from the sample "WT:2" using `summary()`.
 
 ```{r}
 summary(counts[["WT:2"]])
@@ -134,7 +137,7 @@ IQR only includes the middle 50% of the data.
 :::
 
 
-6. Generate a histogram of the "WT:2" using `hist()` and what is the distribution?
+6. Generate a histogram for the "WT:2" sample using `hist()`. What does the distribution look like?
 
 ::: {.callout-tip title="Stats Time!"}
 **Histograms** help us see how data is spread out.

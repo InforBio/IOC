@@ -295,7 +295,7 @@ Markdown syntax [cheat sheet](https://www.markdownguide.org/cheat-sheet/)
 
 - Google it!
 - Ask/discuss your question via Slack.
-- AI (like ChatGPT) is your friend 😉 but be careful of false answer!
+- AI (like ChatGPT) is your friend 😉, but be careful of false answers!
 
 **Key points**:
 
