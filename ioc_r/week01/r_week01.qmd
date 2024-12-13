@@ -54,7 +54,7 @@ Some rules for naming your project:
 
 We will use a gene expression data as example.
 
-The file is called "read-counts.csv" you can download it using this link: https://monashbioinformaticsplatform.github.io/r-more/r-more-files.zip
+The file is called "read-counts.csv" you can download it using this [link](https://monashbioinformaticsplatform.github.io/r-more/r-more-files.zip).
 
 The data comes from an experiment using PCR to study 44 genes.
 The results were measured to see which genes are active at different stages in Yeast cell cycling.
