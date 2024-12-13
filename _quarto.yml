@@ -14,16 +14,22 @@ website:
     #     text: "About IOC"
     left: 
       - text: "Calendar & Info"
-        href: ioc_r_info.qmd
-      - text: "Slides & Exercises"
+        menu: 
+          - text: "IOC-R Info"
+            href: ioc_r_info.qmd
+          - text: "IOC-scRNAseq Info"
+            href: ioc_scrnaseq_info.qmd
+      - text: "IOC-R"
         href: ioc_r_toc.qmd
         menu: 
           - text: "Week 1 - Slides"
             href: docs/r_slides_week01.html
           - text: "Week 1 - Exercises"
             href: r_week1.qmd
-          # - text: "IOC scRNAseq"
-          #   href: ioc_scrnaseq.qmd
+      - text: "IOC-scRNAseq"
+        href: ioc_scrnaseq.qmd
+      # - text: "IOC-bulk RNAseq"
+      #   href: ioc_bulk_rnaseq.qmd
       # - text: "News"
       #   href: news.qmd
       - icon: github
@@ -33,7 +39,6 @@ website:
 format:
   html:
     theme: cosmo
-    css: styles.css
     toc: true
 
 
