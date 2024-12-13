@@ -4,7 +4,7 @@ title: ""
 
 ![](images/logoInforBio_fond_blanc.png)
 
-# Welcome To the IOC-R Training!
+# Welcome To the IOC Training!
 
 ## What is IOC?
 

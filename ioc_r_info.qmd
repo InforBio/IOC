@@ -50,7 +50,7 @@ Please bookmark this page for quick access.
   | Week 10        | Your project presentation | TBD | TBD |
 
 
-## Recommended Readings and Resources
+## Recommended Readings
 
 - [R for Data Science](https://r4ds.had.co.nz) by Hadley Wickham
 - [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) by Garrett Grolemund 
