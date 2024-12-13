@@ -5,4 +5,4 @@
 data/
 /.quarto/
 .DS_Store
-*csv
+docs/
