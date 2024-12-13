@@ -1,6 +1,6 @@
 ---
 title: "Week 1 - Hands-On Examples"
-category: "excercises"
+category: "exercise"
 editor_options: 
   chunk_output_type: console
 ---

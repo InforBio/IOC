@@ -16,12 +16,12 @@ website:
     left: 
       - text: "Calendar & Info"
         href: ioc_r_info.qmd
-      - text: "Slides & Excercises"
+      - text: "Slides & Exercises"
         href: ioc_r_toc.qmd
         menu: 
           - text: "Week 1 - Slides"
             href: docs/r_slides_week01.html
-          - text: "Week 1 - Excercises"
+          - text: "Week 1 - Exercises"
             href: r_week1.qmd
           # - text: "IOC scRNAseq"
           #   href: ioc_scrnaseq.qmd
