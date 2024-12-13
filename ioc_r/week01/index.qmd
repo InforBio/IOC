@@ -10,7 +10,9 @@ format:
     preview-links: auto
     logo: images/logoInforBio_fond_blanc.png
     # css: styles.css
-category: "slides"
+categories: 
+  - week01
+  - slides
 ---
 
 # Unlock the Power of Your Data with ![](images/R_logo.png){width=2.5cm}
