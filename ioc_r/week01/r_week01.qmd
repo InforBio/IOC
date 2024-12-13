@@ -1,6 +1,8 @@
 ---
 title: "Week 1 - Hands-On Examples"
 category: "excercises"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Some RStudio Settings
@@ -18,6 +20,7 @@ Go to *Tools* -> *Global Options...*
 In the *Display* panel, check the box "Use rainbow parentheses"
 
 ![](images/rstudio_setting2.png)
+
 - Under the *Appearance* tab:
 
 You can select a theme for you RStudio, e.g., the "Cobalt" for a dark theme.
@@ -26,6 +29,7 @@ You can select a theme for you RStudio, e.g., the "Cobalt" for a dark theme.
 - Under the *Pane Layout* tab:
 
 You can arrange the four panels as you prefer.
+
 In addition, click "Add Column" lets you open an extra "Source" code column, allowing you to view your scripts side by side!
 
 ![](images/rstudio_setting3.png)
@@ -36,16 +40,17 @@ In addition, click "Add Column" lets you open an extra "Source" code column, all
 1. Create a new project in your folder.
 
 Some rules for naming your project:  
+
 - be descriptive and keep it short
 - use snake case (only lowercase letters and underscores allowed), avoid special characters (such as `!`, `#`, ) and spaces
 - the name cannot starts with numbers
 
-2. Create three new folders: `data`, `scripts`, `outputs`
+2. Open your R project, create three new folders, *i.e.*, `data`, `scripts`, `outputs`.
 
 
 ## Import Dataset
 
-### Data
+### Data Description
 
 We will use a gene expression data as example.
 
@@ -61,67 +66,99 @@ Source: https://monashbioinformaticsplatform.github.io/r-more/topics/tidyverse.h
 
 ### Import into Rstudio
 
-1. Download the zipped file and unzipped it
-2. Upload the `read-counts.csv` to the folder `data` which you've just created
+1. Download the zipped file to your computer and unzipped it.
+2. Upload the `read-counts.csv` to the folder `data` of your R project.
 3. Click on the file to "View" it, what is the separator of each column?
 4. Import the file into R and call it "counts"
 
 
-## Play with basic R commands
+## Play with Basic R Commands
 
-1. What is the absolute file path of the count data?
+1. What is the absolute file path of the count data? Check your answer with the function `file.exists()`.
 
 ```{r}
+#| echo: false
+#| message: false
+
 counts <- readr::read_csv("read-counts.csv")
 ```
 
-2. What is the dimension of the data frame?
+```{r}
+#| eval: false
+
+file.exists("path/to/your/file") # replace the path by the yours
+```
+
+2. Check the "Environment" panel or use the function `dim()`.
+What is the dimension of the data frame?
 
 ```{r}
 dim(counts)
 ```
 
-We can get the expression the the sample "WT:1" by using `counts[["WT:1"]]`.
+Click on the tabular logo after the data to visualize the dataset.
 
-3. Try `typeof()` and `mode()` on the expression data of "WT:1":
+We can extract all genes' expression of the sample named "WT:2" by using `counts[["WT:2"]]`.
+
+3. Try `mode()` on the expression data of "WT:2":
 
 ```{r}
-typeof(counts[["WT:1"]])
-mode(counts[["WT:1"]])
+mode(counts[["WT:2"]])
 ```
 
-4. Calculate the average expression (`mean()`) and standard deviation (`sd()`) of genes from sample "WT:1".
+4. Calculate the average expression (`mean()`) and standard deviation (`sd()`) of genes from sample "WT:2".
 
 ```{r}
-mean(counts[["WT:1"]])
-sd(counts[["WT:1"]])
+mean(counts[["WT:2"]])
+sd(counts[["WT:2"]])
 ```
 
 5. Generate a descriptive statistics of the data frame using `summary()`
 
 ```{r}
-summary(counts[["WT:1"]])
+summary(counts[["WT:2"]])
 ```
 
-6. Generate a histogram of the "WT:1" using `hist()` and what is the distribution?
+::: {.callout-tip title="Stats Time!"}
+What are quartiles?
+
+Quartiles are three values that split sorted data into four equal parts.
+
+![](images/boxplot.png){width=65%}
+
+IQR (Interquartile range) = Q3 - Q1
+
+IQR only includes the middle 50% of the data.
+:::
+
+
+6. Generate a histogram of the "WT:2" using `hist()` and what is the distribution?
+
+::: {.callout-tip title="Stats Time!"}
+**Histograms** help us see how data is spread out.
+They show how many data points fall into different ranges, or *bins*.
+By looking at a histogram, we can quickly understand the shape of the data,
+like if it’s skewed or has outliers.
+It's a simple way to get an overview of your data.
+:::
 
 ```{r}
-hist(counts[["WT:1"]])
-hist(log2(counts[["WT:1"]]))
+hist(counts[["WT:2"]])
+hist(log2(counts[["WT:2"]]))
 ```
 
 ## Get Your First Quarto Report
 
 Click the "Render" to generate the report!
 
-- Change something in this script and re-render it, is the output up-to-date?
-- Observe where is your report stored?
-- What to do if you want the report be store in a specified folder?
-  => use a configuration file for quarto.
+- Change something in this script and re-render it, is the report up-to-date?
+- Where is your report stored?
+- What should you do if you want the report be stored in a specified folder?
+  => use a configuration file for Quarto.
   
 Open a new text file and copy paste following code, save it as `_quarto.yml` in your project folder.
 
-```
+```r
 project:
   output-dir: outputs/
 ```
@@ -131,6 +168,6 @@ Try "Render" again, now where is your report?
 
 ---
 
-Good job! You've taken your first big steps into R, and you're off to a great start, keep it up! 👏👏👏
+#### Good job! 👏👏 You've taken your first big steps into R, and you're off to a great start, keep it up! 
 
 
