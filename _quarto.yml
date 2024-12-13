@@ -4,7 +4,6 @@ project:
 
 website:
   title: "IOC"
-  # site-url: https://inforbio.github.io/
   favicon: images/logoInforBio_fond_blanc.png
   
     
@@ -28,7 +27,7 @@ website:
       # - text: "News"
       #   href: news.qmd
       - icon: github
-        href: https://github.com/InforBio/InforBio.github.io
+        href: https://github.com/InforBio/IOC
 
 
 format:
