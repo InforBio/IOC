@@ -9,6 +9,8 @@ format:
     slide-number: true
     preview-links: auto
     logo: images/logoInforBio_fond_blanc.png
+  html: default
+  pdf: default
 categories: 
   - week01
   - slides
