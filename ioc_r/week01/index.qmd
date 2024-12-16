@@ -145,15 +145,15 @@ files -> offices in a building
 Tree structure:
 
 ```sh
-my_project/             # Your working directory    
+my_project              # Your working directory    
 ├── my_project.Rproj    # The R project configuration file
 ├── README.md           # A short introduction of the project
 ├── data                # Raw data files
 │   └── raw_count.tsv
-├── scripts/            # Your R code files
+├── scripts             # Your R code files
 │   └── 01-analysis.R
 │   └── 02-figures.R
-└── outputs/            # Results, graphs, or reports 
+└── outputs             # Results, graphs, or reports 
 ```
 
 
@@ -171,15 +171,15 @@ Avoid messy files scattered everywhere.
 ## Where Are You? {.smaller}
 
 ```sh
-my_project/             # Your working directory
+my_project              # Your working directory
 ├── my_project.Rproj    # The R project configuration file
 ├── README.md           # A short introduction of the project
 ├── data                # Raw data files
 │   └── raw_count.tsv
-├── scripts/            # Your R code files
+├── scripts             # Your R code files
 │   └── 01-analysis.R
 │   └── 02-figures.R
-└── outputs/            # Results, graphs, or reports 
+└── outputs            # Results, graphs, or reports 
 ```
 <br> 
 
