@@ -132,8 +132,6 @@ Quartiles are three values that split sorted data into four equal parts.
 ![](images/boxplot.png){width=65%}
 
 IQR (Interquartile range) = Q3 - Q1
-
-IQR only includes the middle 50% of the data.
 :::
 
 
