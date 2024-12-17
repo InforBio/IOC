@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_scrnaseq.html</loc>
-    <lastmod>2024-12-13T17:04:54.877Z</lastmod>
+    <lastmod>2024-12-17T11:20:45.645Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/index.html</loc>
-    <lastmod>2024-12-13T17:04:54.857Z</lastmod>
+    <lastmod>2024-12-17T11:20:45.625Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_bulk_rnaseq.html</loc>
-    <lastmod>2024-12-13T17:04:54.857Z</lastmod>
+    <lastmod>2024-12-17T11:20:45.625Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_r/week01/index.html</loc>
-    <lastmod>2024-12-13T17:04:54.877Z</lastmod>
+    <lastmod>2024-12-17T11:20:45.645Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week01/r_week01_work.html</loc>
+    <lastmod>2024-12-17T11:20:45.645Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_r/week01/r_week01.html</loc>
-    <lastmod>2024-12-13T17:04:54.877Z</lastmod>
+    <lastmod>2024-12-17T11:20:45.645Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_r_info.html</loc>
-    <lastmod>2024-12-13T17:04:54.877Z</lastmod>
+    <lastmod>2024-12-17T11:20:45.645Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_r_toc.html</loc>
-    <lastmod>2024-12-13T17:04:54.877Z</lastmod>
+    <lastmod>2024-12-17T11:20:45.645Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_scrnaseq_info.html</loc>
-    <lastmod>2024-12-13T17:04:54.877Z</lastmod>
+    <lastmod>2024-12-17T11:20:45.645Z</lastmod>
   </url>
 </urlset>

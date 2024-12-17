@@ -186,6 +186,16 @@
       margin-right: 0; 
     }
   </style>
+  <style>
+  .reveal .slide-logo {
+    max-height: 0.5em !important;
+  }
+  .slide-number, .reveal.has-logo .slide-number {
+    bottom: 14px !important;
+    left: 50% !important;
+    top: unset !important;
+  }
+  </style>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -245,12 +255,27 @@
 <h1>Rstudio</h1>
 
 </section>
-<section id="rstudio-1" class="slide level2">
-<h2>Rstudio</h2>
-<p>Integrated Development Environment (IDE)</p>
+<section id="rstudio-login" class="slide level2 smaller">
+<h2>Rstudio Login</h2>
+<p>Connect to your RStudio server account.</p>
 
-<img data-src="images/screenshot_rstudio.png" class="r-stretch"><aside class="notes">
-<p>Everything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily.</p>
+<img data-src="images/rstudio_server_login.png" class="r-stretch"></section>
+<section id="rstudio-ide" class="slide level2 smaller">
+<h2>Rstudio IDE</h2>
+<p>Integrated Development Environment (IDE)</p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><img data-src="images/screenshot_rstudio.png"></p>
+</div><div class="column fragment" style="width:45%;">
+<ol type="1">
+<li>Console: where R “talks back” to you.</li>
+<li>Environment/History: tracks your variables and past commands.</li>
+<li>Files/Plots/Packages: managing your files, viewing graphs, or installing tools.</li>
+</ol>
+<p>Rstudio <a href="https://rstudio.github.io/cheatsheets/rstudio-ide.pdf">cheat sheet</a> (<a href="https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf">and French version</a>)</p>
+</div></div>
+<aside class="notes">
+<p>Everything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily. notebook, show results</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -263,33 +288,74 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="rstudio-2" class="slide level2 smaller">
-<h2>Rstudio</h2>
+<section id="getting-started-in-r" class="slide level2 smaller">
+<h2>Getting Started in R</h2>
+<ul>
+<li>Create a new file<sup>1</sup>: <em>File</em> -&gt; <em>New File</em> -&gt; <em>R Script</em></li>
+<li>Basic commands<sup>2</sup>:</li>
+</ul>
+<div class="sourceCode" id="cb1" data-code-line-numbers="1-3|5-6|8-10|12-13|15-16|18-19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Math with R:</span></span>
+<span id="cb1-2"><a></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>    <span class="co"># Yes, R can do math!</span></span>
+<span id="cb1-3"><a></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Square root.</span></span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a><span class="co"># Create a variable:</span></span>
+<span id="cb1-6"><a></a>x <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># Now x is 5. You can reuse it!</span></span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a><span class="co"># Inspect your environment:</span></span>
+<span id="cb1-9"><a></a><span class="do">## Look at the "Environment" pane, do you see your x?</span></span>
+<span id="cb1-10"><a></a><span class="fu">ls</span>()</span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a><span class="co"># Load a package:</span></span>
+<span id="cb1-13"><a></a><span class="fu">library</span>(stats)</span>
+<span id="cb1-14"><a></a></span>
+<span id="cb1-15"><a></a><span class="co"># Get help of a function (documentation):</span></span>
+<span id="cb1-16"><a></a>?mean</span>
+<span id="cb1-17"><a></a></span>
+<span id="cb1-18"><a></a><span class="co"># Quit RStudio properly</span></span>
+<span id="cb1-19"><a></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Shortcut to create new file: press <em>Shift + Ctrl + N</em> (Windows) or <em>Shift + Cmd + N</em> (Mac)</p></li><li id="fn2"><p>Shortcut to run code: highlight it and press <em>Ctrl + Enter</em> (Windows) or <em>Cmd + Enter</em> (Mac)</p></li></ol></aside></section>
+<section id="some-configuration" class="slide level2 smaller">
+<h2>Some Configuration</h2>
+<p>Go to <em>Tools</em> -&gt; <em>Global Options…</em></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><img data-src="images/screenshot_rstudio1.png"></p>
+<p>Under the <em>General</em> tab:</p>
+<ul>
+<li>Uncheck the box “Restore .RData…”</li>
+<li>Set “Save workspace to .RData on exit” to <strong>Never</strong>.</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<ol type="1">
-<li class="fragment">Script Pane: write your code here.</li>
-<li class="fragment">Console: where R “talks back” to you.</li>
-<li class="fragment">Environment/History: tracks your variables and past commands.</li>
-<li class="fragment">Files/Plots/Packages: managing your files, viewing graphs, or installing tools.</li>
-</ol>
+<p><img data-src="images/rstudio_setting1.png"></p>
 </div></div>
-<p>Rstudio <a href="https://rstudio.github.io/cheatsheets/rstudio-ide.pdf">cheat sheet</a> (<a href="https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf">and French version</a>)</p>
-<aside class="notes">
-<p>notebook, show results</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+</section>
+<section id="some-configuration-1" class="slide level2 smaller">
+<h2>Some Configuration</h2>
+<p>Go to <em>Tools</em> -&gt; <em>Global Options…</em></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Under the <em>Code</em> tab:</p>
+<p>In the <em>Display</em> panel, check the box “Use rainbow parentheses”</p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/rstudio_setting2.png"></p>
+</div></div>
+</section>
+<section id="some-configuration-2" class="slide level2 smaller">
+<h2>Some Configuration</h2>
+<p>Go to <em>Tools</em> -&gt; <em>Global Options…</em></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Under the <em>Appearance</em> tab:</li>
+</ul>
+<p>You can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.</p>
+<ul>
+<li>Under the <em>Pane Layout</em> tab:</li>
+</ul>
+<p>You can arrange the four panels as you prefer.</p>
+<p>In addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!</p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/rstudio_setting3.png"></p>
+</div></div>
 </section></section>
 <section>
 <section id="setting-up-an-r-project" class="title-slide slide level1 center">
@@ -298,7 +364,7 @@
 </section>
 <section id="create-an-r-project" class="slide level2 smaller">
 <h2>Create an R Project</h2>
-<p>An R project keeps everything for your project in <strong>one workspace</strong> (working directory) and helps R to know where to look for your files.</p>
+<p>An R project keeps everything for your project in <strong>one working directory</strong> and helps R to know where to look for your files.</p>
 <div class="fragment">
 <ol type="1">
 <li>In RStudio, go to <em>File</em> -&gt; <em>New Project</em></li>
@@ -335,15 +401,15 @@
 <li>E.g.:
 <ul>
 <li>In real-life: France, Paris, 9 Quai St Bernard, Building B, office 725</li>
-<li>On Linux/Mac: <code>/home/user_name/my_project/data/myfile.csv</code></li>
-<li>On Windows: <code>C:\Users\user_name\my_project\data\myfile.csv</code></li>
+<li>On Linux/Mac: <code>/home/test_user/my_project/data/myfile.csv</code></li>
+<li>On Windows: <code>C:\Users\test_user\my_project\data\myfile.csv</code></li>
 </ul></li>
 </ul></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>Relative path</strong>, starts from your working folder
+<li><strong>Relative path</strong>, starts from your working directory (folder)
 <ul>
 <li>E.g.:
 <ul>
@@ -370,15 +436,15 @@
 <section id="a-well-organized-folder" class="slide level2">
 <h2>A Well Organized Folder</h2>
 <p>Tree structure:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">my_project/</span>             <span class="co"># Your working directory    </span></span>
-<span id="cb1-2"><a></a><span class="ex">├──</span> my_project.Rproj    <span class="co"># The R project configuration file</span></span>
-<span id="cb1-3"><a></a><span class="ex">├──</span> README.md           <span class="co"># A short introduction of the project</span></span>
-<span id="cb1-4"><a></a><span class="ex">├──</span> data                <span class="co"># Raw data files</span></span>
-<span id="cb1-5"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_count.tsv</span>
-<span id="cb1-6"><a></a><span class="ex">├──</span> scripts/            <span class="co"># Your R code files</span></span>
-<span id="cb1-7"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 01-analysis.R</span>
-<span id="cb1-8"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 02-figures.R</span>
-<span id="cb1-9"><a></a><span class="ex">└──</span> outputs/            <span class="co"># Results, graphs, or reports </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">my_project</span>              <span class="co"># Your working directory    </span></span>
+<span id="cb2-2"><a></a><span class="ex">├──</span> my_project.Rproj    <span class="co"># The R project configuration file</span></span>
+<span id="cb2-3"><a></a><span class="ex">├──</span> README.md           <span class="co"># A short introduction of the project</span></span>
+<span id="cb2-4"><a></a><span class="ex">├──</span> data                <span class="co"># Raw data files</span></span>
+<span id="cb2-5"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_count.tsv</span>
+<span id="cb2-6"><a></a><span class="ex">├──</span> scripts             <span class="co"># Your R code files</span></span>
+<span id="cb2-7"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 01-analysis.R</span>
+<span id="cb2-8"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 02-figures.R</span>
+<span id="cb2-9"><a></a><span class="ex">└──</span> outputs             <span class="co"># Results, e.g., graphs, reports</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
 <p>example of bad home organisation: pillow in kitchen and microoven in the bathroom The trunk is the main folder (your R Project). Branches are subfolders for scripts, data, and output, ect. By building a clear structure, you’ll: Always know where to find things. Save time when coding in R or sharing your project with others. Avoid messy files scattered everywhere.</p>
 <style type="text/css">
@@ -395,58 +461,34 @@
 </section>
 <section id="where-are-you" class="slide level2 smaller">
 <h2>Where Are You?</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">my_project/</span>             <span class="co"># Your working directory</span></span>
-<span id="cb2-2"><a></a><span class="ex">├──</span> my_project.Rproj    <span class="co"># The R project configuration file</span></span>
-<span id="cb2-3"><a></a><span class="ex">├──</span> README.md           <span class="co"># A short introduction of the project</span></span>
-<span id="cb2-4"><a></a><span class="ex">├──</span> data                <span class="co"># Raw data files</span></span>
-<span id="cb2-5"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_count.tsv</span>
-<span id="cb2-6"><a></a><span class="ex">├──</span> scripts/            <span class="co"># Your R code files</span></span>
-<span id="cb2-7"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 01-analysis.R</span>
-<span id="cb2-8"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 02-figures.R</span>
-<span id="cb2-9"><a></a><span class="ex">└──</span> outputs/            <span class="co"># Results, graphs, or reports </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">my_project</span>              <span class="co"># Your working directory</span></span>
+<span id="cb3-2"><a></a><span class="ex">├──</span> my_project.Rproj    <span class="co"># The R project configuration file</span></span>
+<span id="cb3-3"><a></a><span class="ex">├──</span> README.md           <span class="co"># A short introduction of the project</span></span>
+<span id="cb3-4"><a></a><span class="ex">├──</span> data                <span class="co"># Raw data files</span></span>
+<span id="cb3-5"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_count.tsv</span>
+<span id="cb3-6"><a></a><span class="ex">├──</span> scripts             <span class="co"># Your R code files</span></span>
+<span id="cb3-7"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 01-analysis.R</span>
+<span id="cb3-8"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 02-figures.R</span>
+<span id="cb3-9"><a></a><span class="ex">└──</span> outputs            <span class="co"># Results, e.g., graphs, reports</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">getwd</span>() <span class="co"># Get working directory</span></span>
-<span id="cb3-2"><a></a>[<span class="dv">1</span>] <span class="st">"/home/user_name/my_project"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">getwd</span>() <span class="co"># Get working directory</span></span>
+<span id="cb4-2"><a></a>[<span class="dv">1</span>] <span class="st">"/home/test_user/my_project"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<p>What is the file path of “02-figures.R”?</p>
+<p>What are the absolute and relative paths of the script “02-figures.R”?</p>
 </div>
 <div class="fragment">
-<div style="font-size:80%">
-<p><code>scripts/02-figures.R</code></p>
+<div style="font-size:75%">
+<p>absolute path: <code>/home/test_user/my_project/scripts/02-figures.R</code></p>
+<p>relative path: <code>scripts/02-figures.R</code></p>
 </div>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">file.exists</span>(<span class="st">"scripts/02-figures.R"</span>)</span>
-<span id="cb4-2"><a></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">file.exists</span>(<span class="st">"/home/test_user/my_project/scripts/02-figures.R"</span>)</span>
+<span id="cb5-2"><a></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb5-3"><a></a><span class="fu">file.exists</span>(<span class="st">"scripts/02-figures.R"</span>)</span>
+<span id="cb5-4"><a></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="getting-started-in-r" class="slide level2 smaller">
-<h2>Getting Started in R</h2>
-<ul>
-<li>Create a new file<sup>1</sup>: <em>File</em> -&gt; <em>New File</em> -&gt; <em>R Script</em></li>
-<li>Basic commands<sup>2</sup>:</li>
-</ul>
-<div class="sourceCode" id="cb5" data-code-line-numbers="1-3|5-6|8-10|12-13|15-16|18-19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Math with R:</span></span>
-<span id="cb5-2"><a></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>    <span class="co"># Yes, R can do math!</span></span>
-<span id="cb5-3"><a></a><span class="fu">sqrt</span>(<span class="dv">16</span>) <span class="co"># Square root.</span></span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a><span class="co"># Create a variable:</span></span>
-<span id="cb5-6"><a></a>x <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># Now x is 5. You can reuse it!</span></span>
-<span id="cb5-7"><a></a></span>
-<span id="cb5-8"><a></a><span class="co"># Inspect your environment:</span></span>
-<span id="cb5-9"><a></a><span class="do">## Look at the "Environment" pane, do you see your x?</span></span>
-<span id="cb5-10"><a></a><span class="fu">ls</span>()</span>
-<span id="cb5-11"><a></a></span>
-<span id="cb5-12"><a></a><span class="co"># Load a package:</span></span>
-<span id="cb5-13"><a></a><span class="fu">library</span>(stats)</span>
-<span id="cb5-14"><a></a></span>
-<span id="cb5-15"><a></a><span class="co"># Get help of a function (documentation):</span></span>
-<span id="cb5-16"><a></a>?mean</span>
-<span id="cb5-17"><a></a></span>
-<span id="cb5-18"><a></a><span class="co"># Quit RStudio properly</span></span>
-<span id="cb5-19"><a></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Shortcut to create new file: press <em>Shift + Ctrl + N</em> (Windows) or <em>Shift + Cmd + N</em> (Mac)</p></li><li id="fn2"><p>Shortcut to run code: highlight it and press <em>Ctrl + Enter</em> (Windows) or <em>Cmd + Enter</em> (Mac)</p></li></ol></aside></section>
 <section id="import-dataset" class="slide level2">
 <h2>Import Dataset</h2>
 <div class="columns">
@@ -461,8 +503,8 @@
 <li>Click-button methods:
 <ul>
 <li>From menu bar: <em>File</em> -&gt; <em>Import Dataset</em> -&gt; Select the format -&gt; Choose your file</li>
-<li>From the “Environment” Pane: click “Import Dataset” -&gt; Select the format -&gt; Choose your file</li>
-<li>From the “Files” Pane: Navigate to your file location -&gt; Click the file and select “Import Dataset”</li>
+<li>From the “Environment” pane: click “Import Dataset” -&gt; Select the format -&gt; Choose your file</li>
+<li>From the “Files” pane: Navigate to your file location -&gt; Click the file and select “Import Dataset”</li>
 </ul></li>
 </ul>
 </div><div class="column">
@@ -497,7 +539,7 @@
 <ul>
 <li>Google it!</li>
 <li>Ask/discuss your question via Slack.</li>
-<li>AI (like ChatGPT) is your friend 😉, but be careful of false answers!</li>
+<li>AI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)</li>
 </ul>
 <p><strong>Key points</strong>:</p>
 <ul>
@@ -539,7 +581,7 @@
 
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="images/logoInforBio_fond_blanc.png" class="slide-logo"></p>
+<p><img src="images/logoInforBio_fond_blanc_small.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
