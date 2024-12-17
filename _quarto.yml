@@ -8,7 +8,7 @@ website:
   
     
   navbar:
-    logo: images/logoInforBio_fond_blanc.png
+    logo: images/logoInforBio_fond_blanc_small.png
     # right:
     #   - href: index.qmd
     #     text: "About IOC"
