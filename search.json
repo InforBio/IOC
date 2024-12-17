@@ -154,6 +154,83 @@
     "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nUpload and import data file into RStudio\nGenerate your first Quarto report"
   },
   {
+    "objectID": "ioc_r/week02/r_w02_slides.html#data-types",
+    "href": "ioc_r/week02/r_w02_slides.html#data-types",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Data Types",
+    "text": "Data Types\nExamples: 1, 2.5, A, InforBio, I love R, TRUE, FALSE\nWhat are their data type in the daily life?\n\nAnd in R?\n\nNumeric: 1, 2.5\nInteger: 1\nCharacter: \"A\", \"InforBio\", \"I love R\"\nLogical: TRUE, FALSE\nFactor: for categorical data"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#where-do-we-store-data",
+    "href": "ioc_r/week02/r_w02_slides.html#where-do-we-store-data",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Where Do We Store Data?",
+    "text": "Where Do We Store Data?\n\nA variable is like a box where you store data.\nEach variable has a name and content (one or multiple values).\nA variable is created at the moment you assign a value to it. Use &lt;- for assignment.\n\n\n# Use `#` to start a comment (line)\nx &lt;- 1 # put a space on each side of the assignment sign\nx # type variable name to print its value(s)\n\n[1] 1\n\nchar_name &lt;- \"InforBio\"\nchar_name\n\n[1] \"InforBio\"\n\npassed &lt;- TRUE\npassed\n\n[1] TRUE\n\n\nCheck the “Environment” pane or type ls() in the console, are variables you just created there?\n\nVariables are containers for data. A box labeled “x” containing the number 1. A box labeled “char_name” containing the platform name “InforBio”."
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#variable-naming-convention",
+    "href": "ioc_r/week02/r_w02_slides.html#variable-naming-convention",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Variable Naming Convention",
+    "text": "Variable Naming Convention\nFollow the same rules when you naming your R project folder:\n\n\n\nBe descriptive and keep it short\nUse snake case (only lowercase letters and underscores allowed), avoid special characters (such as !, #, ) and spaces\nDo not start a name with numbers\nAvoid reserved keywords in R (e.g., function, if, TRUE)\nDo not overwrite built-in functions (e.g., mean, sd)\n\n\nWhich are validated names?\nfoo\ntest\nvar\nvar2\nexam_results\na_variable_with_a_name_super_long\ncount.matrix \n\nday_1\nday_one\nday1\nfirst_day_of_the_month\nDayOne\ndayOne\nDAYONE\nDAYone\n\n\nIf really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for."
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#numeric-integer-double",
+    "href": "ioc_r/week02/r_w02_slides.html#numeric-integer-double",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Numeric, Integer, Double",
+    "text": "Numeric, Integer, Double\n\nmy_var &lt;- 10\nmy_var\n\n[1] 10\n\nclass(my_var)\n\n[1] \"numeric\"\n\nis.numeric(my_var)\n\n[1] TRUE\n\n\n\n\nclass(10L) # \"L\" declares it's an integer\n\n[1] \"integer\"\n\ntypeof(10L)\n\n[1] \"integer\"\n\n\n\n\n\nclass(1.5)\n\n[1] \"numeric\"\n\ntypeof(1.5)\n\n[1] \"double\""
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#character",
+    "href": "ioc_r/week02/r_w02_slides.html#character",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Character",
+    "text": "Character\nR stores text (strings) as character. Use quotation marks (“” or ’’) to indicate a value is character.\n\n# create a vector of characters\nx &lt;- c(\"I\", \"love\", \"R\")\nx\n\n[1] \"I\"    \"love\" \"R\"   \n\nclass(x)\n\n[1] \"character\"\n\nis.character(x)\n\n[1] TRUE\n\n\n\n\nx &lt;- \"1\"\ny &lt;- \"2\"\nx + y\n\nError in x + y: non-numeric argument to binary operator\n\n\n\n\n\nas.numeric(x) + as.numeric(y)  # convert to numeric\n\n[1] 3\n\n\n\n\n\nas.character(1) # convert back to character\n\n[1] \"1\""
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#logical-1",
+    "href": "ioc_r/week02/r_w02_slides.html#logical-1",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Logical (1)",
+    "text": "Logical (1)\n\nOnly two possible values for logical data: TRUE or FALSE.\nCan be written as T or F, but never in other formats (e.g.: True, true, etc.)\n\n\nis.logical(TRUE)\n\n[1] TRUE\n\nis.logical(T)\n\n[1] TRUE\n\nis.logical(True)\n\nError: object 'True' not found\n\n\n\nCan be obtained from logical statements, e.g.:\n\n\n2 &gt; 1\n\n[1] TRUE"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#logical-2",
+    "href": "ioc_r/week02/r_w02_slides.html#logical-2",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Logical (2)",
+    "text": "Logical (2)\n\nConvert to other types:\n\n\nas.numeric(TRUE)\n\n[1] 1\n\nas.numeric(FALSE)\n\n[1] 0\n\nvec_logical &lt;- c(TRUE, TRUE, FALSE)\nsum(vec_logical)\n\n[1] 2\n\n\n\n\nas.character(TRUE)\n\n[1] \"TRUE\"\n\nas.character(FALSE)\n\n[1] \"FALSE\"\n\n\n\n\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(-1)\n\n[1] TRUE\n\nas.logical(0)\n\n[1] FALSE"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#factor",
+    "href": "ioc_r/week02/r_w02_slides.html#factor",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Factor",
+    "text": "Factor\nSpecify this data type when you want R treats your data as categorical data.\n\ngrades &lt;- c(\"one\", \"two\", \"one\", \"three\", \"two\")\ngrades\n\n[1] \"one\"   \"two\"   \"one\"   \"three\" \"two\"  \n\nfactor(grades)\n\n[1] one   two   one   three two  \nLevels: one three two\n\nas.factor(grades)\n\n[1] one   two   one   three two  \nLevels: one three two\n\n\n\nSpecify the levels:\n\nas.factor(grades)\n\n[1] one   two   one   three two  \nLevels: one three two\n\ngrades_fac &lt;- factor(grades, levels = c(\"one\", \"two\", \"three\")) # specify the right level\ngrades_fac\n\n[1] one   two   one   three two  \nLevels: one two three\n\n\n\n\nConvert to numeric values:\n\nas.numeric(grades_fac)\n\n[1] 1 2 1 3 2"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#from-single-value-to-multiple-values",
+    "href": "ioc_r/week02/r_w02_slides.html#from-single-value-to-multiple-values",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "From Single Value to Multiple Values",
+    "text": "From Single Value to Multiple Values\nWhen we store multiple values, we need a structure.\n\ngene1 &lt;- 10\ngene2 &lt;- 12\ngene3 &lt;- 9\n\nHow to put gene1, gene2 and gene3 together?\n\nR provides 4 data structures to store multiple values:\n\nSame data type: vectors, matrices\nDifferent data types: lists, data frames (Next session)"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#vector-creation",
+    "href": "ioc_r/week02/r_w02_slides.html#vector-creation",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Vector Creation",
+    "text": "Vector Creation\nUse the function c() to create a vector.\n\nages &lt;- c(25, 30, 35, 40) # Numeric vector\nages\n\n[1] 25 30 35 40\n\ngene_expr &lt;- c(gene1, gene2, gene3)\ngene_expr\n\n[1] 10 12  9\n\nc(gene_expr, 18)\n\n[1] 10 12  9 18\n\n1:10 # numbers from 1 to 10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n\n\n\ngenes &lt;- c(\"gene1\", \"gene2\", \"gene3\") # Character vector\ngenes\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nc(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector\n\n[1]  TRUE FALSE FALSE  TRUE  TRUE\n\n\n\n\n\nc(10, \"gene1\")\n\n[1] \"10\"    \"gene1\"\n\nc(10, TRUE)\n\n[1] 10  1"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#vector-indexing",
+    "href": "ioc_r/week02/r_w02_slides.html#vector-indexing",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Vector Indexing",
+    "text": "Vector Indexing\n\n\n\nUse [] to get access of elements in a vector.\n\nNotes: The index starts from 1.\n\ngene_expr\n\n[1] 10 12  9\n\ngene_expr[1]   # First element\n\n[1] 10\n\ngene_expr[2:3] # Elements 2 and 3\n\n[1] 12  9\n\ngene_expr[-1]  # reverse indexing\n\n[1] 12  9\n\n\n\n\nModify element(s) in a vector.\n\n\ngene_expr[1] &lt;- 100\ngene_expr\n\n[1] 100  12   9\n\ngene_expr[2:3] &lt;- 8\ngene_expr\n\n[1] 100   8   8\n\ngene_expr[2:3] &lt;- c(0, 20)\ngene_expr\n\n[1] 100   0  20"
+  },
+  {
     "objectID": "ioc_r/week01/r_w01_exos.html",
     "href": "ioc_r/week01/r_w01_exos.html",
     "title": "Week 1 - Hands-On Examples",
@@ -214,7 +291,7 @@
     "href": "ioc_r_toc.html",
     "title": "Materials for the IOC-R",
     "section": "",
-    "text": "Kickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week1\n\n\n\nweek01\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\n\n\n\nweek01\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\n\n\n\nweek01\n\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Data Foundations:Vectors and Matrices\n\n\nIOC-R Week2\n\n\n\nweek02\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week1\n\n\n\nweek01\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\n\n\n\nweek01\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\n\n\n\nweek01\n\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "ioc_scrnaseq_info.html",
