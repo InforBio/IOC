@@ -21,7 +21,7 @@ website:
             href: ioc_scrnaseq_info.qmd
       - text: "IOC-R"
         href: ioc_r_toc.qmd
-        menu: 
+        menu:
           - text: "Week 1 - Slides"
             href: docs/r_slides_week01.html
           - text: "Week 1 - Exercises"
@@ -40,8 +40,8 @@ format:
   html:
     theme: cosmo
     toc: true
-  pdf:
-    toc: true
+  # pdf:
+  #   toc: true
     
 
 
