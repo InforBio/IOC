@@ -28,162 +28,162 @@
     "text": "Training on bulk RNAseq analysis with Galaxy is upcoming!"
   },
   {
-    "objectID": "ioc_r/week01/index.html#welcome-to-r",
-    "href": "ioc_r/week01/index.html#welcome-to-r",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Welcome to R!",
-    "text": "Welcome to R!\n\n\nWhy R?\n\nBiologist friendly!\nFree and open-source\nSupported by a huge community\n\n\nWhat you can do with R?\n\nAnalyze your data\nVisualize your findings\nAutomate your workflow\nShare reproducible research"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#the-r-console",
-    "href": "ioc_r/week01/index.html#the-r-console",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "The R Console",
-    "text": "The R Console\n\nType a command after the prompt “&gt;” and type “Enter” to execute it."
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#rstudio-login",
-    "href": "ioc_r/week01/index.html#rstudio-login",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Rstudio Login",
-    "text": "Rstudio Login\nConnect to your RStudio server account."
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#rstudio-ide",
-    "href": "ioc_r/week01/index.html#rstudio-ide",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Rstudio IDE",
-    "text": "Rstudio IDE\nIntegrated Development Environment (IDE)\n\n\n\n\n\nConsole: where R “talks back” to you.\nEnvironment/History: tracks your variables and past commands.\nFiles/Plots/Packages: managing your files, viewing graphs, or installing tools.\n\nRstudio cheat sheet (and French version)\n\n\nEverything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily. notebook, show results"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#getting-started-in-r",
-    "href": "ioc_r/week01/index.html#getting-started-in-r",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Getting Started in R",
-    "text": "Getting Started in R\n\nCreate a new file1: File -&gt; New File -&gt; R Script\nBasic commands2:\n\n# Math with R:\n2 + 2    # Yes, R can do math!\nsqrt(16) # Square root.\n\n# Create a variable:\nx &lt;- 5 # Now x is 5. You can reuse it!\n\n# Inspect your environment:\n## Look at the \"Environment\" pane, do you see your x?\nls()\n\n# Load a package:\nlibrary(stats)\n\n# Get help of a function (documentation):\n?mean\n\n# Quit RStudio properly\nq()\nShortcut to create new file: press Shift + Ctrl + N (Windows) or Shift + Cmd + N (Mac)Shortcut to run code: highlight it and press Ctrl + Enter (Windows) or Cmd + Enter (Mac)"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#some-configuration",
-    "href": "ioc_r/week01/index.html#some-configuration",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Some Configuration",
-    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\nUnder the General tab:\n\nUncheck the box “Restore .RData…”\nSet “Save workspace to .RData on exit” to Never."
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#some-configuration-1",
-    "href": "ioc_r/week01/index.html#some-configuration-1",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Some Configuration",
-    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\nUnder the Code tab:\nIn the Display panel, check the box “Use rainbow parentheses”"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#some-configuration-2",
-    "href": "ioc_r/week01/index.html#some-configuration-2",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Some Configuration",
-    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\n\nUnder the Appearance tab:\n\nYou can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.\n\nUnder the Pane Layout tab:\n\nYou can arrange the four panels as you prefer.\nIn addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#create-an-r-project",
-    "href": "ioc_r/week01/index.html#create-an-r-project",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Create an R Project",
-    "text": "Create an R Project\nAn R project keeps everything for your project in one working directory and helps R to know where to look for your files.\n\n\nIn RStudio, go to File -&gt; New Project\nChoose New Directory and click New Project\nSet a folder name (e.g., my_project) and select where to save it.\nClick Create Project\n\n\n\nYou’ll notice RStudio restarts, and now your project is set up!\n\n\nAn R Project is a way to keep everything for your work (scripts, data, outputs) in one place. Think of it like a special folder where RStudio automatically knows where to look for your files. It helps avoid problems with messy file paths."
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#understanding-file-paths",
-    "href": "ioc_r/week01/index.html#understanding-file-paths",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Understanding File Paths",
-    "text": "Understanding File Paths\nA path tells your computer where to find files.\n\n\nAbsolute path, starts from the very top of your computer’s folder\n\nE.g.:\n\nIn real-life: France, Paris, 9 Quai St Bernard, Building B, office 725\nOn Linux/Mac: /home/test_user/my_project/data/myfile.csv\nOn Windows: C:\\Users\\test_user\\my_project\\data\\myfile.csv\n\n\n\n\n\n\nRelative path, starts from your working directory (folder)\n\nE.g.:\n\nBuilding B, office 725\ndata/myfile.csv or data\\myfile.csv (Windows)\n\n\n\n\ncomputer’s file system -&gt; a country files -&gt; offices in a building"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#a-well-organized-folder",
-    "href": "ioc_r/week01/index.html#a-well-organized-folder",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "A Well Organized Folder",
-    "text": "A Well Organized Folder\nTree structure:\nmy_project              # Your working directory    \n├── my_project.Rproj    # The R project configuration file\n├── README.md           # A short introduction of the project\n├── data                # Raw data files\n│   └── raw_count.tsv\n├── scripts             # Your R code files\n│   └── 01-analysis.R\n│   └── 02-figures.R\n└── outputs             # Results, e.g., graphs, reports\n\nexample of bad home organisation: pillow in kitchen and microoven in the bathroom The trunk is the main folder (your R Project). Branches are subfolders for scripts, data, and output, ect. By building a clear structure, you’ll: Always know where to find things. Save time when coding in R or sharing your project with others. Avoid messy files scattered everywhere."
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#where-are-you",
-    "href": "ioc_r/week01/index.html#where-are-you",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Where Are You?",
-    "text": "Where Are You?\nmy_project              # Your working directory\n├── my_project.Rproj    # The R project configuration file\n├── README.md           # A short introduction of the project\n├── data                # Raw data files\n│   └── raw_count.tsv\n├── scripts             # Your R code files\n│   └── 01-analysis.R\n│   └── 02-figures.R\n└── outputs            # Results, e.g., graphs, reports\n\ngetwd() # Get working directory\n[1] \"/home/test_user/my_project\"\n\nWhat are the absolute and relative paths of the script “02-figures.R”?\n\n\n\nabsolute path: /home/test_user/my_project/scripts/02-figures.R\nrelative path: scripts/02-figures.R\n\n\n\nfile.exists(\"/home/test_user/my_project/scripts/02-figures.R\")\n[1] TRUE\nfile.exists(\"scripts/02-figures.R\")\n[1] TRUE"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#import-dataset",
-    "href": "ioc_r/week01/index.html#import-dataset",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Import Dataset",
-    "text": "Import Dataset\n\n\n\nSupported formats:\n\ntext files (.txt, .csv, etc.)\nExcel files\ndata from other software (e.g., SAS)\n\nClick-button methods:\n\nFrom menu bar: File -&gt; Import Dataset -&gt; Select the format -&gt; Choose your file\nFrom the “Environment” pane: click “Import Dataset” -&gt; Select the format -&gt; Choose your file\nFrom the “Files” pane: Navigate to your file location -&gt; Click the file and select “Import Dataset”"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#quarto",
-    "href": "ioc_r/week01/index.html#quarto",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Quarto",
-    "text": "Quarto\n\nOpen-source tools for creating dynamic and shareable document.\nCombines narrative text and code (multi-language) in one script (.qmd).\nSupports multiple output formats: .html, .docx, .pptx, .pdf, etc."
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#an-example",
-    "href": "ioc_r/week01/index.html#an-example",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "An Example",
-    "text": "An Example\n\n\n\n\n\n\nMarkdown syntax cheat sheet"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#need-some-help",
-    "href": "ioc_r/week01/index.html#need-some-help",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Need Some Help?",
-    "text": "Need Some Help?\n\nGoogle it!\nAsk/discuss your question via Slack.\nAI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)\n\nKey points:\n\nExplain your question step-by-step.\nShare the context.\nUse keywords.\nTry to rephrase the question.\n\n\ngoogle/forum stack overFlow - what are you trying to do / what did you try? - the warning or error message / your code / your data structure - language name / function or package name / a specific problem - try and iterate"
-  },
-  {
-    "objectID": "ioc_r/week01/index.html#todays-goals",
-    "href": "ioc_r/week01/index.html#todays-goals",
-    "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Today’s Goals",
-    "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nUpload and import data file into RStudio\nGenerate your first Quarto report"
-  },
-  {
-    "objectID": "ioc_r/week01/r_week01_work.html",
-    "href": "ioc_r/week01/r_week01_work.html",
+    "objectID": "ioc_r/week01/r_w01_work.html",
+    "href": "ioc_r/week01/r_w01_work.html",
     "title": "Week 1 - Homework",
     "section": "",
     "text": "Write your code directly in a Quarto document.\nTo create a Quarto document: go to File -&gt; New File -&gt; Quarto Document, then click Create.\n\nImport the data file “visceral_fat.csv”.\n\n\nFirst, upload the file to a folder of your choice within your RStudio project\nNext, import the data into R and name the data frame visceral_fat.\n\nTip:\nUse the click-button method in RStudio to upload and import the file. Then, copy and paste the R commands generated into a code chunk in your Quarto report.\nOnce imported, you can use the visceral_fat dataset for further analysis in your report.\n\nSummarize the dataset.\n\nRun the function summary(visceral_fat) to generate a summary of the dataset. Describe what information you obtained.\n\nDraw a histogram.\n\nCreate a histogram for the diastolic blood pressure using the column visceral_fat[[\"diastolic_bp__mmhg\"]]. Describe what you observe from the plot.\n\nHandle an outlier.\n\nAfter consulting with a clinician, you discover that the 27th value of the diastolic blood pressure was incorrectly recorded.\n\nIgnore this value using visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\nRedraw the histogram after excluding the outlier and describe any changes you observe.\n\n\nCompare mean and median.\n\nCalculate the mean (mean()) and the median (median()) for the diastolic blood pressure\n\nbefore ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]]\nafter ignoring the 27th value: visceral_fat[[\"diastolic_bp__mmhg\"]][-27]\n\nDescribe how the outlier affects the mean and median.\n\nClick “Render” to generate your Quarto report."
   },
   {
-    "objectID": "ioc_r/week01/r_week01.html",
-    "href": "ioc_r/week01/r_week01.html",
+    "objectID": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
+    "href": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Welcome to R!",
+    "text": "Welcome to R!\n\n\nWhy R?\n\nBiologist friendly!\nFree and open-source\nSupported by a huge community\n\n\nWhat you can do with R?\n\nAnalyze your data\nVisualize your findings\nAutomate your workflow\nShare reproducible research"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#the-r-console",
+    "href": "ioc_r/week01/r_w01_slides.html#the-r-console",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "The R Console",
+    "text": "The R Console\n\nType a command after the prompt “&gt;” and type “Enter” to execute it."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#rstudio-login",
+    "href": "ioc_r/week01/r_w01_slides.html#rstudio-login",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Rstudio Login",
+    "text": "Rstudio Login\nConnect to your RStudio server account."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#rstudio-ide",
+    "href": "ioc_r/week01/r_w01_slides.html#rstudio-ide",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Rstudio IDE",
+    "text": "Rstudio IDE\nIntegrated Development Environment (IDE)\n\n\n\n\n\nConsole: where R “talks back” to you.\nEnvironment/History: tracks your variables and past commands.\nFiles/Plots/Packages: managing your files, viewing graphs, or installing tools.\n\nRstudio cheat sheet (and French version)\n\n\nEverything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily. notebook, show results"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#getting-started-in-r",
+    "href": "ioc_r/week01/r_w01_slides.html#getting-started-in-r",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Getting Started in R",
+    "text": "Getting Started in R\n\nCreate a new file1: File -&gt; New File -&gt; R Script\nBasic commands2:\n\n# Math with R:\n2 + 2    # Yes, R can do math!\nsqrt(16) # Square root.\n\n# Create a variable:\nx &lt;- 5 # Now x is 5. You can reuse it!\n\n# Inspect your environment:\n## Look at the \"Environment\" pane, do you see your x?\nls()\n\n# Load a package:\nlibrary(stats)\n\n# Get help of a function (documentation):\n?mean\n\n# Quit RStudio properly\nq()\nShortcut to create new file: press Shift + Ctrl + N (Windows) or Shift + Cmd + N (Mac)Shortcut to run code: highlight it and press Ctrl + Enter (Windows) or Cmd + Enter (Mac)"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration",
+    "href": "ioc_r/week01/r_w01_slides.html#some-configuration",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Some Configuration",
+    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\nUnder the General tab:\n\nUncheck the box “Restore .RData…”\nSet “Save workspace to .RData on exit” to Never."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration-1",
+    "href": "ioc_r/week01/r_w01_slides.html#some-configuration-1",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Some Configuration",
+    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\nUnder the Code tab:\nIn the Display panel, check the box “Use rainbow parentheses”"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#some-configuration-2",
+    "href": "ioc_r/week01/r_w01_slides.html#some-configuration-2",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Some Configuration",
+    "text": "Some Configuration\nGo to Tools -&gt; Global Options…\n\n\n\nUnder the Appearance tab:\n\nYou can select a theme for you RStudio, e.g., the “Cobalt” for a dark theme.\n\nUnder the Pane Layout tab:\n\nYou can arrange the four panels as you prefer.\nIn addition, click “Add Column” lets you open an extra “Source” code column, allowing you to view your scripts side by side!"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#create-an-r-project",
+    "href": "ioc_r/week01/r_w01_slides.html#create-an-r-project",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Create an R Project",
+    "text": "Create an R Project\nAn R project keeps everything for your project in one working directory and helps R to know where to look for your files.\n\n\nIn RStudio, go to File -&gt; New Project\nChoose New Directory and click New Project\nSet a folder name (e.g., my_project) and select where to save it.\nClick Create Project\n\n\n\nYou’ll notice RStudio restarts, and now your project is set up!\n\n\nAn R Project is a way to keep everything for your work (scripts, data, outputs) in one place. Think of it like a special folder where RStudio automatically knows where to look for your files. It helps avoid problems with messy file paths."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#understanding-file-paths",
+    "href": "ioc_r/week01/r_w01_slides.html#understanding-file-paths",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Understanding File Paths",
+    "text": "Understanding File Paths\nA path tells your computer where to find files.\n\n\nAbsolute path, starts from the very top of your computer’s folder\n\nE.g.:\n\nIn real-life: France, Paris, 9 Quai St Bernard, Building B, office 725\nOn Linux/Mac: /home/test_user/my_project/data/myfile.csv\nOn Windows: C:\\Users\\test_user\\my_project\\data\\myfile.csv\n\n\n\n\n\n\nRelative path, starts from your working directory (folder)\n\nE.g.:\n\nBuilding B, office 725\ndata/myfile.csv or data\\myfile.csv (Windows)\n\n\n\n\ncomputer’s file system -&gt; a country files -&gt; offices in a building"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#a-well-organized-folder",
+    "href": "ioc_r/week01/r_w01_slides.html#a-well-organized-folder",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "A Well Organized Folder",
+    "text": "A Well Organized Folder\nTree structure:\nmy_project              # Your working directory    \n├── my_project.Rproj    # The R project configuration file\n├── README.md           # A short introduction of the project\n├── data                # Raw data files\n│   └── raw_count.tsv\n├── scripts             # Your R code files\n│   └── 01-analysis.R\n│   └── 02-figures.R\n└── outputs             # Results, e.g., graphs, reports\n\nexample of bad home organisation: pillow in kitchen and microoven in the bathroom The trunk is the main folder (your R Project). Branches are subfolders for scripts, data, and output, ect. By building a clear structure, you’ll: Always know where to find things. Save time when coding in R or sharing your project with others. Avoid messy files scattered everywhere."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#where-are-you",
+    "href": "ioc_r/week01/r_w01_slides.html#where-are-you",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Where Are You?",
+    "text": "Where Are You?\nmy_project              # Your working directory\n├── my_project.Rproj    # The R project configuration file\n├── README.md           # A short introduction of the project\n├── data                # Raw data files\n│   └── raw_count.tsv\n├── scripts             # Your R code files\n│   └── 01-analysis.R\n│   └── 02-figures.R\n└── outputs            # Results, e.g., graphs, reports\n\ngetwd() # Get working directory\n[1] \"/home/test_user/my_project\"\n\nWhat are the absolute and relative paths of the script “02-figures.R”?\n\n\n\nabsolute path: /home/test_user/my_project/scripts/02-figures.R\nrelative path: scripts/02-figures.R\n\n\n\nfile.exists(\"/home/test_user/my_project/scripts/02-figures.R\")\n[1] TRUE\nfile.exists(\"scripts/02-figures.R\")\n[1] TRUE"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#import-dataset",
+    "href": "ioc_r/week01/r_w01_slides.html#import-dataset",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Import Dataset",
+    "text": "Import Dataset\n\n\n\nSupported formats:\n\ntext files (.txt, .csv, etc.)\nExcel files\ndata from other software (e.g., SAS)\n\nClick-button methods:\n\nFrom menu bar: File -&gt; Import Dataset -&gt; Select the format -&gt; Choose your file\nFrom the “Environment” pane: click “Import Dataset” -&gt; Select the format -&gt; Choose your file\nFrom the “Files” pane: Navigate to your file location -&gt; Click the file and select “Import Dataset”"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#quarto",
+    "href": "ioc_r/week01/r_w01_slides.html#quarto",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Quarto",
+    "text": "Quarto\n\nOpen-source tools for creating dynamic and shareable document.\nCombines narrative text and code (multi-language) in one script (.qmd).\nSupports multiple output formats: .html, .docx, .pptx, .pdf, etc."
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#an-example",
+    "href": "ioc_r/week01/r_w01_slides.html#an-example",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "An Example",
+    "text": "An Example\n\n\n\n\n\n\nMarkdown syntax cheat sheet"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#need-some-help",
+    "href": "ioc_r/week01/r_w01_slides.html#need-some-help",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Need Some Help?",
+    "text": "Need Some Help?\n\nGoogle it!\nAsk/discuss your question via Slack.\nAI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)\n\nKey points:\n\nExplain your question step-by-step.\nShare the context.\nUse keywords.\nTry to rephrase the question.\n\n\ngoogle/forum stack overFlow - what are you trying to do / what did you try? - the warning or error message / your code / your data structure - language name / function or package name / a specific problem - try and iterate"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_slides.html#todays-goals",
+    "href": "ioc_r/week01/r_w01_slides.html#todays-goals",
+    "title": "Kickstart with R:Your Gateway to Data Science",
+    "section": "Today’s Goals",
+    "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nUpload and import data file into RStudio\nGenerate your first Quarto report"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html",
+    "href": "ioc_r/week01/r_w01_exos.html",
     "title": "Week 1 - Hands-On Examples",
     "section": "",
     "text": "Create a new project in your folder.\n\nSome rules for naming your project:\n\nbe descriptive and keep it short\nuse snake case (only lowercase letters and underscores allowed), avoid special characters (such as !, #, ) and spaces\nthe name cannot starts with numbers\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs."
   },
   {
-    "objectID": "ioc_r/week01/r_week01.html#create-an-r-project",
-    "href": "ioc_r/week01/r_week01.html#create-an-r-project",
+    "objectID": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
+    "href": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
     "title": "Week 1 - Hands-On Examples",
     "section": "",
     "text": "Create a new project in your folder.\n\nSome rules for naming your project:\n\nbe descriptive and keep it short\nuse snake case (only lowercase letters and underscores allowed), avoid special characters (such as !, #, ) and spaces\nthe name cannot starts with numbers\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs."
   },
   {
-    "objectID": "ioc_r/week01/r_week01.html#import-dataset",
-    "href": "ioc_r/week01/r_week01.html#import-dataset",
+    "objectID": "ioc_r/week01/r_w01_exos.html#import-dataset",
+    "href": "ioc_r/week01/r_w01_exos.html#import-dataset",
     "title": "Week 1 - Hands-On Examples",
     "section": "Import Dataset",
     "text": "Import Dataset\n\nData Description\nWe’ll be working with a gene expression dataset as an example, sourced from this link.\nThe specific file we’ll use is named “read-counts.csv”, which you can download from this zipped folder.\nThe data comes from an experiment using PCR to study 44 genes. The results were measured to see which genes are active at different stages in Yeast cell cycling. Several strains were tested, including wildtype and some with specific genes knock-downs. Samples were taken at nine time points over two cell cycles (two hours).\n\n\nImporting into Rstudio\n\nDownload the zipped file to your computer and extract its contents.\nIf you are using the RStudio server, upload the read-counts.csv to the folder data of your R project.\nClick on the file to “View” it and identify the column separator.\nImport the file into R and call the imported data “counts”."
   },
   {
-    "objectID": "ioc_r/week01/r_week01.html#play-with-basic-r-commands",
-    "href": "ioc_r/week01/r_week01.html#play-with-basic-r-commands",
+    "objectID": "ioc_r/week01/r_w01_exos.html#play-with-basic-r-commands",
+    "href": "ioc_r/week01/r_w01_exos.html#play-with-basic-r-commands",
     "title": "Week 1 - Hands-On Examples",
     "section": "Play with Basic R Commands",
     "text": "Play with Basic R Commands\n\nWhat is the absolute file path of the count data? What is its absolute path? Verify your answer using the function file.exists().\n\n\nfile.exists(\"relative_path/to/your/file\") # replace the path by the yours\nfile.exists(\"absolute_path/to/your/file\") # replace the path by the yours\n\n\nCheck the “Environment” panel or use the function dim(). What is the dimension of the data frame?\n\n\ndim(counts)\n\n[1] 45 41\n\n\nIn the “Environment” panel, click on the tabular icon next to the dataset to visualize the it.\nWe can extract all gene expressions for the sample named “WT:2” using counts[[\"WT:2\"]].\n\nTry mode() on the expression data for “WT:2”, what does it return?\n\n\nmode(counts[[\"WT:2\"]])\n\n[1] \"numeric\"\n\n\n\nCalculate the average expression (mean()) and standard deviation (sd()) of genes from the sample “WT:2”.\n\n\nmean(counts[[\"WT:2\"]])\n\n[1] 148\n\nsd(counts[[\"WT:2\"]])\n\n[1] 392.7854\n\n\n\nGenerate descriptive statistics for all genes from the sample “WT:2” using summary().\n\n\nsummary(counts[[\"WT:2\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n      0       6      27     148     110    2527 \n\n\n\n\n\n\n\n\nStats Time!\n\n\n\nWhat are quartiles?\nQuartiles are three values that split sorted data into four equal parts.\n\nIQR (Interquartile range) = Q3 - Q1\n\n\n\nGenerate a histogram for the “WT:2” sample using hist(). What does the distribution look like?\n\n\n\n\n\n\n\nStats Time!\n\n\n\nHistograms help us see how data is spread out. They show how many data points fall into different ranges, or bins. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.\n\n\n\nhist(counts[[\"WT:2\"]])\n\n\n\n\n\n\n\nhist(log2(counts[[\"WT:2\"]]))"
   },
   {
-    "objectID": "ioc_r/week01/r_week01.html#get-your-first-quarto-report",
-    "href": "ioc_r/week01/r_week01.html#get-your-first-quarto-report",
+    "objectID": "ioc_r/week01/r_w01_exos.html#get-your-first-quarto-report",
+    "href": "ioc_r/week01/r_w01_exos.html#get-your-first-quarto-report",
     "title": "Week 1 - Hands-On Examples",
     "section": "Get Your First Quarto Report",
     "text": "Get Your First Quarto Report\nClick the “Render” to generate the report!\n\nChange something in this script and re-render it, is the report up-to-date?\nWhere is your report stored?\nWhat should you do if you want the report be stored in a specified folder? =&gt; use a configuration file for Quarto.\n\nOpen a new text file and copy paste following code, save it as _quarto.yml in your project folder.\nproject:\n  output-dir: outputs/\nTry “Render” again, now where is your report?\n\n\nGood job! 👏👏 You’ve taken your first big steps into R, and you’re off to a great start, keep it up!"
@@ -214,7 +214,7 @@
     "href": "ioc_r_toc.html",
     "title": "Materials for the IOC-R",
     "section": "",
-    "text": "Week 1 - Homework\n\n\n\n\n\n\nweek01\n\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\n\n\n\nweek01\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week1\n\n\n\nweek01\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Kickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week1\n\n\n\nweek01\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\n\n\n\nweek01\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\n\n\n\nweek01\n\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "ioc_scrnaseq_info.html",
