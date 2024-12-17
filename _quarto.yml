@@ -21,11 +21,11 @@ website:
             href: ioc_scrnaseq_info.qmd
       - text: "IOC-R"
         href: ioc_r_toc.qmd
-        menu:
-          - text: "Week 1 - Slides"
-            href: docs/r_slides_week01.html
-          - text: "Week 1 - Exercises"
-            href: r_week1.qmd
+        # menu: 
+        #   - text: "Week 1 - Slides"
+        #     href: docs/r_slides_week01.html
+        #   - text: "Week 1 - Exercises"
+        #     href: r_week1.qmd
       - text: "IOC-scRNAseq"
         href: ioc_scrnaseq.qmd
       # - text: "IOC-bulk RNAseq"
