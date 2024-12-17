@@ -1,5 +1,5 @@
 ---
-title: "Kickstart with R:<br>Your Gateway to Data Science "
+title: "Kickstart with R:<br>Your Gateway to Data Science"
 subtitle: "IOC-R Week1"
 format:
   revealjs: 
@@ -8,9 +8,21 @@ format:
     toc-depth: 1
     slide-number: true
     preview-links: auto
-    logo: images/logoInforBio_fond_blanc.png
-  html: default
-  pdf: default
+    logo: images/logoInforBio_fond_blanc_small.png
+    include-in-header:
+      - text: |
+          <style>
+          .reveal .slide-logo {
+            max-height: 0.5em !important;
+          }
+          .slide-number, .reveal.has-logo .slide-number {
+            bottom: 14px !important;
+            left: 50% !important;
+            top: unset !important;
+          }
+          </style>
+  pdf:
+    toc: true
 categories: 
   - week01
   - slides
@@ -51,164 +63,39 @@ Type a command after the prompt ">" and type "Enter" to execute it.
 
 # Rstudio
 
-## Rstudio
+## Rstudio Login {.smaller}
+
+Connect to your RStudio server account.  
+
+![](images/rstudio_server_login.png)
+
+## Rstudio IDE {.smaller}
 
 Integrated Development Environment (IDE)  
 
+::: columns
+::: {.column width="55%"}
+
 ![](images/screenshot_rstudio.png)
+
+:::
+
+::: {.column width="45%" .fragment}
+1. Console: where R "talks back" to you.
+2. Environment/History: tracks your variables and past commands.
+3. Files/Plots/Packages: managing your files, viewing graphs, or installing tools.
+
+Rstudio [cheat sheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf)
+([and French version](https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf))
+:::
+:::
 
 
 :::{.notes}
 Everything you need in one organized window.
 Save your work as a script, RStudio includes many useful features which let us code easily.
-:::
-
-## Rstudio {.smaller}
-
-::: columns
-::: {.column width="50%"}
-
-![](images/screenshot_rstudio1.png)
-
-:::
-
-::: {.column width="50%" .incremental}
-1. Script Pane: write your code here.
-2. Console: where R "talks back" to you.
-3. Environment/History: tracks your variables and past commands.
-4. Files/Plots/Packages: managing your files, viewing graphs, or installing tools.
-:::
-:::
-
-
-Rstudio [cheat sheet](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf)
-([and French version](https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf))
-
-
-:::{.notes}
 notebook, show results
 :::
-
-
-# Setting Up an R Project
-
-
-## Create an R Project {.smaller}
-
-An R project keeps everything for your project in **one workspace** (working directory) and 
-helps R to know where to look for your files.
-
-. . .
-
-1. In RStudio, go to *File* -> *New Project*
-2. Choose *New Directory* and click *New Project*
-3. Set a folder name (e.g., `my_project`) and select where to save it.
-4. Click *Create Project*
-
-. . .
-
-You'll notice RStudio restarts, and now your project is set up!
-
-![](images/in_rproj.png){width=50%}
-
-::: {.notes}
-An R Project is a way to keep everything for your work (scripts, data, outputs) in one place.
-Think of it like a special folder where RStudio automatically knows where to look for your files.
-It helps avoid problems with messy file paths.
-:::
-
-## Understanding File Paths {.smaller}
-
-A **path** tells your computer where to find files.
-
-. . .
-
-- **Absolute path**, starts from the very top of your computer's folder
-  - E.g.: 
-    - In real-life: France, Paris, 9 Quai St Bernard, Building B, office 725 
-    - On Linux/Mac: `/home/user_name/my_project/data/myfile.csv`
-    - On Windows: `C:\Users\user_name\my_project\data\myfile.csv`
-
-. . .
-
-- **Relative path**, starts from your working folder
-  - E.g.:
-    - Building B, office 725
-    - `data/myfile.csv` or `data\myfile.csv` (Windows)
-
-
-:::{.notes}
-computer's file system -> a country
-files -> offices in a building
-:::
-
-## A Well Organized Folder
-
-Tree structure:
-
-```sh
-my_project              # Your working directory    
-├── my_project.Rproj    # The R project configuration file
-├── README.md           # A short introduction of the project
-├── data                # Raw data files
-│   └── raw_count.tsv
-├── scripts             # Your R code files
-│   └── 01-analysis.R
-│   └── 02-figures.R
-└── outputs             # Results, graphs, or reports 
-```
-
-
-:::{.notes}
-example of bad home organisation: pillow in kitchen and microoven in the bathroom
-The trunk is the main folder (your R Project).
-Branches are subfolders for scripts, data, and output, ect.
-By building a clear structure, you’ll:
-Always know where to find things.
-Save time when coding in R or sharing your project with others.
-Avoid messy files scattered everywhere.
-:::
-
-
-## Where Are You? {.smaller}
-
-```sh
-my_project              # Your working directory
-├── my_project.Rproj    # The R project configuration file
-├── README.md           # A short introduction of the project
-├── data                # Raw data files
-│   └── raw_count.tsv
-├── scripts             # Your R code files
-│   └── 01-analysis.R
-│   └── 02-figures.R
-└── outputs            # Results, graphs, or reports 
-```
-<br> 
-
-```r
-getwd() # Get working directory
-[1] "/home/user_name/my_project"
-```
-
-<br> 
-
-. . .
-
-What is the file path of "02-figures.R"?
-
-. . .
-
-::: {style="font-size:80%"}
-`scripts/02-figures.R`
-:::
-
-. . .
-
-```r
-file.exists("scripts/02-figures.R")
-[1] TRUE
-```
-
 
 ## Getting Started in R {.smaller}
 
@@ -241,6 +128,181 @@ q()
 [^1]: Shortcut to create new file: press *Shift + Ctrl + N* (Windows) or *Shift + Cmd + N* (Mac)
 [^2]: Shortcut to run code: highlight it and press *Ctrl + Enter* (Windows) or *Cmd + Enter* (Mac)
 
+## Some Configuration {.smaller}
+
+Go to *Tools* -> *Global Options...*
+
+::: columns
+::: {.column width="50%"}
+Under the *General* tab:
+
+- Uncheck the box "Restore .RData..."
+- Set "Save workspace to .RData on exit" to **Never**.
+:::
+
+::: {.column width="50%"}
+![](images/rstudio_setting1.png)
+:::
+:::
+
+## Some Configuration {.smaller}
+
+Go to *Tools* -> *Global Options...*
+
+::: columns
+::: {.column width="50%"}
+
+Under the *Code* tab:
+
+In the *Display* panel, check the box "Use rainbow parentheses"
+:::
+
+::: {.column width="50%"}
+![](images/rstudio_setting2.png)
+:::
+:::
+
+## Some Configuration {.smaller}
+
+Go to *Tools* -> *Global Options...*
+
+::: columns
+::: {.column width="50%"}
+- Under the *Appearance* tab:
+
+You can select a theme for you RStudio, e.g., the "Cobalt" for a dark theme.
+
+- Under the *Pane Layout* tab:
+
+You can arrange the four panels as you prefer.
+
+In addition, click "Add Column" lets you open an extra "Source" code column, allowing you to view your scripts side by side!
+:::
+
+::: {.column width="50%"}
+![](images/rstudio_setting3.png)
+:::
+:::
+
+# Setting Up an R Project
+
+## Create an R Project {.smaller}
+
+An R project keeps everything for your project in **one working directory**
+and helps R to know where to look for your files.
+
+. . .
+
+1. In RStudio, go to *File* -> *New Project*
+2. Choose *New Directory* and click *New Project*
+3. Set a folder name (e.g., `my_project`) and select where to save it.
+4. Click *Create Project*
+
+. . .
+
+You'll notice RStudio restarts, and now your project is set up!
+
+![](images/in_rproj.png){width=50%}
+
+::: {.notes}
+An R Project is a way to keep everything for your work (scripts, data, outputs) in one place.
+Think of it like a special folder where RStudio automatically knows where to look for your files.
+It helps avoid problems with messy file paths.
+:::
+
+## Understanding File Paths {.smaller}
+
+A **path** tells your computer where to find files.
+
+. . .
+
+- **Absolute path**, starts from the very top of your computer's folder
+  - E.g.: 
+    - In real-life: France, Paris, 9 Quai St Bernard, Building B, office 725 
+    - On Linux/Mac: `/home/test_user/my_project/data/myfile.csv`
+    - On Windows: `C:\Users\test_user\my_project\data\myfile.csv`
+
+. . .
+
+- **Relative path**, starts from your working directory (folder)
+  - E.g.:
+    - Building B, office 725
+    - `data/myfile.csv` or `data\myfile.csv` (Windows)
+
+
+:::{.notes}
+computer's file system -> a country
+files -> offices in a building
+:::
+
+## A Well Organized Folder
+
+Tree structure:
+
+```sh
+my_project              # Your working directory    
+├── my_project.Rproj    # The R project configuration file
+├── README.md           # A short introduction of the project
+├── data                # Raw data files
+│   └── raw_count.tsv
+├── scripts             # Your R code files
+│   └── 01-analysis.R
+│   └── 02-figures.R
+└── outputs             # Results, e.g., graphs, reports
+```
+
+
+:::{.notes}
+example of bad home organisation: pillow in kitchen and microoven in the bathroom
+The trunk is the main folder (your R Project).
+Branches are subfolders for scripts, data, and output, ect.
+By building a clear structure, you’ll:
+Always know where to find things.
+Save time when coding in R or sharing your project with others.
+Avoid messy files scattered everywhere.
+:::
+
+
+## Where Are You? {.smaller}
+
+```sh
+my_project              # Your working directory
+├── my_project.Rproj    # The R project configuration file
+├── README.md           # A short introduction of the project
+├── data                # Raw data files
+│   └── raw_count.tsv
+├── scripts             # Your R code files
+│   └── 01-analysis.R
+│   └── 02-figures.R
+└── outputs            # Results, e.g., graphs, reports
+```
+<br> 
+
+```r
+getwd() # Get working directory
+[1] "/home/test_user/my_project"
+```
+
+. . .
+
+What are the absolute and relative paths of the script "02-figures.R"?
+
+. . .
+
+::: {style="font-size:75%"}
+absolute path: `/home/test_user/my_project/scripts/02-figures.R`
+
+relative path: `scripts/02-figures.R`
+:::
+
+. . .
+
+```r
+file.exists("/home/test_user/my_project/scripts/02-figures.R")
+[1] TRUE
+file.exists("scripts/02-figures.R")
+[1] TRUE
+```
 
 ## Import Dataset
 
@@ -255,9 +317,9 @@ q()
 - Click-button methods:  
   - From menu bar:
     *File* -> *Import Dataset* -> Select the format -> Choose your file
-  - From the "Environment" Pane:
+  - From the "Environment" pane:
     click "Import Dataset"  -> Select the format -> Choose your file
-  - From the "Files" Pane:
+  - From the "Files" pane:
     Navigate to your file location -> Click the file and select "Import Dataset"
 
 :::

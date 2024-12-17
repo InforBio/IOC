@@ -10,35 +10,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Some RStudio Settings
-
-Go to *Tools* -> *Global Options...*
-
-- Under the *General* tab:
-  - Uncheck the box "Restore .RData..."
-  - Set "Save workspace to .RData on exit" to **Never**.
-  
-![](images/rstudio_setting1.png)
-
-- Under the *Code* tab:
-
-In the *Display* panel, check the box "Use rainbow parentheses"
-
-![](images/rstudio_setting2.png)
-
-- Under the *Appearance* tab:
-
-You can select a theme for you RStudio, e.g., the "Cobalt" for a dark theme.
-
-
-- Under the *Pane Layout* tab:
-
-You can arrange the four panels as you prefer.
-
-In addition, click "Add Column" lets you open an extra "Source" code column, allowing you to view your scripts side by side!
-
-![](images/rstudio_setting3.png)
-
 
 ## Create an R project
 
@@ -74,9 +45,9 @@ Samples were taken at nine time points over two cell cycles (two hours).
 ### Importing into Rstudio
 
 1. Download the zipped file to your computer and extract its contents.
-2. Upload the `read-counts.csv` to the folder `data` of your R project.
+2. If you are using the RStudio server, upload the `read-counts.csv` to the folder `data` of your R project.
 3. Click on the file to "View" it and identify the column separator.
-4. Import the file into R and call it "counts".
+4. Import the file into R and call the imported data "counts".
 
 
 ## Play with Basic R Commands
