@@ -2,7 +2,7 @@
 title: "Week 1 - Hands-On Examples"
 format: 
   html: default
-  pdf: default
+  # pdf: default
 categories: 
   - week01
   - exercise

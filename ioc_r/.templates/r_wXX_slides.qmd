@@ -21,8 +21,8 @@ format:
             top: unset !important;
           }
           </style>
-  pdf:
-    toc: true
+  # pdf:
+  #   toc: true
 categories: 
   - week01
   - slides
