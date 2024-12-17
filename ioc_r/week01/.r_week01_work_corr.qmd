@@ -1,0 +1,70 @@
+---
+title: "Week 1 - Homework"
+format: 
+  html: default
+categories: 
+  - week01
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+Please directly write your code in a Quarto document. (File -> New File -> Quarto Document -> then click "create")
+
+1. Please import the data file "visceral_fat.csv" and upload it into your folder of choice, then import the data and call it `visceral_fat`. 
+
+You can copy paste the commands R provided by using the click-button way into your Quarto report code chuck. Then you can use this data in your report.
+
+```{r}
+#| echo: false
+
+library(readr)
+visceral_fat <- read_csv("visceral_fat.csv")
+# visceral_fat <- visceral_fat[, 1:6]
+# colnames(visceral_fat) <- gsub(
+#   "\\)|mean_", "", gsub(" |\\(", "_", colnames(visceral_fat))
+# )
+# visceral_fat[["diastolic_bp__mmhg"]][27] <- 284
+# write_csv(visceral_fat, file = "visceral_fat.csv")
+```
+
+2. Run the function `summary(visceral_fat)`, describe what you obtained.
+
+```{r}
+summary(visceral_fat)
+```
+
+This function returns a summary of the minimal, maximal values, the three quartiles and the mean value for each column.
+The `ethnicity` column has one missing value (`NA`).
+
+3. Draw a histogram for the diastolic blood pressure `visceral_fat[["diastolic_bp__mmhg"]]`, describe what you observed.
+
+```{r}
+hist(visceral_fat[["diastolic_bp__mmhg"]])
+```
+
+It seems there are some extreme values which led to a skew distribution.
+Most of the values are gathered in the bins on the left-side.
+There is a single bin on the right side which is very far from the others.
+
+4. After a double check with a clinician, the 27th value of the diastolic blood pressure was not correct recorded. You can ignore this value by writing `visceral_fat[["diastolic_bp__mmhg"]][-27]`. Redo a histogram after ignoring this outlier, describe what you observed.
+
+```{r}
+hist(visceral_fat[["diastolic_bp__mmhg"]][-27])
+```
+
+The bins are now more symmetrical. The most frequent value range is from 65 to 70. 
+
+5. Calculate the mean (`mean()`) and the median (`median()`) of the diastolic blood pressure before and after ignoring the 27th value, *i.e.*, `visceral_fat[["diastolic_bp__mmhg"]]` and `visceral_fat[["diastolic_bp__mmhg"]][-27]`, describe what you observed.
+
+```{r}
+mean(visceral_fat[["diastolic_bp__mmhg"]])
+median(visceral_fat[["diastolic_bp__mmhg"]])
+mean(visceral_fat[["diastolic_bp__mmhg"]][-27])
+median(visceral_fat[["diastolic_bp__mmhg"]][-27])
+```
+
+The median remain the same but the mean value changed.
+When extreme values are presented, the mean shifts toward the extreme values, but the median is robust to extreme values.
+
+6. Click "Render" to check your report.

@@ -1,0 +1,47 @@
+---
+title: "Week 1 - Homework"
+format: 
+  html: default
+categories: 
+  - week01
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+Please directly write your code in a Quarto document. (File -> New File -> Quarto Document -> then click "create")
+
+1. Please import the data file "visceral_fat.csv" and upload it into your folder of choice, then import the data and call it `visceral_fat`. 
+
+You can copy paste the commands R provided by using the click-button way into your Quarto report code chuck. Then you can use this data in your report.
+
+```{r}
+
+```
+
+2. Run the function `summary(visceral_fat)`, describe what you obtained.
+
+```{r}
+
+```
+
+3. Draw a histogram for the diastolic blood pressure `visceral_fat[["diastolic_bp__mmhg"]]`, describe what you observed.
+
+```{r}
+
+```
+
+4. After a double check with a clinician, the 27th value of the diastolic blood pressure was not correct recorded. You can ignore this value by writing `visceral_fat[["diastolic_bp__mmhg"]][-27]`. Redo a histogram after ignoring this outlier, describe what you observed.
+
+```{r}
+
+```
+
+5. Calculate the mean (`mean()`) and the median (`median()`) of the diastolic blood pressure before and after ignoring the 27th value, *i.e.*, `visceral_fat[["diastolic_bp__mmhg"]]` and `visceral_fat[["diastolic_bp__mmhg"]][-27]`, describe what you observed.
+
+```{r}
+
+
+```
+
+6. Click "Render" to check your report.
