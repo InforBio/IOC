@@ -9,39 +9,64 @@ editor_options:
   chunk_output_type: console
 ---
 
-Please directly write your code in a Quarto document. (File -> New File -> Quarto Document -> then click "create")
+Write your code directly in a Quarto document.
 
-1. Please import the data file "visceral_fat.csv" and upload it into your folder of choice, then import the data and call it `visceral_fat`. 
+To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
 
-You can copy paste the commands R provided by using the click-button way into your Quarto report code chuck. Then you can use this data in your report.
+1. Import the data file "**visceral_fat.csv**".
 
-```{r}
+  - First, upload the file to a folder of your choice within your RStudio project
+  - Next, import the data into R and name the data frame `visceral_fat`. 
 
-```
+Tip:
 
-2. Run the function `summary(visceral_fat)`, describe what you obtained.
+Use the **click-button method** in RStudio to upload and import the file. Then, copy and paste the R commands generated into a code chunk in your Quarto report.
 
-```{r}
-
-```
-
-3. Draw a histogram for the diastolic blood pressure `visceral_fat[["diastolic_bp__mmhg"]]`, describe what you observed.
+Once imported, you can use the `visceral_fat` dataset for further analysis in your report.
 
 ```{r}
 
 ```
 
-4. After a double check with a clinician, the 27th value of the diastolic blood pressure was not correct recorded. You can ignore this value by writing `visceral_fat[["diastolic_bp__mmhg"]][-27]`. Redo a histogram after ignoring this outlier, describe what you observed.
+2. Summarize the dataset.
+
+Run the function `summary(visceral_fat)` to generate a summary of the dataset. Describe what information you obtained.
 
 ```{r}
 
 ```
 
-5. Calculate the mean (`mean()`) and the median (`median()`) of the diastolic blood pressure before and after ignoring the 27th value, *i.e.*, `visceral_fat[["diastolic_bp__mmhg"]]` and `visceral_fat[["diastolic_bp__mmhg"]][-27]`, describe what you observed.
+3. Draw a histogram.
+
+Create a histogram for the diastolic blood pressure using the column `visceral_fat[["diastolic_bp__mmhg"]]`. Describe what you observe from the plot.
+
+```{r}
+
+```
+
+4. Handle an outlier.
+
+After consulting with a clinician, you discover that the 27th value of the diastolic blood pressure was incorrectly recorded.
+
+  - Ignore this value using `visceral_fat[["diastolic_bp__mmhg"]][-27]`
+  - Redraw the histogram after excluding the outlier and describe any changes you observe.
+
+```{r}
+
+```
+
+5. Compare mean and median.
+
+Calculate the mean (`mean()`) and the median (`median()`) for the diastolic blood pressure
+
+  - before ignoring the 27th value: `visceral_fat[["diastolic_bp__mmhg"]]` 
+  - after ignoring the 27th value: `visceral_fat[["diastolic_bp__mmhg"]][-27]`
+  
+Describe how the outlier affects the mean and median.
 
 ```{r}
 
 
 ```
 
-6. Click "Render" to check your report.
+6. Click "Render" to generate your Quarto report.
