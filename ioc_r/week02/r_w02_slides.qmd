@@ -218,7 +218,7 @@ as.logical(0)
 
 ## Factor {.smaller}
 
-Specify this data type when you want R treats your data as categorical data.
+Use factor when you want R treats your data as categorical data.
 
 ```{r}
 grades <- c("one", "two", "one", "three", "two")
@@ -233,9 +233,7 @@ as.factor(grades)
 Specify the levels:
 
 ```{r}
-as.factor(grades)
-
-grades_fac <- factor(grades, levels = c("one", "two", "three")) # specify the right level
+grades_fac <- factor(grades, levels = c("one", "two", "three")) # specify the order
 grades_fac
 ```
 
@@ -250,7 +248,7 @@ as.numeric(grades_fac)
 
 # Data Strucutres
 
-## From Single Value to Multiple Values
+## From Single Value to Multiple Values {.smaller}
 
 When we store multiple values, we need a structure.
 
@@ -264,67 +262,90 @@ How to put `gene1`, `gene2` and `gene3` together?
 
 . . .
 
+<br>
 R provides 4 data structures to store multiple values:
 
-- Same data type: vectors, matrices
-- Different data types: lists, data frames (Next session)
+|                      | 1 dimension | 2 dimensions (row/column) |
+|----------------------|:-----------:|:------------:|
+| **Same** data type       | vector      | matrix       |
+| **Different** data types | list        | data frame   |
+
 
 # Vectors
 
-The Simplest Data Structure in R, for one dimension data of the same type.
+The simplest data structure in R, for one dimension data of the same type.
 
-## Vector Creation {.smaller}
+## Vector Creation (1) {.smaller}
 
-Use the function `c()` to create a vector.
+Use the function `c()` to create a vector and use `,` to separate elements.
 
 ```{r}
-ages <- c(25, 30, 35, 40) # Numeric vector
-ages
+c(10, 12, 9) # Numeric vector
+c(gene1, gene2, gene3)
 
 gene_expr <- c(gene1, gene2, gene3)
 gene_expr
 c(gene_expr, 18)
 
-1:10 # numbers from 1 to 10
+# other ways for numeric vector
+1:10
+seq(10)
 ```
 
 . . .
 
 ```{r}
-genes <- c("gene1", "gene2", "gene3") # Character vector
-genes
+c("gene1", "gene2", "gene3") # Character vector
 
 c(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector
 ```
 
-. . .
+
+## Vector Creation (2) {.smaller}
+
+When you combine different data types ...
 
 ```{r}
-c(10, "gene1")
 c(10, TRUE)
+c(10, "gene1")
+c(TRUE, "gene1")
+c(10, "gene1", TRUE)
 ```
 
-## Vector Indexing {.smaller}
+. . .
 
-::: .columns
+<br>
+R follows a hierarchy of data types for coercion:
+
+logical (**least** flexible) → numeric → character (**most** flexible)
+
+::: {.notes}
+R always picks the "most flexible" type that can represent all the values without losing information.
+:::
+
+
+## Vector Indexing (1) {.smaller}
+
+::: columns
 ::: {.column}
 
-- Use `[]` to get access of elements in a vector. 
+- Use `[`idx`]` to access element(s). 
 
 *Notes*: The index starts from **1**.
 
 ```{r}
 gene_expr
-gene_expr[1]   # First element
-gene_expr[2:3] # Elements 2 and 3
-gene_expr[-1]  # reverse indexing
+gene_expr[1]   # 1st element
+gene_expr[c(2, 3)] # elements 2 and 3
+gene_expr[2:3] # elements 2 and 3
+gene_expr[-1]  # remove 1st element
 ```
 
 :::
 
 ::: {.column .fragment}
 
-- Modify element(s) in a vector.
+- Modify element(s).
 
 ```{r}
 gene_expr[1] <- 100
@@ -340,7 +361,318 @@ gene_expr
 :::
 :::
 
+## Vector Indexing (2) {.smaller}
+
+::: columns
+::: {.column}
+
+- Use `[`name`]` to access element(s) if the vector is named. 
+
+```{r}
+# name elements of the vector
+names(gene_expr) <- paste0("gene", 1:3)
+gene_expr
+
+gene_expr["gene1"] # the element named "gene1"
+gene_expr[c("gene1", "gene2")] # extract "gene1" and "gene2"
+```
+
+::: {.fragment}
+
+```{r}
+#| error: true
+
+gene_expr[-c("gene1", "gene2")] # error
+```
+
+:::
+
+:::
+
+::: {.column .fragment}
+
+- Modify element(s).
+
+```{r}
+gene_expr["gene1"] <- 2
+gene_expr
+```
+
+
+::: {.fragment .content-smaller}
+Your turns:
+
+- modify the expression value of "gene1" and "gene2" to 5
+- change the expression value of "gene1" to 0 and "gene2" to 16
+
+:::
+
+::: {.fragment}
+
+```{r}
+gene_expr[c("gene1", "gene2")] <- 5
+gene_expr
+
+gene_expr[c("gene1", "gene2")] <- c(0, 16)
+gene_expr
+```
+
+:::
+
+:::
+:::
+
+## Vector Operations {.smaller}
+
+::: columns
+::: {.column}
+```{r}
+#| echo: false
+
+set.seed(123)
+```
+
+```{r}
+# create a vector for gene expression
+gene_expr <- sample(x = 1:20, size = 10) # generate 10 random numbers between 1 and 20
+gene_expr
+
+# check the structure
+class(gene_expr)
+str(gene_expr)
+
+# vector length
+length(gene_expr)
+
+# show the first/last elements
+head(gene_expr)
+tail(gene_expr)
+
+```
+
+:::
+::: {.column .fragment}
+
+```{r}
+# Arithmetic operations
+gene_expr + 1
+gene_expr - 1
+gene_expr * 10
+gene_expr / 10
+
+
+# Apply some functions
+summary(gene_expr)
+sum(gene_expr)
+mean(gene_expr)
+median(gene_expr)
+```
+
+:::
+:::
+
+
 # Matrices
 
-a vector can be either a row or a column
+A matrix is a **two dimensional** data structure with **rows** and **columns**,
+it contains data of the **same data type**.
+
+## Matrices Creation {.smaller}
+
+::: columns
+::: {.column}
+- Use the `matrix()` function to create a matrix.
+
+```{r}
+my_mat1 <- matrix(1:6, nrow = 2)
+my_mat2 <- matrix(1:6, nrow = 2, byrow = TRUE)
+
+my_mat1
+my_mat2
+```
+
+:::
+
+::: {.column .fragment}
+- Combine vectors to create matrix.
+
+```{r}
+vec1 <- 1:3
+vec2 <- 4:6
+
+rbind(vec1, vec2)
+cbind(vec1, vec2)
+```
+
+<br>
+
+::: {.fragment}
+What is the data structure of each row/column of a matrix?
+:::
+
+:::
+:::
+
+
+## Matrices Indexing (1) {.smaller}
+
+- Use `[`row_idx`, `column_idx`]` to access element(s).
+
+::: columns
+::: {.column}
+
+```{r}
+mat <- matrix(1:9, ncol = 3)
+mat
+dim(mat) # dimensions of the matrix
+ncol(mat)
+nrow(mat)
+
+mat[1, 2] # element in the 1st row and 2nd column
+mat[, 3] # all rows of the 3rd column
+```
+
+:::
+
+::: {.column .fragment .content-smaller}
+
+Your turns:
+
+- how to get all columns of the 2nd and the 3rd rows?
+- how to get the value 5 from the matrix?
+
+::: {.fragment}
+
+```{r}
+mat[2:3, ]
+mat[2, 2]
+```
+
+:::
+
+:::
+:::
+
+::: {.notes}
+As matrix is vectors extended into 2D, 
+if question about drop dim, drop = FALSE
+:::
+
+## Matrices Indexing (2) {.smaller}
+
+- Use `[`row_name`, `column_name`]` to access element(s) if names exist.
+
+::: columns
+::: {.column}
+
+```{r}
+mat
+
+# give names to the columns and rows
+named_mat <- mat
+colnames(named_mat) <- c("col1", "col2", "col3")
+colnames(named_mat) <- paste0("col", seq(ncol(named_mat))) # same as above line
+
+ncol(named_mat)
+seq(ncol(named_mat))
+
+rownames(named_mat) <- paste0("row", seq(nrow(named_mat)))
+
+named_mat
+
+named_mat["row1", ] # all element of the 1st row
+```
+
+:::
+
+::: {.column .fragment .content-smaller}
+
+Your turns: by using the names of rows and columns,
+
+- how to get 2nd row of the 2nd and the 3rd columns?
+- how to get the value 5 from the matrix?
+
+::: {.fragment}
+```{r}
+named_mat["row2", c("col2", "col3")]
+named_mat["row2", "col2"]
+```
+
+:::
+:::
+:::
+
+## Matrices Operations {.smaller}
+
+::: columns
+::: {.column}
+
+- Check the structure
+```{r}
+class(mat)
+str(mat)
+```
+
+::: {.fragment}
+
+- Some maths
+
+```{r}
+mat + mat
+
+rowSums(mat)
+colSums(mat)
+```
+
+:::
+:::
+
+::: {.column .fragment}
+
+- Modify elements
+
+
+```{r}
+mat[1:2, 3] <- c(1, 2)
+mat
+```
+
+::: {.fragment}
+
+```{r}
+mat[1:2, ] <- 10
+mat
+```
+
+:::
+
+::: {.fragment}
+```{r}
+#| error: true
+
+mat[1, ] <- c(1, 2)
+```
+
+:::
+
+::: {.content-smaller .fragment}
+Attention: when assignubg new values, you must provide either:
+
+- A single value, 
+- A vector with the exact number of elements to be replaced, or
+- A vector whose length is a factor of the number of elements to be replaced.
+
+:::
+:::
+
+:::
+
+# Let's Practice !
+
+## Today's Goals
+
+- Get familiar with data types
+- Get familiar with vectors and matrices manipulations
+- Create your own gene expression matrix and perform a Shapiro test on your data
+
 
