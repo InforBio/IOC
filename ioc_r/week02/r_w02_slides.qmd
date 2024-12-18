@@ -273,7 +273,7 @@ R provides 4 data structures to store multiple values:
 
 # Vectors
 
-The simplest data structure in R, for one dimension data of the same type.
+The simplest data structure in R, for **one dimension** data of the **same type**.
 
 ## Vector Creation (1) {.smaller}
 
@@ -459,14 +459,18 @@ gene_expr + 1
 gene_expr - 1
 gene_expr * 10
 gene_expr / 10
+```
 
-
+::: {.fragment}
+```{r}
 # Apply some functions
 summary(gene_expr)
 sum(gene_expr)
 mean(gene_expr)
 median(gene_expr)
 ```
+
+:::
 
 :::
 :::
@@ -534,12 +538,14 @@ mat[, 3] # all rows of the 3rd column
 
 :::
 
-::: {.column .fragment .content-smaller}
+::: {.column .fragment}
 
+::: {.content-smaller}
 Your turns:
 
 - how to get all columns of the 2nd and the 3rd rows?
 - how to get the value 5 from the matrix?
+:::
 
 ::: {.fragment}
 
@@ -570,32 +576,29 @@ mat
 
 # give names to the columns and rows
 named_mat <- mat
-colnames(named_mat) <- c("col1", "col2", "col3")
-colnames(named_mat) <- paste0("col", seq(ncol(named_mat))) # same as above line
-
-ncol(named_mat)
-seq(ncol(named_mat))
-
-rownames(named_mat) <- paste0("row", seq(nrow(named_mat)))
+colnames(named_mat) <- c("c1", "c2", "c3")
+rownames(named_mat) <- c("r1", "r2", "r3")
 
 named_mat
 
-named_mat["row1", ] # all element of the 1st row
+named_mat["r1", ] # all element of the 1st row
 ```
 
 :::
 
-::: {.column .fragment .content-smaller}
+::: {.column .fragment}
 
+::: {.content-smaller}
 Your turns: by using the names of rows and columns,
 
 - how to get 2nd row of the 2nd and the 3rd columns?
 - how to get the value 5 from the matrix?
+:::
 
 ::: {.fragment}
 ```{r}
-named_mat["row2", c("col2", "col3")]
-named_mat["row2", "col2"]
+named_mat["r2", c("c2", "c3")]
+named_mat["r2", "c2"]
 ```
 
 :::
@@ -656,7 +659,7 @@ mat[1, ] <- c(1, 2)
 :::
 
 ::: {.content-smaller .fragment}
-Attention: when assignubg new values, you must provide either:
+When assigning new values, you must provide either:
 
 - A single value, 
 - A vector with the exact number of elements to be replaced, or
