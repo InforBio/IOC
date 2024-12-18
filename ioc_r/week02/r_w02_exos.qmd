@@ -1,0 +1,51 @@
+---
+title: "Week 2 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+categories: 
+  - week02
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+
+Goals:
+
+- Get familiar with data types
+- Get familiar with vectors and matrices manipulations
+- Create your own gene expression matrix and perform a Shapiro test on your data
+
+
+## Create a Vector
+
+```{r}
+1:10 # numbers from 1 to 10
+seq(10)
+rep("A", 10)
+```
+
+
+
+```{r}
+rnorm()
+```
+
+```{r}
+colnames(named_mat) <- paste0("c", seq(ncol(named_mat))) # same as above line
+
+ncol(named_mat)
+seq(ncol(named_mat))
+
+rownames(named_mat) <- paste0("r", seq(nrow(named_mat)))
+```
+
+
+
+
+---
+
+#### Good job! 👏👏 You've taken your first big steps into R, and you're off to a great start, keep it up! 
+
+
