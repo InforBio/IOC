@@ -8,7 +8,8 @@ format:
     toc-depth: 1
     slide-number: true
     preview-links: auto
-    logo: images/logoInforBio_fond_blanc.png
+    logo: /../../images/logoInforBio_fond_blanc_small.png
+    css: /../custom.css
 echo: true
 categories: 
   - week02
@@ -40,7 +41,6 @@ And in R?
 - A variable is created at the moment you assign a value to it. Use `<-` for assignment.
 
 ```{r}
-# Use `#` to start a comment (line)
 x <- 1 # put a space on each side of the assignment sign
 x # type variable name to print its value(s)
 
@@ -61,13 +61,11 @@ A box labeled "char_name" containing the platform name "InforBio".
 
 ## Variable Naming Convention {.smaller}
 
-Follow the same rules when you naming your R project folder:  
-
 ::: columns
 ::: {.column}
 - Be descriptive and keep it short
-- Use snake case (only lowercase letters and underscores allowed), avoid 
-special characters (such as `!`, `#`, ) and spaces
+- Use snake case (only `[a-z]` and `_`)
+- Avoid special characters (such as `!`, `#`, ) and spaces
 - Do not start a name with numbers
 - Avoid reserved keywords in R (*e.g.*, function, if, TRUE)
 - Do not overwrite built-in functions (*e.g.*, mean, sd)
@@ -99,7 +97,16 @@ DAYone
 :::
 :::
 
+::: {.content-smaller .fragment}
+How to know if a variable name was already used?
+
+- Type `help(reserved)` to check reserved words in R.
+- Check in "Environment" pane.
+- Type the first letter of a name and press the **Tab** key to trigger autocompletion
+:::
+
 ::: {.notes}
+Follow the same rules when you naming your R project folder.
 If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for.
 :::
 

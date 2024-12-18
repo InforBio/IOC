@@ -8,19 +8,8 @@ format:
     toc-depth: 1
     slide-number: true
     preview-links: auto
-    logo: images/logoInforBio_fond_blanc_small.png
-    include-in-header:
-      - text: |
-          <style>
-          .reveal .slide-logo {
-            max-height: 0.5em !important;
-          }
-          .slide-number, .reveal.has-logo .slide-number {
-            bottom: 14px !important;
-            left: 50% !important;
-            top: unset !important;
-          }
-          </style>
+    logo: /../../images/logoInforBio_fond_blanc_small.png
+    css: /../custom.css
   # pdf:
   #   toc: true
 categories: 
