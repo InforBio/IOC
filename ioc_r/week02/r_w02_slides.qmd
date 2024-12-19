@@ -747,6 +747,6 @@ When assigning new values, you must provide either:
 
 - Get familiar with data types
 - Get familiar with vectors and matrices manipulations
-- Create your own gene expression matrix and perform a Shapiro test on your data
+- Simulate your own biological data and test the normality using the Shapiro-Wilk test.
 
 
