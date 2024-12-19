@@ -15,7 +15,7 @@ editor_options:
 
 - Get familiar with data types
 - Get familiar with vectors and matrices manipulations
-- Create your own gene expression matrix and perform a Shapiro test on your data
+- Simulate your own biological data and test the normality using the Shapiro-Wilk test
 
 ## Data Types in R
 
@@ -151,11 +151,15 @@ heights
 
 
 ::: {.callout-tip title="Stats Time!"}
-**Normal distribution**
+**Normal Distribution**
 
 A normal distribution (or Gaussian distribution), also called a "bell curve,"
 is a way that data often naturally organizes itself when we measure something repeatedly in a population.
-![](images/normal_distribution.png)
+
+![](images/normal_distribution.png){width=70%}
+<br>
+(figure obtained from this [source](https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AEmpirical_Rule_Normal_Distribution.png&psig=AOvVaw3im9_Hwoy2pWzBaORhnaym&ust=1734727389053000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIDm9aPZtIoDFQAAAAAdAAAAABAI))
+
 It’s symmetric, with most values clustering around the average (mean, $\mu$),
 and fewer values as you move farther away from it.
 
@@ -176,6 +180,7 @@ shapiro.test(heights)
 
 ::: {.callout-tip title="Stats Time!"}
 **Test Hypotheses: H0, H1**
+
 When performing a statistical test, you start with two opposing ideas, called hypotheses, that you want to evaluate:
 
 - Null Hypothesis (H0):
@@ -185,7 +190,7 @@ This is the claim you are testing for something different from the null hypothes
 
 When you perform a statistical test, the goal is to decide whether you have enough evidence to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).
 
-**Type I error**
+**Type I error ($\\alpha$)**
 
 The significance level ($\\alpha$) is the maximum probability of rejecting the null hypothesis (H0) when it is actually true.
 This is also called a Type I error (a "false positive").
