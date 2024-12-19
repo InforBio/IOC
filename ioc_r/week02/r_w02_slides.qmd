@@ -694,6 +694,8 @@ mat + mat
 
 rowSums(mat)
 colSums(mat)
+colMeans(mat)
+rowMeans(mat)
 ```
 
 :::
