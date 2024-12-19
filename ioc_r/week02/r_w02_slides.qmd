@@ -20,14 +20,6 @@ categories:
 
 ## Data Types {.smaller}
 
-```{r}
-getwd()
-file.exists("../custom.css")
-file.exists("../../images/logoInforBio_fond_blanc_small.png")
-```
-
-## Data Types {.smaller}
-
 Examples: `1`, `2.5`, `A`, `InforBio`, `I love R`, `TRUE`, `FALSE`
 
 What are their data type in the daily life?
