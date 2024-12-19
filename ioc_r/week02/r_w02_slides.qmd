@@ -8,8 +8,8 @@ format:
     toc-depth: 1
     slide-number: true
     preview-links: auto
-    logo: /../../images/logoInforBio_fond_blanc_small.png
-    css: /../custom.css
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
 echo: true
 categories: 
   - week02
@@ -17,6 +17,14 @@ categories:
 ---
 
 # Data Types in R
+
+## Data Types {.smaller}
+
+```{r}
+getwd()
+file.exists("../custom.css")
+file.exists("../../images/logoInforBio_fond_blanc_small.png")
+```
 
 ## Data Types {.smaller}
 
