@@ -158,6 +158,13 @@
     "href": "ioc_r/week02/r_w02_slides.html#data-types",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Data Types",
+    "text": "Data Types\n\ngetwd()\n\n[1] \"/home/runner/work/IOC/IOC/ioc_r/week02\"\n\nfile.exists(\"../custom.css\")\n\n[1] TRUE\n\nfile.exists(\"../../images/logoInforBio_fond_blanc_small.png\")\n\n[1] TRUE"
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#data-types-1",
+    "href": "ioc_r/week02/r_w02_slides.html#data-types-1",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Data Types",
     "text": "Data Types\nExamples: 1, 2.5, A, InforBio, I love R, TRUE, FALSE\nWhat are their data type in the daily life?\n\nAnd in R?\n\nNumeric: 1, 2.5\nInteger: 1\nCharacter: \"A\", \"InforBio\", \"I love R\"\nLogical: TRUE, FALSE\nFactor: for categorical data"
   },
   {
