@@ -422,6 +422,45 @@ gene_expr
 :::
 :::
 
+## Vector Indexing (3) {.smaller}
+
+::: columns
+::: {.column width="60%"}
+
+- Use a logical vector for indexing.
+
+```{r}
+num_vec <- c(1, 2, 5, 4)
+num_vec
+logical_vec <- c(TRUE, TRUE, FALSE, FALSE)
+logical_vec
+
+num_vec[logical_vec]
+```
+
+
+```{r}
+# create logical vect using comparison operator
+num_vec < 3
+
+# then use it to extract values from the numeric vector
+num_vec[num_vec < 3]
+```
+
+:::
+
+::: {.column width="40%" .fragment}
+Your turns:
+
+R use the `==` to test equality. Use this operator to extract the value `5` from the `num_vec`.
+
+```{r}
+num_vec[num_vec == 5]
+```
+
+:::
+:::
+
 ## Vector Operations {.smaller}
 
 ::: columns
@@ -602,6 +641,36 @@ named_mat["r2", "c2"]
 ```
 
 :::
+:::
+:::
+
+## Matrices Indexing (3) {.smaller}
+
+::: columns
+
+::: {.column}
+
+- Use logical vector(s) for indexing.
+
+```{r}
+mat[c(TRUE, TRUE, FALSE), ]
+named_mat[c(TRUE, TRUE, FALSE), c(FALSE, TRUE, TRUE)]
+```
+
+:::
+
+::: {.column .fragment}
+Your turns:
+
+By using the logical indexing, select the 2nd and 3rd rows, the 1st and 2nd columns of the `named_mat`.
+
+::: {.fragment}
+```{r}
+named_mat[c(FALSE, TRUE, TRUE), c(TRUE, TRUE, FALSE)]
+```
+
+:::
+
 :::
 :::
 
