@@ -88,9 +88,16 @@ notebook, show results
 
 ## Getting Started in R {.smaller}
 
-- Create a new file[^1]: *File* -> *New File* -> *R Script*
-- Basic commands[^2]:
+::: columns
 
+::: {.column width="43%"}
+- Create a new file: Click *File* -> *New File* -> *R Script* or ![](images/rstudio_newfile.png){width=15%}
+
+- Save script: *Cmd + S* or *Ctrl + S*
+:::
+
+::: {.column width="57%"}
+- Basic commands[^1]:
 ``` {.r code-line-numbers="1|2-4|6-7|9-11|13-14|16-17|19-20"}
 # Use `#` to write a comment (line) in your script
 # Math with R:
@@ -113,10 +120,11 @@ library(stats)
 # Quit RStudio properly
 q()
 ```
+:::
+:::
 
 
-[^1]: Shortcut to create new file: press *Shift + Ctrl + N* (Windows) or *Shift + Cmd + N* (Mac)
-[^2]: Shortcut to run code: highlight it and press *Ctrl + Enter* (Windows) or *Cmd + Enter* (Mac)
+[^1]: Shortcut to run code: highlight it and press *Ctrl + Enter* (Windows) or *Cmd + Enter* (Mac)
 
 ## Some Configuration {.smaller}
 
