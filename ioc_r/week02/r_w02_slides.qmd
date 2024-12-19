@@ -135,7 +135,7 @@ typeof(1.5)
 
 ## Character {.smaller}
 
-R stores text (strings) as character. Use quotation marks ("" or '') to indicate a value is character.
+R stores text (strings) as character. Use quotation marks to indicate a value is character.
 
 ```{r}
 # create a vector of characters
