@@ -1,0 +1,91 @@
+---
+title: "Week 2 - Homework"
+format: 
+  html: default
+categories: 
+  - week02
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+Write your code directly in a Quarto document.
+
+To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
+
+Use following code import the file "read-counts.csv" 
+(you have already downloaded it in the hand-on examples of the week01),
+name the imported data `expr_data`.
+
+```{r}
+expr_data <- read.table(
+  file = "read-counts.csv",  # replace the path by the yours
+  header = TRUE, sep = ",", row.names = 1
+)
+```
+
+1. Is the imported data a matrix?
+
+```{r}
+
+```
+
+2. Transform it to a matrix by using `as.matrix()`
+
+```{r}
+
+```
+
+3. What is the dimension of the matrix?
+
+```{r}
+
+```
+
+4. What are the column names and row names?
+
+```{r}
+
+```
+
+
+5. Extract all genes' expression for the 10 WT samples (WT.1, WT.2, ..., WT.10), store it in a variable called `expr_wt`.
+Show the first rows by using `head()` function.
+
+```{r}
+
+```
+
+6. What is the average expression level across all WT samples for each gene? Store the results in a variable called `avg_wt`.
+
+```{r}
+
+```
+
+7. Draw a histogram to check the distribution of the average gene expression level for WT samples.
+
+```{r}
+
+```
+
+8. Repeat question 5 to 7 for the 10 SET1 samples (SET1.1, SET1.2, ..., SET1.10).
+
+```{r}
+
+```
+
+9. What is the absolute difference between the average expression of WT and SET1 samples for each gene? 
+Which gene shows the biggest difference?
+
+Hints:
+
+- use `abs()` to get the absolute value. (`?abs`)
+- the `max()` function helps to find the maximum value from a vector. (`?max`)
+- the `which.max()` function helps to find the index of the maximum value from a vector. (`?which.max`)
+
+```{r}
+
+```
+
+
+10. Click "Render" to generate your Quarto report.

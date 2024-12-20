@@ -1,0 +1,110 @@
+---
+title: "Week 2 - Homework"
+format: 
+  html: default
+categories: 
+  - week02
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+Write your code directly in a Quarto document.
+
+To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
+
+Use following code import the file "read-counts.csv" 
+(you have already downloaded it in the hand-on examples of the week01),
+name the imported data `expr_data`.
+
+```{r}
+expr_data <- read.table(
+  file = "read-counts.csv",  # replace the path by the yours
+  header = TRUE, sep = ",", row.names = 1
+)
+```
+
+1. Is the imported data a matrix?
+
+```{r}
+class(expr_data)
+```
+
+No, it's a data frame. (We'll talk about it in the week 3!)
+
+2. Transform it to a matrix by using `as.matrix()`
+
+```{r}
+expr_mat <- as.matrix(expr_data)
+```
+
+3. What is the dimension of the matrix?
+
+```{r}
+dim(expr_mat)
+```
+
+4. What are the column names and row names?
+
+```{r}
+colnames(expr_mat)
+rownames(expr_mat)
+```
+
+
+5. Extract all genes' expression for the 10 WT samples (WT.1, WT.2, ..., WT.10), store it in a variable called `expr_wt`.
+Show the first rows by using `head()` function.
+
+```{r}
+expr_wt <- expr_mat[, paste0("WT.", 1:10)]
+head(expr_wt)
+```
+
+6. What is the average expression level across all WT samples for each gene? Store the results in a variable called `avg_wt`.
+
+```{r}
+avg_wt <- rowMeans(expr_wt)
+```
+
+7. Draw a histogram to check the distribution of the average gene expression level for WT samples.
+
+```{r}
+hist(avg_wt)
+```
+
+The the expression of WT samples shows highly skewed distribution with a long tail of large values.
+Most of the genes' expression are between 0 and 5000.
+
+8. Repeat questions 5 to 7 for the 10 SET1 samples (SET1.1, SET1.2, ..., SET1.10).
+
+```{r}
+# matrix for the SET1 samples
+expr_set1 <- expr_mat[, paste0("SET1.", 1:10)]
+head(expr_wt) # show first lines
+
+# average expression for each gene
+avg_set1 <- rowMeans(expr_set1)
+
+# histogram for the distribution check
+hist(avg_set1)
+```
+
+9. What is the absolute difference between the average expression of WT and SET1 samples for each gene? 
+Which gene shows the biggest difference?
+
+Hints:
+
+- use `abs()` to get the absolute value. (`?abs`)
+- the `max()` function helps to find the maximum value from a vector. (`?max`)
+- the `which.max()` function helps to find the index of the maximum value from a vector. (`?which.max`)
+
+```{r}
+diff_abs <- abs(avg_set1 - avg_wt)
+
+max(diff_abs) # show the max value
+which.max(diff_abs) # show the index of the max value
+diff_abs[which.max(diff_abs)] # extract the max value by using its index
+```
+
+
+10. Click "Render" to generate your Quarto report.
