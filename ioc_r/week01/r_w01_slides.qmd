@@ -374,6 +374,16 @@ google/forum stack overFlow
 - try and iterate
 :::
 
+## PDF of Slides {.smaller}
+
+To save the slides as a PDF:
+
+- Open the presentation in a web browser
+- Press "**e**" to enable PDF export mode
+- Press **Ctrl + p** (Windows) or **Cmd + P** (Mac) to print
+- Select "**save as PDF**" as the printer option and save the file
+
+After saving, press "**e**" again to return to presentation mode.
 
 # Let's Practice !
 
