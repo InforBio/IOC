@@ -190,12 +190,12 @@ This is the claim you are testing for something different from the null hypothes
 
 When you perform a statistical test, the goal is to decide whether you have enough evidence to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).
 
-**Type I error ($\\alpha$)**
+**Type I error ($\alpha$)**
 
-The significance level ($\\alpha$) is the maximum probability of rejecting the null hypothesis (H0) when it is actually true.
+The significance level ($\alpha$) is the maximum probability of rejecting the null hypothesis (H0) when it is actually true.
 This is also called a Type I error (a "false positive").
 
-By choosing $\\alpha = 0.05$, you’re saying:
+By choosing $\alpha = 0.05$, you’re saying:
 "I’m willing to accept a 5% chance of incorrectly rejecting H0."
 
 **P-value** 
@@ -216,6 +216,8 @@ and H1 is the heights are not normally distributed.
 If we take $\alpha=0.05$:
 since the p-value (0.9876) is greater than 0.05, we fail to reject H0.
 This means there’s no strong evidence to suggest the heights are not normally distributed.
+
+Let's check the heights' distribution with a histgram!
 
 ```{r}
 # Histogram
