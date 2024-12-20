@@ -468,9 +468,9 @@ Stats Time!
 <li>Alternative Hypothesis (H1): This is the claim you are testing for something different from the null hypothesis.</li>
 </ul>
 <p>When you perform a statistical test, the goal is to decide whether you have enough evidence to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).</p>
-<p><strong>Type I error (<span class="math inline">\(\\alpha\)</span>)</strong></p>
-<p>The significance level (<span class="math inline">\(\\alpha\)</span>) is the maximum probability of rejecting the null hypothesis (H0) when it is actually true. This is also called a Type I error (a “false positive”).</p>
-<p>By choosing <span class="math inline">\(\\alpha = 0.05\)</span>, you’re saying: “I’m willing to accept a 5% chance of incorrectly rejecting H0.”</p>
+<p><strong>Type I error (<span class="math inline">\(\alpha\)</span>)</strong></p>
+<p>The significance level (<span class="math inline">\(\alpha\)</span>) is the maximum probability of rejecting the null hypothesis (H0) when it is actually true. This is also called a Type I error (a “false positive”).</p>
+<p>By choosing <span class="math inline">\(\alpha = 0.05\)</span>, you’re saying: “I’m willing to accept a 5% chance of incorrectly rejecting H0.”</p>
 <p><strong>P-value</strong></p>
 <p>The p-value is the probability of observing your data (or something more extreme) if the null hypothesis (H0) is true.</p>
 <ul>
@@ -489,6 +489,7 @@ Stats Time!
 </div>
 <p>Here, the H0 is the heights are normally distributed, and H1 is the heights are not normally distributed.</p>
 <p>If we take <span class="math inline">\(\alpha=0.05\)</span>: since the p-value (0.9876) is greater than 0.05, we fail to reject H0. This means there’s no strong evidence to suggest the heights are not normally distributed.</p>
+<p>Let’s check the heights’ distribution with a histgram!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>

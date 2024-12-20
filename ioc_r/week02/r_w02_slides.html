@@ -720,7 +720,7 @@ Levels: one two three</code></pre>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a></a><span class="co"># name elements of the vector</span></span>
-<span id="cb109-2"><a></a><span class="fu">names</span>(gene_expr) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"gene"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb109-2"><a></a><span class="fu">names</span>(gene_expr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene1"</span>, <span class="st">"gene2"</span>, <span class="st">"gene3"</span>)</span>
 <span id="cb109-3"><a></a>gene_expr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>gene1 gene2 gene3 
@@ -820,10 +820,12 @@ Levels: one two three</code></pre>
 </div><div class="column fragment" style="width:40%;">
 <p>Your turns:</p>
 <p>R use the <code>==</code> to test equality. Use this operator to extract the value <code>5</code> from the <code>num_vec</code>.</p>
+<div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a></a>num_vec[num_vec <span class="sc">==</span> <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
+</div>
 </div>
 </div>
 </div></div>
@@ -1152,26 +1154,19 @@ r3  3  6</code></pre>
 <li>Some maths</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb207"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb207-1"><a></a>mat <span class="sc">+</span> mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2] [,3]
-[1,]    2    8   14
-[2,]    4   10   16
-[3,]    6   12   18</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb209"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb209-1"><a></a><span class="fu">rowSums</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb207"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb207-1"><a></a><span class="fu">rowSums</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12 15 18</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb211"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb211-1"><a></a><span class="fu">colSums</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb209"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb209-1"><a></a><span class="fu">colSums</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  6 15 24</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb213"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb213-1"><a></a><span class="fu">colMeans</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb211"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb211-1"><a></a><span class="fu">colMeans</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2 5 8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb215"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb215-1"><a></a><span class="fu">rowMeans</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb213"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb213-1"><a></a><span class="fu">rowMeans</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4 5 6</code></pre>
 </div>
@@ -1182,8 +1177,8 @@ r3  3  6</code></pre>
 <li>Modify elements</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb217"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb217-1"><a></a>mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb217-2"><a></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb215"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb215-1"><a></a>mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb215-2"><a></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
 [1,]    1    4    1
@@ -1193,8 +1188,8 @@ r3  3  6</code></pre>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb219"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb219-1"><a></a>mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb219-2"><a></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb217"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb217-1"><a></a>mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb217-2"><a></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
 [1,]   10   10   10
@@ -1205,21 +1200,56 @@ r3  3  6</code></pre>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb221"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb221-1"><a></a>mat[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb219"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb219-1"><a></a>mat[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in mat[1, ] &lt;- c(1, 2): number of items to replace is not a multiple of replacement length</code></pre>
 </div>
 </div>
 </div>
-<div class="content-smaller fragment">
+</div></div>
+</section>
+<section id="value-replacement" class="slide level2 smaller">
+<h2>Value Replacement</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>In matrices</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb221"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb221-1"><a></a>mat[<span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 10 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb223"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb223-1"><a></a>mat[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in mat[1, ] &lt;- c(1, 2): number of items to replace is not a multiple of replacement length</code></pre>
+</div>
+</div>
+</div><div class="column">
+<ul>
+<li>In vectors</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb225"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb225-1"><a></a>num_vec <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb225-2"><a></a>num_vec[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in num_vec[1:5] &lt;- c(1, 2): number of items to replace is not a
+multiple of replacement length</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb227"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb227-1"><a></a>num_vec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  1  2  1  6  7  8  9 10</code></pre>
+</div>
+</div>
+</div></div>
+<div class="fragment">
 <p>When assigning new values, you must provide either:</p>
 <ul>
 <li>A single value,</li>
 <li>A vector with the exact number of elements to be replaced, or</li>
-<li>A vector whose length is a factor of the number of elements to be replaced.</li>
+<li>A vector whose length is a factor of the number of elements to be replaced. (Recycling) Not recommanded!</li>
 </ul>
 </div>
-</div></div>
 </section></section>
 <section>
 <section id="lets-practice" class="title-slide slide level1 center">
