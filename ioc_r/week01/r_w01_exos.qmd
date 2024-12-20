@@ -52,6 +52,9 @@ Samples were taken at nine time points over two cell cycles (two hours).
 
 ## Play with Basic R Commands
 
+Open an R script to write down your code. 
+(In RStudio menu bar, click *File* -> *New File* -> *R Script*)
+
 1. What is the absolute file path of the count data? What is its absolute path? Verify your answer using the function `file.exists()`.
 
 ```{r}
@@ -123,14 +126,44 @@ It's a simple way to get an overview of your data.
 
 ```{r}
 hist(counts[["WT:2"]])
+```
+
+::: {.callout-tip title="Stats Time!"}
+**log2 Transformation**
+
+A log2 transformation compresses larger values more than smaller ones,
+making the data less skewed.
+Many biological data, like gene expression counts,
+tend to have a highly skewed distribution with a long tail of large values.
+The log2 transformation makes the distribution more symmetric and closer to normal, which is often desirable for statistical analysis
+:::
+
+```{r}
+plot(
+  x = counts[["WT:2"]], y = log2(counts[["WT:2"]]),
+  xlab = "Original Scale", ylab = "log2 Scale",
+  main = "Gene expression for the sample WT:2"
+)
+```
+
+Re draw the histogram with the log2 transformed data,
+what does the distribution look like now?
+
+```{r}
 hist(log2(counts[["WT:2"]]))
 ```
 
+
 ## Get Your First Quarto Report
 
-Click the "Render" to generate the report!
+Create a new Quarto document (*File* -> *New File* -> *Quarto Document*),
+write all codes above and your observation for the questions in the document.
+Then click the "Render" to generate your own report!
 
-- Change something in this script and re-render it, is the report up-to-date?
+- Change something in your script Quarto and re-render it, is the report up-to-date?
+
+To go further: 
+
 - Where is your report stored?
 - What should you do if you want the report be stored in a specified folder?
   => use a configuration file for Quarto.
