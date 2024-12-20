@@ -370,7 +370,7 @@ gene_expr
 
 ```{r}
 # name elements of the vector
-names(gene_expr) <- paste0("gene", 1:3)
+names(gene_expr) <- c("gene1", "gene2", "gene3")
 gene_expr
 
 gene_expr["gene1"] # the element named "gene1"
@@ -454,10 +454,12 @@ Your turns:
 
 R use the `==` to test equality. Use this operator to extract the value `5` from the `num_vec`.
 
+::: {.fragment}
 ```{r}
 num_vec[num_vec == 5]
 ```
 
+:::
 :::
 :::
 
@@ -690,8 +692,6 @@ str(mat)
 - Some maths
 
 ```{r}
-mat + mat
-
 rowSums(mat)
 colSums(mat)
 colMeans(mat)
@@ -729,17 +729,49 @@ mat[1, ] <- c(1, 2)
 
 :::
 
-::: {.content-smaller .fragment}
+
+:::
+
+:::
+
+## Value Replacement {.smaller}
+
+::: columns
+::: {.column}
+* In matrices
+```{r}
+#| error: true
+
+mat[1, ]
+
+mat[1, ] <- c(1, 2)
+```
+
+:::
+
+::: {.column}
+* In vectors
+```{r}
+#| error: true
+#| message: true
+#| warning: true
+
+num_vec <- 1:10
+num_vec[1:5] <- c(1, 2)
+num_vec
+```
+
+:::
+:::
+
+::: {.fragment}
 When assigning new values, you must provide either:
 
 - A single value, 
 - A vector with the exact number of elements to be replaced, or
-- A vector whose length is a factor of the number of elements to be replaced.
-
-:::
+- A vector whose length is a factor of the number of elements to be replaced. (Recycling) Not recommanded!
 :::
 
-:::
 
 # Let's Practice !
 
