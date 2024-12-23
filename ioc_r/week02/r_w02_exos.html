@@ -437,7 +437,7 @@ Stats Time!
 <p>It’s symmetric, with most values clustering around the average (mean, <span class="math inline">\(\mu\)</span>), and fewer values as you move farther away from it.</p>
 <p>Many statistical tests (like t-tests or ANOVAs) assume that the data is normally distributed because this allows us to calculate probabilities and make inferences. If the data isn’t normal, these tests might give misleading results.</p>
 <p><strong>Shapiro-Wilk Test</strong></p>
-<p>The Shapiro-Wilk test is a simple tool to check whether your data follows a normal distribution.</p>
+<p>The Shapiro-Wilk test is designed to check for deviations from normality, <em>i.e.</em>, to check whether your data follows a normal distribution.</p>
 </div>
 </div>
 <p>The function <code>shapiro.test()</code> in R allows to perform the test of normality.</p>
@@ -467,10 +467,10 @@ Stats Time!
 <li>Null Hypothesis (H0): This is the default assumption, often stating that there is no effect, no difference, or no relationship in your data.</li>
 <li>Alternative Hypothesis (H1): This is the claim you are testing for something different from the null hypothesis.</li>
 </ul>
-<p>When you perform a statistical test, the goal is to decide whether you have enough evidence to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).</p>
+<p>When you perform a statistical test, the goal is to decide whether you have <strong>enough evidence</strong> to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).</p>
 <p><strong>Type I error (<span class="math inline">\(\alpha\)</span>)</strong></p>
-<p>The significance level (<span class="math inline">\(\alpha\)</span>) is the maximum probability of rejecting the null hypothesis (H0) when it is actually true. This is also called a Type I error (a “false positive”).</p>
-<p>By choosing <span class="math inline">\(\alpha = 0.05\)</span>, you’re saying: “I’m willing to accept a 5% chance of incorrectly rejecting H0.”</p>
+<p>A type I error occurs when we reject the null hypothesis whereas it is actually true (false positive).</p>
+<p>The probability (risk) of making a type I error is denoted as <span class="math inline">\(\alpha\)</span>, which also called the significance level. By choosing <span class="math inline">\(\alpha = 0.05\)</span>, you’re saying: “I’m willing to accept a 5% chance of incorrectly rejecting H0.”</p>
 <p><strong>P-value</strong></p>
 <p>The p-value is the probability of observing your data (or something more extreme) if the null hypothesis (H0) is true.</p>
 <ul>
