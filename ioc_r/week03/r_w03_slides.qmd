@@ -1,5 +1,5 @@
 ---
-title: "More Complex Data Structures:<br>Lists and Data Frames"
+title: "More Complex Data Structures:<br>Data Frames and Lists"
 subtitle: "IOC-R Week 3"
 format:
   revealjs: 
@@ -10,17 +10,268 @@ format:
     preview-links: auto
     logo: ../../images/logoInforBio_fond_blanc_small.png
     css: ../custom.css
-  # pdf:
-  #   toc: true
+echo: true
 categories: 
   - week03
   - slides
 ---
 
-#
+# Last Week Review
 
-## 
+## What We've Learned So Far
 
+- Data types
+- Variable
+- Data structures:
+  - vector
+  - matrix
+
+
+# Data Structures (Part 2)
+
+## Data Structures
+
+The 4 data structures to store multiple values:
+
+:::{.content-smaller}
+
+|                      | 1 dimension | 2 dimensions (row/column) |
+|----------------------|:-----------:|:------------:|
+| **Same** data type       | vector      | matrix       |
+| **Different** data types | list        | data frame   |
+
+:::
+
+# Data Frames
+
+A **two dimensional** data structure to store values of **any data type**.
+
+## Data Frames Creation {.smaller}
+
+Use `data.frame()` to create a data frame.
+
+::: columns
+::: {.column}
+
+```{r}
+my_df <- data.frame(
+  id = 1:10,
+  gene_name = paste0("gene", LETTERS[1:10]),
+  detected = "yes",
+  gene_expr = c(
+    12.4, 11.3, 13.5, 10.2, 11.4,
+    0.5, 1, 1.2, 1.4, 0.6
+  ),
+  status = rep(
+    c("activated", "inhibited"),
+    each = 5
+  )
+)
+my_df
+```
+
+:::
+
+::: {.column .fragment}
+
+```{r}
+# Check the data structure
+class(my_df)
+is.data.frame(my_df)
+str(my_df)
+```
+
+::: {.fragment}
+What are the dimensions?
+
+What is the data type for each column?
+:::
+
+:::
+:::
+
+## Exploring the Data Frame {.smaller}
+
+::: columns
+::: {.column}
+```{r}
+nrow(my_df)
+ncol(my_df)
+dim(my_df)
+rownames(my_df)
+colnames(my_df)
+```
+
+:::
+
+::: {.column}
+```{r}
+head(my_df, n = 5)
+tail(my_df, n = 3)
+```
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+summary(my_df)
+```
+
+:::
+
+## Accessing Elements (1) {.smaller}
+
+Similar to matrix indexing, use `[`idx `, `idx`]` syntax to access elements with:
+
+::: {.content-smaller}
+- numeric index
+- row/column names
+- logical index
+:::
+
+```{r}
+# Get 2nd and 3rd rows
+my_df[2:3, ] 
+my_df[-c(1, 4:10), ] # remove the other rows
+```
+
+```{r}
+my_df[c("2", "3"), ]
+my_df[c(FALSE, TRUE, TRUE, rep(FALSE, 7)), ]
+```
+
+## Accessing Elements (2) {.smaller}
+
+How to get the 2nd and 3rd columns?
+
+. . .
+
+```{r}
+my_df[, 2:3]
+```
+
+```{r}
+#| eval: false
+
+my_df[, c("gene_name", "detected")] # idem
+my_df[, c(FALSE, TRUE, TRUE, FALSE)] # idem
+```
+
+. . . 
+
+How to get the value "geneH"?
+
+. . .
+
+```{r}
+my_df[8, 2]
+```
+
+
+## Accessing Elements (3) {.smaller}
+
+- Use the operator `$` or `[[`col_name`]]` to specify a column:
+
+```{r}
+my_df$gene_name
+my_df[["gene_name"]] # idem
+```
+
+- Subset the data frame based on some conditions:
+
+```{r}
+# Only keep the activated genes' data
+my_df[my_df$status == "activated", ]
+```
+
+::: {.content-smaller}
+(Don't worry, we'll go into more detail at the next session!)
+:::
+
+## Data Frame Modification (1) {.smaller}
+
+- Modify existing column
+
+```{r}
+my_df[["id"]] <- paste0("ID", 1:10)
+my_df
+```
+
+```{r}
+#| eval: false
+
+my_df$id <- paste0("ID", 1:10) # idem
+```
+
+## Data Frame Modification (2) {.smaller}
+
+- Add new column
+
+```{r}
+my_df[["tissue"]] <- rep(c("liver", "muscle"), times = 5)
+my_df
+```
+
+```{r}
+#| eval: false
+
+my_df$tissue <- rep(c("liver", "muscle"), times = 5) # idem
+```
+
+## Data Frame Modification (3) {.smaller}
+
+- Delete column(s)
+
+```{r}
+my_df[["detected"]] <- NULL
+my_df
+```
+
+```{r}
+#| eval: false
+
+my_df$detected <- NULL # idem
+```
+
+## Recoding Data Type {.smaller}
+
+R (>= 4.0.0) treats strings in data frames as strings rather than factors.
+
+You need to recode the column data type if data is categorical.
+
+```{r}
+my_df[["status"]] <- factor(my_df[["status"]])
+my_df$tissue <- factor(my_df[["tissue"]])
+
+# Check again the data
+str(my_df)
+summary(my_df)
+```
+
+
+# Lists
+
+The most flexible data strucutre in R, with content(s) inside can be **any data structure**.
+
+
+
+# Syllabus
+
+```r
+count()
+merge()
+table()
+unique()
+```
+
+- *Catchy example*: draw boxplot by group + t-test (two groups), origin de t-test
+- **Exercise**: Practice creating and manipulating data frame of a DE analysis results
+
+Base R cheat sheet: https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf
+
+(Decision tree: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.statology.org%2Fchoosing-the-right-statistical-test-a-decision-tree-approach%2F&psig=AOvVaw3TXjAjOB7Qi3VcxpX-7bB4&ust=1733408334962000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPjBnOKnjooDFQAAAAAdAAAAABAt)
 
 
 # Let's Practice !
