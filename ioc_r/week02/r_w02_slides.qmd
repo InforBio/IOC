@@ -1,6 +1,6 @@
 ---
 title: "Data Foundations:<br>Vectors and Matrices"
-subtitle: "IOC-R Week2"
+subtitle: "IOC-R Week 2"
 format:
   revealjs: 
     toc: true
