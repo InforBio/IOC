@@ -1,0 +1,33 @@
+---
+title: "More Complex Data Structures:<br>Lists and Data Frames"
+subtitle: "IOC-R Week 3"
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Overview"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+categories: 
+  - week03
+  - slides
+---
+
+#
+
+## 
+
+
+
+# Let's Practice !
+
+## Today's Goals
+
+- 
+- 
+- 
+- 

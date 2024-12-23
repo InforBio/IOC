@@ -1,0 +1,20 @@
+---
+title: "Week 3 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+categories: 
+  - week03
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+
+---
+
+#### Good job! 👏👏 You've taken your first big steps into R, and you're off to a great start, keep it up! 
+
+

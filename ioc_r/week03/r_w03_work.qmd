@@ -1,0 +1,19 @@
+---
+title: "Week 3 - Homework"
+format: 
+  html: default
+categories: 
+  - week03
+  - homework
+editor_options: 
+  chunk_output_type: console
+---
+
+Write your code directly in a Quarto document.
+
+To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
+
+
+
+
+Click "Render" to generate your Quarto report.
