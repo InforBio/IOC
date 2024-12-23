@@ -19,7 +19,7 @@ Please bookmark this page for quick access.
   |----------------|----------------------|------------------|--------------------|
   | Week 1         | Kickstart with R: Your Gateway to Data Science       |  8th January  | 9:30 am – 12:00 pm |
   | Week 2         | Data Foundations: Vectors and Matrices               | 15th January  | 9:30 am – 12:00 pm |
-  | Week 3         | More Complex Data Structures: Lists and Data Frames  | 22nd January  | 9:30 am – 12:00 pm |
+  | Week 3         | More Complex Data Structures: Data Frames and Lists  | 22nd January  | 9:30 am – 12:00 pm |
   | Week 4         | Building Logic: Operators, Conditions, and Functions | 29th January  | 9:30 am – 12:00 pm |
   | Week 5         | Graphing with {`ggplot2`}                            |  5th February | 9:30 am – 12:00 pm |
   | Week 6         | R-fresh: Revisiting the Essentials                   | 12th February | 9:30 am – 12:00 pm |
@@ -40,7 +40,7 @@ Please bookmark this page for quick access.
   |----------------|----------------------|------------------|--------------------|
   | Week 1         | Kickstart with R: Your Gateway to Data Science       | 13th January  | 9:30 am – 12:00 pm |
   | Week 2         | Data Foundations: Vectors and Matrices               | 20th January  | 9:30 am – 12:00 pm |
-  | Week 3         | More Complex Data Structures: Lists and Data Frames  | 27th January  | 9:30 am – 12:00 pm |
+  | Week 3         | More Complex Data Structures: Data Frames and Lists  | 27th January  | 9:30 am – 12:00 pm |
   | Week 4         | Building Logic: Operators, Conditions, and Functions |  3rd February | 9:30 am – 12:00 pm |
   | Week 5         | Graphing with {`ggplot2`}                            | 10th February | 9:30 am – 12:00 pm |
   | Week 6         | R-fresh: Revisiting the Essentials                   |  3rd March    | 9:30 am – 12:00 pm |
