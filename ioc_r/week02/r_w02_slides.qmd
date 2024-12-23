@@ -20,16 +20,18 @@ categories:
 
 ## Data Types {.smaller}
 
-Examples: `1`, `2.5`, `A`, `InforBio`, `I love R`, `TRUE`, `FALSE`
+Examples: `1`, `2.5`, `A`, `InforBio`, `I love R`, `TRUE`, `FALSE`, ...
 
-What are their data type in the daily life?
+<br>
+How R understands and stores information?
 
 . . .
 
-And in R?
+Main data types:
 
-- Numeric: `1`, `2.5`
-- Integer: `1`
+- Numeric
+  - Double: `2.5`
+  - Integer: `1`
 - Character: `"A"`, `"InforBio"`, `"I love R"`
 - Logical: `TRUE`, `FALSE`
 - Factor: for categorical data
@@ -64,7 +66,7 @@ A box labeled "char_name" containing the platform name "InforBio".
 ::: columns
 ::: {.column}
 - Be descriptive and keep it short
-- Use snake case (only `[a-z]` and `_`)
+- Use snake_case or camelCase
 - Avoid special characters (such as `!`, `#`, ) and spaces
 - Do not start a name with numbers
 - Avoid reserved keywords in R (*e.g.*, function, if, TRUE)
@@ -110,36 +112,41 @@ Follow the same rules when you naming your R project folder.
 If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for.
 :::
 
-## Numeric, Integer, Double  {.smaller}
+## Numeric {.smaller}
+
+::: columns
+::: {.column}
+- **Double** (default): used for numbers with decimal points or without.
 
 ```{r}
-my_var <- 10
-my_var
-class(my_var)
-is.numeric(my_var)
+a <- 3
+class(a)
+is.numeric(a)
+typeof(a)
 ```
 
-. . .
+:::
+
+::: {.column}
+- **Integer** (whole numbers): must be specified with `L` after the number.
 
 ```{r}
-class(10L) # "L" declares it's an integer
-typeof(10L)
+b <- 3L
+class(b)
+is.numeric(b)
+typeof(b)
 ```
 
-. . .
-
-```{r}
-class(1.5)
-typeof(1.5)
-```
+:::
+:::
 
 ## Character {.smaller}
 
-R stores text (strings) as character. Use quotation marks to indicate a value is character.
+R stores text (strings) as character. Use **quotation marks** to indicate a value is character.
 
 ```{r}
-# create a vector of characters
-x <- c("I", "love", "R")
+# use simple or double quotes
+x <- "I love R"
 x
 
 class(x)
@@ -151,28 +158,26 @@ is.character(x)
 ```{r}
 #| error: true
 
-x <- "1"
-y <- "2"
-x + y
+"1" + "2"
 ```
 
 . . .
 
 ```{r}
-as.numeric(x) + as.numeric(y)  # convert to numeric
+as.numeric("1") + as.numeric("2")  # convert to numeric
 ```
 
 . . .
 
 ```{r}
-as.character(1) # convert back to character
+as.character(1) # convert to character
 ```
 
 ## Logical (1) {.smaller}
 
 - Only two possible values for logical data: `TRUE` or `FALSE`.
 
-- Can be written as `T` or `F`, but never in other formats (*e.g.*: `True`, `true`, *etc.*)
+- Can be written as `T` or `F`, but never in other formats (*e.g.*: `True`, `true`)
 
 ```{r}
 #| error: true
@@ -196,9 +201,7 @@ is.logical(True)
 as.numeric(TRUE)
 as.numeric(FALSE)
 
-vec_logical <- c(TRUE, TRUE, FALSE)
-sum(vec_logical)
-
+TRUE + TRUE + FALSE
 ```
 
 . . .
@@ -218,31 +221,34 @@ as.logical(0)
 
 ## Factor {.smaller}
 
-Use factor when you want R treats your data as categorical data.
+Use `factor()` when you want R treats your data as categorical data.
 
 ```{r}
-grades <- c("one", "two", "one", "three", "two")
+grades <- factor(
+  x = c("A", "B", "A", "B", "C", "B") # we'll talk about vector soon!
+)
 grades
-
-factor(grades)
-as.factor(grades)
 ```
 
 . . .
 
-Specify the levels:
+- Specify levels:
 
 ```{r}
-grades_fac <- factor(grades, levels = c("one", "two", "three")) # specify the order
-grades_fac
+grades_rev <- factor(
+  x = c("A", "B", "A", "B", "C", "B"),
+  levels = c("C", "B", "A") # customised order
+)
+grades_rev
 ```
 
 . . .
 
-Convert to numeric values:
+- Convert to numeric values:
 
 ```{r}
-as.numeric(grades_fac)
+as.numeric(grades)
+as.numeric(grades_rev)
 ```
 
 
@@ -279,6 +285,8 @@ The simplest data structure in R, for **one dimension** data of the **same type*
 
 Use the function `c()` to create a vector and use `,` to separate elements.
 
+::: columns
+::: {.column}
 ```{r}
 c(10, 12, 9) # Numeric vector
 c(gene1, gene2, gene3)
@@ -286,20 +294,38 @@ c(gene1, gene2, gene3)
 gene_expr <- c(gene1, gene2, gene3)
 gene_expr
 c(gene_expr, 18)
-
-# other ways for numeric vector
-1:10
-seq(10)
 ```
 
-. . .
+:::{.fragment}
+- Quickly create sequences of numbers
 
 ```{r}
-c("gene1", "gene2", "gene3") # Character vector
+1:10
+5:1
+seq(from = 1, to = 10, by = 2)
+rep(c(1, 2), times = 2) # repetition
+```
 
+:::
+:::
+
+::: {.column .fragment}
+```{r}
+c("gene1", "gene2", "gene3") # Character vector
 c(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector
 ```
 
+:::{.fragment}
+- Other tricks
+
+```{r}
+paste0("gene", 1:3)
+rep(c(TRUE, FALSE), each = 2)
+```
+
+:::
+:::
+:::
 
 ## Vector Creation (2) {.smaller}
 
@@ -317,7 +343,7 @@ c(10, "gene1", TRUE)
 <br>
 R follows a hierarchy of data types for coercion:
 
-logical (**least** flexible) → numeric → character (**most** flexible)
+logical (**least** inclusive) → numeric → character (**most** inclusive)
 
 ::: {.notes}
 R always picks the "most flexible" type that can represent all the values without losing information.
@@ -504,11 +530,11 @@ gene_expr / 10
 
 ::: {.fragment}
 ```{r}
-# Apply some functions
-summary(gene_expr)
+# Get some summary stats
 sum(gene_expr)
 mean(gene_expr)
 median(gene_expr)
+summary(gene_expr)
 ```
 
 :::
@@ -567,7 +593,7 @@ What is the data structure of each row/column of a matrix?
 ::: {.column}
 
 ```{r}
-mat <- matrix(1:9, ncol = 3)
+mat <- matrix(1:12, ncol = 4)
 mat
 dim(mat) # dimensions of the matrix
 ncol(mat)
@@ -615,14 +641,13 @@ if question about drop dim, drop = FALSE
 ```{r}
 mat
 
-# give names to the columns and rows
-named_mat <- mat
-colnames(named_mat) <- c("c1", "c2", "c3")
-rownames(named_mat) <- c("r1", "r2", "r3")
+# add names to the columns and rows
+rownames(mat) <- c("r1", "r2", "r3")
+colnames(mat) <- paste0("c", 1:4)
 
-named_mat
+mat
 
-named_mat["r1", ] # all element of the 1st row
+mat["r1", ] # all element of the 1st row
 ```
 
 :::
@@ -638,8 +663,8 @@ Your turns: by using the names of rows and columns,
 
 ::: {.fragment}
 ```{r}
-named_mat["r2", c("c2", "c3")]
-named_mat["r2", "c2"]
+mat["r2", c("c2", "c3")]
+mat["r2", "c2"]
 ```
 
 :::
@@ -656,7 +681,7 @@ named_mat["r2", "c2"]
 
 ```{r}
 mat[c(TRUE, TRUE, FALSE), ]
-named_mat[c(TRUE, TRUE, FALSE), c(FALSE, TRUE, TRUE)]
+mat[c(TRUE, TRUE, FALSE), c(FALSE, TRUE, TRUE, FALSE)]
 ```
 
 :::
@@ -664,11 +689,11 @@ named_mat[c(TRUE, TRUE, FALSE), c(FALSE, TRUE, TRUE)]
 ::: {.column .fragment}
 Your turns:
 
-By using the logical indexing, select the 2nd and 3rd rows, the 1st and 2nd columns of the `named_mat`.
+By using the logical indexing, select the 2nd and 3rd rows, the 1st and 2nd columns of the `mat`.
 
 ::: {.fragment}
 ```{r}
-named_mat[c(FALSE, TRUE, TRUE), c(TRUE, TRUE, FALSE)]
+mat[c(FALSE, TRUE, TRUE), c(TRUE, TRUE, FALSE, FALSE)]
 ```
 
 :::
@@ -724,7 +749,8 @@ mat
 ```{r}
 #| error: true
 
-mat[1, ] <- c(1, 2)
+# replace values in 1st row
+mat[1, ] <- c(0, 1, 2)
 ```
 
 :::
@@ -742,9 +768,9 @@ mat[1, ] <- c(1, 2)
 ```{r}
 #| error: true
 
-mat[1, ]
-
-mat[1, ] <- c(1, 2)
+mat
+# replace values in 1st row
+mat[1, ] <- c(0, 1, 2)
 ```
 
 :::
@@ -757,7 +783,8 @@ mat[1, ] <- c(1, 2)
 #| warning: true
 
 num_vec <- 1:10
-num_vec[1:5] <- c(1, 2)
+num_vec
+num_vec[1:5] <- c(0, 1, 2)
 num_vec
 ```
 
