@@ -168,7 +168,8 @@ If the data isn't normal, these tests might give misleading results.
 
 **Shapiro-Wilk Test**
 
-The Shapiro-Wilk test is a simple tool to check whether your data follows a normal distribution.
+The Shapiro-Wilk test is designed to check for deviations from normality,
+*i.e.*, to check whether your data follows a normal distribution.
 :::
 
 The function `shapiro.test()` in R allows to perform the test of normality.
@@ -188,13 +189,13 @@ This is the default assumption, often stating that there is no effect, no differ
 - Alternative Hypothesis (H1):
 This is the claim you are testing for something different from the null hypothesis.
 
-When you perform a statistical test, the goal is to decide whether you have enough evidence to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).
+When you perform a statistical test, the goal is to decide whether you have **enough evidence** to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).
 
 **Type I error ($\alpha$)**
 
-The significance level ($\alpha$) is the maximum probability of rejecting the null hypothesis (H0) when it is actually true.
-This is also called a Type I error (a "false positive").
+A type I error occurs when we reject the null hypothesis whereas it is actually true (false positive).
 
+The probability (risk) of making a type I error is denoted as $\alpha$, which also called the significance level.
 By choosing $\alpha = 0.05$, you’re saying:
 "I’m willing to accept a 5% chance of incorrectly rejecting H0."
 
