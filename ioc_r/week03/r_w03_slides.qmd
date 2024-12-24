@@ -464,5 +464,7 @@ str(list_long)
 
 ## Today's Goals
 
-- Get familiar with lists and data frames
-- Compare the average gene expression of two sample groups using Wilcoxon test
+- Work with lists and data frames
+- Calculate fold change of gene expression between groups
+- Compare gene expression using the Wilcoxon test
+- Visualize differences with boxplots
