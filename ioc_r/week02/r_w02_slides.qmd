@@ -323,6 +323,16 @@ paste0("gene", 1:3)
 rep(c(TRUE, FALSE), each = 2)
 ```
 
+::: {.content-smaller}
+N.B.: a single value (scalar) is treated as a vector of length 1. 
+
+```{r}
+x <- 10
+length(x)
+is.vector(x)
+```
+
+:::
 :::
 :::
 :::
