@@ -389,7 +389,7 @@
     "href": "ioc_r/week03/r_w03_slides.html#accessing-elements-2",
     "title": "More Complex Data Structures:Data Frames and Lists",
     "section": "Accessing Elements (2)",
-    "text": "Accessing Elements (2)\nHow to get the 2nd and 3rd columns?\n\n\nmy_df[, 2:3]\n\n   gene_name detected\n1      geneA      yes\n2      geneB      yes\n3      geneC      yes\n4      geneD      yes\n5      geneE      yes\n6      geneF      yes\n7      geneG      yes\n8      geneH      yes\n9      geneI      yes\n10     geneJ      yes\n\n\n\nmy_df[, c(\"gene_name\", \"detected\")] # idem\nmy_df[, c(FALSE, TRUE, TRUE, FALSE)] # idem\n\n\n\nHow to get the value “geneH”?\n\n\n\nmy_df[8, 2]\n\n[1] \"geneH\"\n\nmy_df[8, \"gene_name\"]\n\n[1] \"geneH\""
+    "text": "Accessing Elements (2)\n\n\n\nmy_df\n\n   id gene_name detected gene_expr    status\n1   1     geneA      yes      12.4 activated\n2   2     geneB      yes      11.3 activated\n3   3     geneC      yes      13.5 activated\n4   4     geneD      yes      10.2 activated\n5   5     geneE      yes      11.4 activated\n6   6     geneF      yes       0.5 inhibited\n7   7     geneG      yes       1.0 inhibited\n8   8     geneH      yes       1.2 inhibited\n9   9     geneI      yes       1.4 inhibited\n10 10     geneJ      yes       0.6 inhibited\n\n\n\nHow to get the 2nd and 3rd columns?\n\n\nmy_df[, 2:3]\n\n   gene_name detected\n1      geneA      yes\n2      geneB      yes\n3      geneC      yes\n4      geneD      yes\n5      geneE      yes\n6      geneF      yes\n7      geneG      yes\n8      geneH      yes\n9      geneI      yes\n10     geneJ      yes\n\n\n\nmy_df[, c(\"gene_name\", \"detected\")] # idem\nmy_df[, c(FALSE, TRUE, TRUE, FALSE)] # idem\n\n\n\nHow to get the value “geneH”?\n\n\n\nmy_df[8, 2]\n\n[1] \"geneH\"\n\nmy_df[8, \"gene_name\"]\n\n[1] \"geneH\""
   },
   {
     "objectID": "ioc_r/week03/r_w03_slides.html#accessing-elements-3",
@@ -397,6 +397,13 @@
     "title": "More Complex Data Structures:Data Frames and Lists",
     "section": "Accessing Elements (3)",
     "text": "Accessing Elements (3)\n\nUse the operator $ or [[ ]] to get a column:\n\n\nmy_df$gene_name\n\n [1] \"geneA\" \"geneB\" \"geneC\" \"geneD\" \"geneE\" \"geneF\" \"geneG\" \"geneH\" \"geneI\"\n[10] \"geneJ\"\n\n\n\nmy_df[[2]] # idem, use numeric position\nmy_df[[\"gene_name\"]] # idem, use column name\n\n\nSubset the data frame based on some conditions:\n\n\n# Only keep the activated genes' data\nmy_df[my_df$status == \"activated\", ]\n\n  id gene_name detected gene_expr    status\n1  1     geneA      yes      12.4 activated\n2  2     geneB      yes      11.3 activated\n3  3     geneC      yes      13.5 activated\n4  4     geneD      yes      10.2 activated\n5  5     geneE      yes      11.4 activated\n\n\n\n(Don’t worry, we’ll go into more detail at the next session!)"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#be-careful-of-data-structure",
+    "href": "ioc_r/week03/r_w03_slides.html#be-careful-of-data-structure",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Be Careful of Data Structure",
+    "text": "Be Careful of Data Structure\n\n\nIf you select only 1 row of a data frame:\n\nstr(my_df[2, ])\n\n'data.frame':   1 obs. of  5 variables:\n $ id       : int 2\n $ gene_name: chr \"geneB\"\n $ detected : chr \"yes\"\n $ gene_expr: num 11.3\n $ status   : chr \"activated\"\n\n\nThe output remains a data frame.\n\nIf you select only 1 column of a data frame:\n\nmy_df[, 2]\n\n [1] \"geneA\" \"geneB\" \"geneC\" \"geneD\" \"geneE\" \"geneF\" \"geneG\" \"geneH\" \"geneI\"\n[10] \"geneJ\"\n\nstr(my_df[, 2])\n\n chr [1:10] \"geneA\" \"geneB\" \"geneC\" \"geneD\" \"geneE\" \"geneF\" \"geneG\" \"geneH\" ...\n\n\nThe output was “simplified” to a vector.\n\n\nTo keep the output as a data.frame when you select only 1 column, specify drop = FALSE:\n\nmy_df[, 2, drop = FALSE]\n\n   gene_name\n1      geneA\n2      geneB\n3      geneC\n4      geneD\n5      geneE\n6      geneF\n7      geneG\n8      geneH\n9      geneI\n10     geneJ\n\nstr(my_df[, 2, drop = FALSE])\n\n'data.frame':   10 obs. of  1 variable:\n $ gene_name: chr  \"geneA\" \"geneB\" \"geneC\" \"geneD\" ..."
   },
   {
     "objectID": "ioc_r/week03/r_w03_slides.html#data-frame-modification-1",
@@ -434,18 +441,25 @@
     "text": "Lists Creation\n\n\nUse list() function to create a list.\n\nx &lt;- \"geneA\"\ny &lt;- c(10, 11, 0.5)\nz &lt;- c(TRUE, TRUE, FALSE)\nsimple_list &lt;- list(x, y, z)\nsimple_list\n\n[[1]]\n[1] \"geneA\"\n\n[[2]]\n[1] 10.0 11.0  0.5\n\n[[3]]\n[1]  TRUE  TRUE FALSE\n\n# how many elements in the elements\nlength(simple_list)\n\n[1] 3\n\n# check the structure\nstr(simple_list)\n\nList of 3\n $ : chr \"geneA\"\n $ : num [1:3] 10 11 0.5\n $ : logi [1:3] TRUE TRUE FALSE\n\n\n\nWe can name the elements of a list:\n\n# name the elements during creation\nlist(gene_name = x, counts = y, expressed = z) \n\n$gene_name\n[1] \"geneA\"\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n# or name the elements afterward\nnames(simple_list) &lt;- c(\"gene_name\", \"counts\", \"expressed\")\nsimple_list\n\n$gene_name\n[1] \"geneA\"\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE"
   },
   {
-    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-elements-1-1",
-    "href": "ioc_r/week03/r_w03_slides.html#accessing-elements-1-1",
+    "objectID": "ioc_r/week03/r_w03_slides.html#subsetting-a-list",
+    "href": "ioc_r/week03/r_w03_slides.html#subsetting-a-list",
     "title": "More Complex Data Structures:Data Frames and Lists",
-    "section": "Accessing Elements (1)",
-    "text": "Accessing Elements (1)\n\n\n\nUse $ to access named elements:\n\n\nsimple_list\n\n$gene_name\n[1] \"geneA\"\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\nsimple_list$counts\n\n[1] 10.0 11.0  0.5\n\n\n\nUse [[ ]] for named or indexed elements:\n\n\nsimple_list[[\"counts\"]]\n\n[1] 10.0 11.0  0.5\n\nsimple_list[[2]]\n\n[1] 10.0 11.0  0.5\n\n\n\n\nUse [ ] to subset a list, using name or index.\n\n\nsimple_list[1]\n\n$gene_name\n[1] \"geneA\"\n\n# simple_list[\"gene_name\"] # Alternative\n\nsimple_list[c(1, 3)]\n\n$gene_name\n[1] \"geneA\"\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n# simple_list[c(\"gene_name\", \"expressed\")] # Alternative"
+    "section": "Subsetting a List",
+    "text": "Subsetting a List\nUse [ ] to subset a list, with name or (logical) index.\n\n\n\nsimple_list[c(1, 3)]\n\n$gene_name\n[1] \"geneA\"\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\nsimple_list[c(\"gene_name\", \"expressed\")]\n\n$gene_name\n[1] \"geneA\"\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\nsimple_list[c(TRUE, FALSE, TRUE)]\n\n$gene_name\n[1] \"geneA\"\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n\n\nWhat is the data structure after subsetting?\n\n\nstr(simple_list[c(1, 3)])\n\nList of 2\n $ gene_name: chr \"geneA\"\n $ expressed: logi [1:3] TRUE TRUE FALSE\n\nstr(simple_list[1])\n\nList of 1\n $ gene_name: chr \"geneA\""
   },
   {
-    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-elements-2-1",
-    "href": "ioc_r/week03/r_w03_slides.html#accessing-elements-2-1",
+    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-element-1",
+    "href": "ioc_r/week03/r_w03_slides.html#accessing-element-1",
     "title": "More Complex Data Structures:Data Frames and Lists",
-    "section": "Accessing Elements (2)",
-    "text": "Accessing Elements (2)\nOnce we have access to the element, we can extract values according to the data structure used inside.\n\n\n\nmy_list &lt;- list(\n  sample_info = data.frame(\n    id = paste0(\"sample\", 1:3),\n    age = c(25, 27, 30)\n  ),\n  family_sequenced = list(\n    sample1 = c(\"father\", \"mother\"),\n    sample2 = c(\"father\", \"mother\", \"sister\"),\n    sample3 = c(\"mother\", \"sister\")\n  )\n)\nmy_list\n\n$sample_info\n       id age\n1 sample1  25\n2 sample2  27\n3 sample3  30\n\n$family_sequenced\n$family_sequenced$sample1\n[1] \"father\" \"mother\"\n\n$family_sequenced$sample2\n[1] \"father\" \"mother\" \"sister\"\n\n$family_sequenced$sample3\n[1] \"mother\" \"sister\"\n\n\n\nHow to extract the age of sample1?\n\n\nmy_list[[\"sample_info\"]][1, \"age\"]\n\n[1] 25\n\n\n\n\n How to extract the sequenced family members of sample 2?\n\n\n\nmy_list[[\"family_sequenced\"]][[\"sample2\"]]\n\n[1] \"father\" \"mother\" \"sister\""
+    "section": "Accessing Element (1)",
+    "text": "Accessing Element (1)\n\nsimple_list\n\n$gene_name\n[1] \"geneA\"\n\n$counts\n[1] 10.0 11.0  0.5\n\n$expressed\n[1]  TRUE  TRUE FALSE\n\n\n\nUse $ to access named element:\n\n\nsimple_list$counts\n\n[1] 10.0 11.0  0.5\n\n\n\nUse [[ ]] for named or indexed element:\n\n\nsimple_list[[\"counts\"]]\n\n[1] 10.0 11.0  0.5\n\nsimple_list[[2]]\n\n[1] 10.0 11.0  0.5"
+  },
+  {
+    "objectID": "ioc_r/week03/r_w03_slides.html#accessing-element-2",
+    "href": "ioc_r/week03/r_w03_slides.html#accessing-element-2",
+    "title": "More Complex Data Structures:Data Frames and Lists",
+    "section": "Accessing Element (2)",
+    "text": "Accessing Element (2)\nOnce we have access to the element, we can extract values according to the data structure of that element.\n\n\n\nmy_list &lt;- list(\n  sample_info = data.frame(\n    id = paste0(\"sample\", 1:3),\n    age = c(25, 27, 30)\n  ),\n  family_sequenced = list(\n    sample1 = c(\"father\", \"mother\"),\n    sample2 = c(\"father\", \"mother\", \"sister\"),\n    sample3 = c(\"mother\", \"sister\")\n  )\n)\nmy_list\n\n$sample_info\n       id age\n1 sample1  25\n2 sample2  27\n3 sample3  30\n\n$family_sequenced\n$family_sequenced$sample1\n[1] \"father\" \"mother\"\n\n$family_sequenced$sample2\n[1] \"father\" \"mother\" \"sister\"\n\n$family_sequenced$sample3\n[1] \"mother\" \"sister\"\n\n\n\nHow to extract the age of sample1?\n\n\nmy_list[[\"sample_info\"]][1, \"age\"]\n\n[1] 25\n\n\n\n\n How to extract the sequenced family members of sample 2?\n\n\n\nmy_list[[\"family_sequenced\"]][[\"sample2\"]]\n\n[1] \"father\" \"mother\" \"sister\""
   },
   {
     "objectID": "ioc_r/week03/r_w03_slides.html#list-modification",

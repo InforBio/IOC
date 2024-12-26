@@ -436,10 +436,29 @@
 </section>
 <section id="accessing-elements-2" class="slide level2 smaller">
 <h2>Accessing Elements (2)</h2>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id gene_name detected gene_expr    status
+1   1     geneA      yes      12.4 activated
+2   2     geneB      yes      11.3 activated
+3   3     geneC      yes      13.5 activated
+4   4     geneD      yes      10.2 activated
+5   5     geneE      yes      11.4 activated
+6   6     geneF      yes       0.5 inhibited
+7   7     geneG      yes       1.0 inhibited
+8   8     geneH      yes       1.2 inhibited
+9   9     geneI      yes       1.4 inhibited
+10 10     geneJ      yes       0.6 inhibited</code></pre>
+</div>
+</div>
+</div><div class="column">
 <p>How to get the 2nd and 3rd columns?</p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>my_df[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>my_df[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   gene_name detected
 1      geneA      yes
@@ -455,8 +474,8 @@
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>my_df[, <span class="fu">c</span>(<span class="st">"gene_name"</span>, <span class="st">"detected"</span>)] <span class="co"># idem</span></span>
-<span id="cb35-2"><a></a>my_df[, <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)] <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>my_df[, <span class="fu">c</span>(<span class="st">"gene_name"</span>, <span class="st">"detected"</span>)] <span class="co"># idem</span></span>
+<span id="cb37-2"><a></a>my_df[, <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)] <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -464,16 +483,17 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>my_df[<span class="dv">8</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>my_df[<span class="dv">8</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "geneH"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>my_df[<span class="dv">8</span>, <span class="st">"gene_name"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>my_df[<span class="dv">8</span>, <span class="st">"gene_name"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "geneH"</code></pre>
 </div>
 </div>
 </div>
+</div></div>
 </section>
 <section id="accessing-elements-3" class="slide level2 smaller">
 <h2>Accessing Elements (3)</h2>
@@ -481,22 +501,22 @@
 <li>Use the operator <code>$</code> or <code>[[</code> <code>]]</code> to get a column:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>my_df<span class="sc">$</span>gene_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>my_df<span class="sc">$</span>gene_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "geneA" "geneB" "geneC" "geneD" "geneE" "geneF" "geneG" "geneH" "geneI"
 [10] "geneJ"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>my_df[[<span class="dv">2</span>]] <span class="co"># idem, use numeric position</span></span>
-<span id="cb42-2"><a></a>my_df[[<span class="st">"gene_name"</span>]] <span class="co"># idem, use column name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>my_df[[<span class="dv">2</span>]] <span class="co"># idem, use numeric position</span></span>
+<span id="cb44-2"><a></a>my_df[[<span class="st">"gene_name"</span>]] <span class="co"># idem, use column name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Subset the data frame based on some conditions:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="co"># Only keep the activated genes' data</span></span>
-<span id="cb43-2"><a></a>my_df[my_df<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"activated"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="co"># Only keep the activated genes' data</span></span>
+<span id="cb45-2"><a></a>my_df[my_df<span class="sc">$</span>status <span class="sc">==</span> <span class="st">"activated"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id gene_name detected gene_expr    status
 1  1     geneA      yes      12.4 activated
@@ -510,6 +530,63 @@
 <p>(Don’t worry, we’ll go into more detail at the next session!)</p>
 </div>
 </section>
+<section id="be-careful-of-data-structure" class="slide level2 smaller">
+<h2>Be Careful of Data Structure</h2>
+<div class="columns">
+<div class="column">
+<p>If you select only 1 row of a data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">str</span>(my_df[<span class="dv">2</span>, ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1 obs. of  5 variables:
+ $ id       : int 2
+ $ gene_name: chr "geneB"
+ $ detected : chr "yes"
+ $ gene_expr: num 11.3
+ $ status   : chr "activated"</code></pre>
+</div>
+</div>
+<p>The output remains a data frame.</p>
+<div class="fragment">
+<p>If you select only 1 column of a data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>my_df[, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "geneA" "geneB" "geneC" "geneD" "geneE" "geneF" "geneG" "geneH" "geneI"
+[10] "geneJ"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">str</span>(my_df[, <span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:10] "geneA" "geneB" "geneC" "geneD" "geneE" "geneF" "geneG" "geneH" ...</code></pre>
+</div>
+</div>
+<p>The output was “simplified” to a vector.</p>
+</div>
+</div><div class="column fragment">
+<p>To keep the output as a data.frame when you select only 1 column, specify <code>drop = FALSE</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>my_df[, <span class="dv">2</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   gene_name
+1      geneA
+2      geneB
+3      geneC
+4      geneD
+5      geneE
+6      geneF
+7      geneG
+8      geneH
+9      geneI
+10     geneJ</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">str</span>(my_df[, <span class="dv">2</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   10 obs. of  1 variable:
+ $ gene_name: chr  "geneA" "geneB" "geneC" "geneD" ...</code></pre>
+</div>
+</div>
+</div></div>
+</section>
 <section id="data-frame-modification-1" class="slide level2 smaller">
 <h2>Data Frame Modification (1)</h2>
 <p>Modify existing column:</p>
@@ -519,8 +596,8 @@
 <li>The whole column</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>my_df[[<span class="st">"id"</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"ID"</span>, my_df[[<span class="st">"id"</span>]])</span>
-<span id="cb45-2"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>my_df[[<span class="st">"id"</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"ID"</span>, my_df[[<span class="st">"id"</span>]])</span>
+<span id="cb57-2"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     id gene_name detected gene_expr    status
 1   ID1     geneA      yes      12.4 activated
@@ -536,15 +613,15 @@
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>my_df<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"ID"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a>my_df<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"ID"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
 <ul>
 <li>Modify some elements</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>my_df[[<span class="st">"id"</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> </span>
-<span id="cb48-2"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>my_df[[<span class="st">"id"</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> </span>
+<span id="cb60-2"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     id gene_name detected gene_expr    status
 1     1     geneA      yes      12.4 activated
@@ -560,7 +637,7 @@
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>my_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">"id"</span>] <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>my_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">"id"</span>] <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section>
@@ -570,8 +647,8 @@
 <li>Add new column</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>my_df[[<span class="st">"tissue"</span>]] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"liver"</span>, <span class="st">"muscle"</span>), <span class="at">times =</span> <span class="dv">5</span>)</span>
-<span id="cb51-2"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a>my_df[[<span class="st">"tissue"</span>]] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"liver"</span>, <span class="st">"muscle"</span>), <span class="at">times =</span> <span class="dv">5</span>)</span>
+<span id="cb63-2"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     id gene_name detected gene_expr    status tissue
 1     1     geneA      yes      12.4 activated  liver
@@ -587,7 +664,7 @@
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>my_df<span class="sc">$</span>tissue <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"liver"</span>, <span class="st">"muscle"</span>), <span class="at">times =</span> <span class="dv">5</span>) <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a>my_df<span class="sc">$</span>tissue <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"liver"</span>, <span class="st">"muscle"</span>), <span class="at">times =</span> <span class="dv">5</span>) <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-frame-modification-3" class="slide level2 smaller">
@@ -596,8 +673,8 @@
 <li>Delete column(s)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>my_df[[<span class="st">"detected"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb54-2"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a>my_df[[<span class="st">"detected"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb66-2"><a></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     id gene_name gene_expr    status tissue
 1     1     geneA      12.4 activated  liver
@@ -613,7 +690,7 @@
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>my_df<span class="sc">$</span>detected <span class="ot">&lt;-</span> <span class="cn">NULL</span> <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a>my_df<span class="sc">$</span>detected <span class="ot">&lt;-</span> <span class="cn">NULL</span> <span class="co"># idem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="recoding-data-type" class="slide level2 smaller">
@@ -621,11 +698,11 @@
 <p>R (&gt;= 4.0.0) treats strings in data frames as strings rather than factors.</p>
 <p>You need to recode the column data type if data is categorical.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>my_df[[<span class="st">"status"</span>]] <span class="ot">&lt;-</span> <span class="fu">factor</span>(my_df[[<span class="st">"status"</span>]])</span>
-<span id="cb57-2"><a></a>my_df<span class="sc">$</span>tissue <span class="ot">&lt;-</span> <span class="fu">factor</span>(my_df[[<span class="st">"tissue"</span>]])</span>
-<span id="cb57-3"><a></a></span>
-<span id="cb57-4"><a></a><span class="co"># Check again the data</span></span>
-<span id="cb57-5"><a></a><span class="fu">str</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a>my_df[[<span class="st">"status"</span>]] <span class="ot">&lt;-</span> <span class="fu">factor</span>(my_df[[<span class="st">"status"</span>]])</span>
+<span id="cb69-2"><a></a>my_df<span class="sc">$</span>tissue <span class="ot">&lt;-</span> <span class="fu">factor</span>(my_df[[<span class="st">"tissue"</span>]])</span>
+<span id="cb69-3"><a></a></span>
+<span id="cb69-4"><a></a><span class="co"># Check again the data</span></span>
+<span id="cb69-5"><a></a><span class="fu">str</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   10 obs. of  5 variables:
  $ id       : chr  "1" "2" "ID3" "ID4" ...
@@ -634,7 +711,7 @@
  $ status   : Factor w/ 2 levels "activated","inhibited": 1 1 1 1 1 2 2 2 2 2
  $ tissue   : Factor w/ 2 levels "liver","muscle": 1 2 1 2 1 2 1 2 1 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a><span class="fu">summary</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a><span class="fu">summary</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      id             gene_name           gene_expr           status     tissue 
  Length:10          Length:10          Min.   : 0.50   activated:5   liver :5  
@@ -657,11 +734,11 @@
 <div class="column">
 <p>Use <code>list()</code> function to create a list.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a>x <span class="ot">&lt;-</span> <span class="st">"geneA"</span></span>
-<span id="cb61-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="fl">0.5</span>)</span>
-<span id="cb61-3"><a></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb61-4"><a></a>simple_list <span class="ot">&lt;-</span> <span class="fu">list</span>(x, y, z)</span>
-<span id="cb61-5"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>x <span class="ot">&lt;-</span> <span class="st">"geneA"</span></span>
+<span id="cb73-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="fl">0.5</span>)</span>
+<span id="cb73-3"><a></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb73-4"><a></a>simple_list <span class="ot">&lt;-</span> <span class="fu">list</span>(x, y, z)</span>
+<span id="cb73-5"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] "geneA"
@@ -672,13 +749,13 @@
 [[3]]
 [1]  TRUE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a><span class="co"># how many elements in the elements</span></span>
-<span id="cb63-2"><a></a><span class="fu">length</span>(simple_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a><span class="co"># how many elements in the elements</span></span>
+<span id="cb75-2"><a></a><span class="fu">length</span>(simple_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a><span class="co"># check the structure</span></span>
-<span id="cb65-2"><a></a><span class="fu">str</span>(simple_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a></a><span class="co"># check the structure</span></span>
+<span id="cb77-2"><a></a><span class="fu">str</span>(simple_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 3
  $ : chr "geneA"
@@ -689,8 +766,8 @@
 </div><div class="column fragment">
 <p>We can name the elements of a list:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a></a><span class="co"># name the elements during creation</span></span>
-<span id="cb67-2"><a></a><span class="fu">list</span>(<span class="at">gene_name =</span> x, <span class="at">counts =</span> y, <span class="at">expressed =</span> z) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a></a><span class="co"># name the elements during creation</span></span>
+<span id="cb79-2"><a></a><span class="fu">list</span>(<span class="at">gene_name =</span> x, <span class="at">counts =</span> y, <span class="at">expressed =</span> z) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gene_name
 [1] "geneA"
@@ -701,9 +778,9 @@ $counts
 $expressed
 [1]  TRUE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a><span class="co"># or name the elements afterward</span></span>
-<span id="cb69-2"><a></a><span class="fu">names</span>(simple_list) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene_name"</span>, <span class="st">"counts"</span>, <span class="st">"expressed"</span>)</span>
-<span id="cb69-3"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a></a><span class="co"># or name the elements afterward</span></span>
+<span id="cb81-2"><a></a><span class="fu">names</span>(simple_list) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene_name"</span>, <span class="st">"counts"</span>, <span class="st">"expressed"</span>)</span>
+<span id="cb81-3"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gene_name
 [1] "geneA"
@@ -717,85 +794,112 @@ $expressed
 </div>
 </div></div>
 </section>
-<section id="accessing-elements-1-1" class="slide level2 smaller">
-<h2>Accessing Elements (1)</h2>
+<section id="subsetting-a-list" class="slide level2 smaller">
+<h2>Subsetting a List</h2>
+<p>Use <code>[</code> <code>]</code> to subset a list, with name or (logical) index.</p>
 <div class="columns">
 <div class="column">
-<ul>
-<li>Use <code>$</code> to access named elements:</li>
-</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a></a>simple_list[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gene_name
 [1] "geneA"
 
-$counts
-[1] 10.0 11.0  0.5
+$expressed
+[1]  TRUE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a></a>simple_list[<span class="fu">c</span>(<span class="st">"gene_name"</span>, <span class="st">"expressed"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$gene_name
+[1] "geneA"
 
 $expressed
 [1]  TRUE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>simple_list<span class="sc">$</span>counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a></a>simple_list[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 10.0 11.0  0.5</code></pre>
-</div>
-</div>
-<ul>
-<li>Use <code>[[</code> <code>]]</code> for named or indexed elements:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a>simple_list[[<span class="st">"counts"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10.0 11.0  0.5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a></a>simple_list[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10.0 11.0  0.5</code></pre>
+<pre><code>$gene_name
+[1] "geneA"
+
+$expressed
+[1]  TRUE  TRUE FALSE</code></pre>
 </div>
 </div>
 </div><div class="column fragment">
-<ul>
-<li>Use <code>[</code> <code>]</code> to subset a list, using name or index.</li>
-</ul>
+<p>What is the data structure after subsetting?</p>
+<div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a></a>simple_list[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a></a><span class="fu">str</span>(simple_list[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$gene_name
-[1] "geneA"</code></pre>
+<pre><code>List of 2
+ $ gene_name: chr "geneA"
+ $ expressed: logi [1:3] TRUE TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a></a><span class="co"># simple_list["gene_name"] # Alternative</span></span>
-<span id="cb81-2"><a></a></span>
-<span id="cb81-3"><a></a>simple_list[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a></a><span class="fu">str</span>(simple_list[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 1
+ $ gene_name: chr "geneA"</code></pre>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="accessing-element-1" class="slide level2 smaller">
+<h2>Accessing Element (1)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gene_name
 [1] "geneA"
 
+$counts
+[1] 10.0 11.0  0.5
+
 $expressed
 [1]  TRUE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a></a><span class="co"># simple_list[c("gene_name", "expressed")] # Alternative</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div></div>
+<ul>
+<li>Use <code>$</code> to access named element:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a></a>simple_list<span class="sc">$</span>counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.0 11.0  0.5</code></pre>
+</div>
+</div>
+<ul>
+<li>Use <code>[[</code> <code>]]</code> for named or indexed element:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a></a>simple_list[[<span class="st">"counts"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.0 11.0  0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a></a>simple_list[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10.0 11.0  0.5</code></pre>
+</div>
+</div>
 </section>
-<section id="accessing-elements-2-1" class="slide level2 smaller">
-<h2>Accessing Elements (2)</h2>
-<p>Once we have access to the element, we can extract values according to the data structure used inside.</p>
+<section id="accessing-element-2" class="slide level2 smaller">
+<h2>Accessing Element (2)</h2>
+<p>Once we have access to the element, we can extract values according to the data structure of that element.</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb84-2"><a></a>  <span class="at">sample_info =</span> <span class="fu">data.frame</span>(</span>
-<span id="cb84-3"><a></a>    <span class="at">id =</span> <span class="fu">paste0</span>(<span class="st">"sample"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
-<span id="cb84-4"><a></a>    <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>)</span>
-<span id="cb84-5"><a></a>  ),</span>
-<span id="cb84-6"><a></a>  <span class="at">family_sequenced =</span> <span class="fu">list</span>(</span>
-<span id="cb84-7"><a></a>    <span class="at">sample1 =</span> <span class="fu">c</span>(<span class="st">"father"</span>, <span class="st">"mother"</span>),</span>
-<span id="cb84-8"><a></a>    <span class="at">sample2 =</span> <span class="fu">c</span>(<span class="st">"father"</span>, <span class="st">"mother"</span>, <span class="st">"sister"</span>),</span>
-<span id="cb84-9"><a></a>    <span class="at">sample3 =</span> <span class="fu">c</span>(<span class="st">"mother"</span>, <span class="st">"sister"</span>)</span>
-<span id="cb84-10"><a></a>  )</span>
-<span id="cb84-11"><a></a>)</span>
-<span id="cb84-12"><a></a>my_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb101-2"><a></a>  <span class="at">sample_info =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb101-3"><a></a>    <span class="at">id =</span> <span class="fu">paste0</span>(<span class="st">"sample"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb101-4"><a></a>    <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">30</span>)</span>
+<span id="cb101-5"><a></a>  ),</span>
+<span id="cb101-6"><a></a>  <span class="at">family_sequenced =</span> <span class="fu">list</span>(</span>
+<span id="cb101-7"><a></a>    <span class="at">sample1 =</span> <span class="fu">c</span>(<span class="st">"father"</span>, <span class="st">"mother"</span>),</span>
+<span id="cb101-8"><a></a>    <span class="at">sample2 =</span> <span class="fu">c</span>(<span class="st">"father"</span>, <span class="st">"mother"</span>, <span class="st">"sister"</span>),</span>
+<span id="cb101-9"><a></a>    <span class="at">sample3 =</span> <span class="fu">c</span>(<span class="st">"mother"</span>, <span class="st">"sister"</span>)</span>
+<span id="cb101-10"><a></a>  )</span>
+<span id="cb101-11"><a></a>)</span>
+<span id="cb101-12"><a></a>my_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$sample_info
        id age
@@ -818,7 +922,7 @@ $family_sequenced$sample3
 <p>How to extract the age of sample1?</p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a></a>my_list[[<span class="st">"sample_info"</span>]][<span class="dv">1</span>, <span class="st">"age"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a></a>my_list[[<span class="st">"sample_info"</span>]][<span class="dv">1</span>, <span class="st">"age"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 25</code></pre>
 </div>
@@ -829,7 +933,7 @@ $family_sequenced$sample3
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a></a>my_list[[<span class="st">"family_sequenced"</span>]][[<span class="st">"sample2"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a></a>my_list[[<span class="st">"family_sequenced"</span>]][[<span class="st">"sample2"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "father" "mother" "sister"</code></pre>
 </div>
@@ -842,7 +946,7 @@ $family_sequenced$sample3
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gene_name
 [1] "geneA"
@@ -858,8 +962,8 @@ $expressed
 <li>Modify an element</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a></a>simple_list[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb92-2"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a></a>simple_list[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb109-2"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gene_name
  [1]  1  2  3  4  5  6  7  8  9 10
@@ -876,8 +980,8 @@ $expressed
 <li>Add an element</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a></a>simple_list[[<span class="st">"new_element"</span>]] <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb94-2"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a></a>simple_list[[<span class="st">"new_element"</span>]] <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb111-2"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gene_name
  [1]  1  2  3  4  5  6  7  8  9 10
@@ -896,8 +1000,8 @@ $new_element
 <li>Remove an element</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a></a>simple_list[[<span class="st">"expressed"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb96-2"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a></a>simple_list[[<span class="st">"expressed"</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb113-2"><a></a>simple_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gene_name
  [1]  1  2  3  4  5  6  7  8  9 10
@@ -915,11 +1019,11 @@ $new_element
 <h2>List Concatenation</h2>
 <p>Use <code>c()</code> to concatenate two or more lists.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a></a>list1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span>
-<span id="cb98-2"><a></a>list2 <span class="ot">&lt;-</span> <span class="fu">list</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="st">"A"</span>)</span>
-<span id="cb98-3"><a></a></span>
-<span id="cb98-4"><a></a>list_long <span class="ot">&lt;-</span> <span class="fu">c</span>(list1, list2)</span>
-<span id="cb98-5"><a></a>list_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a></a>list1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb115-2"><a></a>list2 <span class="ot">&lt;-</span> <span class="fu">list</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="st">"A"</span>)</span>
+<span id="cb115-3"><a></a></span>
+<span id="cb115-4"><a></a>list_long <span class="ot">&lt;-</span> <span class="fu">c</span>(list1, list2)</span>
+<span id="cb115-5"><a></a>list_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] 1 2 3
@@ -933,7 +1037,7 @@ $new_element
 [[4]]
 [1] "A"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a></a><span class="fu">str</span>(list_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a></a><span class="fu">str</span>(list_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 4
  $ : int [1:3] 1 2 3
