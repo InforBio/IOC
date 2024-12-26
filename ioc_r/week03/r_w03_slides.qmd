@@ -144,9 +144,16 @@ my_df[c(FALSE, TRUE, TRUE, rep(FALSE, 7)), ]
 
 ## Accessing Elements (2) {.smaller}
 
+::: {.columns}
+::: {.column}
+```{r}
+my_df
+```
+:::
+::: {.column}
 How to get the 2nd and 3rd columns?
 
-. . .
+:::{.fragment}
 
 ```{r}
 my_df[, 2:3]
@@ -159,16 +166,24 @@ my_df[, c("gene_name", "detected")] # idem
 my_df[, c(FALSE, TRUE, TRUE, FALSE)] # idem
 ```
 
-. . . 
+:::
+
+:::{.fragment}
 
 How to get the value "geneH"?
 
-. . .
+:::
+
+:::{.fragment}
 
 ```{r}
 my_df[8, 2]
 my_df[8, "gene_name"]
 ```
+:::
+
+:::
+:::
 
 
 ## Accessing Elements (3) {.smaller}
@@ -194,6 +209,41 @@ my_df[my_df$status == "activated", ]
 
 ::: {.content-smaller}
 (Don't worry, we'll go into more detail at the next session!)
+:::
+
+## Be Careful of Data Structure {.smaller}
+
+::: {.columns}
+::: {.column}
+If you select only 1 row of a data frame:
+
+```{r}
+str(my_df[2, ])
+```
+
+The output remains a data frame.
+
+::: {.fragment}
+If you select only 1 column of a data frame:
+
+```{r}
+my_df[, 2]
+str(my_df[, 2])
+```
+
+The output was "simplified" to a vector.
+:::
+
+:::
+::: {.column .fragment}
+
+To keep the output as a data.frame when you select only 1 column, specify `drop = FALSE`:
+
+```{r}
+my_df[, 2, drop = FALSE]
+str(my_df[, 2, drop = FALSE])
+```
+:::
 :::
 
 ## Data Frame Modification (1) {.smaller}
@@ -322,19 +372,48 @@ simple_list
 :::
 :::
 
-## Accessing Elements (1) {.smaller}
+## Subsetting a List {.smaller}
+
+Use `[` `]` to subset a list, with name or (logical) index.
 
 ::: columns
 ::: {.column}
 
-- Use `$` to access named elements:
+```{r}
+simple_list[c(1, 3)]
+simple_list[c("gene_name", "expressed")]
+simple_list[c(TRUE, FALSE, TRUE)]
+```
+
+:::
+
+::: {.column .fragment}
+
+What is the data structure after subsetting?
+
+::: {.fragment}
+```{r}
+str(simple_list[c(1, 3)])
+str(simple_list[1])
+```
+:::
+
+:::
+:::
+
+## Accessing Element (1) {.smaller}
 
 ```{r}
 simple_list
+```
+
+- Use `$` to access named element:
+
+```{r}
 simple_list$counts
 ```
 
-- Use `[[` `]]` for named or indexed elements:
+- Use `[[` `]]` for named or indexed element:
 
 ```{r}
 simple_list[["counts"]]
@@ -342,28 +421,10 @@ simple_list[[2]]
 ```
 
 
-:::
-
-::: {.column .fragment}
-
-- Use `[` `]` to subset a list, using name or index.
-
-```{r}
-simple_list[1]
-# simple_list["gene_name"] # Alternative
-
-simple_list[c(1, 3)]
-# simple_list[c("gene_name", "expressed")] # Alternative
-```
-
-:::
-:::
-
-
-## Accessing Elements (2) {.smaller}
+## Accessing Element (2) {.smaller}
 
 Once we have access to the element,
-we can extract values according to the data structure used inside.
+we can extract values according to the data structure of that element.
 
 ::: columns
 ::: {.column}
