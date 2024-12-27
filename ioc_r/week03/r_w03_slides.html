@@ -227,6 +227,19 @@
 <li>matrix</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<p>question time</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="data-structures-part-2" class="title-slide slide level1 center">
@@ -267,7 +280,7 @@
 </section>
 <section id="data-frames-creation" class="slide level2 smaller">
 <h2>Data Frames Creation</h2>
-<p>Use <code>data.frame()</code> to create a data frame.</p>
+<p>Use <code>data.frame()</code> to create a data frame, separate columns by <code>,</code>.</p>
 <div class="columns">
 <div class="column">
 <div class="cell">
@@ -279,7 +292,7 @@
 <span id="cb1-6"><a></a>    <span class="fl">12.4</span>, <span class="fl">11.3</span>, <span class="fl">13.5</span>, <span class="fl">10.2</span>, <span class="fl">11.4</span>,</span>
 <span id="cb1-7"><a></a>    <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.2</span>, <span class="fl">1.4</span>, <span class="fl">0.6</span></span>
 <span id="cb1-8"><a></a>  ),</span>
-<span id="cb1-9"><a></a>  <span class="at">status =</span> <span class="fu">rep</span>(</span>
+<span id="cb1-9"><a></a>  <span class="at">status =</span> <span class="fu">rep</span>( <span class="co"># repetition</span></span>
 <span id="cb1-10"><a></a>    <span class="fu">c</span>(<span class="st">"activated"</span>, <span class="st">"inhibited"</span>),</span>
 <span id="cb1-11"><a></a>    <span class="at">each =</span> <span class="dv">5</span></span>
 <span id="cb1-12"><a></a>  )</span>
@@ -321,7 +334,7 @@
 </div>
 </div>
 <div class="fragment">
-<p>What are the dimensions?</p>
+<p>How many rows and columns?</p>
 <p>What is the data type for each column?</p>
 </div>
 </div></div>
@@ -479,7 +492,7 @@
 </div>
 </div>
 <div class="fragment">
-<p>How to get the value “geneH”?</p>
+<p>How to get “geneH” from the data frame?</p>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -795,7 +808,8 @@
 1  2 B
 2  4 D</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>) <span class="co"># inner join</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a></a><span class="co"># inner join</span></span>
+<span id="cb87-2"><a></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id x y
 1  2 b B</code></pre>
@@ -803,20 +817,23 @@
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>) <span class="co"># left join</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a></a><span class="co"># left join</span></span>
+<span id="cb89-2"><a></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id x    y
 1  1 a &lt;NA&gt;
 2  2 b    B
 3  3 c &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>, <span class="at">all.y =</span> <span class="cn">TRUE</span>) <span class="co"># right join</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a></a><span class="co"># right join</span></span>
+<span id="cb91-2"><a></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>, <span class="at">all.y =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id    x y
 1  2    b B
 2  4 &lt;NA&gt; D</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>) <span class="co"># outer join</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a></a><span class="co"># outer join</span></span>
+<span id="cb93-2"><a></a><span class="fu">merge</span>(<span class="at">x =</span> df1, <span class="at">y =</span> df2, <span class="at">by =</span> <span class="st">"id"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id    x    y
 1  1    a &lt;NA&gt;
@@ -836,7 +853,7 @@
 <h2>Lists Creation</h2>
 <div class="columns">
 <div class="column">
-<p>Use <code>list()</code> function to create a list.</p>
+<p>Use <code>list()</code> function to create a list, separate elements with <code>,</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a></a>x <span class="ot">&lt;-</span> <span class="st">"geneA"</span></span>
 <span id="cb95-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="fl">0.5</span>)</span>
@@ -1044,6 +1061,19 @@ $family_sequenced$sample3
 </div>
 </div>
 </div></div>
+<aside class="notes">
+<p>explain the data in list</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="list-modification" class="slide level2 smaller">
 <h2>List Modification</h2>
