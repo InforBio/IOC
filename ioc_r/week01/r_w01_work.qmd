@@ -70,3 +70,7 @@ Describe how the outlier affects the mean and median.
 ```
 
 6. Click "Render" to generate your Quarto report.
+
+
+The homework correction is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/.r_w01_work_corr.qmd)

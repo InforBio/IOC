@@ -92,3 +92,7 @@ Hints:
 
 
 10. Click "Render" to generate your Quarto report.
+
+
+The homework correction is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week02/.r_w02_work_corr.qmd)

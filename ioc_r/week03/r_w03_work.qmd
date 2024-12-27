@@ -65,9 +65,6 @@ Is *TOS6* up or down-regulated in the RRP6 samples compared to WT?
 
 ```
 
-The log2FC is `r log2fc`, which is smaller than 0,
-so the *TOS6* gene is down-regulated in RRP6 samples compared to WT group.
-
 6. Perform a Wilcoxon test to check if the *TOS6* expression is different between
 WT and RRP6 samples. 
 
@@ -79,8 +76,6 @@ WT and RRP6 samples.
 
 ```
 
-The p-value is greater than 0.05, so we fail to reject the null hypothesis.
-The distribution between groups is not significantly different.
 
 7. Visualize the expression level of *TOS6* for WT and RRP6 samples using boxplot.
 
@@ -88,7 +83,9 @@ The distribution between groups is not significantly different.
 
 ```
 
-The distribution of two groups are indeed similar,
-but the maximum value in the WT group is much higher than that of RRP6 group.
 
 8. Click "Render" to generate your Quarto report.
+
+
+The homework correction is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week03/.r_w03_work_corr.qmd)
