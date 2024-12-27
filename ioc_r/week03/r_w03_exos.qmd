@@ -10,6 +10,9 @@ editor_options:
   chunk_output_type: console
 ---
 
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week03/r_w03_exos.R)
+
 ## Goals
 
 - Work with lists and data frames

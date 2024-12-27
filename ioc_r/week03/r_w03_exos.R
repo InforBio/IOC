@@ -48,7 +48,8 @@ my_list
 ## 6. Extract the 1st sequenced family member of sample3.
 
 
-## 7. Add a new element to the list, "gene_description", with the following values: 
+## 7. Add a new element to the list, "gene_description",
+##    with the following values:
 ##   `c("geneA" = "housekeeping gene", "geneB" = "stress response gene")`
 
 
@@ -86,9 +87,11 @@ expr_data <- read.table(
 
 
 
-## 6. Create a new data frame for *LOH1* gene expression in WT and SET1 samples with two columns:
-##   - "expr_value": expression levels
-##   - "group": WT or SET1
+## 6. Create a new data frame for *LOH1* gene expression in WT and SET1 samples
+##    with two columns:
+##        - "expr_value": expression levels
+##        - "group": WT or SET1
 
 
-## 7. With the new data frame, draw a boxplot to compare expression between groups using `boxplot()`. (see `?boxplot`)
+## 7. With the new data frame, draw a boxplot to compare expression
+##    between groups using `boxplot()`. (see `?boxplot`)

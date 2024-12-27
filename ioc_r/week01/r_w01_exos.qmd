@@ -10,15 +10,18 @@ editor_options:
   chunk_output_type: console
 ---
 
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R)
 
 ## Create an R project
 
-1. Create a new project in your folder.
+1. In RStudio, create a new project in your folder.
 
 Some rules for naming your project:  
 
 - be descriptive and keep it short
-- use snake case (only lowercase letters and underscores allowed), avoid special characters (such as `!`, `#`, ) and spaces
+- use snake case (only lowercase letters and underscores allowed),
+avoid special characters (such as `!`, `#`, ) and spaces
 - the name cannot starts with numbers
 
 2. Open your R project, create three new folders, *i.e.*, `data`, `scripts`, `outputs`.
@@ -55,7 +58,8 @@ Samples were taken at nine time points over two cell cycles (two hours).
 Open an R script to write down your code. 
 (In RStudio menu bar, click *File* -> *New File* -> *R Script*)
 
-1. What is the absolute file path of the count data? What is its absolute path? Verify your answer using the function `file.exists()`.
+1. What is the absolute file path of the count data? What is its absolute path?
+Verify your answer using the function `file.exists()`.
 
 ```{r}
 #| echo: false
@@ -135,7 +139,8 @@ A log2 transformation compresses larger values more than smaller ones,
 making the data less skewed.
 Many biological data, like gene expression counts,
 tend to have a highly skewed distribution with a long tail of large values.
-The log2 transformation makes the distribution more symmetric and closer to normal, which is often desirable for statistical analysis
+The log2 transformation makes the distribution more symmetric and closer to normal,
+which is often desirable for statistical analysis
 :::
 
 ```{r}

@@ -1,6 +1,17 @@
 ### R script for the hands-on examples
 ### Week 1
 
+## Create an R project ---------------------------------------------------------
+
+# 1. In RStudio, create a new project in your folder.
+#    Some rules for naming your project:
+#     - be descriptive and keep it short
+#     - use snake case (only lowercase letters and underscores allowed),
+#       avoid special characters (such as `!`, `#`, ) and spaces
+#     - the name cannot starts with numbers
+# 2. Open your R project, create three new folders,
+#    *i.e.*, `data`, `scripts`, `outputs`.
+
 ## Data ------------------------------------------------------------------------
 
 # Please download the zipped data folder to your computer, unzip it if need.
