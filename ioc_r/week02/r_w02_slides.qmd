@@ -242,14 +242,7 @@ grades_rev <- factor(
 grades_rev
 ```
 
-. . .
-
-- Convert to numeric values:
-
-```{r}
-as.numeric(grades)
-as.numeric(grades_rev)
-```
+(No panic! We'll see how to use factor in data frame next week.)
 
 
 # Data Strucutres
