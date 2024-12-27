@@ -401,7 +401,7 @@ The most flexible data strucutre in R, with content(s) inside can be **any data 
 
 ::: columns
 ::: {.column}
-Use `list()` function to create a list.
+Use `list()` function to create a list, separate elements with `,`.
 ```{r}
 x <- "geneA"
 y <- c(10, 11, 0.5)
