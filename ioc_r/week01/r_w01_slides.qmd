@@ -336,6 +336,7 @@ file.exists("scripts/02-figures.R")
 - Combines narrative text and code (multi-language) in one script (.qmd).
 - Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
 
+Official website: [https://quarto.org](https://quarto.org)
 
 ## An Example {.smaller}
 
