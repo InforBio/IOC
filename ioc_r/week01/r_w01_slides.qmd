@@ -15,6 +15,7 @@ format:
 categories: 
   - week01
   - slides
+image: images/R_logo.png
 ---
 
 # Unlock the Power of Your Data with ![](images/R_logo.png){width=2.5cm}

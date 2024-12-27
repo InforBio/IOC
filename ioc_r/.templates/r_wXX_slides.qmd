@@ -15,6 +15,7 @@ format:
 categories: 
   - weekXX
   - slides
+image: xxx.png
 ---
 
 # Chapter 1

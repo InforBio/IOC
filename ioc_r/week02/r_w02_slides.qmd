@@ -14,6 +14,7 @@ echo: true
 categories: 
   - week02
   - slides
+image: images/preview_w2.png
 ---
 
 # Data Types in R
