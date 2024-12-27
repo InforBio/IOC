@@ -130,7 +130,7 @@
     "href": "ioc_r/week01/r_w01_slides.html#quarto",
     "title": "Kickstart with R:Your Gateway to Data Science",
     "section": "Quarto",
-    "text": "Quarto\n\nOpen-source tools for creating dynamic and shareable document.\nCombines narrative text and code (multi-language) in one script (.qmd).\nSupports multiple output formats: .html, .docx, .pptx, .pdf, etc."
+    "text": "Quarto\n\nOpen-source tools for creating dynamic and shareable document.\nCombines narrative text and code (multi-language) in one script (.qmd).\nSupports multiple output formats: .html, .docx, .pptx, .pdf, etc.\n\nOfficial website: https://quarto.org"
   },
   {
     "objectID": "ioc_r/week01/r_w01_slides.html#an-example",
