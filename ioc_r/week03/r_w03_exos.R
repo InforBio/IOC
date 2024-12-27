@@ -68,8 +68,8 @@ expr_data <- read.table(
 
 
 
-## 2. How many unique expression values are in sample WT.2? Use `unique()`.
-
+## 2. How many unique expression values are in sample WT.2?
+##    Use `unique()` (to get the unique values) and `length()`.
 
 ## 3. Extract expression levels for the gene *LOH1* in WT samples and SET1 samples.
 ##   Store them as `expr_wt` and `expr_set1`.
