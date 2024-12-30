@@ -19,16 +19,52 @@ image: images/preview_w3.png
 
 # Last Week Review
 
-## What We've Learned So Far
+## What We've Learned So Far {.smaller}
 
+::: {.columns}
+::: {.column}
 - Data types
 - Variable
 - Data structures:
   - vector
   - matrix
+:::
+::: {.column .fragment}
+What are the outputs for following codes?
+```{r}
+#| eval: false
+
+c(1, 3, 5)[3]
+5:2
+seq(1, 2, by = 0.5)
+rep(c(1, 3), times = 2)
+rep(c("case", "control"), each = 2)
+
+```
+
+<br>
+
+:::{.fragment}
+
+```{r}
+mat <- matrix(1:6, nrow = 2)
+mat
+```
+```{r}
+#| eval: false
+
+mat[1, ]
+mat[, 2]
+mat[2, 1]
+```
+
+:::
+:::
+:::
+
 
 ::: {.notes}
-question time
+question/quiz time
 :::
 
 # Data Structures (Part 2)
