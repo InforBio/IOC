@@ -1,0 +1,33 @@
+---
+title: "Week 4 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+categories: 
+  - week04
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+arthmetic operator: change unit for a col in df and store in a new col
+
+```{r}
+
+
+
+```
+
+
+write a function to filter automatically the data
+
+- *Catchy example*: extract genes of interest from a DE results table (filter by log2FC and/or p-value), draw a volcano plot for these genes. creation of dummy variables for different sets of criteria. 
+(supp: if else under condition of nb of samples)
+
+---
+
+#### Good job! 👏👏 You've taken your first big steps into R, and you're off to a great start, keep it up! 
+
+
