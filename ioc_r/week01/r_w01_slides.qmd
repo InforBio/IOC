@@ -282,13 +282,12 @@ getwd() # Get working directory
 [1] "/home/test_user/my_project"
 ```
 
-. . .
-
+::: {.fragment .callout-note appearance="minimal"}
 What are the absolute and relative paths of the script "02-figures.R"?
+:::
 
-. . .
 
-::: {style="font-size:75%"}
+::: {.fragment style="font-size:75%"}
 absolute path: `/home/test_user/my_project/scripts/02-figures.R`
 
 relative path: `scripts/02-figures.R`

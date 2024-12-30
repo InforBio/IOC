@@ -30,7 +30,9 @@ image: images/preview_w3.png
   - matrix
 :::
 ::: {.column .fragment}
+::: {.callout-note appearance="minimal"}
 What are the outputs for following codes?
+:::
 ```{r}
 #| eval: false
 
@@ -121,10 +123,9 @@ is.data.frame(my_df)
 str(my_df)
 ```
 
-::: {.fragment}
-How many rows and columns?
-
-What is the data type for each column?
+::: {.fragment .callout-note appearance="minimal"}
+- How many rows and columns?
+- What is the data type for each column?
 :::
 
 :::
@@ -191,8 +192,9 @@ my_df
 ```
 :::
 ::: {.column}
+::: {.callout-note appearance="minimal"}
 How to get the 2nd and 3rd columns?
-
+:::
 :::{.fragment}
 
 ```{r}
@@ -208,7 +210,7 @@ my_df[, c(FALSE, TRUE, TRUE, FALSE)] # idem
 
 :::
 
-:::{.fragment}
+:::{.fragment .callout-note appearance="minimal"}
 
 How to get "geneH" from the data frame?
 
@@ -247,8 +249,8 @@ my_df[["gene_name"]] # idem, use column name
 my_df[my_df$status == "activated", ]
 ```
 
-::: {.content-smaller}
-(Don't worry, we'll go into more detail at the next session!)
+::: {.callout-tip appearance="minimal"}
+Don't worry, we'll go into more detail at the next session!
 :::
 
 ## Be Careful of Data Structure {.smaller}
@@ -487,7 +489,9 @@ simple_list[c(TRUE, FALSE, TRUE)]
 
 ::: {.column .fragment}
 
+::: {.callout-note appearance="minimal"}
 What is the data structure after subsetting?
+:::
 
 ::: {.fragment}
 ```{r}
@@ -546,7 +550,9 @@ my_list
 
 ::: {.column .fragment}
 
+::: {.callout-note appearance="minimal"}
 How to extract the age of sample1?
+:::
 
 ::: {.fragment}
 
@@ -555,8 +561,7 @@ my_list[["sample_info"]][1, "age"]
 ```
 :::
 
-::: {.fragment}
-<br>
+::: {.fragment .callout-note appearance="minimal"}
 How to extract the sequenced family members of sample 2?
 :::
 
