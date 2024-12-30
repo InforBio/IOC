@@ -532,6 +532,8 @@ length(gene_expr)
 head(gene_expr)
 tail(gene_expr)
 
+## check if missing value present
+is.na(gene_expr)
 ```
 
 :::
