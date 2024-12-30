@@ -12,6 +12,7 @@ format:
     css: ../custom.css
   # pdf:
   #   toc: true
+echo: true
 categories: 
   - weekXX
   - slides
