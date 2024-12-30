@@ -1,0 +1,613 @@
+---
+title: "Building Logic:<br>Operators, Conditions, and Functions"
+subtitle: "IOC-R Week 4"
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+categories: 
+  - week04
+  - slides
+image: images/preview_w4.png
+---
+
+# Recap Week 3
+
+## Brief Recap Week 3 {.smaller}
+
+::: {.columns}
+::: {.column}
+- Data frames: row-column structure
+
+```{r}
+df <- data.frame(x = 1:3, y = c("a", "b", "c"))
+df
+```
+
+- Lists: store anything
+
+```{r}
+my_list <- list(x = 1:3, y = letters[5:1])
+my_list
+```
+:::
+
+::: {.column .fragment}
+
+::: {.callout-note appearance="minimal"}
+What are the outputs for following codes?
+:::
+
+```{r}
+#| eval: false
+
+df$x
+df[[2]]
+df[3, ]
+df[, "y", drop = FALSE]
+df[1, 2]
+```
+
+::: {.fragment}
+<br>
+
+```{r}
+#| eval: false
+
+my_list$x
+my_list[1]
+my_list["y"]
+my_list[[2]][3]
+```
+
+:::
+
+:::
+:::
+
+
+:::{.notes}
+list is often used to store meta data
+
+Motivation for Week 4
+- Why learn operators, conditions, and functions?
+- Real-world examples (e.g., filtering data, automating repetitive tasks, decision-making in analysis).
+:::
+
+# Operators
+
+## Assignment and Arithmetic Operators {.smaller}
+
+::: {.columns}
+::: {.column}
+- Assignment operators: `<-`, `->`, `=`
+
+```{r}
+x <- 1
+x
+
+2 -> x # not recommanded
+x
+
+y = "abc"
+y
+mean(x = 1:3) # assign value to function’s parameter
+```
+:::
+
+::: {.column .fragment}
+- Arithmetic operators: `+`, `-`, `*`, `/`, `^` (exponentiation), `%%` (remainder), *etc*.
+
+```{r}
+10 %% 3
+10^3
+
+x <- c(2, 8, 3)
+y <- c(6, 4, 1)
+x + y
+x - 1
+x - 1:3
+x * y
+x / y
+```
+:::
+
+:::
+
+
+## Comparison Operators {.smaller}
+
+Element-wise comparison: `==`, `!=`, `>`, `<`, `>=`, `<=`
+
+::: {.columns}
+::: {.column}
+
+```{r}
+10 == 3
+10 != 3
+10 > 3
+10 >= 3
+10 < 3
+10 <= 3
+```
+:::
+::: {.column}
+```{r}
+x <- c(2, 8, 3)
+y <- c(6, 8, 1)
+x == y
+x != y
+x > y
+x <= y
+```
+
+:::
+:::
+
+
+## Logical Operators {.smaller}
+
+Element-wise comparison: AND (`&`), OR (`|`), NOT (`!`), IN (`%in%`), *etc.*
+
+::: {.columns}
+::: {.column}
+
+Truth table:
+
+| A     | B     | A & B | A \| B |
+|-------|-------|-------|--------|
+| TRUE  | TRUE  | TRUE  | TRUE   |
+| TRUE  | FALSE | FALSE | TRUE   |
+| FALSE | TRUE  | FALSE | TRUE   |
+| FALSE | FALSE | FALSE | FALSE  |
+
+::: {.fragment}
+```{r}
+!TRUE
+!FALSE
+
+1 != 2
+```
+:::
+:::
+::: {.column .fragment}
+
+```{r}
+## check membership
+1 %in% 1:3
+1:3 %in% 1
+1:3 %in% 1:2
+"a" %in% c("abc", "a")
+```
+
+::: {.fragment .callout-note appearance="minimal"}
+What are the expected results?
+
+- `3 > 1 & 7 %in% 1:5`
+- data frame `df` has two columns `x` and `y`, what returns `! "col3" %in% colnames(df)`?
+:::
+
+::: {.fragment}
+```{r}
+3 > 1 & 7 %in% 1:5
+! "col3" %in% colnames(df)
+```
+
+:::
+:::
+:::
+
+::: {.notes}
+for data filtering
+:::
+
+## Functions `any()` and `all()`  {.smaller}
+
+Given a set of logical vectors: 
+```{r}
+-3:3
+-3:3 > 0
+```
+
+- `any()`: is at least one of the values true?
+
+```{r}
+any(-3:3 > 0)
+```
+
+- `all()`: are all of the values true?
+
+```{r}
+all(-3:3 > 0)
+```
+
+<!-- - Special operators: `:`, `$`, `@`, `::`, `:::`, `[]`, `[[]]`, *etc.* -->
+
+# Conditions
+
+
+## Conditional Statements {.smaller}
+
+Conditional statements allow us to make decisions based on logical conditions,
+guiding how the code behaves in different scenarios.
+
+```{mermaid}
+%%| echo: false
+flowchart LR
+  A{temperature > 37} --> B(TRUE)
+  A --> C(FALSE)
+  B --> D[Fever]
+  C --> E[Normal]
+```
+
+. . . 
+
+```{mermaid}
+%%| echo: false
+flowchart LR
+  A{log2FC > 0} --> B(TRUE)
+  A --> C(FALSE)
+  B --> D[Up-regulated]
+  C --> E[Not up-regulated]
+```
+
+
+## `if` and `if else` {.smaller}
+
+::: {.columns}
+::: {.column}
+
+Syntax in R:
+```{r}
+#| eval: false
+
+## if statement
+if (condition) {
+  # code to run if `condition` is TRUE
+}
+
+## if else statement
+if (condition) {
+  # code to run if `condition` is TRUE
+} else {
+  # code to run if `condition` is FALSE
+}
+```
+
+::: {.callout-important appearance="minimal"}
+- You can use `if` without `else` but never in the opposite way.
+- The condition is a **length-one logical vector** that is not NA.
+:::
+:::
+::: {.column .fragment}
+
+```{mermaid}
+%%| echo: false
+flowchart LR
+  A{log2FC > 0} --> B(TRUE)
+  A --> C(FALSE)
+  B --> D[Up-regulated]
+  C --> E[Not up-regulated]
+```
+
+
+```{r}
+log2FC <- 2.5
+if (log2FC > 0) {
+  # code to run if condition is TRUE
+  print("Up-regulated")
+} else {
+  # code to run if condition is FALSE
+  print("Not up-regulated")
+}
+```
+
+::: {.fragment .callout-note appearance="minimal"}
+What will you get when `log2FC` is 0?
+:::
+
+::: {.fragment}
+```{r}
+#| echo: false
+
+log2FC <- 0
+if (log2FC > 0) {
+  print("Up-regulated")
+} else {
+  print("Not up-regulated")
+}
+```
+:::
+:::
+:::
+
+
+## Handling Multiple Conditions (1) {.smaller}
+
+- Decision depends on the same variable, we can use `if...else if...else`.
+
+```{mermaid}
+%%| echo: false
+flowchart LR
+  A{log2FC > 0} --> B(TRUE)
+  A --> C(FALSE)
+  B --> D[Up-regulated]
+  C --> E{log2FC < 0}
+  E --> F(TRUE) 
+  F --> I[Down-regulated]
+  E --> H(FALSE)
+  H --> G[No change]
+```
+
+. . .
+
+```{r}
+log2FC <- -2.5
+if (log2FC > 0) {
+  print("Up-regulated")
+} else if (log2FC < 0) {
+  print("Down-regulated")
+} else {
+  print("No change")
+}
+```
+
+## Handling Multiple Conditions (2) {.smaller}
+
+- Nested `if else`: decisions depend on a combination of conditions, or if the second condition only applies after the first is true.
+
+```{r}
+pvalue <- 0.04
+log2FC <- -1.5
+
+if (pvalue < 0.05) {
+  if (log2FC > 0) {
+    print("Up-regulated")
+  } else if (log2FC < 0) {
+    print("Down-regulated")
+  }
+} else {
+  print("Result not significant")
+}
+```
+
+## Handling Multiple Conditions (3) {.smaller}
+
+- Conditions from different variables:
+
+  - Logical operators (`&`, `|`, `!`) help combine multiple conditions.
+  - `&` has a **higher** priority than `|`.
+  - Use parentheses `()` to group conditions that need to be evaluated first.
+
+```{r}
+pvalue <- 0.06
+log2FC <- 2.5
+
+if (log2FC > 2 | log2FC < -2 & pvalue < 0.05) {
+  print("candidate gene")
+} else {
+  print("condition NOT met")
+}
+```
+
+```{r}
+if ((log2FC > 2 | log2FC < -2) & pvalue < 0.05) {
+  print("candidate gene")
+} else {
+  print("condition NOT met")
+}
+```
+
+::: {.notes}
+handle > 2 conditions.
+precedence order
+Improves code readability and ensures the correct order of evaluation.
+:::
+
+
+## The `ifelse()` Function  {.smaller}
+
+Syntax:
+```{r}
+#| eval: false
+ifelse(test, yes, no)
+```
+
+Example:
+
+```{r}
+log2FC <- -1
+ifelse(test = log2FC > 0, yes = "Up-regulated", no = "Not up-regulated")
+```
+
+. . . 
+
+```{r}
+# nested condition
+ifelse(
+  test = log2FC > 0,
+  yes = "Up-regulated",
+  no = ifelse(log2FC < 0, yes = "Down-regulated", "No change")
+)
+```
+
+. . .
+
+The "test" can be a vector.
+
+```{r}
+vec_lfc <- c(-1, 0, 1)
+ifelse(vec_lfc > 0, "Up-regulated", "Not up-regulated")
+```
+
+
+# Functions 
+
+## What is a Function? {.smaller}
+
+Functions = Reusable blocks of code.
+
+- Built-in functions
+
+```{r}
+mean(1:3)
+```
+
+::: {.notes}
+Functions that are part of R's base installation, always available without needing to load any additional packages.
+:::
+
+. . .
+
+- Functions from additional packages
+
+```{r}
+#| eval: false
+
+library(readr)
+read_csv("path/to/data.csv")
+```
+
+::: {.callout-tip appearance="minimal"}
+We'll talk about package installation next week!
+:::
+
+. . .
+
+- Custom functions
+
+```{r}
+add_one <- function(x) {x + 1}
+add_one(x = 1:3)
+```
+
+::: {.callout-tip appearance="minimal"}
+- Use `?` or `help()` to view the function's documentation, *e.g.*: `?mean`, `help(mean)`
+:::
+
+
+## Anatomy of a Function {.smaller}
+
+
+::: {.columns}
+::: {.column}
+
+Syntax:
+```{r}
+function_name <- function(arguments) {
+  # function body
+  return(result)
+}
+```
+
+- The function name.
+- the reserved token `function()` and argument(s).
+- The curly brackets `{}` come after `function(arguments)` and frame the actual function code.
+- The `return()` (usually) at the end will return a result.
+
+:::
+
+::: {.column .fragment}
+::: {.callout-note appearance="minimal"}
+What is the composition of the following function?
+:::
+
+```{.r code-line-numbers="|1,4|2|3"}
+geo_mean <- function(x) {
+  result <- exp(mean(log(x)))
+  return(result)
+}
+```
+
+:::
+:::
+
+## Functions with Conditions {.smaller}
+
+Example: A function to classify data based on a threshold.
+
+```{r}
+classify <- function(x) {
+  if (x > 10) {
+    return("High")
+  } else {
+    return("Low")
+  }
+}
+classify(8)
+```
+
+## Local *vs.* Global Variables {.smaller}
+
+- **Local** variable: defined **inside** the function.
+- **Global** variable: defined **outside** and accessible anywhere.
+
+```{r}
+x <- 5
+add_one <- function() {
+  x <- 10
+  return(x + 1)
+}
+add_one()  # Local, x is 10
+x  # Global, x is 5
+```
+
+::: {.notes}
+Scope in R, importance of proper scoping in functions.
+:::
+
+## Multiple Parameters {.smaller}
+
+::: {.columns}
+::: {.column}
+
+```{r}
+super_func <- function(arg1, arg2, arg3) {
+  if (arg1 == 0) {
+    stop("denominator (arg1) cannot be 0.")
+  }
+  res <- arg1 + arg2 * arg3 / arg1
+  return(res)
+}
+```
+
+
+:::{.fragment}
+- Provide arguments' values in expected order
+
+```{r}
+#| error: true
+super_func(arg1 = 1, arg2 = 2, arg3 = 3)
+super_func(1, 2, 3)
+super_func(0, 2, 3)
+```
+
+:::
+:::
+::: {.column .fragment}
+- Provide arguments' values in different order
+```{r}
+super_func(arg2 = 2, arg1 = 1, arg3 = 3)
+super_func(2, 1, 3)
+```
+:::
+:::
+
+
+<!-- ## Load Pacakges -->
+
+# Let's Practice !
+
+## Today's Goals
+
+- Understand and use logical and comparison operators.
+- Learn to write and interpret functions.
+- Use operators and conditions to filter data with precision.
