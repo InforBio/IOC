@@ -4,7 +4,7 @@ subtitle: "IOC-R Week 2"
 format:
   revealjs: 
     toc: true
-    toc-title: "Overview"
+    toc-title: "Plan"
     toc-depth: 1
     slide-number: true
     preview-links: auto
