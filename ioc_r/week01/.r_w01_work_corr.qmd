@@ -9,9 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-Write your code directly in a Quarto document.
-
-To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
+Note: There may be other valid ways to solve this exercise — this is just one possible solution!
 
 1. Import the data file "**visceral_fat.csv**".
 

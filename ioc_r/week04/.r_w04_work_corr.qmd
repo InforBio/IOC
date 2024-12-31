@@ -9,9 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-Write your code directly in a Quarto document.
-
-To create a Quarto document: go to **File** -> **New File** -> **Quarto Document**, then click **Create**.
+Note: There may be other valid ways to solve this exercise — this is just one possible solution!
 
 1. Import the `read-counts.csv` file.
 
@@ -23,7 +21,7 @@ counts <- read.csv(
 ```
 
 *Quick reminder*:
-this data file contains gene expression values of samples from four groups,
+This data file contains gene expression values of samples from four groups,
 sample names are prefixed by "WT.", "SET1.", "SET1.RRP6." and "RRP6.".
 Each group has 10 samples.
 
@@ -130,6 +128,3 @@ draw_hist(data = avg_df, gp = "RRP6")
 
 
 7. Click "Render" to generate your Quarto report.
-
-The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week04/.r_w04_work_corr.qmd)
