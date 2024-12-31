@@ -97,7 +97,7 @@ x
 2 -> x # not recommanded
 x
 
-y = "abc"
+y = "abc" # not recommanded
 y
 mean(x = 1:3) # assign value to function’s parameter
 ```
@@ -107,25 +107,35 @@ mean(x = 1:3) # assign value to function’s parameter
 - Arithmetic operators: `+`, `-`, `*`, `/`, `^` (exponentiation), `%%` (remainder), *etc*.
 
 ```{r}
-10 %% 3
 10^3
+10 %% 3
+```
 
+::: {.fragment}
+
+```{r}
 x <- c(2, 8, 3)
-y <- c(6, 4, 1)
-x + y
 x - 1
 x - 1:3
+```
+:::
+
+::: {.fragment}
+```{r}
+y <- c(6, 4, 1)
+x + y
 x * y
 x / y
 ```
 :::
-
+:::
 :::
 
 
 ## Comparison Operators {.smaller}
 
-Element-wise comparison: `==`, `!=`, `>`, `<`, `>=`, `<=`
+Element-wise comparison: `==`, `!=`, `>`, `<`, `>=`, `<=`,
+return logical results.
 
 ::: {.columns}
 ::: {.column}
@@ -139,7 +149,7 @@ Element-wise comparison: `==`, `!=`, `>`, `<`, `>=`, `<=`
 10 <= 3
 ```
 :::
-::: {.column}
+::: {.column .fragment}
 ```{r}
 x <- c(2, 8, 3)
 y <- c(6, 8, 1)
@@ -155,31 +165,58 @@ x <= y
 
 ## Logical Operators {.smaller}
 
-Element-wise comparison: AND (`&`), OR (`|`), NOT (`!`), IN (`%in%`), *etc.*
+Element-wise comparison: NOT (`!`), AND (`&`), OR (`|`), *etc.*,
+returns logical values.
 
 ::: {.columns}
 ::: {.column}
 
-Truth table:
-
-| A     | B     | A & B | A \| B |
-|-------|-------|-------|--------|
-| TRUE  | TRUE  | TRUE  | TRUE   |
-| TRUE  | FALSE | FALSE | TRUE   |
-| FALSE | TRUE  | FALSE | TRUE   |
-| FALSE | FALSE | FALSE | FALSE  |
-
-::: {.fragment}
 ```{r}
 !TRUE
 !FALSE
-
-1 != 2
 ```
+
+::: {.fragment}
+For two conditions A and B:
+
+| A     | B     | A & B | A \| B |
+|-------|-------|-------|--------|
+| TRUE  | TRUE  | **TRUE**  | TRUE   |
+| TRUE  | FALSE | FALSE | TRUE   |
+| FALSE | TRUE  | FALSE | TRUE   |
+| FALSE | FALSE | FALSE | **FALSE**  |
 :::
+
 :::
 ::: {.column .fragment}
 
+::: { .callout-note appearance="minimal"}
+What are the expected results?
+
+- `3 > 1 & 7 < 5`
+- `3 > 1:3 | 7 < 5`
+- `a` is a vector of numbers 1 to 5, `a[!a > 3]` returns?
+:::
+
+::: {.fragment}
+```{r}
+3 > 1 & 7 < 5
+3 > 1:3 | 7 < 5
+a <- 1:5
+a[!a > 3]
+```
+
+:::
+:::
+:::
+
+## The `%in%` Operator {.smaller}
+
+We use `%in%` to check if left-side values are present in right-side,
+it returns logical values.
+
+::: {.columns}
+::: {.column}
 ```{r}
 ## check membership
 1 %in% 1:3
@@ -188,16 +225,17 @@ Truth table:
 "a" %in% c("abc", "a")
 ```
 
+:::
+::: {.column}
 ::: {.fragment .callout-note appearance="minimal"}
-What are the expected results?
+Data frame `df` has two columns `x` and `y`,
+what is the result of following code?
 
-- `3 > 1 & 7 %in% 1:5`
-- data frame `df` has two columns `x` and `y`, what returns `! "col3" %in% colnames(df)`?
+`! "col3" %in% colnames(df)`
 :::
 
 ::: {.fragment}
 ```{r}
-3 > 1 & 7 %in% 1:5
 ! "col3" %in% colnames(df)
 ```
 
@@ -205,11 +243,45 @@ What are the expected results?
 :::
 :::
 
-::: {.notes}
-for data filtering
+
+## Operator Precedence {.smaller}
+
+::: {.columns}
+::: {.column}
+Simplified precedence order[^1] (highest to lowest):
+
+1. Arithmetic (`^` > `*`, `/` > `+`, `-`)
+2. Relational (`>`, `<`, `>=`, `<=`, `==`, `!=`)
+3. Membership (`%in%`)
+4. Logical (`!` > `&` > `|`)
+:::
+::: {.column .fragment}
+
+Order can be change using `()`:
+
+```{r}
+1 + 2 * 3
+(1 + 2) * 3
+```
+
+::: {.fragment}
+```{r}
+TRUE | TRUE & FALSE
+```
+:::
+::: {.fragment}
+```{r}
+(TRUE | TRUE) & FALSE
+```
 :::
 
-## Functions `any()` and `all()`  {.smaller}
+:::
+:::
+
+[^1]: For more detail, check the [operator documentation](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html).
+
+
+## `any()`, `all()` and `which()` {.smaller}
 
 Given a set of logical vectors: 
 ```{r}
@@ -229,10 +301,14 @@ any(-3:3 > 0)
 all(-3:3 > 0)
 ```
 
-<!-- - Special operators: `:`, `$`, `@`, `::`, `:::`, `[]`, `[[]]`, *etc.* -->
+- `which()`: return indices of `TRUE` values.
+
+```{r}
+which(-3:3 > 0)
+```
+
 
 # Conditions
-
 
 ## Conditional Statements {.smaller}
 
@@ -241,6 +317,7 @@ guiding how the code behaves in different scenarios.
 
 ```{mermaid}
 %%| echo: false
+%%| fig-width: 10
 flowchart LR
   A{temperature > 37} --> B(TRUE)
   A --> C(FALSE)
@@ -252,6 +329,7 @@ flowchart LR
 
 ```{mermaid}
 %%| echo: false
+%%| fig-width: 10
 flowchart LR
   A{log2FC > 0} --> B(TRUE)
   A --> C(FALSE)
@@ -265,7 +343,7 @@ flowchart LR
 ::: {.columns}
 ::: {.column}
 
-Syntax in R:
+Syntax:
 ```{r}
 #| eval: false
 
@@ -332,7 +410,7 @@ if (log2FC > 0) {
 
 ## Handling Multiple Conditions (1) {.smaller}
 
-- Decision depends on the same variable, we can use `if...else if...else`.
+- Decision depends on different cases of the same variable, we can use `if...else if...else`.
 
 ```{mermaid}
 %%| echo: false
@@ -381,11 +459,7 @@ if (pvalue < 0.05) {
 
 ## Handling Multiple Conditions (3) {.smaller}
 
-- Conditions from different variables:
-
-  - Logical operators (`&`, `|`, `!`) help combine multiple conditions.
-  - `&` has a **higher** priority than `|`.
-  - Use parentheses `()` to group conditions that need to be evaluated first.
+- Use logical operators (`&`, `|`, `!`) to combine multiple conditions.
 
 ```{r}
 pvalue <- 0.06
@@ -398,6 +472,8 @@ if (log2FC > 2 | log2FC < -2 & pvalue < 0.05) {
 }
 ```
 
+. . . 
+
 ```{r}
 if ((log2FC > 2 | log2FC < -2) & pvalue < 0.05) {
   print("candidate gene")
@@ -405,6 +481,11 @@ if ((log2FC > 2 | log2FC < -2) & pvalue < 0.05) {
   print("condition NOT met")
 }
 ```
+
+::: {.callout-important appearance="minimal"}
+- `&` has a **higher** priority than `|`.
+- Use parentheses `()` to group conditions that need to be evaluated first.
+:::
 
 ::: {.notes}
 handle > 2 conditions.
@@ -455,6 +536,9 @@ ifelse(vec_lfc > 0, "Up-regulated", "Not up-regulated")
 
 Functions = Reusable blocks of code.
 
+::: {.columns .fragment}
+::: {.column}
+
 - Built-in functions
 
 ```{r}
@@ -465,10 +549,18 @@ mean(1:3)
 Functions that are part of R's base installation, always available without needing to load any additional packages.
 :::
 
-. . .
+- Custom functions
+
+```{r}
+add_one <- function(x) {x + 1}
+add_one(x = 1:3)
+```
+
+:::
+::: {.column}
+
 
 - Functions from additional packages
-
 ```{r}
 #| eval: false
 
@@ -477,22 +569,15 @@ read_csv("path/to/data.csv")
 ```
 
 ::: {.callout-tip appearance="minimal"}
-We'll talk about package installation next week!
+We'll talk about packages next week!
 :::
 
-. . .
-
-- Custom functions
-
-```{r}
-add_one <- function(x) {x + 1}
-add_one(x = 1:3)
-```
-
-::: {.callout-tip appearance="minimal"}
-- Use `?` or `help()` to view the function's documentation, *e.g.*: `?mean`, `help(mean)`
+:::
 :::
 
+::: {.fragment .callout-tip appearance="minimal"}
+Use `?` or `help()` to view the function's documentation, *e.g.*: `?mean`, `help(mean)`
+:::
 
 ## Anatomy of a Function {.smaller}
 
@@ -503,14 +588,14 @@ add_one(x = 1:3)
 Syntax:
 ```{r}
 function_name <- function(arguments) {
-  # function body
+  # function code (body)
   return(result)
 }
 ```
 
-- The function name.
-- the reserved token `function()` and argument(s).
-- The curly brackets `{}` come after `function(arguments)` and frame the actual function code.
+- The function name, be concise and preferably a verb.
+- The reserved token `function()` and argument(s).
+- The curly brackets `{}` frame the function code.
 - The `return()` (usually) at the end will return a result.
 
 :::
@@ -532,18 +617,25 @@ geo_mean <- function(x) {
 
 ## Functions with Conditions {.smaller}
 
-Example: A function to classify data based on a threshold.
+Example: the geometric mean can only be calculated for positive numbers.
+Use a condition to ensure this.
 
 ```{r}
-classify <- function(x) {
-  if (x > 10) {
-    return("High")
-  } else {
-    return("Low")
+geo_mean <- function(x) {
+  # keep only positive values
+  if (any(x <= 0)) {
+    x <- x[x > 0]
   }
+  # calculate geometric mean
+  result <- exp(mean(log(x)))
+  return(result)
 }
-classify(8)
 ```
+
+:::{.notes}
+geom mean is more suitable for data with a log-normal distribution or
+when values have outliers or large differences in scale.
+:::
 
 ## Local *vs.* Global Variables {.smaller}
 
@@ -571,43 +663,34 @@ Scope in R, importance of proper scoping in functions.
 
 ```{r}
 super_func <- function(arg1, arg2, arg3) {
-  if (arg1 == 0) {
-    stop("denominator (arg1) cannot be 0.")
-  }
-  res <- arg1 + arg2 * arg3 / arg1
+  res <- arg1 + arg2 * arg3
   return(res)
 }
 ```
 
 
 :::{.fragment}
-- Provide arguments' values in expected order
+- Provide argument values in the expected order
 
 ```{r}
-#| error: true
 super_func(arg1 = 1, arg2 = 2, arg3 = 3)
 super_func(1, 2, 3)
-super_func(0, 2, 3)
 ```
 
 :::
 :::
 ::: {.column .fragment}
-- Provide arguments' values in different order
+- Provide argument values in a different order
 ```{r}
-super_func(arg2 = 2, arg1 = 1, arg3 = 3)
 super_func(2, 1, 3)
+super_func(arg2 = 2, arg1 = 1, arg3 = 3)
 ```
 :::
 :::
-
-
-<!-- ## Load Pacakges -->
 
 # Let's Practice !
 
 ## Today's Goals
 
-- Understand and use logical and comparison operators.
-- Learn to write and interpret functions.
-- Use operators and conditions to filter data with precision.
+- Understand and use operators to filter data with precision.
+- Learn to interpret functions, write functions to automate tasks.
