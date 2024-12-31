@@ -7,7 +7,7 @@
 # to compare SET1 samples to WT samples using data from `read-counts.csv`.
 
 # The analysis result is available via this link:
-# https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week04/toy_DEanalysis.csv
+# https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv
 
 ## - Please donwload the result file and upload it to your data folder.
 ## - Import the data using `read.csv()` function.

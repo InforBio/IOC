@@ -1,7 +1,7 @@
 library(DESeq2)
 
 read_counts <- read.table(
-  file = "ioc_r/week03/read-counts.csv",
+  file = "ioc_r/data/read-counts.csv",
   header = TRUE, sep = ",", row.names = 1
 )
 pheno <- data.frame(
@@ -20,10 +20,10 @@ res <- results(dds)
 
 write.csv(
   data.table::as.data.table(res, keep.rownames = "gene_name"),
-  file = "projects/IOC_R/data/toy_DEanalysis.csv", quote = FALSE, row.names = FALSE
+  file = "ioc_r/data/toy_DEanalysis.csv", quote = FALSE, row.names = FALSE
 )
 
 # save(
 #   dds, res,
-#   file = "toy_DEanalysis.RData"
+#   file = "ioc_r/data/toy_DEanalysis.RData"
 # )

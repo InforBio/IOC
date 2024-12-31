@@ -65,7 +65,7 @@ Verify your answer using the function `file.exists()`.
 #| echo: false
 #| message: false
 
-counts <- readr::read_csv("read-counts.csv")
+counts <- readr::read_csv("../exos_data/read-counts.csv")
 ```
 
 ```{r}

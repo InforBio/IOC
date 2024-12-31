@@ -15,7 +15,8 @@ To create a Quarto document: go to **File** -> **New File** -> **Quarto Document
 
 1. Import the data file "**visceral_fat.csv**".
 
-  - First, upload the file to a folder of your choice within your RStudio project
+  - First, download the `visceral_fat.csv` file via this [link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/visceral_fat.csv).
+  - Then, upload the file to a folder of your choice within your RStudio project.
   - Next, import the data into R and name the data frame `visceral_fat`. 
 
 Tip:
@@ -25,16 +26,9 @@ Use the **click-button method** in RStudio to upload and import the file. Then, 
 Once imported, you can use the `visceral_fat` dataset for further analysis in your report.
 
 ```{r}
-#| echo: false
-
+# command from the import pop-up windown
 library(readr)
-visceral_fat <- read_csv("visceral_fat.csv")
-# visceral_fat <- visceral_fat[, 1:6]
-# colnames(visceral_fat) <- gsub(
-#   "\\)|mean_", "", gsub(" |\\(", "_", colnames(visceral_fat))
-# )
-# visceral_fat[["diastolic_bp__mmhg"]][27] <- 284
-# write_csv(visceral_fat, file = "visceral_fat.csv")
+visceral_fat <- read_csv("../exos_data/visceral_fat.csv") # replace the path by your own
 ```
 
 2. Summarize the dataset.
