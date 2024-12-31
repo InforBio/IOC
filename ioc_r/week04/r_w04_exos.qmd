@@ -30,10 +30,6 @@ The analysis result is available via this [link](https://raw.githubusercontent.c
 Name the imported results `de_res`.
 
 ```{r}
-getwd()
-```
-
-```{r}
 de_res <- read.csv(
   file = "../exos_data/toy_DEanalysis.csv",  # replace the path with your own
   header = TRUE
