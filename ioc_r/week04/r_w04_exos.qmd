@@ -1,0 +1,212 @@
+---
+title: "Week 4 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+categories: 
+  - week04
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week04/r_w04_exos.R)
+
+## Goals
+
+- Understand and use operators to filter data with precision.
+- Understand function's basic structure, learn to use new functions, write functions to automate tasks.
+
+## Import Data
+
+A gene-level diffenrential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from `read-counts.csv`.
+
+The analysis result is available via this [link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week04/toy_DEanalysis.csv).
+
+- Please donwload the result file and upload it to your data folder.
+- Import the data using `read.csv()` function.
+(See the documentation with `?read.csv`) 
+Name the imported results `de_res`.
+
+```{r}
+de_res <- read.csv(
+  file = "toy_DEanalysis.csv",  # replace the path with your own
+  header = TRUE
+)
+```
+
+
+## Exercises
+
+1. Check the structure of `de_res` using an appropriate R function. What are the dimensions?
+
+```{r}
+str(de_res)
+```
+
+The result is a data frame with `r nrow(de_res)` rows and `r ncol(de_res)` columns.
+
+
+The result contains following columns:
+
+- `gene_name`: gene name
+- `baseMean`: mean of normalized counts for all samples
+- `log2FoldChange`: log2 fold change
+- `lfcSE`: standard error
+- `stat`: Wald statistic
+- `pvalue`: Wald test p-value
+- `padj`: adjusted p-values (Benjamini-Hochberg procedure)
+
+::: {.callout-tip title="Stats Time!"}
+**Multiple Tests Correction**
+
+- Why multiple testing is a problem?
+
+If we do 100 tests simultaneously and set and use significance level at 0.05,
+$$
+\begin{aligned}
+P(\text{at least 1 significant result by change}) &= 1- P(\text{non significant results}) \\
+&= 1 – (1 - 0.05)^{100} \\
+&= 0.99
+\end{aligned}
+$$
+
+- Multiple test correction
+<ul>
+  <li> **Bonferroni** correction: control the significance level.</li>
+  <p>
+$$
+\begin{aligned}
+P(\text{at least 1 significant result by change}) &= 1 – (1 - \frac{0.05}{100})^{100} \\
+&= 0.049
+\end{aligned}
+$$
+  </p>
+  <li> **FDR** (False discovery rate): control the proportion of false positive amongst all significant results, *e.g.*: Benjamini-Hochberg (BH) procedure.</li>
+</ul>
+
+:::
+
+2. Extract results for these genes: *RNR1*, *PIR3*, *SRP68*.
+
+```{r}
+de_res[de_res$gene_name %in% c("RNR1", "PIR3", "SRP68"), ]
+```
+
+3. Order the result by decreasing p-value using the `order()` function.
+(See `?order()`)
+
+Hints:
+
+- `order()` can return the indices of the vector elements in ascending or descending order
+- Apply `order()` to the desired column
+- Use the returned indices to rearrange the dataframe
+
+```{r}
+## fast check how order() works
+order(c(0.2, 0.5, 0.3))
+
+## arrange the data frame
+de_res <- de_res[order(de_res$pvalue), ]
+```
+
+4. Use `ifelse()` to categorize genes. 
+Add a new column, `gene_category`, that assigns categories:
+
+- "up" if `log2FoldChange > 0.5`.
+- "down" if `log2FoldChange < -0.5`.
+- "neutral" otherwise.
+
+```{r}
+de_res[["gene_category"]] <- ifelse(
+  test = de_res[["log2FoldChange"]] > 0.5,
+  yes = "up",
+  no = ifelse(
+    test = de_res[["log2FoldChange"]] < -0.5,
+    yes = "down",
+    no = "neutral"
+  )
+)
+```
+
+5. Use `table()` to count the occurrences of each gene category.
+
+```{r}
+table(de_res[["gene_category"]])
+```
+
+
+6. Write the code to create a subset of significant upregulated genes with:
+
+- Adjusted p-value (`padj`) < 0.05.
+- Log2 fold change (`log2FoldChange`) > 1.
+
+```{r}
+up_regulated <- de_res[
+  de_res$padj < 0.05 & de_res$log2FoldChange > 1,
+]
+up_regulated
+```
+
+7. Write the code to create a subset for genes that meet any of the following conditions:
+
+- `pvalue < 0.01` and `log2FoldChange > 0.5`.
+- `pvalue < 0.01` and `log2FoldChange < -0.5`.
+
+```{r}
+target_gene <- de_res[
+  de_res$pvalue < 0.01 &
+  (de_res$log2FoldChange > 0.5 | de_res$log2FoldChange < -0.5),
+]
+target_gene
+
+# or test the absolute value of log2FoldChange
+de_res[
+  de_res$pvalue < 0.01 & abs(de_res$log2FoldChange) > 0.5,
+]
+
+```
+
+8. Write a function to automate "de_res" filtering for genes
+with a p-value less than or equal to a custom cutoff.
+
+```{r}
+filter_p <- function(cutoff = 0.05) {
+  de_res[de_res$pvalue <= cutoff, ]
+}
+filter_p(0.01)
+filter_p(0.0001)
+```
+
+9. Based on the function created in question 8,
+modify the function to allow output ordered by any desired column in `de_res`.
+
+Hints: You need an extra parameter to specify the wanted column and
+another parameter to fix the cutoff.
+
+```{r}
+filter_col <- function(col = "pvalue", cutoff = 0.05) {
+  de_res[de_res[[col]] <= cutoff, ]
+}
+filter_col(cutoff = 0.0001)
+filter_col(col = "log2FoldChange", cutoff = -1)
+```
+
+10. Based on the function created in question 9,
+add a step in the body of the function to extract
+the gene names that met the filter condition.
+
+```{r}
+extract_gene <- function(col = "pvalue", cutoff = 0.05) {
+  de_res[de_res[[col]] <= cutoff, ][["gene_name"]]
+}
+extract_gene(cutoff = 0.0001)
+extract_gene(col = "log2FoldChange", cutoff = -1)
+```
+
+---
+
+#### Bravo! 🎉 You've learned the basics of R, and you're already making great progress, keep it up!
+
+
