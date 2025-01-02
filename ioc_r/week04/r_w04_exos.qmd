@@ -193,17 +193,33 @@ filter_col(cutoff = 0.0001)
 filter_col(col = "log2FoldChange", cutoff = -1)
 ```
 
-10. Based on the function created in question 9,
-add a step in the body of the function to extract
-the gene names that met the filter condition.
+
+::: {.callout-tip}
+**Ensembl Data Base**
+
+[Ensembl](http://www.ensembl.org/index.html)
+is a comprehensive genome database that provides detailed information on genes and
+their annotations across a wide range of species (humain, mouse, zebrafish, *etc.*).
+It integrates genomic data with tools like BioMart,
+making it easy to query and extract information such as gene names, coordinates, functions,
+and orthologs for research purposes.
+:::
+
+10. A yeast gene annotation file was obtained from the Ensembl data base.
+This file can be donwloaded [here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv).
+
+Import the data and add the annotation to the `de_res` data frame using `merge()` function.
 
 ```{r}
-extract_gene <- function(col = "pvalue", cutoff = 0.05) {
-  de_res[de_res[[col]] <= cutoff, ][["gene_name"]]
-}
-extract_gene(cutoff = 0.0001)
-extract_gene(col = "log2FoldChange", cutoff = -1)
+annot <- read.csv(
+  "../exos_data/yeast_gene_annot.csv", # replace the path by your own
+  header = TRUE
+)
+
+de_res <- merge(de_res, annot, by = "gene_name", all.x = TRUE)
+head(de_res)
 ```
+
 
 ---
 

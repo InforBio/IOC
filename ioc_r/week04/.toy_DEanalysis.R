@@ -1,3 +1,4 @@
+## DE analysis with toy data   ----------------------
 library(DESeq2)
 
 read_counts <- read.table(
@@ -16,10 +17,10 @@ dds <- DESeqDataSetFromMatrix(
 )
 
 dds <- DESeq(dds)
-res <- results(dds)
+de_res <- results(dds)
 
 write.csv(
-  data.table::as.data.table(res, keep.rownames = "gene_name"),
+  data.table::as.data.table(de_res, keep.rownames = "gene_name"),
   file = "ioc_r/data/toy_DEanalysis.csv", quote = FALSE, row.names = FALSE
 )
 
@@ -27,3 +28,17 @@ write.csv(
 #   dds, res,
 #   file = "ioc_r/data/toy_DEanalysis.RData"
 # )
+
+
+## annot data from Ensembl   ----------------------
+annot <- read.csv("../data/yeast_biomart.csv", header = TRUE)
+colnames(annot) <- c(
+  "ensembl_id", "gene_name", "chromosome", "description", "start", "end"
+)
+table(de_res$gene_name %in% annot$gene_name)
+annot <- annot[annot$gene_name %in% de_res$gene_name, ]
+annot <- annot[, c("ensembl_id", "gene_name", "chromosome", "start", "end", "description")]
+write.csv(
+  x = annot,
+  file = "ioc_r/exos_data/yeast_gene_annot.csv"
+)

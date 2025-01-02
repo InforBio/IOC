@@ -81,6 +81,7 @@ de_res
 ##        column and another parameter to fix the cutoff.
 
 
-## 10. Based on the function created in question 9,
-##     add a step in the body of the function to extract
-##     the gene names that met the filter condition.
+## 10. A yeast gene annotation file was obtained from the Ensembl data base.
+##     This file can be donwloaded here:
+##     https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv
+##     Import the data and add the annotation to the `de_res` data frame using `merge()` function.
