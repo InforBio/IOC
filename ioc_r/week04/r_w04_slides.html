@@ -893,7 +893,7 @@ $y
 <span id="cb102-2"><a></a><span class="fu">ifelse</span>(</span>
 <span id="cb102-3"><a></a>  <span class="at">test =</span> log2FC <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
 <span id="cb102-4"><a></a>  <span class="at">yes =</span> <span class="st">"Up-regulated"</span>,</span>
-<span id="cb102-5"><a></a>  <span class="at">no =</span> <span class="fu">ifelse</span>(log2FC <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">yes =</span> <span class="st">"Down-regulated"</span>, <span class="st">"No change"</span>)</span>
+<span id="cb102-5"><a></a>  <span class="at">no =</span> <span class="fu">ifelse</span>(log2FC <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">yes =</span> <span class="st">"Down-regulated"</span>, <span class="at">no =</span> <span class="st">"No change"</span>)</span>
 <span id="cb102-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Down-regulated"</code></pre>
@@ -904,7 +904,7 @@ $y
 <p>The “test” can be a vector.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a></a>vec_lfc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb104-2"><a></a><span class="fu">ifelse</span>(vec_lfc <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"Up-regulated"</span>, <span class="st">"Not up-regulated"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb104-2"><a></a><span class="fu">ifelse</span>(vec_lfc <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">yes =</span> <span class="st">"Up-regulated"</span>, <span class="at">no =</span> <span class="st">"Not up-regulated"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Not up-regulated" "Not up-regulated" "Up-regulated"    </code></pre>
 </div>
@@ -1036,8 +1036,7 @@ $y
 <div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x =</span> <span class="dv">5</span>) {</span>
 <span id="cb115-2"><a></a>  <span class="fu">return</span>(x <span class="sc">+</span> <span class="dv">1</span>)</span>
 <span id="cb115-3"><a></a>}</span>
-<span id="cb115-4"><a></a></span>
-<span id="cb115-5"><a></a><span class="fu">add_one</span>() <span class="co"># use default value of x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb115-4"><a></a><span class="fu">add_one</span>() <span class="co"># use default value of x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6</code></pre>
 </div>
@@ -1046,30 +1045,37 @@ $y
 <pre><code>[1] 2 3 4</code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a></a>vec <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span></span>
+<span id="cb119-2"><a></a><span class="fu">add_one</span>(<span class="at">x =</span> vec) <span class="co"># use custom values from a variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3</code></pre>
+</div>
+</div>
 </div>
 </div><div class="column fragment">
 <ul>
 <li>Multiple parameters</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a></a>divise <span class="ot">&lt;-</span> <span class="cf">function</span>(numerator, denominator) {</span>
-<span id="cb119-2"><a></a>  <span class="fu">return</span>(numerator<span class="sc">/</span>denominator)</span>
-<span id="cb119-3"><a></a>}</span>
-<span id="cb119-4"><a></a><span class="co"># Provide argument values in the expected order</span></span>
-<span id="cb119-5"><a></a><span class="fu">divise</span>(<span class="at">numerator =</span> <span class="dv">1</span>, <span class="at">denominator =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a></a>divise <span class="ot">&lt;-</span> <span class="cf">function</span>(numerator, denominator) {</span>
+<span id="cb121-2"><a></a>  <span class="fu">return</span>(numerator<span class="sc">/</span>denominator)</span>
+<span id="cb121-3"><a></a>}</span>
+<span id="cb121-4"><a></a><span class="co"># Provide argument values in the expected order</span></span>
+<span id="cb121-5"><a></a><span class="fu">divise</span>(<span class="at">numerator =</span> <span class="dv">1</span>, <span class="at">denominator =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a></a><span class="fu">divise</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a></a><span class="fu">divise</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a></a><span class="co"># Provide argument values in a different order</span></span>
-<span id="cb123-2"><a></a><span class="fu">divise</span>(<span class="dv">2</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a></a><span class="co"># Provide argument values in a different order</span></span>
+<span id="cb125-2"><a></a><span class="fu">divise</span>(<span class="dv">2</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a></a><span class="fu">divise</span>(<span class="at">denominator =</span> <span class="dv">2</span>, <span class="at">numerator =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a></a><span class="fu">divise</span>(<span class="at">denominator =</span> <span class="dv">2</span>, <span class="at">numerator =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
@@ -1082,16 +1088,16 @@ $y
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a></a>geo_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb127-2"><a></a>  <span class="co"># calculate geometric mean</span></span>
-<span id="cb127-3"><a></a>  result <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">mean</span>(<span class="fu">log</span>(x)))</span>
-<span id="cb127-4"><a></a>  <span class="fu">return</span>(result)</span>
-<span id="cb127-5"><a></a>}</span>
-<span id="cb127-6"><a></a><span class="fu">geo_mean</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a></a>geo_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb129-2"><a></a>  <span class="co"># calculate geometric mean</span></span>
+<span id="cb129-3"><a></a>  result <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">mean</span>(<span class="fu">log</span>(x)))</span>
+<span id="cb129-4"><a></a>  <span class="fu">return</span>(result)</span>
+<span id="cb129-5"><a></a>}</span>
+<span id="cb129-6"><a></a><span class="fu">geo_mean</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.633703</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.545455</code></pre>
 </div>
@@ -1102,16 +1108,16 @@ $y
 </div><div class="column fragment">
 <p>Use a condition to ensure this.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a></a>geo_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb131-2"><a></a>  <span class="co"># keep only positive values</span></span>
-<span id="cb131-3"><a></a>  <span class="cf">if</span> (<span class="fu">any</span>(x <span class="sc">&lt;=</span> <span class="dv">0</span>)) {</span>
-<span id="cb131-4"><a></a>    x <span class="ot">&lt;-</span> x[x <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb131-5"><a></a>  }</span>
-<span id="cb131-6"><a></a>  <span class="co"># calculate geometric mean</span></span>
-<span id="cb131-7"><a></a>  result <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">mean</span>(<span class="fu">log</span>(x)))</span>
-<span id="cb131-8"><a></a>  <span class="fu">return</span>(result)</span>
-<span id="cb131-9"><a></a>}</span>
-<span id="cb131-10"><a></a><span class="fu">geo_mean</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">50</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a></a>geo_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb133-2"><a></a>  <span class="co"># keep only positive values</span></span>
+<span id="cb133-3"><a></a>  <span class="cf">if</span> (<span class="fu">any</span>(x <span class="sc">&lt;=</span> <span class="dv">0</span>)) {</span>
+<span id="cb133-4"><a></a>    x <span class="ot">&lt;-</span> x[x <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb133-5"><a></a>  }</span>
+<span id="cb133-6"><a></a>  <span class="co"># calculate geometric mean</span></span>
+<span id="cb133-7"><a></a>  result <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">mean</span>(<span class="fu">log</span>(x)))</span>
+<span id="cb133-8"><a></a>  <span class="fu">return</span>(result)</span>
+<span id="cb133-9"><a></a>}</span>
+<span id="cb133-10"><a></a><span class="fu">geo_mean</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">50</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.633703</code></pre>
 </div>
@@ -1138,16 +1144,16 @@ $y
 <li><strong>Global</strong> variable: defined <strong>outside</strong> and accessible anywhere.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb133-2"><a></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb133-3"><a></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb133-4"><a></a>  <span class="fu">return</span>(x <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb133-5"><a></a>}</span>
-<span id="cb133-6"><a></a><span class="fu">add_one</span>()  <span class="co"># Local, x is 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb135-2"><a></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb135-3"><a></a>  x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb135-4"><a></a>  <span class="fu">return</span>(x <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb135-5"><a></a>}</span>
+<span id="cb135-6"><a></a><span class="fu">add_one</span>()  <span class="co"># Local, x is 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a></a>x  <span class="co"># Global, x is 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a></a>x  <span class="co"># Global, x is 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
