@@ -31,7 +31,7 @@ write.csv(
 
 
 ## annot data from Ensembl   ----------------------
-annot <- read.csv("../data/yeast_biomart.csv", header = TRUE)
+annot <- read.csv("data/yeast_biomart.csv", header = TRUE)
 colnames(annot) <- c(
   "ensembl_id", "gene_name", "chromosome", "description", "start", "end"
 )
@@ -39,6 +39,6 @@ table(de_res$gene_name %in% annot$gene_name)
 annot <- annot[annot$gene_name %in% de_res$gene_name, ]
 annot <- annot[, c("ensembl_id", "gene_name", "chromosome", "start", "end", "description")]
 write.csv(
-  x = annot,
+  x = annot, row.names = FALSE,
   file = "ioc_r/exos_data/yeast_gene_annot.csv"
 )
