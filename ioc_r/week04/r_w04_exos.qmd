@@ -76,6 +76,9 @@ $$
 <ul>
   <li> **Bonferroni** correction: control the significance level.</li>
   <p>
+$\alpha_{adjusted}= \frac{\alpha}{N test}$
+  </p>
+  <p>
 $$
 \begin{aligned}
 P(\text{at least 1 significant result by change}) &= 1 – (1 - \frac{0.05}{100})^{100} \\
