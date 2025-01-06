@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
 
   <title>IOC – Kickstart with R: Your Gateway to Data Science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -239,7 +239,7 @@
 <section id="the-r-console" class="slide level2 smaller">
 <h2>The R Console</h2>
 
-<img data-src="images/r_console2.png" class="r-stretch"><p>Type a command after the prompt “&gt;” and type “Enter” to execute it.</p>
+<img data-src="images/r_console2.png" class="r-stretch"><p>Type a command after the prompt “&gt;” and press <em>Enter</em> to execute it.</p>
 </section></section>
 <section>
 <section id="rstudio" class="title-slide slide level1 center">
@@ -248,7 +248,7 @@
 </section>
 <section id="rstudio-login" class="slide level2 smaller">
 <h2>Rstudio Login</h2>
-<p>Connect to your RStudio server account.</p>
+<p>If you use the RStudio Server, you need to connect to your account first.</p>
 
 <img data-src="images/rstudio_server_login.png" class="r-stretch"></section>
 <section id="rstudio-ide" class="slide level2 smaller">
@@ -263,7 +263,13 @@
 <li>Environment/History: tracks your variables and past commands.</li>
 <li>Files/Plots/Packages: managing your files, viewing graphs, or installing tools.</li>
 </ol>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
 <p>Rstudio <a href="https://rstudio.github.io/cheatsheets/rstudio-ide.pdf">cheat sheet</a> (<a href="https://rstudio.github.io/cheatsheets/translations/french/rstudio-ide_fr.pdf">and French version</a>)</p>
+</div>
+</div>
+</div>
 </div></div>
 <aside class="notes">
 <p>Everything you need in one organized window. Save your work as a script, RStudio includes many useful features which let us code easily. notebook, show results</p>
@@ -284,10 +290,11 @@
 <div class="columns">
 <div class="column" style="width:43%;">
 <ul>
-<li><p>Create a new file: Click <em>File</em> -&gt; <em>New File</em> -&gt; <em>R Script</em> or <img data-src="images/rstudio_newfile.png" style="width:15.0%"></p></li>
-<li><p>Save script: <em>Cmd + S</em> or <em>Ctrl + S</em></p></li>
+<li>Open your RStudio.</li>
+<li>Create an R script: <em>File</em> -&gt; <em>New File</em> -&gt; <em>R Script</em> or <img data-src="images/rstudio_newfile.png" style="width:1.5cm"></li>
+<li>Save script: <em>Cmd + S</em> or <em>Ctrl + S</em></li>
 </ul>
-</div><div class="column" style="width:57%;">
+</div><div class="column fragment" style="width:57%;">
 <ul>
 <li>Basic commands<sup>1</sup>:</li>
 </ul>
@@ -432,7 +439,7 @@
       }</style></aside>
 </div>
 </section>
-<section id="a-well-organized-folder" class="slide level2">
+<section id="a-well-organized-folder" class="slide level2 smaller">
 <h2>A Well Organized Folder</h2>
 <p>Tree structure:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">my_project</span>              <span class="co"># Your working directory    </span></span>
@@ -444,6 +451,15 @@
 <span id="cb2-7"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 01-analysis.R</span>
 <span id="cb2-8"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 02-figures.R</span>
 <span id="cb2-9"><a></a><span class="ex">└──</span> outputs             <span class="co"># Results, e.g., graphs, reports</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="fragment">
+<ul>
+<li>To create new folders:
+<ul>
+<li>via RStudio: in <em>File</em> pane, click <img data-src="images/rstudio_create_folder_button.png" style="width:1cm">. The folder will be created in the current directory.</li>
+<li>or use <em>File Explorer</em> (Windows) / <em>Finder</em> (Mac).</li>
+</ul></li>
+</ul>
 <aside class="notes">
 <p>example of bad home organisation: pillow in kitchen and microoven in the bathroom The trunk is the main folder (your R Project). Branches are subfolders for scripts, data, and output, ect. By building a clear structure, you’ll: Always know where to find things. Save time when coding in R or sharing your project with others. Avoid messy files scattered everywhere.</p>
 <style type="text/css">
@@ -457,6 +473,7 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</div>
 </section>
 <section id="where-are-you" class="slide level2 smaller">
 <h2>Where Are You?</h2>
@@ -510,8 +527,8 @@
 <li>From the “Files” pane: Navigate to your file location -&gt; Click the file and select “Import Dataset”</li>
 </ul></li>
 </ul>
-</div><div class="column">
-<p><img data-src="images/import_data.png"></p>
+</div><div class="column fragment">
+<p><img data-src="images/import_data_base.png"> <img data-src="images/import_data_base_code.png"></p>
 </div></div>
 </section></section>
 <section>
@@ -526,17 +543,37 @@
 <li>Combines narrative text and code (multi-language) in one script (.qmd).</li>
 <li>Supports multiple output formats: .html, .docx, .pptx, .pdf, <em>etc.</em></li>
 </ul>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
 <p>Official website: <a href="https://quarto.org">https://quarto.org</a></p>
+</div>
+</div>
+</div>
 </section>
 <section id="an-example" class="slide level2 smaller">
 <h2>An Example</h2>
 <div class="columns">
 <div class="column">
-<p><img data-src="images/quarto_annot.png"></p>
+<p>To create: <em>File</em> -&gt; <em>New File</em> -&gt; <em>Quarto Document</em> -&gt; click <em>Create</em>. <img data-src="images/quarto_annot.png"></p>
+<div class="fragment">
+<p>Save the document and click <strong>Render</strong> button.</p>
+</div>
 </div><div class="column fragment">
-<p><img data-src="images/quarto_output.png"></p>
+<p>Rendered document in HTML format: <img data-src="images/quarto_output.png"></p>
+<div class="fragment">
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<ul>
+<li>Markdown syntax <a href="https://www.markdownguide.org/cheat-sheet/">cheat sheet</a></li>
+<li><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto tutorial</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div></div>
-<p>Markdown syntax <a href="https://www.markdownguide.org/cheat-sheet/">cheat sheet</a></p>
 </section>
 <section id="need-some-help" class="slide level2 smaller">
 <h2>Need Some Help?</h2>
