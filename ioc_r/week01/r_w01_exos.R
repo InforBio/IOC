@@ -23,7 +23,7 @@
 # Please import the file "read-counts.csv" into R using the click button way,
 # call the imported data "counts".
 library(readr)
-counts <- read_csv("path/to/read-counts.csv") # repalce by your path
+counts <- read_csv("path/to/read-counts.csv") # replace by your path
 
 
 

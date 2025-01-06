@@ -24,7 +24,7 @@ Use the **click-button method** in RStudio to upload and import the file. Then, 
 Once imported, you can use the `visceral_fat` dataset for further analysis in your report.
 
 ```{r}
-# command from the import pop-up windown
+# command from the import pop-up window
 library(readr)
 visceral_fat <- read_csv("../exos_data/visceral_fat.csv") # replace the path by your own
 ```
