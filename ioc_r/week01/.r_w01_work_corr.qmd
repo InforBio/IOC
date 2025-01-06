@@ -25,8 +25,7 @@ Once imported, you can use the `visceral_fat` dataset for further analysis in yo
 
 ```{r}
 # command from the import pop-up window
-library(readr)
-visceral_fat <- read_csv("../exos_data/visceral_fat.csv") # replace the path by your own
+visceral_fat <- read.csv("../exos_data/visceral_fat.csv") # replace the path by your own
 ```
 
 2. Summarize the dataset.

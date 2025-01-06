@@ -1,6 +1,5 @@
 ## Data from Lorette
-library(readr)
-visceral_fat <- read_csv("visceral_fat.csv")
+visceral_fat <- read.csv("visceral_fat.csv")
 
 ## Modify data for exercise
 visceral_fat <- visceral_fat[, 1:6]
