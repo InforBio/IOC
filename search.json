@@ -480,7 +480,7 @@
     "href": "ioc_r/week02/r_w02_slides.html#logical-2",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Logical (2)",
-    "text": "Logical (2)\n\nConvert to other types:\n\n\n\n\nas.numeric(TRUE)\n\n[1] 1\n\nas.numeric(FALSE)\n\n[1] 0\n\nTRUE + TRUE + FALSE\n\n[1] 2\n\n\n\n\nas.character(TRUE)\n\n[1] \"TRUE\"\n\nas.character(FALSE)\n\n[1] \"FALSE\"\n\n\n\n\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(-1)\n\n[1] TRUE\n\nas.logical(0)\n\n[1] FALSE"
+    "text": "Logical (2)\nConvert to other types:\n\n\n\nas.numeric(TRUE)\n\n[1] 1\n\nas.numeric(FALSE)\n\n[1] 0\n\nTRUE + TRUE + FALSE\n\n[1] 2\n\n\n\n\nas.character(TRUE)\n\n[1] \"TRUE\"\n\nas.character(FALSE)\n\n[1] \"FALSE\"\n\n\n\n\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(-1)\n\n[1] TRUE\n\nas.logical(0)\n\n[1] FALSE"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#factor",
@@ -501,7 +501,7 @@
     "href": "ioc_r/week02/r_w02_slides.html#vector-creation-1",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Vector Creation (1)",
-    "text": "Vector Creation (1)\nUse the function c() to create a vector and use , to separate elements.\n\n\n\nc(10, 12, 9) # Numeric vector\n\n[1] 10 12  9\n\nc(gene1, gene2, gene3)\n\n[1] 10 12  9\n\ngene_expr &lt;- c(gene1, gene2, gene3)\ngene_expr\n\n[1] 10 12  9\n\nc(gene_expr, 18)\n\n[1] 10 12  9 18\n\n\n\n\nQuickly create sequences of numbers\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n5:1\n\n[1] 5 4 3 2 1\n\nseq(from = 1, to = 10, by = 2)\n\n[1] 1 3 5 7 9\n\nrep(c(1, 2), times = 2) # repetition\n\n[1] 1 2 1 2\n\n\n\n\n\nc(\"gene1\", \"gene2\", \"gene3\") # Character vector\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nc(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector\n\n[1]  TRUE FALSE FALSE  TRUE  TRUE\n\n\n\n\nOther tricks\n\n\npaste0(\"gene\", 1:3)\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nrep(c(TRUE, FALSE), each = 2)\n\n[1]  TRUE  TRUE FALSE FALSE\n\n\n\n\n\nA single value (scalar) is treated as a vector of length 1.\n\nis.vector(10)\n\n[1] TRUE\n\nlength(10)\n\n[1] 1"
+    "text": "Vector Creation (1)\nUse the function c() to create a vector and use , to separate elements.\n\n\n\nc(10, 12, 9) # Numeric vector\n\n[1] 10 12  9\n\nc(gene1, gene2, gene3)\n\n[1] 10 12  9\n\ngene_expr &lt;- c(gene1, gene2, gene3) # store in a variable\ngene_expr\n\n[1] 10 12  9\n\nc(gene_expr, 18)\n\n[1] 10 12  9 18\n\n\n\n\nQuickly create sequences of numbers\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n5:1\n\n[1] 5 4 3 2 1\n\nseq(from = 1, to = 10, by = 2)\n\n[1] 1 3 5 7 9\n\nrep(c(1, 2), times = 2) # repetition\n\n[1] 1 2 1 2\n\n\n\n\n\nc(\"gene1\", \"gene2\", \"gene3\") # Character vector\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nc(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector\n\n[1]  TRUE FALSE FALSE  TRUE  TRUE\n\n\n\n\nOther tricks\n\n\npaste0(\"gene\", 1:3)\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nrep(c(TRUE, FALSE), each = 2)\n\n[1]  TRUE  TRUE FALSE FALSE\n\n\n\n\n\nA single value (scalar) is treated as a vector of length 1.\n\nis.vector(10)\n\n[1] TRUE\n\nlength(10)\n\n[1] 1\n\nis.vector(\"gene1\")\n\n[1] TRUE"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#vector-creation-2",
