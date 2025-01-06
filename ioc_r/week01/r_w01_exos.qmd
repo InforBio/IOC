@@ -10,56 +10,56 @@ editor_options:
   chunk_output_type: console
 ---
 
-The R script is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R)
-
 ## Create an R project
 
 1. In RStudio, create a new project in your folder.
 
 Some rules for naming your project:  
 
-- be descriptive and keep it short
-- use snake case (only lowercase letters and underscores allowed),
-avoid special characters (such as `!`, `#`, ) and spaces
-- the name cannot starts with numbers
+  - be descriptive and keep it short
+  - use snake case (only lowercase letters and underscores allowed),
+  avoid special characters (such as `!`, `#`, ) and spaces
+  - the name cannot starts with numbers
 
 2. Open your R project, create three new folders, *i.e.*, `data`, `scripts`, `outputs`.
 
+3. Download two files:
 
-## Import Dataset
+  -  An R script named "r_w01_exos.R" for this week's exercise ([here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R)), put it into the `scripts` folder.
+  - A data file called "read-counts.csv" ([here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv)), put it into the `data` folder.
 
-### Data Description
+::: {.callout-tip}
+If you are using RStudio server, files can be uploaded using the "Upload" icon
+in the *Files* pane.
+:::
+
+## Files Description
+
+### Data File
 
 We'll be working with a gene expression dataset as an example,
 sourced from this [link](https://monashbioinformaticsplatform.github.io/r-more/).
-
-The specific file we'll use is named "**read-counts.csv**",
-which you can download from this
-[zipped folder](https://monashbioinformaticsplatform.github.io/r-more/r-more-files.zip).
-
 
 The data comes from an experiment using PCR to study 44 genes.
 The results were measured to see which genes are active at different stages in Yeast cell cycling.
 Several strains were tested, including wildtype and some with specific genes knock-downs.
 Samples were taken at nine time points over two cell cycles (two hours).
 
+### The R script
 
-### Importing into Rstudio
+The `r_w01_exos.R` script contains all commands R for the exercise.
 
-1. Download the zipped file to your computer and extract its contents.
-2. If you are using the RStudio server, upload the `read-counts.csv` to the folder `data` of your R project.
-3. Click on the file to "View" it and identify the column separator.
-4. Import the file into R and call the imported data "counts".
+## Play with RStudio
 
+In your R project, open the downloaded R script `r_w01_exos.R`:
+In RStudio menu bar, click *File* -> *Open File* -> selec the Rscript,
+or click the file in the *Files* pane.
 
-## Play with Basic R Commands
+### Import Data
 
-Open an R script to write down your code. 
-(In RStudio menu bar, click *File* -> *New File* -> *R Script*)
-
-1. What is the absolute file path of the count data? What is its absolute path?
-Verify your answer using the function `file.exists()`.
+1. Click on the CSV file in *Files* pane to "View" it. Identify the column separator.
+2. Import the file into R and call the imported data "counts".
+3. Copy paste the command shown in the R console.
 
 ```{r}
 #| echo: false
@@ -68,11 +68,22 @@ Verify your answer using the function `file.exists()`.
 counts <- read.csv("../exos_data/read-counts.csv")
 ```
 
+### Exercises
+
+1. What is the absolute file path of the imported data `counts`?
+What is its relative path?
+Verify your answer using the function `file.exists()`.
+
 ```{r}
 #| eval: false
 
-file.exists("relative_path/to/your/file") # replace the path by the yours
-file.exists("absolute_path/to/your/file") # replace the path by the yours
+getwd() # show the current working directory
+
+abs_path <- "" # put your answer between quotes
+rel_path <- "" # put your answer between quotes
+
+file.exists(abs_path) # check if R finds your file using absolute path
+file.exists(rel_path) # check if R finds your file using relative path
 ```
 
 2. Check the "Environment" panel or use the function `dim()`.
@@ -84,25 +95,25 @@ dim(counts)
 
 In the "Environment" panel, click on the tabular icon next to the dataset to visualize the it.
 
-We can extract all gene expressions for the sample named "WT:2" using `counts[["WT:2"]]`.
+We can extract all gene expressions for the sample named "WT.2" using `counts[["WT.2"]]`.
 
-3. Try `mode()` on the expression data for "WT:2", what does it return?
+3. Try `mode()` on the expression data for "WT.2", what does it return?
 
 ```{r}
-mode(counts[["WT:2"]])
+mode(counts[["WT.2"]])
 ```
 
-4. Calculate the average expression (`mean()`) and standard deviation (`sd()`) of genes from the sample "WT:2".
+4. Calculate the average expression (`mean()`) and standard deviation (`sd()`) of genes from the sample "WT.2".
 
 ```{r}
-mean(counts[["WT:2"]])
-sd(counts[["WT:2"]])
+mean(counts[["WT.2"]])
+sd(counts[["WT.2"]])
 ```
 
-5. Generate descriptive statistics for all genes from the sample "WT:2" using `summary()`.
+5. Generate descriptive statistics for all genes from the sample "WT.2" using `summary()`.
 
 ```{r}
-summary(counts[["WT:2"]])
+summary(counts[["WT.2"]])
 ```
 
 ::: {.callout-tip title="Stats Time!"}
@@ -118,7 +129,7 @@ IQR (Interquartile range) = Q3 - Q1
 :::
 
 
-6. Generate a histogram for the "WT:2" sample using `hist()`. What does the distribution look like?
+6. Generate a histogram for the "WT.2" sample using `hist()`. What does the distribution look like?
 
 ::: {.callout-tip title="Stats Time!"}
 **Histograms** help us see how data is spread out.
@@ -129,7 +140,7 @@ It's a simple way to get an overview of your data.
 :::
 
 ```{r}
-hist(counts[["WT:2"]])
+hist(counts[["WT.2"]])
 ```
 
 ::: {.callout-tip title="Stats Time!"}
@@ -145,9 +156,9 @@ which is often desirable for statistical analysis
 
 ```{r}
 plot(
-  x = counts[["WT:2"]], y = log2(counts[["WT:2"]]),
+  x = counts[["WT.2"]], y = log2(counts[["WT.2"]]),
   xlab = "Original Scale", ylab = "log2 Scale",
-  main = "Gene expression for the sample WT:2"
+  main = "Gene expression for the sample WT.2"
 )
 ```
 
@@ -155,7 +166,7 @@ Re draw the histogram with the log2 transformed data,
 what does the distribution look like now?
 
 ```{r}
-hist(log2(counts[["WT:2"]]))
+hist(log2(counts[["WT.2"]]))
 ```
 
 
