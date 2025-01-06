@@ -200,7 +200,7 @@ is.logical(True)
 
 ## Logical (2) {.smaller}
 
-- Convert to other types:
+Convert to other types:
 
 ::: {.columns}
 ::: {.column}
@@ -299,7 +299,7 @@ Use the function `c()` to create a vector and use `,` to separate elements.
 c(10, 12, 9) # Numeric vector
 c(gene1, gene2, gene3)
 
-gene_expr <- c(gene1, gene2, gene3)
+gene_expr <- c(gene1, gene2, gene3) # store in a variable
 gene_expr
 c(gene_expr, 18)
 ```
@@ -337,6 +337,7 @@ A single value (scalar) is treated as a vector of length 1.
 ```{r}
 is.vector(10)
 length(10)
+is.vector("gene1")
 ```
 
 :::
