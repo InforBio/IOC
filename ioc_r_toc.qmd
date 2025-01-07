@@ -10,5 +10,6 @@ listing:
   fields: [image, title]
 page-layout: full
 title-block-banner: false
+css: toc.css
 ---
 

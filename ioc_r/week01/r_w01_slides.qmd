@@ -22,7 +22,7 @@ image: images/R_logo.png
 
 # Unlock the Power of Your Data with ![](images/R_logo.png){width=2.5cm}
 
-## Welcome to R! .{smaller}
+## Welcome to R! {.smaller}
 
 R is a programming language and software environment designed for statistical computing and data analysis.
 
