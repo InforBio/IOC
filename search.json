@@ -172,14 +172,21 @@
     "href": "ioc_r/week01/r_w01_exos.html",
     "title": "Week 1 - Hands-On Examples",
     "section": "",
-    "text": "In RStudio, create a new project in your folder.\n\nSome rules for naming your project:\n\nChoose a short and descriptive name.\nUse snake case (lowercase letters and underscores only). Avoid special characters (such as !, #, ) and spaces\nThe name cannot starts with numbers\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs.\nDownload two files:\n\n\nAn R script named “r_w01_exos.R” for this week’s exercise (here), save it into the scripts folder.\nA data file called “read-counts.csv” (here), put it into the data folder.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are using RStudio server, files can be uploaded using the “Upload” icon in the Files pane."
+    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nGenerate your first Quarto report"
+  },
+  {
+    "objectID": "ioc_r/week01/r_w01_exos.html#goals",
+    "href": "ioc_r/week01/r_w01_exos.html#goals",
+    "title": "Week 1 - Hands-On Examples",
+    "section": "",
+    "text": "Get familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nGenerate your first Quarto report"
   },
   {
     "objectID": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
     "href": "ioc_r/week01/r_w01_exos.html#create-an-r-project",
     "title": "Week 1 - Hands-On Examples",
-    "section": "",
-    "text": "In RStudio, create a new project in your folder.\n\nSome rules for naming your project:\n\nChoose a short and descriptive name.\nUse snake case (lowercase letters and underscores only). Avoid special characters (such as !, #, ) and spaces\nThe name cannot starts with numbers\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs.\nDownload two files:\n\n\nAn R script named “r_w01_exos.R” for this week’s exercise (here), save it into the scripts folder.\nA data file called “read-counts.csv” (here), put it into the data folder.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are using RStudio server, files can be uploaded using the “Upload” icon in the Files pane."
+    "section": "Create an R project",
+    "text": "Create an R project\n\nIn RStudio, create a new project in your folder.\n\nSome rules for naming your project:\n\nChoose a short and descriptive name.\nUse snake case (lowercase letters and underscores only). Avoid special characters (such as !, #, ) and spaces.\nThe name cannot starts with numbers.\n\n\nOpen your R project, create three new folders, i.e., data, scripts, outputs.\nDownload two files:\n\n\nAn R script named “r_w01_exos.R” for this week’s exercise (here), save it into the scripts folder.\nA data file called “read-counts.csv” (here), put it into the data folder.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are using RStudio server, files can be uploaded using the “Upload” icon in the Files pane."
   },
   {
     "objectID": "ioc_r/week01/r_w01_exos.html#files-description",
@@ -697,7 +704,7 @@
     "href": "ioc_r/week01/r_w01_slides.html#need-some-help",
     "title": "Kickstart with R:Your Gateway to Data Science",
     "section": "Need Some Help?",
-    "text": "Need Some Help?\n\nGoogle it!\nAsk/discuss your question via Slack.\nAI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)\n\nKey points:\n\nExplain your question step-by-step.\nShare the context.\nUse keywords.\nTry to rephrase the question.\n\n\ngoogle/forum stack overFlow - what are you trying to do / what did you try? - the warning or error message / your code / your data structure - language name / function or package name / a specific problem - try and iterate"
+    "text": "Need Some Help?\n\nGoogle it!\nForums: Stack Overflow, Cirad( francophone), etc.\nAsk/discuss your question via Slack.\nAI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)\n\nKey points:\n\nExplain your question step-by-step.\nShare the context.\nUse keywords.\nTry to rephrase the question.\n\n\ngoogle/forum stack overFlow - what are you trying to do / what did you try? - the warning or error message / your code / your data structure - language name / function or package name / a specific problem - try and iterate"
   },
   {
     "objectID": "ioc_r/week01/r_w01_slides.html#pdf-of-slides",
@@ -711,7 +718,7 @@
     "href": "ioc_r/week01/r_w01_slides.html#todays-goals",
     "title": "Kickstart with R:Your Gateway to Data Science",
     "section": "Today’s Goals",
-    "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nUpload and import data file into RStudio\nGenerate your first Quarto report"
+    "text": "Today’s Goals\n\nGet familiar with the RStudio\nCreate an R project in RStudio\nImport data file into RStudio\nGenerate your first Quarto report"
   },
   {
     "objectID": "ioc_r/week01/r_w01_work.html",
