@@ -452,7 +452,7 @@
     "href": "ioc_r/week02/r_w02_slides.html#variable-naming-convention",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Variable Naming Convention",
-    "text": "Variable Naming Convention\n\n\n\nBe descriptive and keep it short\nUse snake_case or camelCase\nAvoid special characters (such as !, #, ) and spaces\nDo not start a name with numbers\nAvoid reserved keywords in R (e.g., function, if, TRUE)\nDo not overwrite built-in functions (e.g., mean, sd)\n\n\n\n\n\nWhich are validated names?\n\n\n\nfoo\ntest\nvar\nvar2\nexam_results\na_variable_with_a_name_super_long\ncount.matrix \n\nday_1\nday_one\nday1\nfirst_day_of_the_month\nDayOne\ndayOne\nDAYONE\nDAYone\n\n\n\n\n\nHow to know if a variable name was already used?\n\nType help(reserved) to check reserved words in R.\nCheck in “Environment” pane.\nType the first letter of a name and press the Tab key to trigger autocompletion\n\n\n\n\n\n\nFollow the same rules when you naming your R project folder. If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for."
+    "text": "Variable Naming Convention\n\n\n\nChoose a short and descriptive name\nUse snake_case (lowercase letters and underscores only)\nAvoid special characters (such as !, #, ) and spaces\nDo not start a name with numbers\nAvoid reserved keywords in R (e.g., function, if, TRUE)\nDo not overwrite built-in functions (e.g., mean, sd)\n\n\n\n\n\nWhich are validated names?\n\n\n\nfoo\ntest\nvar\nvar2\nexam_results\na_variable_with_a_name_super_long\n\nday_1\nday_one\nday1\nfirst_day_of_the_month\nDayOne\ndayOne\nDAYONE\nDAYone\n\n\n\n\n\nHow to know if a variable name was already used?\n\nType help(reserved) to check reserved words in R.\nCheck in “Environment” pane.\nType the first letter of a name and press the Tab key to trigger autocompletion\n\n\n\n\n\n\nFollow the same rules when you naming your R project folder. If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for."
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#numeric",
@@ -588,11 +588,11 @@
     "text": "Today’s Goals\n\nGet familiar with data types\nGet familiar with vectors and matrices manipulations\nSimulate your own biological data and test the normality using the Shapiro-Wilk test"
   },
   {
-    "objectID": "ioc_r/week01/r_w01_slides.html#welcome-to-r-.smaller",
-    "href": "ioc_r/week01/r_w01_slides.html#welcome-to-r-.smaller",
+    "objectID": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
+    "href": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
     "title": "Kickstart with R:Your Gateway to Data Science",
-    "section": "Welcome to R! .{smaller}",
-    "text": "Welcome to R! .{smaller}\nR is a programming language and software environment designed for statistical computing and data analysis.\n\n\nWhy R?\n\nBiologist friendly!\nFree and open-source\nSupported by a huge community\n\n\nWhat you can do with R?\n\nAnalyze your data\nVisualize your findings\nAutomate your workflow\nShare reproducible research"
+    "section": "Welcome to R!",
+    "text": "Welcome to R!\nR is a programming language and software environment designed for statistical computing and data analysis.\n\n\nWhy R?\n\nBiologist friendly!\nFree and open-source\nSupported by a huge community\n\n\nWhat you can do with R?\n\nAnalyze your data\nVisualize your findings\nAutomate your workflow\nShare reproducible research"
   },
   {
     "objectID": "ioc_r/week01/r_w01_slides.html#the-r-console",
@@ -767,14 +767,14 @@
     "href": "ioc_r_info.html#recommended-readings",
     "title": "IOC R Training Information",
     "section": "Recommended Readings",
-    "text": "Recommended Readings\n\nR for Data Science by Hadley Wickham\nHands-On Programming with R by Garrett Grolemund\nggplot2: Elegant Graphics for Data Analysis by Hadley Wickham\nYaRrr! The Pirate’s Guide to R by Nathaniel D. Phillips\nCRAN R Documentation"
+    "text": "Recommended Readings\n\nR for Data Science by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund.\nHands-On Programming with R by Garrett Grolemund\nggplot2: Elegant Graphics for Data Analysis by Hadley Wickham\nYaRrr! The Pirate’s Guide to R by Nathaniel D. Phillips\nCRAN R Documentation"
   },
   {
     "objectID": "ioc_r_toc.html",
     "href": "ioc_r_toc.html",
     "title": "Materials for the IOC-R",
     "section": "",
-    "text": "Week 3 - Hands-On Examples\n\n\n\n\n\n\nweek03\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMore Complex Data Structures:Data Frames and Lists\n\n\nIOC-R Week 3\n\n\n\nweek03\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Homework\n\n\n\n\n\n\nweek03\n\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Homework\n\n\n\n\n\n\nweek02\n\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Foundations:Vectors and Matrices\n\n\nIOC-R Week 2\n\n\n\nweek02\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Hands-On Examples\n\n\n\n\n\n\nweek02\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week 1\n\n\n\nweek01\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\n\n\n\nweek01\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\n\n\n\nweek01\n\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilding Logic:Operators, Conditions, and Functions\n\n\nIOC-R Week 4\n\n\n\nweek04\n\n\nslides\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Hands-On Examples\n\n\n\n\n\n\nweek04\n\n\nexercise\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Homework\n\n\n\n\n\n\nweek04\n\n\nhomework\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Kickstart with R:Your Gateway to Data Science\n\n\nIOC-R Week 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Hands-On Examples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 - Homework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Foundations:Vectors and Matrices\n\n\nIOC-R Week 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Hands-On Examples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 - Homework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMore Complex Data Structures:Data Frames and Lists\n\n\nIOC-R Week 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Hands-On Examples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 3 - Homework\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuilding Logic:Operators, Conditions, and Functions\n\n\nIOC-R Week 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Hands-On Examples\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 4 - Homework\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "ioc_scrnaseq_info.html",
