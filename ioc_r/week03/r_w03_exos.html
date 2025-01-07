@@ -536,13 +536,15 @@ Stats Time!
 <div class="callout-body-container callout-body">
 <p><strong>Wilcoxon Rank Sum Test</strong></p>
 <p>The Wilcoxon Rank Sum test, also called Mann-Whitney test, is a <strong>non-parametric</strong> test used to compare two groups. It does not assume a normal distribution.</p>
-<p><img src="images/wilcox_viz.png" class="img-fluid" style="width:65.0%"></p>
+<p>The idea is to bring the two groups together and sort all values in order. <img src="images/wilcox_viz.png" class="img-fluid" style="width:65.0%"></p>
 <p>(Figure credit: Lorette Noiret)</p>
 <p>The hypotheses are:</p>
 <ul>
 <li>H0: two groups have the same distribution (<em>i.e.</em>, same median)</li>
 <li>H1: two groups have different distributions</li>
 </ul>
+<p>If H0 is true, then the ranks should be randomly distributed between the two samples (WA ≃ WB) If H0 is false, then the larger ranks will be in one of the two groups (WA &lt; WB)</p>
+<p>So we can make decision based on the sum of ranks in each group.</p>
 </div>
 </div>
 <ol start="5" type="1">
@@ -1054,6 +1056,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Code: MIT License | Content: CC BY 4.0 [InforBio]</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
 
 
 

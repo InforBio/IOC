@@ -217,16 +217,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Some rules for naming your project:</p>
 <ul>
-<li>be descriptive and keep it short</li>
-<li>use snake case (only lowercase letters and underscores allowed), avoid special characters (such as <code>!</code>, <code>#</code>, ) and spaces</li>
-<li>the name cannot starts with numbers</li>
+<li>Choose a short and descriptive name.</li>
+<li>Use snake case (lowercase letters and underscores only). Avoid special characters (such as <code>!</code>, <code>#</code>, ) and spaces</li>
+<li>The name cannot starts with numbers</li>
 </ul>
 <ol start="2" type="1">
 <li><p>Open your R project, create three new folders, <em>i.e.</em>, <code>data</code>, <code>scripts</code>, <code>outputs</code>.</p></li>
 <li><p>Download two files:</p></li>
 </ol>
 <ul>
-<li>An R script named “r_w01_exos.R” for this week’s exercise (<a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R">here</a>), put it into the <code>scripts</code> folder.</li>
+<li>An R script named “r_w01_exos.R” for this week’s exercise (<a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R">here</a>), save it into the <code>scripts</code> folder.</li>
 <li>A data file called “read-counts.csv” (<a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv">here</a>), put it into the <code>data</code> folder.</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -281,7 +281,7 @@ Tip
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(rel_path) <span class="co"># check if R finds your file using relative path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
-<li>Check the “Environment” panel or use the function <code>dim()</code>. What is the dimension of the data frame?</li>
+<li>What is the dimension of the data frame? Check the “Environment” panel or use the function <code>dim()</code>.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -353,7 +353,7 @@ Stats Time!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Histograms</strong> help us see how data is spread out. They show how many data points fall into different ranges, or <em>bins</em>. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.</p>
+<p><strong>Histograms</strong> help us see how data is spread out. They show how many data points fall into different intervals, or <em>bins</em>. By looking at a histogram, we can quickly understand the shape of the data, like if it’s skewed or has outliers. It’s a simple way to get an overview of your data.</p>
 </div>
 </div>
 <div class="cell">
@@ -377,7 +377,12 @@ Stats Time!
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>log2 Transformation</strong></p>
-<p>A log2 transformation compresses larger values more than smaller ones, making the data less skewed. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation makes the distribution more symmetric and closer to normal, which is often desirable for statistical analysis.</p>
+<p>A log2 transformation is commonly used to normalize data and reduce skewness, especially in datasets with values spanning several orders of magnitude. Many biological data, like gene expression counts, tend to have a highly skewed distribution with a long tail of large values. The log2 transformation helps:</p>
+<ul>
+<li>Stabilize variance – Makes data with large differences more comparable.</li>
+<li>Handle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.</li>
+<li>Improve normality – Makes the data distribution closer to normal, which is often required for statistical tests.</li>
+</ul>
 </div>
 </div>
 <div class="cell">
@@ -852,6 +857,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Code: MIT License | Content: CC BY 4.0 [InforBio]</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
 
 
 

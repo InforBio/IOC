@@ -216,17 +216,18 @@
 <h1>Unlock the Power of Your Data with <img data-src="images/R_logo.png" style="width:2.5cm"></h1>
 
 </section>
-<section id="welcome-to-r" class="slide level2">
-<h2>Welcome to R!</h2>
+<section id="welcome-to-r-.smaller" class="slide level2">
+<h2>Welcome to R! .{smaller}</h2>
+<p>R is a programming language and software environment designed for statistical computing and data analysis.</p>
 <div class="columns">
-<div class="column" style="font-size: 90%;">
+<div class="column">
 <p>Why R?</p>
 <ul>
 <li>Biologist friendly!</li>
 <li>Free and open-source</li>
 <li>Supported by a huge community</li>
 </ul>
-</div><div class="column fragment" style="font-size: 90%;">
+</div><div class="column fragment">
 <p>What you can do with R?</p>
 <ul>
 <li>Analyze your data</li>
@@ -259,7 +260,7 @@
 <p><img data-src="images/screenshot_rstudio.png"></p>
 </div><div class="column fragment" style="width:45%;">
 <ol type="1">
-<li>Console: where R “talks back” to you.</li>
+<li>Console: enter and execute R commands interactively.</li>
 <li>Environment/History: tracks your variables and past commands.</li>
 <li>Files/Plots/Packages: managing your files, viewing graphs, or installing tools.</li>
 </ol>
@@ -397,6 +398,42 @@
       }</style></aside>
 </div>
 </section>
+<section id="a-well-organized-project-folder" class="slide level2 smaller">
+<h2>A Well Organized Project Folder</h2>
+<p>Tree structure:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">my_project</span>              <span class="co"># Your working directory    </span></span>
+<span id="cb2-2"><a></a><span class="ex">├──</span> my_project.Rproj    <span class="co"># The R project configuration file</span></span>
+<span id="cb2-3"><a></a><span class="ex">├──</span> README.md           <span class="co"># A short introduction of the project</span></span>
+<span id="cb2-4"><a></a><span class="ex">├──</span> data                <span class="co"># Raw data files</span></span>
+<span id="cb2-5"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_count.tsv</span>
+<span id="cb2-6"><a></a><span class="ex">├──</span> scripts             <span class="co"># Your R code files</span></span>
+<span id="cb2-7"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 01-analysis.R</span>
+<span id="cb2-8"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 02-figures.R</span>
+<span id="cb2-9"><a></a><span class="ex">└──</span> outputs             <span class="co"># Results, e.g., graphs, reports</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="fragment">
+<ul>
+<li>To create new folders:
+<ul>
+<li>via RStudio: in <em>File</em> pane, click <img data-src="images/rstudio_create_folder_button.png" style="width:1cm">. The folder will be created in the current directory.</li>
+<li>or use <em>File Explorer</em> (Windows) / <em>Finder</em> (Mac).</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>example of bad home organisation: pillow in kitchen and microoven in the bathroom The trunk is the main folder (your R Project). Branches are subfolders for scripts, data, and output, ect. By building a clear structure, you’ll: Always know where to find things. Save time when coding in R or sharing your project with others. Avoid messy files scattered everywhere.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
 <section id="understanding-file-paths" class="slide level2 smaller">
 <h2>Understanding File Paths</h2>
 <p>A <strong>path</strong> tells your computer where to find files.</p>
@@ -426,42 +463,6 @@
 </ul>
 <aside class="notes">
 <p>computer’s file system -&gt; a country files -&gt; offices in a building</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</div>
-</section>
-<section id="a-well-organized-folder" class="slide level2 smaller">
-<h2>A Well Organized Folder</h2>
-<p>Tree structure:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">my_project</span>              <span class="co"># Your working directory    </span></span>
-<span id="cb2-2"><a></a><span class="ex">├──</span> my_project.Rproj    <span class="co"># The R project configuration file</span></span>
-<span id="cb2-3"><a></a><span class="ex">├──</span> README.md           <span class="co"># A short introduction of the project</span></span>
-<span id="cb2-4"><a></a><span class="ex">├──</span> data                <span class="co"># Raw data files</span></span>
-<span id="cb2-5"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_count.tsv</span>
-<span id="cb2-6"><a></a><span class="ex">├──</span> scripts             <span class="co"># Your R code files</span></span>
-<span id="cb2-7"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 01-analysis.R</span>
-<span id="cb2-8"><a></a><span class="ex">│&nbsp;&nbsp;</span> └── 02-figures.R</span>
-<span id="cb2-9"><a></a><span class="ex">└──</span> outputs             <span class="co"># Results, e.g., graphs, reports</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<div class="fragment">
-<ul>
-<li>To create new folders:
-<ul>
-<li>via RStudio: in <em>File</em> pane, click <img data-src="images/rstudio_create_folder_button.png" style="width:1cm">. The folder will be created in the current directory.</li>
-<li>or use <em>File Explorer</em> (Windows) / <em>Finder</em> (Mac).</li>
-</ul></li>
-</ul>
-<aside class="notes">
-<p>example of bad home organisation: pillow in kitchen and microoven in the bathroom The trunk is the main folder (your R Project). Branches are subfolders for scripts, data, and output, ect. By building a clear structure, you’ll: Always know where to find things. Save time when coding in R or sharing your project with others. Avoid messy files scattered everywhere.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -518,13 +519,13 @@
 <ul>
 <li>text files (.txt, .csv, <em>etc.</em>)</li>
 <li>Excel files</li>
-<li>data from other software (e.g., SAS)</li>
+<li>data from other softwares (<em>e.g.</em>: SAS)</li>
 </ul></li>
 <li>Click-button methods:
 <ul>
 <li>From menu bar: <em>File</em> -&gt; <em>Import Dataset</em> -&gt; Select the format -&gt; Choose your file</li>
-<li>From the “Environment” pane: click “Import Dataset” -&gt; Select the format -&gt; Choose your file</li>
-<li>From the “Files” pane: Navigate to your file location -&gt; Click the file and select “Import Dataset”</li>
+<li>From the “Environment” pane: click <em>Import Dataset</em> -&gt; Select the format -&gt; Choose your file</li>
+<li>From the “Files” pane: Navigate to your file location -&gt; Click the file and select <em>Import Dataset</em></li>
 </ul></li>
 </ul>
 </div><div class="column fragment">
