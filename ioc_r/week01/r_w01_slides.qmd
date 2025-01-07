@@ -1,6 +1,8 @@
 ---
 title: "Kickstart with R:<br>Your Gateway to Data Science"
 subtitle: "IOC-R Week 1"
+date: "2025-01-06"
+date-format: " "
 format:
   revealjs: 
     toc: true

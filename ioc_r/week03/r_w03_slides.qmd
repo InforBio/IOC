@@ -1,6 +1,8 @@
 ---
 title: "More Complex Data Structures:<br>Data Frames and Lists"
 subtitle: "IOC-R Week 3"
+date: "2025-01-20"
+date-format: " "
 format:
   revealjs: 
     toc: true

@@ -1,6 +1,8 @@
 ---
 title: "Building Logic:<br>Operators, Conditions, and Functions"
 subtitle: "IOC-R Week 4"
+date: "2025-01-27"
+date-format: " "
 format:
   revealjs: 
     toc: true

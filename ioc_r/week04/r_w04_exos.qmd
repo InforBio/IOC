@@ -3,6 +3,8 @@ title: "Week 4 - Hands-On Examples"
 format: 
   html: default
   # pdf: default
+date: "2025-01-28"
+date-format: " "
 categories: 
   - week04
   - exercise

@@ -2,6 +2,8 @@
 title: "Week 4 - Homework"
 format: 
   html: default
+date: "2025-01-29"
+date-format: " "
 categories: 
   - week04
   - homework
