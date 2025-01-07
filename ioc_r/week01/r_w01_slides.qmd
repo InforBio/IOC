@@ -354,7 +354,7 @@ file.exists("scripts/02-figures.R")
 - Supports multiple output formats: .html, .docx, .pptx, .pdf, *etc.*
 
 ::: {.callout-tip appearance="minimal"}
-Official website: [https://quarto.org](https://quarto.org)
+Official website: <https://quarto.org>
 :::
 
 ## An Example {.smaller}
@@ -382,10 +382,10 @@ Rendered document in HTML format:
 :::
 
 
-
 ## Need Some Help? {.smaller}
 
 - Google it!
+- Forums: Stack Overflow, [Cirad](https://forums.cirad.fr/logiciel-R/)( francophone), *etc.*
 - Ask/discuss your question via Slack.
 - AI (like ChatGPT) is your friend 😉, but be careful of false answers! (More details in session 6)
 
@@ -422,5 +422,5 @@ After saving, press "**e**" again to return to presentation mode.
 
 - Get familiar with the RStudio
 - Create an R project in RStudio
-- Upload and import data file into RStudio
+- Import data file into RStudio
 - Generate your first Quarto report

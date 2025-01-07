@@ -12,6 +12,13 @@ editor_options:
   chunk_output_type: console
 ---
 
+## Goals
+
+- Get familiar with the RStudio
+- Create an R project in RStudio
+- Import data file into RStudio
+- Generate your first Quarto report
+
 ## Create an R project
 
 1. In RStudio, create a new project in your folder.
@@ -20,8 +27,8 @@ Some rules for naming your project:
 
   - Choose a short and descriptive name.
   - Use snake case (lowercase letters and underscores only).
-  Avoid special characters (such as `!`, `#`, ) and spaces
-  - The name cannot starts with numbers
+  Avoid special characters (such as `!`, `#`, ) and spaces.
+  - The name cannot starts with numbers.
 
 2. Open your R project, create three new folders, *i.e.*, `data`, `scripts`, `outputs`.
 

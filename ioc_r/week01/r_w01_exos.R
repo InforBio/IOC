@@ -7,8 +7,8 @@
 #    Some rules for naming your project:
 #     - Choose a short and descriptive name.
 #     - Use snake case (lowercase letters and underscores only).
-#       Avoid special characters (such as `!`, `#`, ) and spaces
-#     - The name cannot starts with numbers
+#       Avoid special characters (such as `!`, `#`, ) and spaces.
+#     - The name cannot starts with numbers.
 # 2. Open your R project, create three new folders,
 #    *i.e.*, `data`, `scripts`, `outputs`.
 # 3. Download two files:
@@ -47,7 +47,7 @@
 # 2. Import the file into R and call the imported data "counts".
 # 3. Copy paste the command shown in the R console.
 
-counts <- read.csv("path/to/read-counts.csv") # replace by your path
+counts <- read.csv("path/to/read-counts.csv") # replace this line by the copied command
 
 
 ### Exercises
