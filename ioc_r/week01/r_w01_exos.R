@@ -5,16 +5,16 @@
 
 # 1. In RStudio, create a new project in your folder.
 #    Some rules for naming your project:
-#     - be descriptive and keep it short
-#     - use snake case (only lowercase letters and underscores allowed),
-#       avoid special characters (such as `!`, `#`, ) and spaces
-#     - the name cannot starts with numbers
+#     - Choose a short and descriptive name.
+#     - Use snake case (lowercase letters and underscores only).
+#       Avoid special characters (such as `!`, `#`, ) and spaces
+#     - The name cannot starts with numbers
 # 2. Open your R project, create three new folders,
 #    *i.e.*, `data`, `scripts`, `outputs`.
 # 3. Download two files:
 #   -  An R script named "r_w01_exos.R" for this week's exercise here:
 # https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R
-#     Put it into the `scripts` folder.
+#     save it into the `scripts` folder.
 #   - A data file called "read-counts.csv" here:
 # https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv
 #     Put it into the `data` folder.
@@ -64,8 +64,8 @@ file.exists(abs_path)
 file.exists(rel_path)
 
 
-# 2.Check the “Environment” panel or use the function dim().
-#   What is the dimension of the data frame?
+# 2. What is the dimension of the data frame?
+#   Check the “Environment” panel or use the function dim().
 #   In the “Environment” panel,
 #   click on the tabular icon next to the dataset to visualize the it.
 dim(counts)

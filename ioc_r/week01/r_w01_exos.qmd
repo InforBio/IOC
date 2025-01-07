@@ -16,16 +16,16 @@ editor_options:
 
 Some rules for naming your project:  
 
-  - be descriptive and keep it short
-  - use snake case (only lowercase letters and underscores allowed),
-  avoid special characters (such as `!`, `#`, ) and spaces
-  - the name cannot starts with numbers
+  - Choose a short and descriptive name.
+  - Use snake case (lowercase letters and underscores only).
+  Avoid special characters (such as `!`, `#`, ) and spaces
+  - The name cannot starts with numbers
 
 2. Open your R project, create three new folders, *i.e.*, `data`, `scripts`, `outputs`.
 
 3. Download two files:
 
-  -  An R script named "r_w01_exos.R" for this week's exercise ([here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R)), put it into the `scripts` folder.
+  -  An R script named "r_w01_exos.R" for this week's exercise ([here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week01/r_w01_exos.R)), save it into the `scripts` folder.
   - A data file called "read-counts.csv" ([here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv)), put it into the `data` folder.
 
 ::: {.callout-tip}
@@ -86,8 +86,8 @@ file.exists(abs_path) # check if R finds your file using absolute path
 file.exists(rel_path) # check if R finds your file using relative path
 ```
 
-2. Check the "Environment" panel or use the function `dim()`.
-What is the dimension of the data frame?
+2. What is the dimension of the data frame?
+Check the "Environment" panel or use the function `dim()`.
 
 ```{r}
 dim(counts)
@@ -133,7 +133,7 @@ IQR (Interquartile range) = Q3 - Q1
 
 ::: {.callout-tip title="Stats Time!"}
 **Histograms** help us see how data is spread out.
-They show how many data points fall into different ranges, or *bins*.
+They show how many data points fall into different intervals, or *bins*.
 By looking at a histogram, we can quickly understand the shape of the data,
 like if it’s skewed or has outliers.
 It's a simple way to get an overview of your data.
@@ -146,12 +146,15 @@ hist(counts[["WT.2"]])
 ::: {.callout-tip title="Stats Time!"}
 **log2 Transformation**
 
-A log2 transformation compresses larger values more than smaller ones,
-making the data less skewed.
+A log2 transformation is commonly used to normalize data and reduce skewness,
+especially in datasets with values spanning several orders of magnitude. 
 Many biological data, like gene expression counts,
 tend to have a highly skewed distribution with a long tail of large values.
-The log2 transformation makes the distribution more symmetric and closer to normal,
-which is often desirable for statistical analysis.
+The log2 transformation helps:
+
+-  Stabilize variance – Makes data with large differences more comparable.
+- Handle ratios – Converts multiplicative relationships into additive ones, simplifying interpretation.
+- Improve normality – Makes the data distribution closer to normal, which is often required for statistical tests.
 :::
 
 ```{r}

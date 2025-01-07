@@ -189,6 +189,7 @@ The Wilcoxon Rank Sum test, also called Mann-Whitney test,
 is a **non-parametric** test used to compare two groups.
 It does not assume a normal distribution.
 
+The idea is to bring the two groups together and sort all values in order.
 ![](images/wilcox_viz.png){width=65%}
 
 (Figure credit: Lorette Noiret)
@@ -198,6 +199,10 @@ The hypotheses are:
 - H0: two groups have the same distribution (*i.e.*, same median)
 - H1: two groups have different distributions
 
+If H0 is true, then the ranks should be randomly distributed between the two samples (WA ≃ WB)
+If H0 is false, then the larger ranks will be in one of the two groups  (WA < WB)
+
+So we can make decision based on the sum of ranks in each group.
 :::
 
 5. Use `wilcox.test()` to compare *LOH1* expression between WT and SET1.
