@@ -68,8 +68,8 @@ A box labeled "char_name" containing the platform name "InforBio".
 
 ::: columns
 ::: {.column}
-- Be descriptive and keep it short
-- Use snake_case or camelCase
+- Choose a short and descriptive name
+- Use snake_case (lowercase letters and underscores only)
 - Avoid special characters (such as `!`, `#`, ) and spaces
 - Do not start a name with numbers
 - Avoid reserved keywords in R (*e.g.*, function, if, TRUE)
@@ -89,7 +89,6 @@ var
 var2
 exam_results
 a_variable_with_a_name_super_long
-count.matrix 
 
 day_1
 day_one
