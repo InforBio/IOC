@@ -4,7 +4,7 @@ project:
 
 website:
   title: "IOC"
-  favicon: images/logoInforBio_fond_blanc.png
+  favicon: images/logoInforBio_fond_blanc_small.png
   
   page-footer: 
     right: "This page is built with [Quarto](https://quarto.org/)"
