@@ -151,7 +151,7 @@ making the data less skewed.
 Many biological data, like gene expression counts,
 tend to have a highly skewed distribution with a long tail of large values.
 The log2 transformation makes the distribution more symmetric and closer to normal,
-which is often desirable for statistical analysis
+which is often desirable for statistical analysis.
 :::
 
 ```{r}
@@ -160,6 +160,9 @@ plot(
   xlab = "Original Scale", ylab = "log2 Scale",
   main = "Gene expression for the sample WT.2"
 )
+abline(v = 256, col = "red", lty = 2) # Add vertical line 
+abline(h = 8, col = "red", lty = 2) # Add horizontal line
+text(x = 500, y = 7, labels = expression(2^8 == 256)) # Add equation
 ```
 
 Re draw the histogram with the log2 transformed data,
