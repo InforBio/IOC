@@ -31,7 +31,10 @@ Use the following code to import the file "read-counts.csv"
 Name the imported data `expr_data`.
 
 ```{r}
-expr_data <- read.csv("../exos_data/read-counts.csv")  # replace the path with your own
+expr_data <- read.table(
+  file = "../exos_data/read-counts.csv",  # replace the path with your own
+  header = TRUE, sep = ",", row.names = 1
+)
 ```
 
 2. Create a list `info_expr` to store information about `expr_data`:  
