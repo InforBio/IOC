@@ -1,10 +1,7 @@
 ## DE analysis with toy data   ----------------------
 library(DESeq2)
 
-read_counts <- read.table(
-  file = "ioc_r/data/read-counts.csv",
-  header = TRUE, sep = ",", row.names = 1
-)
+read_counts <- read.csv("ioc_r/data/read-counts.csv")
 pheno <- data.frame(
   id = colnames(read_counts)[1:20],
   group = factor(rep(c("wt", "set1"), each = 10), levels = c("wt", "set1"))

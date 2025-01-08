@@ -59,10 +59,7 @@ my_list
 # (you have already downloaded it for the hand-on examples of week01).
 # Name the imported data `expr_data`.
 
-expr_data <- read.table(
-  file = "../exos_data/read-counts.csv",  # replace the path with your own
-  header = TRUE, sep = ",", row.names = 1
-)
+expr_data <- read.csv("../exos_data/read-counts.csv")  # replace the path with your own
 
 ## 1. Check the structure of `expr_data` using an appropriate R function.
 
