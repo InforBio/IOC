@@ -767,27 +767,29 @@
 </section>
 <section id="recoding-data-type" class="slide level2 smaller">
 <h2>Recoding Data Type</h2>
-<p>R (&gt;= 4.0.0) treats strings in data frames as strings rather than factors.</p>
-<p>You need to recode the column data type if data is categorical.</p>
+<p>You need to recode the column data type if data is categorical, use the <code>factor()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>my_df[[<span class="st">"status"</span>]] <span class="ot">&lt;-</span> <span class="fu">factor</span>(my_df[[<span class="st">"status"</span>]])</span>
-<span id="cb73-2"><a></a>my_df<span class="sc">$</span>tissue <span class="ot">&lt;-</span> <span class="fu">factor</span>(my_df[[<span class="st">"tissue"</span>]])</span>
-<span id="cb73-3"><a></a></span>
-<span id="cb73-4"><a></a><span class="co"># Check again the data</span></span>
-<span id="cb73-5"><a></a><span class="fu">str</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb73-2"><a></a>my_df<span class="sc">$</span>tissue <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb73-3"><a></a>  my_df[[<span class="st">"tissue"</span>]],</span>
+<span id="cb73-4"><a></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"muscle"</span>, <span class="st">"liver"</span>) <span class="co"># specify levels' order</span></span>
+<span id="cb73-5"><a></a>)</span>
+<span id="cb73-6"><a></a></span>
+<span id="cb73-7"><a></a><span class="co"># Check again the data</span></span>
+<span id="cb73-8"><a></a><span class="fu">str</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   10 obs. of  5 variables:
  $ id       : chr  "1" "2" "ID3" "ID4" ...
  $ gene_name: chr  "geneA" "geneB" "geneC" "geneD" ...
  $ gene_expr: num  12.4 11.3 13.5 10.2 11.4 0.5 1 1.2 1.4 0.6
  $ status   : Factor w/ 2 levels "activated","inhibited": 1 1 1 1 1 2 2 2 2 2
- $ tissue   : Factor w/ 2 levels "liver","muscle": 1 2 1 2 1 2 1 2 1 2</code></pre>
+ $ tissue   : Factor w/ 2 levels "muscle","liver": 2 1 2 1 2 1 2 1 2 1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a><span class="fu">summary</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      id             gene_name           gene_expr           status     tissue 
- Length:10          Length:10          Min.   : 0.50   activated:5   liver :5  
- Class :character   Class :character   1st Qu.: 1.05   inhibited:5   muscle:5  
+ Length:10          Length:10          Min.   : 0.50   activated:5   muscle:5  
+ Class :character   Class :character   1st Qu.: 1.05   inhibited:5   liver :5  
  Mode  :character   Mode  :character   Median : 5.80                           
                                        Mean   : 6.35                           
                                        3rd Qu.:11.38                           

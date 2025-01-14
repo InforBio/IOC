@@ -221,7 +221,7 @@
     "href": "ioc_r/week02/r_w02_exos.html#goals",
     "title": "Week 2 - Hands-On Examples",
     "section": "Goals",
-    "text": "Goals\n\nGet familiar with data types and variable creation\nGet familiar with vectors and matrices manipulations\nSimulate your own biological data and test the normality using the Shapiro-Wilk test"
+    "text": "Goals\n\nGet familiar with variables and data types\nGet familiar with vectors and matrices manipulations\nSimulate your own biological data and test the normality using the Shapiro-Wilk test"
   },
   {
     "objectID": "ioc_r/week02/r_w02_exos.html#variables-in-r",
@@ -347,7 +347,7 @@
     "href": "ioc_r/week03/r_w03_slides.html#recoding-data-type",
     "title": "More Complex Data Structures:Data Frames and Lists",
     "section": "Recoding Data Type",
-    "text": "Recoding Data Type\nR (&gt;= 4.0.0) treats strings in data frames as strings rather than factors.\nYou need to recode the column data type if data is categorical.\n\nmy_df[[\"status\"]] &lt;- factor(my_df[[\"status\"]])\nmy_df$tissue &lt;- factor(my_df[[\"tissue\"]])\n\n# Check again the data\nstr(my_df)\n\n'data.frame':   10 obs. of  5 variables:\n $ id       : chr  \"1\" \"2\" \"ID3\" \"ID4\" ...\n $ gene_name: chr  \"geneA\" \"geneB\" \"geneC\" \"geneD\" ...\n $ gene_expr: num  12.4 11.3 13.5 10.2 11.4 0.5 1 1.2 1.4 0.6\n $ status   : Factor w/ 2 levels \"activated\",\"inhibited\": 1 1 1 1 1 2 2 2 2 2\n $ tissue   : Factor w/ 2 levels \"liver\",\"muscle\": 1 2 1 2 1 2 1 2 1 2\n\nsummary(my_df)\n\n      id             gene_name           gene_expr           status     tissue \n Length:10          Length:10          Min.   : 0.50   activated:5   liver :5  \n Class :character   Class :character   1st Qu.: 1.05   inhibited:5   muscle:5  \n Mode  :character   Mode  :character   Median : 5.80                           \n                                       Mean   : 6.35                           \n                                       3rd Qu.:11.38                           \n                                       Max.   :13.50"
+    "text": "Recoding Data Type\nYou need to recode the column data type if data is categorical, use the factor() function.\n\nmy_df[[\"status\"]] &lt;- factor(my_df[[\"status\"]])\nmy_df$tissue &lt;- factor(\n  my_df[[\"tissue\"]],\n  levels = c(\"muscle\", \"liver\") # specify levels' order\n)\n\n# Check again the data\nstr(my_df)\n\n'data.frame':   10 obs. of  5 variables:\n $ id       : chr  \"1\" \"2\" \"ID3\" \"ID4\" ...\n $ gene_name: chr  \"geneA\" \"geneB\" \"geneC\" \"geneD\" ...\n $ gene_expr: num  12.4 11.3 13.5 10.2 11.4 0.5 1 1.2 1.4 0.6\n $ status   : Factor w/ 2 levels \"activated\",\"inhibited\": 1 1 1 1 1 2 2 2 2 2\n $ tissue   : Factor w/ 2 levels \"muscle\",\"liver\": 2 1 2 1 2 1 2 1 2 1\n\nsummary(my_df)\n\n      id             gene_name           gene_expr           status     tissue \n Length:10          Length:10          Min.   : 0.50   activated:5   muscle:5  \n Class :character   Class :character   1st Qu.: 1.05   inhibited:5   liver :5  \n Mode  :character   Mode  :character   Median : 5.80                           \n                                       Mean   : 6.35                           \n                                       3rd Qu.:11.38                           \n                                       Max.   :13.50"
   },
   {
     "objectID": "ioc_r/week03/r_w03_slides.html#data-frame-concatenation",
@@ -448,39 +448,39 @@
     "text": "Write your code directly in a Quarto document.\nTo create a Quarto document: go to File -&gt; New File -&gt; Quarto Document, then click Create.\n\nCreate a matrix of two columns to store numbers 1 to 8, use the dimnames parameter of the matrix function to name the rows and columns directly. (see ?matrix) (You can name the rows/columns whatever you want.)\n\nUse the following code to import the file “read-counts.csv” (you have already downloaded it for the hand-on examples of week01). Name the imported data expr_data.\n\nexpr_data &lt;- read.table(\n  file = \"../exos_data/read-counts.csv\",  # replace the path with your own\n  header = TRUE, sep = \",\", row.names = 1\n)\n\n\nCreate a list info_expr to store information about expr_data:\n\n\n\n“col_names”: column names\n“row_names”: row names\n“dimension”: number of rows and columns\n“sum_sample”: the sum of expression level across all genes for each sample\n“avg_gene”: the average expression level across all samples for each gene\n\n\nCalculate the median of the average gene expression levels across all samples.\n\n\nUse summary() to generate summary statistics of the sum of expression level across all genes.\n\n\nCalculate the log2 fold change of the gene TOS6 for the WT and RRP6 samples. Is TOS6 up or down-regulated in the RRP6 samples compared to WT?\n\n\nPerform a Wilcoxon test to check if the TOS6 expression is different between WT and RRP6 samples.\n\n\nStore the test results in a variable (object) called res_wilcox. What is the data structure of the results? Extract the p-value from the results.\nUse \\(\\alpha = 0.05\\), what is your conclusion?\n\n\nVisualize the expression level of TOS6 for WT and RRP6 samples using boxplot.\n\n\nClick “Render” to generate your Quarto report.\n\nThe homework correction is available here: link"
   },
   {
-    "objectID": "ioc_r/week02/r_w02_slides.html#data-types",
-    "href": "ioc_r/week02/r_w02_slides.html#data-types",
-    "title": "Data Foundations:Vectors and Matrices",
-    "section": "Data Types",
-    "text": "Data Types\nExamples: 1, 2.5, A, InforBio, I love R, TRUE, FALSE, …\n How R understands and stores information?\n\nMain data types:\n\nNumeric\n\nDouble: 2.5\nInteger: 1\n\nCharacter: \"A\", \"InforBio\", \"I love R\"\nLogical: TRUE, FALSE\nFactor: for categorical data"
-  },
-  {
     "objectID": "ioc_r/week02/r_w02_slides.html#how-we-store-data-in-r",
     "href": "ioc_r/week02/r_w02_slides.html#how-we-store-data-in-r",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "How We Store Data in R?",
-    "text": "How We Store Data in R?\n\nA variable is like a box where you store data.\nEach variable has a name and content (one or multiple values).\nA variable is created at the moment you assign a value to it. Use &lt;- for assignment.\n\n\nx &lt;- 1 # put a space on each side of the assignment sign\nx # type variable name to print its value(s)\n\n[1] 1\n\nchar_name &lt;- \"InforBio\"\nchar_name\n\n[1] \"InforBio\"\n\npassed &lt;- TRUE\npassed\n\n[1] TRUE\n\n\n\n\n\nCheck the “Environment” pane or type ls() in the console, are variables you just created there?\n\n\n\n\nVariables are containers for data. A box labeled “x” containing the number 1. A box labeled “char_name” containing the platform name “InforBio”."
+    "text": "How We Store Data in R?\n\nA variable is like a box where you store data.\nEach variable has a name and content (one or multiple values).\nA variable is created at the moment you assign a value to it. Use &lt;- for assignment.\n\n\nx &lt;- 1 # put a space on each side of the assignment sign\nx # type variable name to print its value(s)\n\n[1] 1\n\nchar_name &lt;- \"InforBio\"\nchar_name\n\n[1] \"InforBio\"\n\nchar_name &lt;- InforBio\n\nError: object 'InforBio' not found\n\n\n\n\n\nCheck the “Environment” pane or type ls() in the console, are variables you just created there?\n\n\n\n\nVariables are containers for data. A box labeled “x” containing the number 1. A box labeled “char_name” containing the platform name “InforBio”."
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#variable-naming-convention",
     "href": "ioc_r/week02/r_w02_slides.html#variable-naming-convention",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Variable Naming Convention",
-    "text": "Variable Naming Convention\n\n\n\nChoose a short and descriptive name\nUse snake_case (lowercase letters and underscores only)\nAvoid special characters (such as !, #, ) and spaces\nDo not start a name with numbers\nAvoid reserved keywords in R (e.g., function, if, TRUE)\nDo not overwrite built-in functions (e.g., mean, sd)\n\n\n\n\n\nWhich are validated names?\n\n\n\nfoo\ntest\nvar\nvar2\nexam_results\na_variable_with_a_name_super_long\n\nday_1\nday_one\nday1\nfirst_day_of_the_month\nDayOne\ndayOne\nDAYONE\nDAYone\n\n\n\n\n\nHow to know if a variable name was already used?\n\nType help(reserved) to check reserved words in R.\nCheck in “Environment” pane.\nType the first letters of a name and press the Tab key to trigger autocompletion\n\n\n\n\n\n\nFollow the same rules when you naming your R project folder. If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for."
+    "text": "Variable Naming Convention\n\n\n\nChoose a short and descriptive name\nUse snake_case (lowercase letters and underscores only)\nAvoid special characters (such as !, #, ) and spaces\nDo not start a name with numbers\nAvoid reserved keywords in R (e.g., function, if, TRUE)\nDo not overwrite built-in functions (e.g., mean, sd)\n\n\n\n\n\nWhich are valid names?\n\n\n\nfoo\ntest\nvar\nvar2\nexam_results\na_variable_with_a_name_super_long\n\nday_1\nday_one\nday1\nfirst_day_of_the_month\nDayOne\ndayOne\nDAYONE\nDAYone\n\n\n\n\n\nHow to know if a variable name was already used?\n\nType help(reserved) to check reserved words in R.\nCheck in “Environment” pane.\nType the first letters of a name and press the Tab key to trigger autocompletion\n\n\n\n\n\n\nFollow the same rules when you naming your R project folder. If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for."
+  },
+  {
+    "objectID": "ioc_r/week02/r_w02_slides.html#data-types",
+    "href": "ioc_r/week02/r_w02_slides.html#data-types",
+    "title": "Data Foundations:Vectors and Matrices",
+    "section": "Data Types",
+    "text": "Data Types\nExamples: 1, 2.5, \"A\", \"InforBio\", \"I love R\", TRUE, FALSE, …\n How R understands and stores information?\n\nMain data types:\n\nNumeric\n\nDouble: 2.5\nInteger: 1\n\nCharacter: \"A\", \"InforBio\", \"I love R\"\nLogical (boolean): TRUE, FALSE\nFactor: for categorical data\n\n\n\n\nWe’ll see factor next week."
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#numeric",
     "href": "ioc_r/week02/r_w02_slides.html#numeric",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Numeric",
-    "text": "Numeric\n\n\n\nDouble (default): used for numbers with decimal points or without.\n\n\na &lt;- 3\nclass(a)\n\n[1] \"numeric\"\n\nis.numeric(a)\n\n[1] TRUE\n\ntypeof(a)\n\n[1] \"double\"\n\n\n\n\nInteger (whole numbers): must be specified with L after the number.\n\n\nb &lt;- 3L\nclass(b)\n\n[1] \"integer\"\n\nis.numeric(b)\n\n[1] TRUE\n\ntypeof(b)\n\n[1] \"integer\""
+    "text": "Numeric\n\n\n\nDouble (default): used for numbers with decimal points or without.\n\n\na &lt;- 3\nis.numeric(a)\n\n[1] TRUE\n\nis.double(a)\n\n[1] TRUE\n\ntypeof(a)\n\n[1] \"double\"\n\n\n\n\nIf you explicitly want an integer (whole numbers), you can define it by appending an L to the number:\n\n\nb &lt;- 3L\nis.numeric(b)\n\n[1] TRUE\n\nis.integer(b)\n\n[1] TRUE\n\ntypeof(b)\n\n[1] \"integer\""
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#character",
     "href": "ioc_r/week02/r_w02_slides.html#character",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Character",
-    "text": "Character\nR stores text (strings) as character. Use quotation marks to indicate a value is character.\n\n# use simple or double quotes\nx &lt;- \"I love R\"\nx\n\n[1] \"I love R\"\n\nclass(x)\n\n[1] \"character\"\n\nis.character(x)\n\n[1] TRUE\n\n\n\n\n\"1\" + \"2\"\n\nError in \"1\" + \"2\": non-numeric argument to binary operator\n\n\n\n\n\nas.numeric(\"1\") + as.numeric(\"2\")  # convert to numeric\n\n[1] 3\n\n\n\n\n\nas.character(1) # convert to character\n\n[1] \"1\""
+    "text": "Character\nR stores text (strings) as character. Use quotation marks to indicate a value is character.\n\n# enclosed in either double quotes (\") or single quotes (')\nx &lt;- \"I love R\"\nx\n\n[1] \"I love R\"\n\nis.character(x)\n\n[1] TRUE\n\n\n\n\n\"1\" + \"2\"\n\nError in \"1\" + \"2\": non-numeric argument to binary operator\n\n\n\n\n\nas.numeric(\"1\") + as.numeric(\"2\")  # convert to numeric\n\n[1] 3\n\n\n\n\n\nas.character(1) # convert to character\n\n[1] \"1\""
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#logical-1",
@@ -494,14 +494,7 @@
     "href": "ioc_r/week02/r_w02_slides.html#logical-2",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Logical (2)",
-    "text": "Logical (2)\nConvert to other types:\n\n\n\nas.numeric(TRUE)\n\n[1] 1\n\nas.numeric(FALSE)\n\n[1] 0\n\nTRUE + TRUE + FALSE\n\n[1] 2\n\n\n\n\nas.character(TRUE)\n\n[1] \"TRUE\"\n\nas.character(FALSE)\n\n[1] \"FALSE\"\n\n\n\n\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(-1)\n\n[1] TRUE\n\nas.logical(0)\n\n[1] FALSE"
-  },
-  {
-    "objectID": "ioc_r/week02/r_w02_slides.html#factor",
-    "href": "ioc_r/week02/r_w02_slides.html#factor",
-    "title": "Data Foundations:Vectors and Matrices",
-    "section": "Factor",
-    "text": "Factor\nUse factor() when you want R treats your data as categorical data.\n\ngrades &lt;- factor(\n  x = c(\"A\", \"B\", \"A\", \"B\", \"C\", \"B\") # we'll talk about vector soon!\n)\ngrades\n\n[1] A B A B C B\nLevels: A B C\n\n\n\n\nSpecify levels:\n\n\ngrades_rev &lt;- factor(\n  x = c(\"A\", \"B\", \"A\", \"B\", \"C\", \"B\"),\n  levels = c(\"C\", \"B\", \"A\") # customised order\n)\ngrades_rev\n\n[1] A B A B C B\nLevels: C B A\n\n\n\n\n\nNo panic! We’ll see how to use factor in data frame next week."
+    "text": "Logical (2)\nConvert to other types:\n\n\n\nas.numeric(TRUE)\n\n[1] 1\n\nas.numeric(FALSE)\n\n[1] 0\n\nTRUE + TRUE + FALSE\n\n[1] 2\n\n\n\n\nas.character(TRUE)\n\n[1] \"TRUE\"\n\nas.character(FALSE)\n\n[1] \"FALSE\"\n\n\n\n\n\nas.logical(1)\n\n[1] TRUE\n\nas.logical(-1)\n\n[1] TRUE\n\nas.logical(0)\n\n[1] FALSE\n\n\n\n\n\nWhen as.logical() is applied to numbers, any non-zero number is converted to TRUE."
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#from-single-value-to-multiple-values",
@@ -515,7 +508,7 @@
     "href": "ioc_r/week02/r_w02_slides.html#vector-creation-1",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Vector Creation (1)",
-    "text": "Vector Creation (1)\nUse the function c() to create a vector and use , to separate elements.\n\n\n\nc(10, 12, 9) # Numeric vector\n\n[1] 10 12  9\n\nc(gene1, gene2, gene3)\n\n[1] 10 12  9\n\ngene_expr &lt;- c(gene1, gene2, gene3) # store in a variable\ngene_expr\n\n[1] 10 12  9\n\nc(gene_expr, 18)\n\n[1] 10 12  9 18\n\n\n\n\nQuickly create sequences of numbers\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n5:1\n\n[1] 5 4 3 2 1\n\nseq(from = 1, to = 10, by = 2)\n\n[1] 1 3 5 7 9\n\nrep(c(1, 2), times = 2) # repetition\n\n[1] 1 2 1 2\n\n\n\n\n\nc(\"gene1\", \"gene2\", \"gene3\") # Character vector\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nc(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector\n\n[1]  TRUE FALSE FALSE  TRUE  TRUE\n\n\n\n\nOther tricks\n\n\npaste0(\"gene\", 1:3)\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nrep(c(TRUE, FALSE), each = 2)\n\n[1]  TRUE  TRUE FALSE FALSE\n\n\n\n\n\nA single value (scalar) is treated as a vector of length 1.\n\nis.vector(10)\n\n[1] TRUE\n\nlength(10)\n\n[1] 1\n\nis.vector(\"gene1\")\n\n[1] TRUE"
+    "text": "Vector Creation (1)\nUse the function c() to create a vector and use , to separate elements.\n\n\n\nc(10, 12, 9) # Numeric vector\n\n[1] 10 12  9\n\nc(gene1, gene2, gene3)\n\n[1] 10 12  9\n\ngene_expr &lt;- c(gene1, gene2, gene3) # store in a variable\ngene_expr\n\n[1] 10 12  9\n\nc(gene_expr, 18)\n\n[1] 10 12  9 18\n\n\n\n\nQuickly create sequences of numbers\n\n\n1:10\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n5:1\n\n[1] 5 4 3 2 1\n\nseq(from = 1, to = 10, by = 2)\n\n[1] 1 3 5 7 9\n\n\n\n\n\nc(\"gene1\", \"gene2\", \"gene3\") # Character vector\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nc(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector\n\n[1]  TRUE FALSE FALSE  TRUE  TRUE\n\n\n\n\nOther tricks\n\n\npaste0(\"gene\", 1:3)\n\n[1] \"gene1\" \"gene2\" \"gene3\"\n\nrep(c(TRUE, FALSE), each = 2) # repetition\n\n[1]  TRUE  TRUE FALSE FALSE\n\n\n\n\n\nA single value (scalar) is treated as a vector of length 1.\n\nis.vector(10)\n\n[1] TRUE\n\nlength(10)\n\n[1] 1\n\nis.vector(\"gene1\")\n\n[1] TRUE"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#vector-creation-2",
@@ -536,21 +529,21 @@
     "href": "ioc_r/week02/r_w02_slides.html#vector-indexing-2",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Vector Indexing (2)",
-    "text": "Vector Indexing (2)\n\n\n\nUse [name] to access element(s) if the vector is named.\n\n\n# name elements of the vector\nnames(gene_expr) &lt;- c(\"gene1\", \"gene2\", \"gene3\")\ngene_expr\n\ngene1 gene2 gene3 \n  100     0    20 \n\ngene_expr[\"gene1\"] # the element named \"gene1\"\n\ngene1 \n  100 \n\ngene_expr[c(\"gene1\", \"gene2\")] # extract \"gene1\" and \"gene2\"\n\ngene1 gene2 \n  100     0 \n\n\n\n\ngene_expr[-c(\"gene1\", \"gene2\")] # error\n\nError in -c(\"gene1\", \"gene2\"): invalid argument to unary operator\n\n\n\n\n\nModify element(s).\n\n\ngene_expr[\"gene1\"] &lt;- 2\ngene_expr\n\ngene1 gene2 gene3 \n    2     0    20 \n\n\n\n\n\n\n\nHow to modify the expression value of “gene1” and “gene2” to 5?\nHow to change the expression value of “gene1” to 0 and “gene2” to 16?\n\n\n\n\n\n\n\ngene_expr[c(\"gene1\", \"gene2\")] &lt;- 5\ngene_expr\n\ngene1 gene2 gene3 \n    5     5    20 \n\ngene_expr[c(\"gene1\", \"gene2\")] &lt;- c(0, 16)\ngene_expr\n\ngene1 gene2 gene3 \n    0    16    20"
+    "text": "Vector Indexing (2)\n\n\n\nUse [name] to access element(s) if the vector is named.\n\n\n# name elements of the vector\nnames(gene_expr) &lt;- c(\"gene1\", \"gene2\", \"gene3\")\ngene_expr\n\ngene1 gene2 gene3 \n  100     0    20 \n\ngene_expr[\"gene1\"] # the element named \"gene1\"\n\ngene1 \n  100 \n\ngene_expr[c(\"gene1\", \"gene2\")] # extract \"gene1\" and \"gene2\"\n\ngene1 gene2 \n  100     0 \n\n\n\n\nModify element(s).\n\n\ngene_expr[\"gene1\"] &lt;- 2\ngene_expr\n\ngene1 gene2 gene3 \n    2     0    20 \n\n\n\n\n\n\n\nHow to modify the expression value of “gene1” and “gene2” to 5?\nHow to change the expression value of “gene1” to 0 and “gene2” to 16?\n\n\n\n\n\n\n\ngene_expr[c(\"gene1\", \"gene2\")] &lt;- 5\ngene_expr\n\ngene1 gene2 gene3 \n    5     5    20 \n\ngene_expr[c(\"gene1\", \"gene2\")] &lt;- c(0, 16)\ngene_expr\n\ngene1 gene2 gene3 \n    0    16    20"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#vector-indexing-3",
     "href": "ioc_r/week02/r_w02_slides.html#vector-indexing-3",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Vector Indexing (3)",
-    "text": "Vector Indexing (3)\n\n\n\nUse a logical vector for indexing.\n\n\nnum_vec &lt;- c(1, 2, 5, 4)\nnum_vec\n\n[1] 1 2 5 4\n\nlogical_vec &lt;- c(TRUE, TRUE, FALSE, FALSE)\nlogical_vec\n\n[1]  TRUE  TRUE FALSE FALSE\n\nnum_vec[logical_vec]\n\n[1] 1 2\n\n\n\n# create logical vect using comparison operator\nnum_vec &lt; 3\n\n[1]  TRUE  TRUE FALSE FALSE\n\n# then use it to extract values from the numeric vector\nnum_vec[num_vec &lt; 3]\n\n[1] 1 2\n\n\n\n\n\n\nR use the == to test equality.\nHow to extract the value 5 from the num_vec?\n\n\n\n\n\nnum_vec[num_vec == 5]\n\n[1] 5"
+    "text": "Vector Indexing (3)\n\n\n\nUse a logical vector for indexing.\n\n\nnum_vec &lt;- c(1, 2, 5, 4)\nnum_vec\n\n[1] 1 2 5 4\n\nlogical_vec &lt;- c(TRUE, TRUE, FALSE, FALSE)\nlogical_vec\n\n[1]  TRUE  TRUE FALSE FALSE\n\nnum_vec[logical_vec]\n\n[1] 1 2\n\n\n\n# create logical vect using comparison operator\nnum_vec &lt; 3\n\n[1]  TRUE  TRUE FALSE FALSE\n\n# then use it to extract values from the numeric vector\nnum_vec[num_vec &lt; 3]\n\n[1] 1 2\n\n\n\n\n\n\nR use the == to test equality. E.g.:\n\n1 == 2\n\n[1] FALSE\n\nc(1, 2, 3) == 2\n\n[1] FALSE  TRUE FALSE\n\n\nHow to extract the value 5 from the num_vec?\n\n\n\n\n\nnum_vec[num_vec == 5]\n\n[1] 5"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#vector-operations",
     "href": "ioc_r/week02/r_w02_slides.html#vector-operations",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Vector Operations",
-    "text": "Vector Operations\n\n\n\n# create a vector for gene expression\ngene_expr &lt;- c(15, 19, 14, 3, 10) \n\n# check the structure\nclass(gene_expr)\n\n[1] \"numeric\"\n\nstr(gene_expr)\n\n num [1:5] 15 19 14 3 10\n\n# vector length\nlength(gene_expr)\n\n[1] 5\n\n# show the first/last elements\nhead(gene_expr)\n\n[1] 15 19 14  3 10\n\ntail(gene_expr)\n\n[1] 15 19 14  3 10\n\n## check if missing value present\nis.na(gene_expr)\n\n[1] FALSE FALSE FALSE FALSE FALSE\n\n\n\n\n# Arithmetic operations\ngene_expr + 1\n\n[1] 16 20 15  4 11\n\ngene_expr - 1\n\n[1] 14 18 13  2  9\n\ngene_expr * 10\n\n[1] 150 190 140  30 100\n\ngene_expr / 10\n\n[1] 1.5 1.9 1.4 0.3 1.0\n\n\n\n\n# Get some summary stats\nsum(gene_expr)\n\n[1] 61\n\nmean(gene_expr)\n\n[1] 12.2\n\nmedian(gene_expr)\n\n[1] 14\n\nsummary(gene_expr)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    3.0    10.0    14.0    12.2    15.0    19.0"
+    "text": "Vector Operations\n\n\n\n# create a vector for gene expression\ngene_expr &lt;- c(15, 19, 14, 3, 10) \n\n# check the structure\nis.numeric(gene_expr)\n\n[1] TRUE\n\nstr(gene_expr)\n\n num [1:5] 15 19 14 3 10\n\n# vector length\nlength(gene_expr)\n\n[1] 5\n\n# show the first/last elements\nhead(gene_expr)\n\n[1] 15 19 14  3 10\n\ntail(gene_expr)\n\n[1] 15 19 14  3 10\n\n## check if missing value present\nis.na(gene_expr)\n\n[1] FALSE FALSE FALSE FALSE FALSE\n\n\n\n\n# Arithmetic operations\ngene_expr + 1\n\n[1] 16 20 15  4 11\n\ngene_expr * 10\n\n[1] 150 190 140  30 100\n\n\n\n\n# Get some summary stats\nsum(gene_expr)\n\n[1] 61\n\nmean(gene_expr)\n\n[1] 12.2\n\nmedian(gene_expr)\n\n[1] 14\n\nsummary(gene_expr)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n    3.0    10.0    14.0    12.2    15.0    19.0"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#matrices-creation",
@@ -564,7 +557,7 @@
     "href": "ioc_r/week02/r_w02_slides.html#matrices-indexing-1",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Matrices Indexing (1)",
-    "text": "Matrices Indexing (1)\n\nUse [row_idx,column_idx] to access element(s).\n\n\n\n\nmat &lt;- matrix(1:12, ncol = 4)\nmat\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    4    7   10\n[2,]    2    5    8   11\n[3,]    3    6    9   12\n\ndim(mat) # dimensions of the matrix\n\n[1] 3 4\n\nncol(mat)\n\n[1] 4\n\nnrow(mat)\n\n[1] 3\n\nmat[1, 2] # element in the 1st row and 2nd column\n\n[1] 4\n\nmat[, 3] # all rows of the 3rd column\n\n[1] 7 8 9\n\n\n\n\n\n\n\nHow to get all columns of the 2nd and the 3rd rows?\nHow to get the value 5 from the matrix?\n\n\n\n\n\n\nmat[2:3, ]\n\n     [,1] [,2] [,3] [,4]\n[1,]    2    5    8   11\n[2,]    3    6    9   12\n\nmat[2, 2]\n\n[1] 5\n\n\n\n\n\nAs matrix is vectors extended into 2D, if question about drop dim, drop = FALSE"
+    "text": "Matrices Indexing (1)\n\nUse [row_idx,column_idx] to access element(s).\n\n\n\n\nmat &lt;- matrix(1:12, ncol = 4)\nmat\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    4    7   10\n[2,]    2    5    8   11\n[3,]    3    6    9   12\n\ndim(mat) # dimensions of the matrix\n\n[1] 3 4\n\nnrow(mat)\n\n[1] 3\n\nncol(mat)\n\n[1] 4\n\nmat[1, 2] # element in the 1st row and 2nd column\n\n[1] 4\n\nmat[, 3] # all rows of the 3rd column\n\n[1] 7 8 9\n\n\n\n\n\n\n\nHow to get all columns of the 2nd and the 3rd rows?\nHow to get the value 5 from the matrix?\n\n\n\n\n\n\nmat[2:3, ]\n\n     [,1] [,2] [,3] [,4]\n[1,]    2    5    8   11\n[2,]    3    6    9   12\n\nmat[2, 2]\n\n[1] 5\n\n\n\n\n\nAs matrix is vectors extended into 2D, if question about drop dim, drop = FALSE"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#matrices-indexing-2",
@@ -585,7 +578,7 @@
     "href": "ioc_r/week02/r_w02_slides.html#matrices-operations",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Matrices Operations",
-    "text": "Matrices Operations\n\n\n\nCheck the structure\n\n\nclass(mat)\n\n[1] \"matrix\" \"array\" \n\nstr(mat)\n\n int [1:3, 1:4] 1 2 3 4 5 6 7 8 9 10 ...\n - attr(*, \"dimnames\")=List of 2\n  ..$ : chr [1:3] \"r1\" \"r2\" \"r3\"\n  ..$ : chr [1:4] \"c1\" \"c2\" \"c3\" \"c4\"\n\n\n\n\nSome maths\n\n\nrowSums(mat)\n\nr1 r2 r3 \n22 26 30 \n\ncolSums(mat)\n\nc1 c2 c3 c4 \n 6 15 24 33 \n\ncolMeans(mat)\n\nc1 c2 c3 c4 \n 2  5  8 11 \n\nrowMeans(mat)\n\n r1  r2  r3 \n5.5 6.5 7.5 \n\n\n\n\n\nModify elements\n\n\nmat[1:2, 3] &lt;- c(1, 2)\nmat\n\n   c1 c2 c3 c4\nr1  1  4  1 10\nr2  2  5  2 11\nr3  3  6  9 12\n\n\n\n\nmat[1:2, ] &lt;- 10\nmat\n\n   c1 c2 c3 c4\nr1 10 10 10 10\nr2 10 10 10 10\nr3  3  6  9 12\n\n\n\n\n\n# replace values in 1st row\nmat[1, ] &lt;- c(0, 1, 2)\n\nError in mat[1, ] &lt;- c(0, 1, 2): number of items to replace is not a multiple of replacement length"
+    "text": "Matrices Operations\n\n\n\nCheck the structure\n\n\nis.matrix(mat)\n\n[1] TRUE\n\nstr(mat)\n\n int [1:3, 1:4] 1 2 3 4 5 6 7 8 9 10 ...\n - attr(*, \"dimnames\")=List of 2\n  ..$ : chr [1:3] \"r1\" \"r2\" \"r3\"\n  ..$ : chr [1:4] \"c1\" \"c2\" \"c3\" \"c4\"\n\n\n\n\nSome maths\n\n\nrowSums(mat)\n\nr1 r2 r3 \n22 26 30 \n\ncolSums(mat)\n\nc1 c2 c3 c4 \n 6 15 24 33 \n\ncolMeans(mat)\n\nc1 c2 c3 c4 \n 2  5  8 11 \n\nrowMeans(mat)\n\n r1  r2  r3 \n5.5 6.5 7.5 \n\n\n\n\n\nModify elements\n\n\nmat[1:2, 3] &lt;- c(1, 2)\nmat\n\n   c1 c2 c3 c4\nr1  1  4  1 10\nr2  2  5  2 11\nr3  3  6  9 12\n\n\n\n\nmat[1:2, ] &lt;- 10\nmat\n\n   c1 c2 c3 c4\nr1 10 10 10 10\nr2 10 10 10 10\nr3  3  6  9 12\n\n\n\n\n\n# replace values in 1st row\nmat[1, ] &lt;- c(0, 1, 2)\n\nError in mat[1, ] &lt;- c(0, 1, 2): number of items to replace is not a multiple of replacement length"
   },
   {
     "objectID": "ioc_r/week02/r_w02_slides.html#value-replacement",
@@ -599,7 +592,7 @@
     "href": "ioc_r/week02/r_w02_slides.html#todays-goals",
     "title": "Data Foundations:Vectors and Matrices",
     "section": "Today’s Goals",
-    "text": "Today’s Goals\n\nGet familiar with data types and variable creation\nGet familiar with vectors and matrices manipulations\nSimulate your own biological data and test the normality using the Shapiro-Wilk test"
+    "text": "Today’s Goals\n\nGet familiar with variables and data types\nGet familiar with vectors and matrices manipulations\nSimulate your own biological data and test the normality using the Shapiro-Wilk test"
   },
   {
     "objectID": "ioc_r/week01/r_w01_slides.html#welcome-to-r",
