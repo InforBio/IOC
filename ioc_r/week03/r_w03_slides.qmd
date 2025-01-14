@@ -362,13 +362,14 @@ my_df$detected <- NULL # idem
 
 ## Recoding Data Type {.smaller}
 
-R (>= 4.0.0) treats strings in data frames as strings rather than factors.
-
-You need to recode the column data type if data is categorical.
+You need to recode the column data type if data is categorical, use the `factor()` function.
 
 ```{r}
 my_df[["status"]] <- factor(my_df[["status"]])
-my_df$tissue <- factor(my_df[["tissue"]])
+my_df$tissue <- factor(
+  my_df[["tissue"]],
+  levels = c("muscle", "liver") # specify levels' order
+)
 
 # Check again the data
 str(my_df)
