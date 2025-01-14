@@ -119,4 +119,18 @@ diff_abs[which.max(diff_abs)] # extract the max value by using its index
 ```
 
 
-10. Click "Render" to generate your Quarto report.
+10. Compare the following matrix to the one we created during the course' exercise (the matrix named `expression_levels`).
+What is the key difference in how the matrix is constructed? 
+Provide a brief explanation.
+
+```{r}
+matrix(
+  c(10, 12, 15, 20, 18, 22, 14, 16, 19, 8, 9, 7, 25, 30, 28),
+  ncol = 3
+)
+```
+
+The key difference lies in how the matrix is organized:
+
+- In the hands-on example matrix (`expression_levels`), `nrow = 3` is specified, so the matrix is constructed with 3 rows, and the values are filled column-wise by default, which results a matrix of 3 rows and 5 columns.
+- In the homework matrix, `ncol = 3` is specified, so the matrix is constructed with 3 columns, and the values are again filled column-wise by default. This matrix has 5 rows and 3 columns.

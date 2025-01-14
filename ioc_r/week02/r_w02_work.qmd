@@ -93,7 +93,18 @@ Hints:
 ```
 
 
-10. Click "Render" to generate your Quarto report.
+10. Compare the following matrix to the one we created during the course' exercise (the matrix named `expression_levels`).
+What is the key difference in how the matrix is constructed? 
+Provide a brief explanation.
+
+```{r}
+matrix(
+  c(10, 12, 15, 20, 18, 22, 14, 16, 19, 8, 9, 7, 25, 30, 28),
+  ncol = 3
+)
+```
+
+11. Click "Render" to generate your Quarto report.
 
 
 The homework correction is available here:
