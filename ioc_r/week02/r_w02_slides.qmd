@@ -19,25 +19,7 @@ categories:
 image: images/preview_w2.png
 ---
 
-# Data Types and Variables in R
-
-## Data Types {.smaller}
-
-Examples: `1`, `2.5`, `A`, `InforBio`, `I love R`, `TRUE`, `FALSE`, ...
-
-<br>
-How R understands and stores information?
-
-. . .
-
-Main data types:
-
-- Numeric
-  - Double: `2.5`
-  - Integer: `1`
-- Character: `"A"`, `"InforBio"`, `"I love R"`
-- Logical: `TRUE`, `FALSE`
-- Factor: for categorical data
+# Variables and Data Types in R
 
 ## How We Store Data in R?  {.smaller}
 
@@ -46,14 +28,15 @@ Main data types:
 - A variable is created at the moment you assign a value to it. Use `<-` for assignment.
 
 ```{r}
+#| error: true
+
 x <- 1 # put a space on each side of the assignment sign
 x # type variable name to print its value(s)
 
 char_name <- "InforBio"
 char_name
 
-passed <- TRUE
-passed
+char_name <- InforBio
 ```
 
 ::: {.callout-note appearance="minimal"}
@@ -81,10 +64,10 @@ A box labeled "char_name" containing the platform name "InforBio".
 ::: {.column .fragment}
 
 ::: {.callout-note appearance="minimal"}
-Which are validated names?
+Which are valid names?
 :::
 
-``` {.r code-line-numbers="1-16|5,9-11"}
+``` {.r code-line-numbers="1-16|5,8-10"}
 foo
 test
 var
@@ -118,6 +101,29 @@ Follow the same rules when you naming your R project folder.
 If really needs a long name, use abbreviation of it with a comment line at the begin to explain what it stands for.
 :::
 
+
+## Data Types {.smaller}
+
+Examples: `1`, `2.5`, `"A"`, `"InforBio"`, `"I love R"`, `TRUE`, `FALSE`, ...
+
+<br>
+How R understands and stores information?
+
+. . .
+
+Main data types:
+
+- Numeric
+  - Double: `2.5`
+  - Integer: `1`
+- Character: `"A"`, `"InforBio"`, `"I love R"`
+- Logical (boolean): `TRUE`, `FALSE`
+- Factor: for categorical data
+
+::: {.callout-tip appearance="minimal"}
+We'll see factor next week.
+:::
+
 ## Numeric {.smaller}
 
 ::: columns
@@ -126,20 +132,20 @@ If really needs a long name, use abbreviation of it with a comment line at the b
 
 ```{r}
 a <- 3
-class(a)
 is.numeric(a)
+is.double(a)
 typeof(a)
 ```
 
 :::
 
 ::: {.column}
-- **Integer** (whole numbers): must be specified with `L` after the number.
+- If you explicitly want an **integer** (whole numbers), you can define it by appending an `L` to the number:
 
 ```{r}
 b <- 3L
-class(b)
 is.numeric(b)
+is.integer(b)
 typeof(b)
 ```
 
@@ -151,11 +157,10 @@ typeof(b)
 R stores text (strings) as character. Use **quotation marks** to indicate a value is character.
 
 ```{r}
-# use simple or double quotes
+# enclosed in either double quotes (") or single quotes (')
 x <- "I love R"
 x
 
-class(x)
 is.character(x)
 ```
 
@@ -230,36 +235,12 @@ as.logical(-1)
 as.logical(0)
 ```
 
-:::
-:::
-
-
-## Factor {.smaller}
-
-Use `factor()` when you want R treats your data as categorical data.
-
-```{r}
-grades <- factor(
-  x = c("A", "B", "A", "B", "C", "B") # we'll talk about vector soon!
-)
-grades
-```
-
-. . .
-
-- Specify levels:
-
-```{r}
-grades_rev <- factor(
-  x = c("A", "B", "A", "B", "C", "B"),
-  levels = c("C", "B", "A") # customised order
-)
-grades_rev
-```
-
 ::: {.callout-tip appearance="minimal"}
-No panic! We'll see how to use factor in data frame next week.
+When `as.logical()` is applied to numbers, any non-zero number is converted to `TRUE`.
 :::
+:::
+:::
+
 
 # Data Strucutres
 
@@ -312,7 +293,6 @@ c(gene_expr, 18)
 1:10
 5:1
 seq(from = 1, to = 10, by = 2)
-rep(c(1, 2), times = 2) # repetition
 ```
 
 :::
@@ -329,7 +309,7 @@ c(TRUE, FALSE, FALSE, TRUE, TRUE) # Logical vector
 
 ```{r}
 paste0("gene", 1:3)
-rep(c(TRUE, FALSE), each = 2)
+rep(c(TRUE, FALSE), each = 2) # repetition
 ```
 
 ::: {.callout-tip appearance="minimal"}
@@ -423,16 +403,6 @@ gene_expr["gene1"] # the element named "gene1"
 gene_expr[c("gene1", "gene2")] # extract "gene1" and "gene2"
 ```
 
-::: {.fragment}
-
-```{r}
-#| error: true
-
-gene_expr[-c("gene1", "gene2")] # error
-```
-
-:::
-
 :::
 
 ::: {.column .fragment}
@@ -494,7 +464,12 @@ num_vec[num_vec < 3]
 
 ::: {.column width="40%" .fragment}
 ::: {.callout-note appearance="minimal"}
-R use the `==` to test equality.
+R use the `==` to test equality. *E.g.*:
+
+```{r}
+1 == 2
+c(1, 2, 3) == 2
+```
 
 How to extract the value `5` from the `num_vec`?
 :::
@@ -517,7 +492,7 @@ num_vec[num_vec == 5]
 gene_expr <- c(15, 19, 14, 3, 10) 
 
 # check the structure
-class(gene_expr)
+is.numeric(gene_expr)
 str(gene_expr)
 
 # vector length
@@ -537,9 +512,7 @@ is.na(gene_expr)
 ```{r}
 # Arithmetic operations
 gene_expr + 1
-gene_expr - 1
 gene_expr * 10
-gene_expr / 10
 ```
 
 ::: {.fragment}
@@ -610,8 +583,8 @@ What is the data structure of each row/column of a matrix?
 mat <- matrix(1:12, ncol = 4)
 mat
 dim(mat) # dimensions of the matrix
-ncol(mat)
 nrow(mat)
+ncol(mat)
 
 mat[1, 2] # element in the 1st row and 2nd column
 mat[, 3] # all rows of the 3rd column
@@ -721,7 +694,7 @@ mat[c(FALSE, TRUE, TRUE), c(TRUE, TRUE, FALSE, FALSE)]
 
 - Check the structure
 ```{r}
-class(mat)
+is.matrix(mat)
 str(mat)
 ```
 
@@ -817,7 +790,7 @@ When assigning new values, you must provide either:
 
 ## Today's Goals
 
-- Get familiar with data types and variable creation
+- Get familiar with variables and data types
 - Get familiar with vectors and matrices manipulations
 - Simulate your own biological data and test the normality using the Shapiro-Wilk test
 
