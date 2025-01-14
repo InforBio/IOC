@@ -187,16 +187,8 @@ these tests may produce misleading results.
 
 The Shapiro-Wilk test is designed to check for deviations from normality,
 *i.e.*, to check whether your data follows a normal distribution.
-:::
-
-The function `shapiro.test()` in R allows to perform the test of normality.
-
-```{r}
-shapiro.test(heights) 
-```
 
 
-::: {.callout-tip title="Stats Time!"}
 **Test Hypotheses: H0, H1**
 
 When performing a statistical test, you start with two opposing ideas, called hypotheses, that you want to evaluate:
@@ -207,7 +199,18 @@ This is the default assumption, often stating that there is no effect, no differ
 This is the claim you are testing for something different from the null hypothesis.
 
 When you perform a statistical test, the goal is to decide whether you have **enough evidence** to reject the null hypothesis (H0) in favor of the alternative hypothesis (H1).
+:::
 
+The function `shapiro.test()` in R allows to perform the test of normality.
+
+Here, the null hypothesis (H0) is the heights are normally distributed,
+and the alternative hypothesis (H1) is the heights are not normally distributed.
+
+```{r}
+shapiro.test(heights) 
+```
+
+::: {.callout-tip title="Stats Time!"}
 **Type I error ($\alpha$)**
 
 A type I error occurs when we reject the null hypothesis whereas it is actually true (false positive).
@@ -227,9 +230,6 @@ The p-value is the probability of observing your data (or something more extreme
   - There’s not enough evidence to reject H0.
   - This doesn’t mean H0 is true, it just means the data doesn’t strongly contradict it.
 :::
-
-Here, the H0 is the heights are normally distributed,
-and H1 is the heights are not normally distributed.
 
 If we take $\alpha=0.05$:
 since the p-value (0.9876) is greater than 0.05, we fail to reject H0.
