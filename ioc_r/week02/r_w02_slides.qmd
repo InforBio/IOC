@@ -19,7 +19,7 @@ categories:
 image: images/preview_w2.png
 ---
 
-# Data Types in R
+# Data Types and Variables in R
 
 ## Data Types {.smaller}
 
@@ -39,7 +39,7 @@ Main data types:
 - Logical: `TRUE`, `FALSE`
 - Factor: for categorical data
 
-## Where Do We Store Data?  {.smaller}
+## How We Store Data in R?  {.smaller}
 
 - A **variable** is like a box where you store data.
 - Each variable has a **name** and **content** (one or multiple values).
@@ -817,7 +817,7 @@ When assigning new values, you must provide either:
 
 ## Today's Goals
 
-- Get familiar with data types
+- Get familiar with data types and variable creation
 - Get familiar with vectors and matrices manipulations
 - Simulate your own biological data and test the normality using the Shapiro-Wilk test
 
