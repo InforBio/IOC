@@ -17,7 +17,7 @@ The R script is available here:
 
 ## Goals
 
-- Get familiar with data types and variable creation
+- Get familiar with variables and data types
 - Get familiar with vectors and matrices manipulations
 - Simulate your own biological data and test the normality using the Shapiro-Wilk test
 
