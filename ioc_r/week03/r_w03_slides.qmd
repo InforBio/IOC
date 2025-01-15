@@ -120,7 +120,6 @@ my_df
 
 ```{r}
 # Check the data structure
-class(my_df)
 is.data.frame(my_df)
 str(my_df)
 ```

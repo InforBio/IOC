@@ -38,16 +38,16 @@ Create variables to store the following types of biological data and check their
 
 ```{r}
 gene_name <- "BRCA1" 
-class(gene_name)
+is.character(gene_name)
 
 num_samples <- 50    
-class(num_samples)
+is.numeric(num_samples)
 
 is_treated <- TRUE  
-class(is_treated)
+is.logical(is_treated)
 
 dna_bases <- c("A", "T", "G", "C") 
-class(dna_bases)
+is.character(dna_bases)
 ```
 
 ## Vectors

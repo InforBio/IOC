@@ -26,8 +26,8 @@ expr_data <- read.table(
 1. Is the imported data a matrix?
 
 ```{r}
-# Check the class of the imported data
-class(expr_data)
+# Check if it's a matrix
+is.matrix(expr_data)
 ```
 
 No, it's a data frame. (We'll talk about it in the week 3!)
