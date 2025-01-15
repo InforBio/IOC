@@ -1,12 +1,12 @@
 ---
-title: "Week 1 - Hands-On Examples"
+title: " "
 format: 
   html: default
   # pdf: default
 date: "2025-"
 date-format: " "
 categories: 
-  - week01
+  - weekXX
   - exercise
 editor_options: 
   chunk_output_type: console
