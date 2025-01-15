@@ -1,0 +1,144 @@
+---
+title: "Graphing with {ggplot2}"
+subtitle: "IOC-R Week 5"
+date: "2025-02-03"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+categories: 
+  - week05
+  - slides
+# image: xxx.png
+---
+
+# Recap Week 4
+
+## Brief Recap Week 4 {.smaller}
+
+::: {.columns}
+
+::: {.column}
+- Operators
+    - Logical: `&`, `|`, `!`, return `TRUE` or `FALSE`.
+    - Comparison: `==`, `!=`, `<`, `<=`, `>`, `>=`.
+    - The `%in%`: check membership
+- Conditions
+    - statements: if, if...else
+    - `ifelse()` function
+
+::: {.fragment}
+::: {.callout-note appearance="minimal"}
+What does the following code do?
+:::
+
+```r
+if (lfc > 2 & pvalue < 0.05 ) {
+  print("gene of interest")
+} else {
+  print("gene to remove")
+}
+```
+:::
+:::
+
+::: {.column .fragment}
+- Functions
+
+```r
+## syntax
+my_function <- function(arg1, arg2) {
+  # code
+  return(result)
+}
+```
+
+::: {.fragment}
+::: {.callout-note appearance="minimal"}
+Based on the following code:
+
+- what will you get when calling `times_three(2)`?
+- What will you get if you type `time_factor` in the console?
+:::
+
+```r
+times_three <- function(number) {
+  time_factor <- 3
+  res <- number * time_factor
+  return(res)
+}
+times_three(2)
+time_factor
+```
+:::
+
+:::
+:::
+
+
+# R Packages 
+
+## What are Packages in R?
+
+Packages are collections of functions, data, and documentation.
+
+- Pre-installed packages: {`base`}, {`stats`}, {`tools`}, *etc.*
+
+- Additional packages: {`ggplot2`}, {`tidyr`}, {`dplyr`}, *etc.*
+
+To check the already installed packages in RStudio:
+
+![](images/package_panel.png)
+
+::: {.notes}
+name, description, can delete a pkg here 
+:::
+
+## Installing Packages
+
+- Click-button way: 
+
+![](images/pkg_install.png)
+
+- Via command, *i.e.*, `install.package("ggplot2")`
+
+## Using Functions of Package
+
+To use (call) a function from a package, we can either:
+
+- load the entire package (attach it to the environment)
+
+```r
+library(ggplot2) # load the package
+ggplot() # call the function to iniate a ggplot
+```
+
+- or use the syntax `pkg_name::fct_name`
+
+```r
+ggplot2::ggplot()
+```
+
+You can check if a package is already loaded in the "Packages" panel.
+
+
+# Graphing with {ggplot2}
+
+
+# Let's Practice !
+
+## Today's Goals
+
+- 
+- 
+- 
+- 
