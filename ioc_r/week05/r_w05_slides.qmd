@@ -119,6 +119,10 @@ By default, R will install the lastest version of a package.
 
 - Via command, *i.e.*, `install.package("ggplot2")`
 
+::: {.callout-tip appearance="minimal"}
+**[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.
+:::
+
 ## Management of Packages {.smaller}
 
 ::: {.columns}
@@ -138,9 +142,9 @@ Or use `remove.packages("tibble")`.
 :::
 
 ::: {.callout-tip appearance="minimal"}
-We'll talk about packages' version management using the package
+We'll talk about packages' version management via the
 [renv](https://rstudio.github.io/renv/articles/renv.html)
-in session 6 if time allowed.
+package in session 6 if time allowed.
 :::
 
 ## Using Functions of Package {.smaller}
@@ -156,16 +160,129 @@ ggplot() # call the function to iniate a ggplot
 
 A loaded package will be checked in the "Packages" panel.
 
+::: {.callout-tip appearance="minimal"}
+You only need to load a package once per R session.
+
+However, if you're running your script in a non-interactive way,
+make sure to include the `library()` calls in your script,
+ideally at the beginning.
+:::
+
 - or use the syntax `pkg_name::fct_name`
 
 ```r
 ggplot2::ggplot()
 ```
 
-
+::: {.callout-tip appearance="minimal"}
+Recommand this way if you need to use only one function of a package.
+:::
 
 
 # Graphing with {ggplot2}
+
+## Before Plotting ... {.smaller}
+
+What message you want to show via your figure?
+
+
+```{mermaid}
+%%| echo: false
+%%| fig-width: 20
+flowchart LR
+  A{Which variables?} --> B{Data properties}
+  B --> C{Figure type}
+```
+
+
+<br>
+
+::: {.callout-tip appearance="minimal"}
+Check out this website: [from Data to Viz](https://www.data-to-viz.com) (by Yan Holtz)
+:::
+
+::: {.notes}
+- What are the variables to be visualized?
+- Data properties: continuous, discrete, categorical?
+- Figure type: dots plot, boxplot, histogram, *etc.*
+:::
+
+## Compositions of a ggplot {.smaller}
+
+![](images/ggplot_comp.png)
+
+
+## How to Build a ggplot {.smaller}
+
+> All ggplot2 plots begin with a call to `ggplot()`, supplying default data and aesthethic mappings, specified by `aes()`. You Then add layers, scales, coords and facets with `+`.  ------ ggplot2 Reference
+
+<br> 
+
+. . . 
+
+Example using the built-in dataset `iris`:
+
+```{r}
+str(iris) # data overview
+```
+
+
+## Get Started (1) {.smaller}
+
+```{r}
+library("ggplot2") # load package
+```
+
+```{r}
+#| echo: false
+
+theme_set(theme_grey())
+theme_update(
+  axis.title = element_text(size = rel(2)),
+  axis.text = element_text(size = rel(2)),
+  strip.text = element_text(size = rel(2))
+)
+```
+
+::: {.columns}
+::: {.column .fragment}
+Start by calling `ggplot()`:
+```{r}
+p0 <- ggplot(
+  data = iris,
+  aes(x = Sepal.Length, y = Petal.Length)
+)
+p0
+```
+
+:::
+::: {.column .fragment}
+Adding a geometric layer for dots plot:
+```{r}
+p1 <- p0 + geom_point()
+
+
+
+p1
+```
+
+:::
+:::
+
+## Get Started (2) {.smaller}
+
+```{r}
+p2 <- p1 + stat_smooth(method = "lm")
+p2
+```
+
+
+## Get Started (3) {.smaller}
+
+
+## Get Started (4) {.smaller}
+## Get Started (5) {.smaller}
+
 
 
 # Let's Practice !
