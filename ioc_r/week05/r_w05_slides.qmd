@@ -87,15 +87,21 @@ time_factor
 
 # R Packages 
 
-## What are Packages in R?
+## What are Packages in R? {.smaller}
 
 Packages are collections of functions, data, and documentation.
 
-- Pre-installed packages: {`base`}, {`stats`}, {`tools`}, *etc.*
+- Pre-installed packages: {`base`}, {`utils`}, {`graphics`}, *etc.*
 
-- Additional packages: {`ggplot2`}, {`tidyr`}, {`dplyr`}, *etc.*
+```r
+dim() # from {base}
+head() # from {utils}
+plot() # from {graphics}
+```
 
-To check the already installed packages in RStudio:
+. . .
+
+To check the list of installed packages in RStudio:
 
 ![](images/package_panel.png)
 
@@ -103,7 +109,9 @@ To check the already installed packages in RStudio:
 name, description, can delete a pkg here 
 :::
 
-## Installing Packages
+## Installing Packages {.smaller}
+
+By default, R will install the lastest version of a package.
 
 - Click-button way: 
 
@@ -111,7 +119,31 @@ name, description, can delete a pkg here
 
 - Via command, *i.e.*, `install.package("ggplot2")`
 
-## Using Functions of Package
+## Management of Packages {.smaller}
+
+::: {.columns}
+::: {.column}
+- Update: click on the ![](images/pkg_update_button.png){width=1.8cm} and a popup will show you packages that can be updated.
+
+![](images/update_popup.png){width=10cm}
+
+:::
+::: {.column}
+- Delete: click on the delete buttom after the package
+
+![](images/delete_pkg.png)
+
+Or use `remove.packages("tibble")`.
+:::
+:::
+
+::: {.callout-tip appearance="minimal"}
+We'll talk about packages' version management using the package
+[renv](https://rstudio.github.io/renv/articles/renv.html)
+in session 6 if time allowed.
+:::
+
+## Using Functions of Package {.smaller}
 
 To use (call) a function from a package, we can either:
 
@@ -122,13 +154,15 @@ library(ggplot2) # load the package
 ggplot() # call the function to iniate a ggplot
 ```
 
+A loaded package will be checked in the "Packages" panel.
+
 - or use the syntax `pkg_name::fct_name`
 
 ```r
 ggplot2::ggplot()
 ```
 
-You can check if a package is already loaded in the "Packages" panel.
+
 
 
 # Graphing with {ggplot2}
