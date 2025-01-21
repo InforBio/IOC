@@ -246,7 +246,7 @@ my_df[["gene_name"]] # idem, use column name
 - Subset the data frame based on some conditions:
 
 ```{r}
-# Only keep the activated genes' data
+# Keep rows where the value in the "status" column is "activated"
 my_df[my_df$status == "activated", ]
 ```
 
@@ -261,20 +261,21 @@ Don't worry, we'll go into more detail at the next session!
 If you select only 1 row of a data frame:
 
 ```{r}
-str(my_df[2, ])
+str(my_df[2, ]) # still a data frame
 ```
 
-The output remains a data frame.
+```{r}
+unlist(my_df[2, ]) # convert to a vector
+```
 
 ::: {.fragment}
 If you select only 1 column of a data frame:
 
 ```{r}
 my_df[, 2]
-str(my_df[, 2])
+is.vector(my_df[, 2]) # The output was "simplified" to a vector.
 ```
 
-The output was "simplified" to a vector.
 :::
 
 :::
@@ -476,7 +477,7 @@ simple_list
 
 ## Subsetting a List {.smaller}
 
-Use `[` `]` to subset a list, with name or (logical) index.
+Use `[` `]` to subset a list, with numeric index, name or logical index.
 
 ::: columns
 ::: {.column}
@@ -493,6 +494,9 @@ simple_list[c(TRUE, FALSE, TRUE)]
 
 ::: {.callout-note appearance="minimal"}
 What is the data structure after subsetting?
+
+- `simple_list[c(1, 3)]`
+- `simple_list[1]`
 :::
 
 ::: {.fragment}
@@ -633,7 +637,7 @@ str(list_long)
 
 ## Today's Goals
 
-- Work with lists and data frames
+- Work with data frames and lists
 - Calculate fold change of gene expression between groups
 - Compare gene expression using the Wilcoxon test
 - Visualize differences with boxplots

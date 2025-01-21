@@ -69,15 +69,17 @@ expr_data <- read.table(
 
 
 ## 2. How many unique expression values are in sample WT.2?
-##    Use `unique()` (to get the unique values) and `length()`.
+##    - Use `unique()` to get the unique values;
+##    - then use `length()` to check the number of elements.
 
-## 3. Extract expression levels for the gene *LOH1* in WT samples and SET1 samples.
+## 3. Extract expression levels for the gene "LOH1" in WT samples (WT.1, WT.2, ..., WT.10)
+##    and SET1 samples (SET1.1, SET1.2, ..., SET1.10).
 ##   Store them as `expr_wt` and `expr_set1`.
 ##   Ensure they are vectors using `unlist()`. (see help with `?unlist`).
 
 
 
-## 4. Calculate the fold change for *LOH1* between WT and SET1 groups.
+## 4. Calculate the fold change and log2 fold change for "LOH1" between WT and SET1 groups.
 ##    Is the gene up- or down-regulated?
 
 
