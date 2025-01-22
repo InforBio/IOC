@@ -206,7 +206,7 @@ my_df[, 2:3]
 #| eval: false
 
 my_df[, c("gene_name", "detected")] # idem
-my_df[, c(FALSE, TRUE, TRUE, FALSE)] # idem
+my_df[, c(FALSE, TRUE, TRUE, FALSE, FALSE)] # idem
 ```
 
 :::
