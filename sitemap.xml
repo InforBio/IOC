@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://InforBio.github.io/IOC/ioc_scrnaseq_info.html</loc>
-    <lastmod>2025-01-21T17:14:54.990Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_scrnaseq.html</loc>
-    <lastmod>2025-01-21T17:14:54.990Z</lastmod>
+    <loc>https://InforBio.github.io/IOC/ioc_r_info.html</loc>
+    <lastmod>2025-01-22T11:39:08.512Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/index.html</loc>
-    <lastmod>2025-01-21T17:14:54.960Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week02/r_w02_exos.html</loc>
-    <lastmod>2025-01-21T17:14:54.987Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week03/r_w03_slides.html</loc>
-    <lastmod>2025-01-21T17:14:54.989Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week03/r_w03_work.html</loc>
-    <lastmod>2025-01-21T17:14:54.989Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week01/r_w01_slides.html</loc>
-    <lastmod>2025-01-21T17:14:54.986Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week04/r_w04_exos.html</loc>
-    <lastmod>2025-01-21T17:14:54.989Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week04/r_w04_work.html</loc>
-    <lastmod>2025-01-21T17:14:54.990Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r_toc.html</loc>
-    <lastmod>2025-01-21T17:14:54.990Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week04/r_w04_slides.html</loc>
-    <lastmod>2025-01-21T17:14:54.990Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week01/r_w01_exos.html</loc>
-    <lastmod>2025-01-21T17:14:54.986Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week01/r_w01_work.html</loc>
-    <lastmod>2025-01-21T17:14:54.986Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week03/r_w03_exos.html</loc>
-    <lastmod>2025-01-21T17:14:54.989Z</lastmod>
-  </url>
-  <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r/week02/r_w02_slides.html</loc>
-    <lastmod>2025-01-21T17:14:54.987Z</lastmod>
+    <lastmod>2025-01-22T11:39:08.478Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_r/week02/r_w02_work.html</loc>
-    <lastmod>2025-01-21T17:14:54.987Z</lastmod>
+    <lastmod>2025-01-22T11:39:08.510Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week02/r_w02_exos.html</loc>
+    <lastmod>2025-01-22T11:39:08.509Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week01/r_w01_slides.html</loc>
+    <lastmod>2025-01-22T11:39:08.508Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week03/r_w03_work.html</loc>
+    <lastmod>2025-01-22T11:39:08.511Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week03/r_w03_exos.html</loc>
+    <lastmod>2025-01-22T11:39:08.511Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week04/r_w04_exos.html</loc>
+    <lastmod>2025-01-22T11:39:08.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_scrnaseq.html</loc>
+    <lastmod>2025-01-22T11:39:08.512Z</lastmod>
   </url>
   <url>
     <loc>https://InforBio.github.io/IOC/ioc_bulk_rnaseq.html</loc>
-    <lastmod>2025-01-21T17:14:54.960Z</lastmod>
+    <lastmod>2025-01-22T11:39:08.478Z</lastmod>
   </url>
   <url>
-    <loc>https://InforBio.github.io/IOC/ioc_r_info.html</loc>
-    <lastmod>2025-01-21T17:14:54.990Z</lastmod>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week04/r_w04_work.html</loc>
+    <lastmod>2025-01-22T11:39:08.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week04/r_w04_slides.html</loc>
+    <lastmod>2025-01-22T11:39:08.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week03/r_w03_slides.html</loc>
+    <lastmod>2025-01-22T11:39:08.511Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week01/r_w01_work.html</loc>
+    <lastmod>2025-01-22T11:39:08.509Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week01/r_w01_exos.html</loc>
+    <lastmod>2025-01-22T11:39:08.508Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r/week02/r_w02_slides.html</loc>
+    <lastmod>2025-01-22T11:39:08.510Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_r_toc.html</loc>
+    <lastmod>2025-01-22T11:39:08.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://InforBio.github.io/IOC/ioc_scrnaseq_info.html</loc>
+    <lastmod>2025-01-22T11:39:08.512Z</lastmod>
   </url>
 </urlset>
