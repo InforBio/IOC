@@ -103,7 +103,7 @@ plot() # from {graphics}
 
 To check the list of installed packages in RStudio:
 
-![](images/package_panel.png)
+![](images/package_panel.png){width=15cm}
 
 ::: {.notes}
 name, description, can delete a pkg here 
@@ -227,7 +227,7 @@ str(iris) # data overview
 ```
 
 
-## Get Started (1) {.smaller}
+## Basic Plot {.smaller}
 
 ```{r}
 library("ggplot2") # load package
@@ -240,7 +240,10 @@ theme_set(theme_grey())
 theme_update(
   axis.title = element_text(size = rel(2)),
   axis.text = element_text(size = rel(2)),
-  strip.text = element_text(size = rel(2))
+  strip.text = element_text(size = rel(2)),
+  plot.title = element_text(size = rel(2.5)),
+  legend.text = element_text(size = rel(2)),
+  legend.title = element_text(size = rel(2))
 )
 ```
 
@@ -250,38 +253,158 @@ Start by calling `ggplot()`:
 ```{r}
 p0 <- ggplot(
   data = iris,
-  aes(x = Sepal.Length, y = Petal.Length)
+  mapping = aes(x = Sepal.Length, y = Petal.Length)
 )
 p0
 ```
 
+Specify data, x and y axes.
 :::
 ::: {.column .fragment}
-Adding a geometric layer for dots plot:
+Add a geometric layer:
 ```{r}
-p1 <- p0 + geom_point()
+# geom_point() is used for scatter plots
+base_plot <- p0 + geom_point()
 
 
+base_plot
+```
 
-p1
+Use points for visualisation.
+:::
+:::
+
+::: {.notes}
+ggplot() creates a canvas to draw on.
+data contains columns fro the plot
+aes() matches columns of data to aesthetics of the plot.
+geom_point() adds point geometry.
+:::
+
+
+## Aesthetics {.smaller}
+
+The most common aesthetics: color, fill, shape, size, alpha (transparency), *etc.*
+
+::: {.columns .content-smaller}
+::: {.column .fragment}
+- Static aesthetics: a fixed value and apply to the whole layer
+```{r}
+base_plot_red <- p0 + geom_point(color = "red")
+base_plot_red
+```
+
+:::
+::: {.column .fragment}
+
+- Aesthetic mappings: visual preoperties that depend on data values (to be used in `aes()`)
+
+```{r}
+base_plot <- p0 + geom_point(aes(color = Species))
+base_plot
 ```
 
 :::
 :::
 
-## Get Started (2) {.smaller}
+::: {.callout-tip appearance="minimal"}
+Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
+:::
+
+
+## Labels {.smaller}
+
+::: {.columns}
+::: {.column}
 
 ```{r}
-p2 <- p1 + stat_smooth(method = "lm")
+base_plot
+```
+
+Use `labs()` to modify labels of plot, axes, legend.
+
+:::
+::: {.column .fragment}
+
+```{r}
+p2 <- base_plot + labs(
+  x = "Sepal Length (cm)",
+  y = "Petal Length (cm)",
+  title = "Scatter plot with customized labels.",
+  color = NULL # remove legend title
+)
 p2
 ```
 
+:::
+:::
 
-## Get Started (3) {.smaller}
+## Add Other Layers {.smaller}
+
+::: {.columns}
+::: {.column}
+```{r}
+# the scatter plot with modified lables
+p2 
+```
+:::
+::: {.column .fragment}
+
+Add a linear regression line using `geom_smooth()`:
+
+```{r}
+p3 <- p2 + geom_smooth(method = "lm", se = FALSE)
+p3
+```
+
+:::
+:::
 
 
-## Get Started (4) {.smaller}
-## Get Started (5) {.smaller}
+## Aesthetic Mappings {.smaller}
+
+::: {.columns}
+::: {.column}
+
+```{r}
+ggplot(
+  data = iris,
+  mapping = aes(
+    x = Sepal.Length,
+    y = Petal.Length
+  )
+) +
+  geom_point(aes(color = Species)) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+:::
+::: {.column .fragment}
+Compare the following code with the left-hand code.
+What is the difference in codes and in obtained figures?
+
+```{r}
+ggplot(
+  data = iris,
+  mapping = aes(
+    x = Sepal.Length,
+    y = Petal.Length,
+    color = Species
+  )
+) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+:::
+:::
+
+## Geometries {.smaller}
+
+Common used geometries: `geom_point()`, `geom_boxplot()`, `geom_violin()`, `geom_histogram()`, `geom_text()`, etc.
+
+
+
+## Extensions of ggplot2 {.smaller}
 
 
 
