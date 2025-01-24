@@ -12,10 +12,196 @@ editor_options:
   chunk_output_type: console
 ---
 
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week05/r_w05_exos.R)
+
+## Goals
+
+- Install new R packages
+- Create a basic plot with ggplot2
+- Create a volcano plot with ggplot2
+
+## Install New Packages
+
+We will use a couple of additional R packages for this training in sessions 8 and 9:
+
+- {[tidyr](https://tidyr.tidyverse.org)}: provides functions that help you get to tidy data
+- {[dplyr](https://dplyr.tidyverse.org)}: for data manipulation
+- {[tibble](https://tibble.tidyverse.org/)}: a modern re-imagining of the data frame
+- {[stringr](https://stringr.tidyverse.org/)}: provides functions designed to make working with strings as easy as possible
+- {[readr](https://readr.tidyverse.org)}: provides fast and friendly way to read rectangular data 
+
+Instead of installing them one by one, we can install the {[tidyverse](https://www.tidyverse.org)} package (a collection of previous packages designed for data science).
+
+1. Install the {`tidyverse`} package.
+
+```{r}
+# install.packages("tidyverse") # you only need to install it once
+```
+
+2. Check if you can find `{dplyr}` and `{tidyr}` in the "*Packages*" panel in RStudio.
+
+3. Please use the following code to create a data frame of all installed packages in your system.
+Show a couple of first lines of the data frame.
+
+```{r}
+my_pkgs <- as.data.frame(installed.packages()[, c(1, 3:4)])
+head(my_pkgs)
+```
+
+4. According to `my_pkgs`, how many packages are installed in your system?
+
+```{r}
+nrow(my_pkgs) # the number can be different
+```
+
+5. Extract the rows for the "ggplot2", "tidyr", "dplyr" packages from `my_pkgs`.
+
+```{r}
+# extract by rownames
+my_pkgs[c("ggplot2", "tidyr", "dplyr"), ]
+
+## or
+# extract by filtering the names in the "Package" column
+my_pkgs[my_pkgs$Package %in% c("ggplot2", "tidyr", "dplyr"), ]
+```
+
+
+## Create a Basic ggplot
+
+We'll use the built-in data set `iris`.
+
+0. Load the {`ggplot2`} package.
+
+```{r}
+library(ggplot2)
+```
+
+1. Create a violin for the petal length by species.
+
+```{r}
+p_base <- ggplot(iris, aes(x = Species, y = Petal.Length)) +
+  geom_violin()
+
+p_base
+```
+
+2. Modify labels:
+
+- Remove x-axis title
+- Change y-axis title to "Petal Length (cm)"
+- Add a plot title "Distribution of iris' petal length"
+- Add a subtitle "The data were collected by Anderson, Edgar (1935)"
+
+```{r}
+p_base <- p_base + labs(
+  x = NULL,
+  y = "Petal Length (cm)",
+  title = "Distribution of iris' petal length",
+  subtitle = "The data were collected by Anderson, Edgar (1935)"
+)
+p_base
+```
+
+
+3. Add a layer of boxplot on the violin plot.
+
+- Color the boxes by species.
+- Use the `alpha` parameter to let boxes be semi-transparent.
+
+```{r}
+p_base <- p_base +
+  geom_boxplot(
+    aes(color = Species),
+    alpha = 0.5
+  )
+p_base
+```
+
+4. Change the theme to `theme_minimal()`. 
+
+```{r}
+p_base <- p_base + theme_minimal()
+p_base
+```
+
+5. With the `theme()` function:
+
+- Increase the font size of x-axis' text.
+- Move the legend to the top of the plot.
+
+```{r}
+p_base <- p_base + theme(
+  axis.text.x = element_text(size = rel(2)),
+  legend.position = "top"
+)
+p_base
+```
+
+## Create a Volcanot Plot with ggplot2
+
+We will use the same diffenrential expression (DE) analysis result as in the hands-on example of session 4, which is also available [here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+
+1. Import the results file in R and name it `de_res`.
+
+```{r}
+de_res <- read.csv(
+  file = "../exos_data/toy_DEanalysis.csv",  # replace the path with your own
+  header = TRUE
+)
+```
+
+2. Create a new column (`gene_signif`) which indicates whether the adjusted p-value is smaller than 0.05.
+
+```{r}
+de_res$gene_signif <- de_res$padj < 0.05
+```
+
+:::{.callout-tip}
+**Volcano Plot**
+
+A volcano plot is a type of scatter plot commonly used in biological data analysis, particularly for differential expression (DE) analysis. It visually combines two key aspects:
+
+- **Significance** ($-log_{10}(\text{p-value})$): How confident we are that a result is not due to chance.
+- **Effect size** ($log_{2}(\text{Fold Change})$): The magnitude of change between conditions.
+
+Volcano plot highlights genes (or features) that are both statistically significant and biologically meaningful.
+:::
+
+3. Create a volcano plot using the DE results `de_res`.
+
+- Let the log2 fold change be on the x-axis.
+- Transform the adjusted p-value to `-log10()`, then let them be on the y-axis.
+- Color the points by whether the adjusted p-value is smaller than 0.05 (*i.e.*, the `gene_signif` column).
+- Use the shape 18 for the points.
+- Increase the points size to 3.
+- Use the `alpha` parameter to make points transparent.
+- Add a title for the plot, show number of analysed genes in the subtitle.
+- Use the `theme_bw()` for the plot.
+- Hide the legend.
+
+```{r}
+ggplot(
+  data = de_res,
+  mapping = aes(x = log2FoldChange, y = -log10(padj))
+) +
+  geom_point(
+    aes(color = gene_signif),
+    shape = 18,
+    size = 3,
+    alpha = 0.5
+  ) +
+  labs(
+    title = "Volcano plot for DE analysis",
+    subtitle = paste("Total genes analysed:", nrow(de_res))
+  ) +
+  theme_bw() +
+  theme(legend.position = "none")
+```
 
 
 ---
 
-#### Good job! 👏👏 You've taken your first big steps into R, and you're off to a great start, keep it up! 
+#### Good job! 👏👏 You've taken your first big steps into ggplot2, keep it up! 
 
 
