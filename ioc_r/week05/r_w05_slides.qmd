@@ -123,6 +123,10 @@ By default, R will install the lastest version of a package.
 **[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.
 :::
 
+::: {.notes}
+Only need install once for the system, the load the package.
+:::
+
 ## Management of Packages {.smaller}
 
 ::: {.columns}
@@ -282,9 +286,9 @@ geom_point() adds point geometry.
 :::
 
 
-## Aesthetics {.smaller}
+## Aesthetics - Color {.smaller}
 
-The most common aesthetics: color, fill, shape, size, alpha (transparency), *etc.*
+The most common aesthetics: **color**, fill, shape, size, alpha (transparency), *etc.*
 
 ::: {.columns .content-smaller}
 ::: {.column .fragment}
@@ -309,8 +313,87 @@ base_plot
 
 ::: {.callout-tip appearance="minimal"}
 Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
+:::
 
-We'll learn the us of other aesthetics next week!
+## Aesthetics - Shape {.smaller}
+
+The most common aesthetics: color, fill, **shape**, size, alpha (transparency), *etc.*
+
+::: {.columns .content-smaller}
+::: {.column}
+- Static aesthetics: a fixed value and apply to the whole layer
+```{r}
+p0 + geom_point(shape = 3)
+```
+
+:::
+::: {.column .fragment}
+
+- Aesthetic mappings: visual preoperties that depend on data values (to be used in `aes()`)
+
+```{r}
+p0 + geom_point(aes(shape = Species))
+```
+
+:::
+:::
+
+::: {.callout-tip appearance="minimal"}
+Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
+:::
+
+## Aesthetics - Size {.smaller}
+
+The most common aesthetics: color, fill, shape, **size**, alpha (transparency), *etc.*
+
+::: {.columns .content-smaller}
+::: {.column}
+- Static aesthetics: a fixed value and apply to the whole layer
+```{r}
+p0 + geom_point(size = 3)
+```
+
+:::
+::: {.column .fragment}
+
+- Aesthetic mappings: visual preoperties that depend on data values (to be used in `aes()`)
+
+```{r}
+p0 + geom_point(aes(size = Petal.Length))
+```
+
+:::
+:::
+
+::: {.callout-tip appearance="minimal"}
+Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
+:::
+
+## Aesthetics - Alpha {.smaller}
+
+The most common aesthetics: color, fill, shape, size, **alpha** (transparency), *etc.*
+
+::: {.columns .content-smaller}
+::: {.column}
+With no transparency:
+```{r}
+p0 + geom_point(size = 3)
+```
+
+:::
+::: {.column .fragment}
+
+Use the alpha (between 0 and 1) parameter:
+
+```{r}
+p0 + geom_point(size = 3, alpha = 0.5)
+```
+
+:::
+:::
+
+::: {.callout-tip appearance="minimal"}
+Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
 :::
 
 
