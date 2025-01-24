@@ -528,6 +528,52 @@ ggplot(iris, aes(x = Species)) +
 :::
 :::
 
+::: {.callout-tip}
+`geom_histogram()` and `geom_bar()` only require one variable for the x-axis. The y-axis is automatically calculated.
+:::
+
+## Themes {.smaller}
+
+::: {.columns}
+::: {.column}
+- Built-in themes (`theme_*()`): `theme_grey()` (default),`theme_bw()`, `theme_light()`, `theme_classic()`, *etc.*
+
+```{r}
+#| eval: false
+
+base_plot + theme_classic()
+```
+
+```{r}
+#| echo: false
+
+base_plot + theme_classic() + theme(
+  axis.title = element_text(size = rel(2)),
+  axis.text = element_text(size = rel(2)),
+  strip.text = element_text(size = rel(2)),
+  plot.title = element_text(size = rel(2.5)),
+  legend.text = element_text(size = rel(2)),
+  legend.title = element_text(size = rel(2))
+)
+```
+
+:::
+::: {.column}
+- Use `theme()` function to tweak elements, *e.g.*:
+
+```{r}
+base_plot + theme(
+  legend.position = "none", # hide legend
+  plot.title = element_text(
+    hjust = 0.5, # center plot title
+    size = 5, # plot title size
+  ), 
+  axis.text.x = element_text(angle = 90) # rotate axis' text
+)
+```
+:::
+:::
+
 
 ## Saving Your Graphs {.smaller}
 
