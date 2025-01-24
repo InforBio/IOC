@@ -198,7 +198,7 @@ flowchart LR
 <br>
 
 ::: {.callout-tip appearance="minimal"}
-Check out this website: [from Data to Viz](https://www.data-to-viz.com) (by Yan Holtz)
+Check out these websites: [from Data to Viz](https://www.data-to-viz.com) and [The R Graph Gallery](https://r-graph-gallery.com) (by Yan Holtz)
 :::
 
 ::: {.notes}
@@ -309,6 +309,8 @@ base_plot
 
 ::: {.callout-tip appearance="minimal"}
 Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
+
+We'll learn the us of other aesthetics next week!
 :::
 
 
@@ -327,13 +329,13 @@ Use `labs()` to modify labels of plot, axes, legend.
 ::: {.column .fragment}
 
 ```{r}
-p2 <- base_plot + labs(
+p_labs <- base_plot + labs(
   x = "Sepal Length (cm)",
   y = "Petal Length (cm)",
   title = "Scatter plot with customized labels.",
   color = NULL # remove legend title
 )
-p2
+p_labs
 ```
 
 :::
@@ -345,7 +347,7 @@ p2
 ::: {.column}
 ```{r}
 # the scatter plot with modified lables
-p2 
+p_labs
 ```
 :::
 ::: {.column .fragment}
@@ -353,8 +355,8 @@ p2
 Add a linear regression line using `geom_smooth()`:
 
 ```{r}
-p3 <- p2 + geom_smooth(method = "lm", se = FALSE)
-p3
+p_regline <- p_labs + geom_smooth(method = "lm", se = FALSE)
+p_regline
 ```
 
 :::
@@ -379,8 +381,11 @@ ggplot(
 ```
 :::
 ::: {.column .fragment}
-Compare the following code with the left-hand code.
-What is the difference in codes and in obtained figures?
+::: {.callout-note appearance="minimal"}
+Compare the following code with the code on the left.
+What is different between the codes?
+What is different about the resulting graphs?
+:::
 
 ```{r}
 ggplot(
@@ -398,21 +403,74 @@ ggplot(
 :::
 :::
 
-## Geometries {.smaller}
+::: {.notes}
+aes() in ggplot() or in geom_*(), if multiple layers
+:::
 
-Common used geometries: `geom_point()`, `geom_boxplot()`, `geom_violin()`, `geom_histogram()`, `geom_text()`, etc.
+## Common Used Geometries (1) {.smaller}
+
+::: {.columns}
+::: {.column}
+- Boxplot:
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot()
+```
+:::
+::: {.column}
+- Violin plot:
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_violin()
+```
+:::
+:::
+
+## Common Used Geometries (2) {.smaller}
+
+::: {.columns}
+::: {.column}
+- Histogram:
+```{r}
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_histogram()
+```
+:::
+::: {.column}
+- Bar plot:
+```{r}
+ggplot(iris, aes(x = Species)) +
+  geom_bar()
+```
+:::
+:::
 
 
+## Saving Your Graphs {.smaller}
 
-## Extensions of ggplot2 {.smaller}
+Use `ggsave()` to save plots in high resolution for publications.
 
+```r
+ggsave(
+  filename = "path/to/figure.png", # figure file name
+  plot = last_plot(), 
+  # save by default the last figure,
+  # you can provide the figure name to specify the plot to be saved.
+  device = "png",
+  # can be one of "eps", "ps", "tex" (pictex), "pdf",
+  # "jpeg", "tiff", "png", "bmp", "svg" or "wmf"
+  width = 6.3,
+  height = 4.7,
+  units = "in", # can be one of "in", "cm", "mm" or "px"
+  dpi = 300 # plot resolution
+)
+```
 
 
 # Let's Practice !
 
 ## Today's Goals
 
-- 
-- 
-- 
-- 
+- Install new R packages
+- Creating a basic plot with ggplot2
+- Create a volcano plot with ggplot2
