@@ -240,11 +240,11 @@ window.Quarto = {
 </section>
 <section id="import-data" class="level2">
 <h2 class="anchored" data-anchor-id="import-data">Import Data</h2>
-<p>A gene-level diffenrential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from <code>read-counts.csv</code>.</p>
-<p>The analysis result is available via this <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv">link</a>.</p>
+<p>A gene-level differential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from <code>read-counts.csv</code>.</p>
+<p>The analysis results are available via this <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv">link</a>.</p>
 <ul>
 <li>Please donwload the result file and upload it to your data folder.</li>
-<li>Import the data using <code>read.csv()</code> function. (See the documentation with <code>?read.csv</code>) Name the imported results <code>de_res</code>.</li>
+<li>Import the data using the <code>read.csv()</code> function. (See the documentation with <code>?read.csv</code>) Name the imported results <code>de_res</code>.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>de_res <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
@@ -294,28 +294,30 @@ Stats Time!
 <div class="callout-body-container callout-body">
 <p><strong>Multiple Tests Correction</strong></p>
 <ul>
-<li>Why multiple testing is a problem?</li>
-</ul>
-<p>If we do 100 tests simultaneously and set and use significance level at 0.05, <span class="math display">\[
+<li>
+<p>Why multiple testing is a problem?</p>
+<p>When performing multiple statistical tests, the probability of making at least one Type I error (false positive) increases with the number of tests.</p>
+<p>For instance, if we perform 100 independent tests with a significance level (<span class="math inline">\(\alpha\)</span>) of 5%, the chance of incorrectly rejecting at least one null hypothesis is no longer 5%, but much higher. This is because the errors accumulate across the tests.</p>
+<p>If we do 100 tests simultaneously and set and use <span class="math inline">\(\alpha\)</span> at 0.05, the probability to do at least one error is:</p>
+<p><span class="math display">\[
 \begin{aligned}
-P(\text{at least 1 significant result by change}) &amp;= 1- P(\text{non significant results}) \\
+P(\text{at least 1 significant result by chance}) &amp;= 1- P(\text{non significant results}) \\
 &amp;= 1 – (1 - 0.05)^{100} \\
 &amp;= 0.99
 \end{aligned}
 \]</span></p>
-<ul>
-<li>Multiple test correction
+</li>
+<li>
+<p>Multiple test correction</p>
+<p>To address this issue and control the overall Type I error rate, statistical corrections like the Bonferroni correction or False Discovery Rate (FDR) adjustments are commonly used in multiple testing scenarios.</p>
 <ul>
 <li>
-<strong>Bonferroni</strong> correction: control the significance level.
+<strong>Bonferroni</strong> correction: adjust the significance threshold (<span class="math inline">\(\alpha\)</span>) to account for the number of tests (Ntest) being performed, <em>i.e.</em>, <span class="math inline">\(\alpha_{adjusted}= \frac{\alpha}{\text{Ntest}}\)</span>
 </li>
-<p>
-<span class="math inline">\(\alpha_{adjusted}= \frac{\alpha}{N test}\)</span>
-</p>
 <p>
 <span class="math display">\[
 \begin{aligned}
-P(\text{at least 1 significant result by change}) &amp;= 1 – (1 - \frac{0.05}{100})^{100} \\
+P(\text{at least 1 significant result by chance}) &amp;= 1 – (1 - \frac{0.05}{100})^{100} \\
 &amp;= 0.049
 \end{aligned}
 \]</span>
@@ -323,7 +325,8 @@ P(\text{at least 1 significant result by change}) &amp;= 1 – (1 - \frac{0.05}{
 <li>
 <strong>FDR</strong> (False discovery rate): control the proportion of false positive amongst all significant results, <em>e.g.</em>: Benjamini-Hochberg (BH) procedure.
 </li>
-</ul></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
