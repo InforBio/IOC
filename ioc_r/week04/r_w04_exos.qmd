@@ -22,12 +22,12 @@ The R script is available here:
 
 ## Import Data
 
-A gene-level diffenrential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from `read-counts.csv`.
+A gene-level differential expression (DE) analysis was performed to compare SET1 samples to WT samples using data from `read-counts.csv`.
 
-The analysis result is available via this [link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
+The analysis results are available via this [link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
 
 - Please donwload the result file and upload it to your data folder.
-- Import the data using `read.csv()` function.
+- Import the data using the `read.csv()` function.
 (See the documentation with `?read.csv`) 
 Name the imported results `de_res`.
 
@@ -65,25 +65,40 @@ The result contains following columns:
 
 - Why multiple testing is a problem?
 
+When performing multiple statistical tests,
+the probability of making at least one Type I error (false positive) increases
+with the number of tests.
+
+For instance, if we perform 100 independent tests with a significance level ($\alpha$) of 5%,
+the chance of incorrectly rejecting at least one null hypothesis is no longer 5%, but much higher. This is because the errors accumulate across the tests.
+
+
 If we do 100 tests simultaneously and set and use significance level at 0.05,
+the probability to do at least one error is:
+
 $$
 \begin{aligned}
-P(\text{at least 1 significant result by change}) &= 1- P(\text{non significant results}) \\
+P(\text{at least 1 significant result by chance}) &= 1- P(\text{non significant results}) \\
 &= 1 – (1 - 0.05)^{100} \\
 &= 0.99
 \end{aligned}
 $$
 
 - Multiple test correction
+
+To address this issue and control the overall Type I error rate,
+statistical corrections like the Bonferroni correction or
+False Discovery Rate (FDR) adjustments are commonly used in multiple testing scenarios.
+
 <ul>
-  <li> **Bonferroni** correction: control the significance level.</li>
+  <li> **Bonferroni** correction: adjust the significance threshold ($\alpha$) to account for the number of tests (Ntest) being performed.</li>
   <p>
-$\alpha_{adjusted}= \frac{\alpha}{N test}$
+$\alpha_{adjusted}= \frac{\alpha}{\text{Ntest}}$
   </p>
   <p>
 $$
 \begin{aligned}
-P(\text{at least 1 significant result by change}) &= 1 – (1 - \frac{0.05}{100})^{100} \\
+P(\text{at least 1 significant result by chance}) &= 1 – (1 - \frac{0.05}{100})^{100} \\
 &= 0.049
 \end{aligned}
 $$
