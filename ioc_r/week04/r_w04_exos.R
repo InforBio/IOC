@@ -3,14 +3,14 @@
 
 ## Import Data -------------------------------------------------------------
 
-# A gene-level diffenrential expression (DE) analysis was performed
+# A gene-level differential expression (DE) analysis was performed
 # to compare SET1 samples to WT samples using data from `read-counts.csv`.
 
-# The analysis result is available via this link:
+# The analysis results are available via this link:
 # https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv
 
 ## - Please donwload the result file and upload it to your data folder.
-## - Import the data using `read.csv()` function.
+## - Import the data using the `read.csv()` function.
 ## (See the documentation with `?read.csv`)
 ## Name the imported results `de_res`.
 

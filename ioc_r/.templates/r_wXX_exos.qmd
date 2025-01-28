@@ -12,7 +12,8 @@ editor_options:
   chunk_output_type: console
 ---
 
-
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/weekXX/r_wXX_exos.R)
 
 ---
 
