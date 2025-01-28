@@ -18,7 +18,7 @@ echo: true
 categories: 
   - week05
   - slides
-# image: xxx.png
+image: images/ggplot2_logo.png
 ---
 
 # Recap Week 4
