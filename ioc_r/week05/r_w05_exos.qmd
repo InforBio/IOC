@@ -142,6 +142,10 @@ p_base
 
 We will use the same diffenrential expression (DE) analysis result as in the hands-on example of session 4, which is also available [here](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv).
 
+Reminder: the results were obtained by comparing SET1 samples to WT samples using
+the data from the [`read-counts.csv`](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv) file.
+
+
 1. Import the results file in R and name it `de_res`.
 
 ```{r}
