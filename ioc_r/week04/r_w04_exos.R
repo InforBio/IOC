@@ -35,53 +35,45 @@ de_res
 # - `pvalue`: Wald test p-value
 # - `padj`: adjusted p-values (Benjamini-Hochberg procedure)
 
-## 2. Extract results for these genes: RNR1, PIR3, SRP68.
+## 2. Filter the rows where the gene has a log2 fold change (`log2FoldChange`)
+##    greater than 0.5.
+
+## 3. Filter the rows where the gene has a log2 fold change smaller than -0.5.
+
+## 4. Filter the rows where the gene has a log2 fold change greater than 0.5 or
+##    smaller than -0.5.
+
+## 5. Filter the rows where the gene has a log2 fold change greater than 0.5 and
+##    adjusted p-value (`padj`) smaller than 0.05.
 
 
-## 3. Order the result by decreasing p-value using the `order()` function.
-##    (See `?order()`)
-##    Hints:
-##    - `order()` can return the indices of the vector elements in
-##       ascending or descending order
-##    - Apply `order()` to the desired column
-##    - Use the returned indices to rearrange the dataframe
+## 6. Extract results for these genes: RNR1, PIR3, SRP68.
 
 
-
-## 4. Use `ifelse()` to categorize genes.
+## 7. Use `ifelse()` to categorize genes.
 ##    Add a new column, `gene_category`, that assigns categories:
 ##    - "up" if `log2FoldChange > 0.5`.
 ##    - "down" if `log2FoldChange < -0.5`.
 ##    - "neutral" otherwise.
 
 
-## 5. Use `table()` to count the occurrences of each gene category.
+## 8. Use `table()` to count the occurrences of each gene category.
 
 
+## Bonus Questions  ------------------------------------------------------------
 
-## 6. Write the code to create a subset of significant upregulated genes with:
-##    - Adjusted p-value (`padj`) < 0.05.
-##    - Log2 fold change (`log2FoldChange`) > 1.
-
-
-## 7. Write the code to create a subset for genes that meet
-##    any of the following conditions:
-##    - `pvalue < 0.01` and `log2FoldChange > 0.5`.
-##    - `pvalue < 0.01` and `log2FoldChange < -0.5`.
-
-
-## 8. Write a function to automate "de_res" filtering for genes
+## 9. Write a function to automate "de_res" filtering for genes
 ##    with a p-value less than or equal to a custom cutoff.
 
 
 
-## 9. Based on the function created in question 8, modify the function
+## 10. Based on the function created in question 9, modify the function
 ##    to allow output ordered by any desired column in `de_res`.
 ## Hints: You need an extra parameter to specify the wanted
 ##        column and another parameter to fix the cutoff.
 
 
-## 10. A yeast gene annotation file was obtained from the Ensembl data base.
+## 11. A yeast gene annotation file was obtained from the Ensembl data base.
 ##     This file can be donwloaded here:
 ##     https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/yeast_gene_annot.csv
 ##     Import the data and add the annotation to the `de_res` data frame using `merge()` function.
