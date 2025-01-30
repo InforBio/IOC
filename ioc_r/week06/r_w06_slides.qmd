@@ -1,5 +1,5 @@
 ---
-title: " "
+title: "R-fresh:<br>Revisiting the Essentials"
 subtitle: "IOC-R Week 6"
 date: "2025-02-10"
 date-format: " "
@@ -18,18 +18,17 @@ echo: true
 categories: 
   - week06
   - slides
-# image: xxx.png
+image: images/xkcd_parenthesis.png
 ---
 
-# Chapter 1
+# Data Structure
 
-## Slide 1
+# Operators
 
-Check the demo here: https://quarto.org/docs/presentations/revealjs/
+# Ggplot2
 
-## Slide 2
+# AI tools
 
-# Let's Practice !
 
 ## Today's Goals
 
