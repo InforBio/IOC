@@ -21,13 +21,279 @@ categories:
 image: images/xkcd_parenthesis.png
 ---
 
-# Data Structure
+# R Projects
 
-# Operators
+## Organizing Your Work Like a Pro
 
-# Ggplot2
+Use R Projects to manage files and scripts in a structured way.
 
-# AI tools
+- Keep data, scripts, and outputs in separate folders to avoid chaos.
+
+- Example:
+
+```bash
+my_project/
+  ├── data/          # Raw data files (e.g., RNA-seq counts)
+  ├── scripts/       # R scripts for preprocessing & analysis
+  ├── outputs/       # Output figures & tables
+```
+
+# Variables & Data Types
+
+## What’s in Your Data? {.smaller}
+
+| Data Type  |	Example in Biology |
+|:-----------|:---------------------|
+| Numeric    |	Expression levels (`log2FC <- 1.5`)|
+| Character  |	Gene names (`"TP53"`,` "BRCA1"`)|
+| Logical    |	Mutation status (`TRUE` for mutated, `FALSE` for WT)|
+| Factor     |	Mutation status (mutated group or WT group)|
+
+<br>
+
+```{r}
+gene <- "TP53"       # Character
+expression <- 25.3   # Numeric
+is_mutant <- TRUE    # Logical
+mut_gp <- factor(c("wt", "wt", "mut", "mut"))
+```
+
+
+# Data Structures
+
+## Where Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Vectors**: The DNA of R
+
+  - 1D homogeneous data (all elements of the same type).
+  - Use cases: A list of gene names, expression levels, or p-values.
+  - Use `[]` for indexing
+:::
+::: {.column}
+```{r}
+gene_names <- c("TP53", "BRCA1", "EGFR", "INS")
+gene_names[1]  # First gene: "TP53"
+gene_names[c(2, 4)]  # Select multiple genes
+```
+
+:::
+:::
+
+
+## Where Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Matrices**: Gene Expression Tables
+
+  - 2D homogeneous data (only numbers or only characters).
+  - Rows = genes, Columns = samples
+  - Use `[, ]` for indexing.
+
+```{r}
+expr_matrix <- matrix(
+  c(10, 12, 15, 20, 8, 30),
+  nrow = 3, byrow = TRUE,
+  dimnames = list(
+    c("gene1", "gene2", "gene3"),
+    c("sample1", "sample2")
+  )
+)
+```
+
+:::
+::: {.column}
+```{r}
+expr_matrix
+expr_matrix["gene1", ]  # Expression of Gene1 across samples
+expr_matrix[, "sample2"]  # All gene expressions in Sample2
+expr_matrix[2, 1]  # Specific value at row 2, column 1
+```
+
+:::
+:::
+
+## Where Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Data Frames**: Your Best Friend for Biological Data
+
+  - 2D heterogeneous data (mix of characters, numbers, logicals).
+  - Use `[, ]`, `$`, and `[[ ]]` for indexing.
+
+```{r}
+df <- data.frame(
+  Gene = c("TP53", "BRCA1", "EGFR"),
+  Expression = c(25.3, 12.5, 30.1),
+  Mutation = c(TRUE, FALSE, TRUE)
+)
+```
+
+:::
+::: {.column}
+
+```{r}
+df
+df$Gene  # Select column as a vector
+df[, "Expression"]  # Same as df$Expression
+df[[2]]  # Same as df$Expression
+df[1, ]  # First row
+df[df$Expression > 30, ]  # Filter expression bigger than 30
+df[which(df$Mutation), ]  # Filter mutated genes
+```
+
+:::
+:::
+
+## Where Do You Store Your Data? {.smaller}
+
+::: {.columns}
+::: {.column}
+- **Lists**: Storing Everything Together
+
+  - Flexible structure, can hold anything (vectors, matrices, data frames or lists).
+  - Use `[]` to subset a list.
+  - Use `[[ ]]` or `$` to access elements inside a list.
+
+```{r}
+bio_data <- list(
+  genes = c("TP53", "BRCA1"),
+  expression = matrix(c(20, 15, 30, 25), nrow = 2),
+  metadata = data.frame(Sample = c("A", "B"), Condition = c("WT", "KO"))
+)
+```
+
+:::
+::: {.column}
+
+```{r}
+bio_data
+bio_data[1]  # a sub list
+bio_data[[1]]  # Get gene names
+bio_data$expression  # Get expression matrix
+bio_data$metadata$Condition  # Get sample conditions
+```
+
+:::
+:::
+
+# Conditions & Operators
+
+## Making Decisions in R {.smaller}
+
+| Type |	Operator |	Example |
+|:----------|:---------------------:|:--------------:|
+|Comparison |	==, !=, >, <, >=, <=	| p_value < 0.05 |
+|Logical    | `&` (AND), `|` (OR), `!` (NOT) | TRUE & FALSE |
+
+<br>
+
+::: {.columns}
+::: {.column}
+
+```{r}
+expression <- 25.3
+
+if (expression > 20) {
+  print("High expression")
+} else {
+  print("Low expression")
+}
+
+```
+
+:::
+::: {.column}
+
+```{r}
+genes <- data.frame(
+  Gene = c("TP53", "BRCA1", "EGFR"),
+  Expression = c(25.3, 12.5, 30.1)
+)
+
+genes[genes$Expression > 20, ]
+```
+
+:::
+:::
+
+# Functions
+
+## Automate Task in R
+
+```{r}
+classify_expression <- function(expr) {
+  if (expr > 20) {
+    return("High")
+  } else {
+    return("Low")
+  }
+}
+
+classify_expression(25.3)
+```
+
+# Ggplot2: Visualizing Your Results
+
+## Basic Graphing {.smaller}
+
+Syntax: `ggplot(data, aes(x, y)) + geom_*()`
+
+```{r}
+#| echo: false
+
+library(ggplot2)
+theme_set(theme_grey())
+theme_update(
+  axis.title = element_text(size = rel(2)),
+  axis.text = element_text(size = rel(2)),
+  strip.text = element_text(size = rel(2)),
+  plot.title = element_text(size = rel(2.5)),
+  legend.text = element_text(size = rel(2)),
+  legend.title = element_text(size = rel(2))
+)
+```
+
+::: {.columns}
+::: {.column}
+```{r}
+library(ggplot2)
+df <- data.frame(
+  Expression = c(25.3, 12.5, 30.1, 27.8, 18.2, 35.6),
+  Condition = rep(c("WT", "KO"), 3)
+)
+df
+```
+
+:::
+::: {.column}
+```{r}
+ggplot(df, aes(x = Condition, y = Expression, fill = Condition)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+
+:::
+:::
+
+
+
+# Using AI to Solve Coding Problems in R
+
+## How to ask AI for help effectively? {.smaller}
+
+✅ Be specific: Instead of "Why is my code not working?", ask:
+
+> "I’m trying to filter a data frame in R where Expression > 10, but I get an error. Here’s my code: df[df$Expression > 10]. How can I fix it?"
+
+✅ Provide context:
+
+- What is your goal?
+- What error message do you see?
+- What does your dataset look like?
 
 
 ## Today's Goals
