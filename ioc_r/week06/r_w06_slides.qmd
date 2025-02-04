@@ -65,7 +65,7 @@ mut_gp <- factor(c("wt", "wt", "mut", "mut"))
 
 ::: {.columns}
 ::: {.column}
-- **Vectors**: The DNA of R
+- **Vectors**
 
   - 1D homogeneous data (all elements of the same type).
   - Use cases: A list of gene names, expression levels, or p-values.
@@ -86,10 +86,10 @@ gene_names[c(2, 4)]  # Select multiple genes
 
 ::: {.columns}
 ::: {.column}
-- **Matrices**: Gene Expression Tables
+- **Matrices**:
 
   - 2D homogeneous data (only numbers or only characters).
-  - Rows = genes, Columns = samples
+  - Use case: gene expression table, rows = genes, columns = samples
   - Use `[, ]` for indexing.
 
 ```{r}
@@ -119,10 +119,10 @@ expr_matrix[2, 1]  # Specific value at row 2, column 1
 
 ::: {.columns}
 ::: {.column}
-- **Data Frames**: Your Best Friend for Biological Data
+- **Data Frames**
 
-  - 2D heterogeneous data (mix of characters, numbers, logicals).
-  - Use `[, ]`, `$`, and `[[ ]]` for indexing.
+  - 2D heterogeneous data (mix of characters, numbers, logicals, factors).
+  - Use `[, ]` for indexing; use `$` and `[[ ]]` to extract one column.
 
 ```{r}
 df <- data.frame(
@@ -152,7 +152,7 @@ df[which(df$Mutation), ]  # Filter mutated genes
 
 ::: {.columns}
 ::: {.column}
-- **Lists**: Storing Everything Together
+- **Lists**
 
   - Flexible structure, can hold anything (vectors, matrices, data frames or lists).
   - Use `[]` to subset a list.
@@ -225,8 +225,9 @@ genes[genes$Expression > 20, ]
 ## Automate Task in R
 
 ```{r}
-classify_expression <- function(expr) {
-  if (expr > 20) {
+classify_expression <- function(expr, cutoff = 20) {
+  message("Cutoff is ", cutoff)
+  if (expr > cutoff) {
     return("High")
   } else {
     return("Low")
@@ -234,6 +235,7 @@ classify_expression <- function(expr) {
 }
 
 classify_expression(25.3)
+classify_expression(25.3, 10)
 ```
 
 # Ggplot2: Visualizing Your Results
@@ -271,7 +273,10 @@ df
 :::
 ::: {.column}
 ```{r}
-ggplot(df, aes(x = Condition, y = Expression, fill = Condition)) +
+ggplot(
+  data = df,
+  aes(x = Condition, y = Expression, fill = Condition)
+) +
   geom_boxplot() +
   theme_minimal()
 ```
@@ -295,10 +300,12 @@ ggplot(df, aes(x = Condition, y = Expression, fill = Condition)) +
 - What error message do you see?
 - What does your dataset look like?
 
+# Let's Practice!
 
 ## Today's Goals
 
-- 
-- 
-- 
-- 
+- Hands-on challenge: “Fix the Code”
+- Mini data analysis project
+  - Data cleaning
+  - Simple analysis
+  - Visualisation
