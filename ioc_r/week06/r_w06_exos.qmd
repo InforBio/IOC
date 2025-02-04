@@ -179,12 +179,13 @@ data
 
 Tasks:
 
-1️. Find missing values.
+1. Find missing values.
 Which rows contain missing values?
 → Hint: Use `is.na()`
 
 ```{r}
 #| code-fold: true
+#| code-summary: "Correction"
 
 # Check which values are missing
 is.na(data$expression)
@@ -193,11 +194,12 @@ is.na(data$expression)
 data[is.na(data$expression), ]
 ```
 
-2️. Remove rows with missing values.
+2. Remove rows with missing values.
 Create a new dataset without missing values.
 
 ```{r}
 #| code-fold: true
+#| code-summary: "Correction"
 
 # Remove rows where expression is NA
 data_clean <- data[!is.na(data$expression), ]
@@ -206,13 +208,14 @@ data_clean <- data[!is.na(data$expression), ]
 data_clean
 ```
 
-3️. Basic summary statistics
+3. Basic summary statistics
 
 - What is the mean expression level (after removing missing values)?
 - What is the max and min expression?
 
 ```{r}
 #| code-fold: true
+#| code-summary: "Correction"
 
 # Compute summary statistics
 mean_expression <- mean(data_clean$expression)
@@ -228,11 +231,12 @@ min_expression
 range(data_clean$expression)
 ```
 
-4️. Find the average expression (`mean()`) and the standard deviation (`sd()`) 
+4. Find the average expression (`mean()`) and the standard deviation (`sd()`) 
 for each sample group (Control *vs.* Case)
 
 ```{r}
 #| code-fold: true
+#| code-summary: "Correction"
 
 # Compute mean and sd of expression for each sample group
 expr_ctrl <- data_clean$expression[data_clean$sample_group == "Control"]
@@ -253,6 +257,7 @@ Prepare data for barplot with error bars. We need:
 
 ```{r}
 #| code-fold: true
+#| code-summary: "Correction"
 
 gg_data <- data.frame(
   group = c("Control", "Case"),
@@ -271,6 +276,7 @@ gg_data
 
 ```{r}
 #| code-fold: true
+#| code-summary: "Correction"
 
 p_bar <- ggplot(data = gg_data, aes(x = group, y = mean_val)) +
   geom_bar(stat = "identity", fill = "orange", width = 0.5) # bar plot
