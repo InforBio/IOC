@@ -10,10 +10,290 @@ categories:
   - exercise
 editor_options: 
   chunk_output_type: console
+execute: 
+  error: true
 ---
 
 The R script is available here:
 [link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week06/r_w06_exos.R)
+
+## Goals
+
+- Hands-on challenge: “Fix the Code”
+- Mini data analysis project
+  - Data cleaning
+  - Simple analysis
+  - Visualisation
+
+## "Fix the Code" Challenge
+
+1. Fix the data frame error.
+
+```{r}
+data <- data.frame(
+  gene = c("BRCA1", "TP53", "MYC"),
+  expression = c(10.5, 8.2, 12.7)
+  condition = c("Tumor", "Normal", "Tumor")
+)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+data <- data.frame(
+  gene = c("BRCA1", "TP53", "MYC"),
+  expression = c(10.5, 8.2, 12.7),
+  condition = c("Tumor", "Normal", "Tumor")
+)
+```
+
+2. Fix error when using the `mean()` function.
+
+```{r}
+counts <- data.frame(
+  sample1 = c(1, 2, 3),
+  sample2 = c(1, 1, 3),
+  sample3 = c(0, 1, 2),
+  row.names = paste0("gene", 1:3)
+)
+counts
+
+mean(counts["gene3", ])
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+mean(unlist(counts["gene3", ]))
+# or
+mean(as.matrix(counts)["gene3", ])
+```
+
+3. Fix error in condition.
+
+```{r}
+x <- 10
+if (x = 5) {
+  print("x is 5")
+}
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+x <- 10
+if (x == 5) {
+  print("x is 5")
+}
+```
+
+
+4. Fix error in ggplot2.
+
+```r
+ggplot(iris, aes(x = Sepal.Length, y = Species))
+geom_boxplot()
+```
+```{r}
+#| echo: false
+ggplot(iris, aes(x = Sepal.Length, y = Species))
+geom_boxplot()
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+library(ggplot2) # load the package before use
+ggplot(iris, aes(x = Sepal.Length, y = Species)) + # need "+" between layers
+  geom_boxplot()
+```
+
+5. Fix error in ggplot2. The aim is to draw boxplot for each group.
+
+```{r}
+# simulate data for two groups of samples.
+set.seed(1)
+data <- data.frame(
+  gp = rep(1:2, each = 20),
+  value = c(rnorm(20), rnorm(20, mean = 5))
+)
+str(data)
+# draw boxplot by group.
+ggplot(data, aes(x = gp, y = value)) + 
+  geom_boxplot()
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+ggplot(data, aes(x = factor(gp), y = value)) + 
+  geom_boxplot()
+```
+
+6. Fix code in data filtration.
+
+```{r}
+# try to keep rows where the value is smaller than -0.5
+data[data$value<-0.5, ]
+str(data) # the original data was changed!
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+set.seed(1)
+data <- data.frame(
+  gp = rep(1:2, each = 20),
+  value = c(rnorm(20), rnorm(20, mean = 5))
+)
+
+data[data$value < -0.5, ]
+```
+
+## Mini Data Project
+
+A researcher has collected some gene expression data from 12 samples.
+However, some values are missing.
+Please help the researcher to clean the data and calculate some basic statistics.
+
+```{r}
+# Simulated dataset with missing values
+data <- data.frame(
+  sample_id = paste0("sample", 1:12),
+  expression = c(
+    10.2, 15.2, NA, NA, 9.4, 18.1,
+    8.9, 16.0, 10.5, 15.5, 11.5, 13.4
+  ),
+  sample_group = rep(c("Control", "Case"), times = 6)
+)
+
+# Show the dataset
+data
+```
+
+Tasks:
+
+1️. Find missing values.
+Which rows contain missing values?
+→ Hint: Use `is.na()`
+
+```{r}
+#| code-fold: true
+
+# Check which values are missing
+is.na(data$expression)
+
+# Show only rows with missing values
+data[is.na(data$expression), ]
+```
+
+2️. Remove rows with missing values.
+Create a new dataset without missing values.
+
+```{r}
+#| code-fold: true
+
+# Remove rows where expression is NA
+data_clean <- data[!is.na(data$expression), ]
+
+# Show the cleaned dataset
+data_clean
+```
+
+3️. Basic summary statistics
+
+- What is the mean expression level (after removing missing values)?
+- What is the max and min expression?
+
+```{r}
+#| code-fold: true
+
+# Compute summary statistics
+mean_expression <- mean(data_clean$expression)
+mean_expression
+
+max_expression <- max(data_clean$expression)
+max_expression
+
+min_expression <- min(data_clean$expression)
+min_expression
+
+## or use the range() function for the min and max
+range(data_clean$expression)
+```
+
+4️. Find the average expression (`mean()`) and the standard deviation (`sd()`) 
+for each sample group (Control *vs.* Case)
+
+```{r}
+#| code-fold: true
+
+# Compute mean and sd of expression for each sample group
+expr_ctrl <- data_clean$expression[data_clean$sample_group == "Control"]
+mean(expr_ctrl)
+sd(expr_ctrl)
+
+expr_case <- data_clean$expression[data_clean$sample_group == "Case"]
+mean(expr_case)
+sd(expr_case)
+```
+
+5. Visualise the average expression of each group using barplot.
+Prepare data for barplot with error bars. We need:
+
+- A column for the two groups;
+- A column for the two means;
+- A column for the two standard deviation.
+
+```{r}
+#| code-fold: true
+
+gg_data <- data.frame(
+  group = c("Control", "Case"),
+  mean_val = c(mean(expr_ctrl), mean(expr_case)),
+  sd_val = c(sd(expr_ctrl), sd(expr_case))
+)
+
+gg_data
+```
+
+6. Draw the bar plot:
+
+- Plot bars for mean expression (`geom_bar(stat = "identity")`)
+- Add error bars for standard deviation (`geom_errorbar()`)
+- Change the aesthetic apsects as you want, *e.g.*: color, title, legend, *etc.*
+
+```{r}
+#| code-fold: true
+
+p_bar <- ggplot(data = gg_data, aes(x = group, y = mean_val)) +
+  geom_bar(stat = "identity", fill = "orange", width = 0.5) # bar plot
+p_bar
+
+p_bar_error <- p_bar +
+  geom_errorbar( # add errorbar
+    aes(
+      ymin = mean_val - sd_val, 
+      ymax = mean_val + sd_val
+    ), 
+    width = 0.2 # smaller width of error bar
+  )
+
+# change labels and theme
+p_bar_error +
+  labs(
+    title = "Mean Gene Expression by Sample Group",
+    subtitle = "The error bars represent the standard deviation.",
+    x = NULL, y = "Mean Expression Level"
+  ) +
+  theme_minimal()
+```
 
 ---
 
