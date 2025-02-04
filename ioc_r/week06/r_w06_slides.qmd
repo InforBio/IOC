@@ -285,6 +285,61 @@ ggplot(
 :::
 
 
+## Exporting Results {.smaller}
+
+::: {.columns}
+::: {.column}
+- **CSV** format
+
+```{r}
+#| eval: false
+
+# use base function
+write.csv(
+  x = df,
+  file = "outputs/cleaned_gene_expression.csv"
+)
+
+# use readr's function
+readr::write_csv(
+  x = df,
+  file = "outputs/cleaned_gene_expression.csv"
+)
+```
+
+:::
+::: {.column}
+- **RDS** format (for preserving a single R object)
+
+```{r}
+#| eval: false
+
+saveRDS(
+  object = df,
+  file = "outputs/cleaned_gene_expression.rds"
+)
+
+# load RDS data into environment
+my_df <- readRDS("outputs/cleaned_gene_expression.rds")
+```
+
+- **RData** format (for saving multiple R objects at once)
+
+```{r}
+#| eval: false
+
+save(
+  df,
+  summary_stats,
+  file = "outputs/analysis_results.RData"
+)
+
+# Load all objects back into the environment
+load("outputs/analysis_results.RData")
+```
+
+:::
+:::
 
 # Using AI to Solve Coding Problems in R
 
