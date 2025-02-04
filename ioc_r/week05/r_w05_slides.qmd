@@ -26,17 +26,33 @@ image: images/ggplot2_logo.png
 ## Brief Recap Week 4 {.smaller}
 
 ::: {.columns}
-
 ::: {.column}
 - Operators
     - Logical: `&`, `|`, `!`, return `TRUE` or `FALSE`.
     - Comparison: `==`, `!=`, `<`, `<=`, `>`, `>=`.
     - The `%in%`: check membership
+
+::: {.callout-note appearance="minimal"}
+What does the following code do?
+:::
+
+```r
+(2.1 > 1) & (0.049 > 0.05)
+(2.1 > 1) | (0.049 > 0.05)
+
+# df is a data frame, 
+# one of the columns is called "pvalue"
+df[df$pvalue < 0.05, ]
+
+"a" %in% c("c", "ba")
+```
+:::
+
+::: {.column .fragment}
 - Conditions
     - statements: if, if...else
     - `ifelse()` function
 
-::: {.fragment}
 ::: {.callout-note appearance="minimal"}
 What does the following code do?
 :::
@@ -51,7 +67,11 @@ if (lfc > 2 & pvalue < 0.05 ) {
 :::
 :::
 
-::: {.column .fragment}
+## Brief Recap Week 4 {.smaller}
+
+::: {.columns}
+
+::: {.column}
 - Functions
 
 ```r
@@ -62,7 +82,9 @@ my_function <- function(arg1, arg2) {
 }
 ```
 
-::: {.fragment}
+:::
+::: {.column .fragment}
+
 ::: {.callout-note appearance="minimal"}
 Based on the following code:
 
@@ -79,8 +101,6 @@ times_three <- function(number) {
 times_three(2)
 time_factor
 ```
-:::
-
 :::
 :::
 
@@ -120,7 +140,8 @@ By default, R will install the lastest version of a package.
 - Via command, *i.e.*, `install.package("ggplot2")`
 
 ::: {.callout-tip appearance="minimal"}
-**[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.
+- **[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
+- **[Bioconductor](https://bioconductor.org)** is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.
 :::
 
 ::: {.notes}
@@ -172,14 +193,14 @@ make sure to include the `library()` calls in your script,
 ideally at the beginning.
 :::
 
-- or use the syntax `pkg_name::fct_name`
+- or load one function of the package at the time with the syntax `pkg_name::fct_name`
 
 ```r
 ggplot2::ggplot()
 ```
 
 ::: {.callout-tip appearance="minimal"}
-Recommand this way if you need to use only one function of a package.
+This way is recommanded if you need to use only one function of a package.
 :::
 
 
@@ -213,7 +234,7 @@ Check out these websites: [from Data to Viz](https://www.data-to-viz.com) and [T
 
 ## Compositions of a ggplot {.smaller}
 
-![](images/ggplot_comp.png)
+![(Figure adpated from [QCBS R Workshop Series](https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html).)](images/ggplot_comp.png)
 
 
 ## How to Build a ggplot {.smaller}
@@ -256,13 +277,17 @@ theme_update(
 Start by calling `ggplot()`:
 ```{r}
 p0 <- ggplot(
-  data = iris,
+  data = iris, # a data frame
   mapping = aes(x = Sepal.Length, y = Petal.Length)
 )
 p0
 ```
 
 Specify data, x and y axes.
+
+:::{.callout-tip appearance="minimal"}
+The data should be a data frame containing both variables needed for the plot.
+:::
 :::
 ::: {.column .fragment}
 Add a geometric layer:
@@ -275,6 +300,7 @@ base_plot
 ```
 
 Use points for visualisation.
+
 :::
 :::
 
@@ -397,7 +423,7 @@ Reference: <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>
 :::
 
 
-## Labels {.smaller}
+## Labels (Axes - Titles - Legend) {.smaller}
 
 ::: {.columns}
 ::: {.column}
@@ -445,6 +471,9 @@ p_regline
 :::
 :::
 
+:::{.callout-tip appearance="minimal" .fragment}
+Each `geom_*()` function adds a new layer to the plot, just like stacking transparent sheets on top of each other to build the final image.
+:::
 
 ## Aesthetic Mappings {.smaller}
 
@@ -528,7 +557,7 @@ ggplot(iris, aes(x = Species)) +
 :::
 :::
 
-::: {.callout-tip}
+::: {.callout-tip appearance="minimal"}
 `geom_histogram()` and `geom_bar()` only require one variable for the x-axis. The y-axis is automatically calculated.
 :::
 
@@ -541,13 +570,13 @@ ggplot(iris, aes(x = Species)) +
 ```{r}
 #| eval: false
 
-base_plot + theme_classic()
+p_labs + theme_classic()
 ```
 
 ```{r}
 #| echo: false
 
-base_plot + theme_classic() + theme(
+p_labs + theme_classic() + theme(
   axis.title = element_text(size = rel(2)),
   axis.text = element_text(size = rel(2)),
   strip.text = element_text(size = rel(2)),
@@ -562,7 +591,7 @@ base_plot + theme_classic() + theme(
 - Use `theme()` function to tweak elements, *e.g.*:
 
 ```{r}
-base_plot + theme(
+p_labs + theme(
   legend.position = "none", # hide legend
   plot.title = element_text(
     hjust = 0.5, # center plot title
@@ -617,5 +646,4 @@ ggsave(
 ## Today's Goals
 
 - Install new R packages
-- Create a basic plot with ggplot2
-- Create a volcano plot with ggplot2
+- Create basic plots with ggplot2
