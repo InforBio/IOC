@@ -102,35 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -200,8 +171,8 @@ window.Quarto = {
   <ul>
   <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
   <li><a href="#install-new-packages" id="toc-install-new-packages" class="nav-link" data-scroll-target="#install-new-packages">Install New Packages</a></li>
-  <li><a href="#create-a-basic-ggplot" id="toc-create-a-basic-ggplot" class="nav-link" data-scroll-target="#create-a-basic-ggplot">Create a Basic ggplot</a></li>
-  <li><a href="#create-a-volcanot-plot-with-ggplot2" id="toc-create-a-volcanot-plot-with-ggplot2" class="nav-link" data-scroll-target="#create-a-volcanot-plot-with-ggplot2">Create a Volcanot Plot with ggplot2</a></li>
+  <li><a href="#create-a-basic-histogram" id="toc-create-a-basic-histogram" class="nav-link" data-scroll-target="#create-a-basic-histogram">Create a Basic Histogram</a></li>
+  <li><a href="#create-a-boxplot-with-ggplot" id="toc-create-a-boxplot-with-ggplot" class="nav-link" data-scroll-target="#create-a-boxplot-with-ggplot">Create a Boxplot with ggplot</a></li>
   </ul>
 </nav>
     </div>
@@ -236,29 +207,25 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="goals">Goals</h2>
 <ul>
 <li>Install new R packages</li>
-<li>Create a basic plot with ggplot2</li>
-<li>Create a volcano plot with ggplot2</li>
+<li>Create basic plots with ggplot2</li>
 </ul>
 </section>
 <section id="install-new-packages" class="level2">
 <h2 class="anchored" data-anchor-id="install-new-packages">Install New Packages</h2>
-<p>We will use a couple of additional R packages for this training in sessions 8 and 9:</p>
+<p>We will use a couple of additional R packages for this training in sessions 8 and 9, for example:</p>
 <ul>
 <li>{<a href="https://tidyr.tidyverse.org">tidyr</a>}: provides functions that help you get to tidy data</li>
-<li>{<a href="https://dplyr.tidyverse.org">dplyr</a>}: for data manipulation</li>
-<li>{<a href="https://tibble.tidyverse.org/">tibble</a>}: a modern re-imagining of the data frame</li>
-<li>{<a href="https://stringr.tidyverse.org/">stringr</a>}: provides functions designed to make working with strings as easy as possible</li>
 <li>{<a href="https://readr.tidyverse.org">readr</a>}: provides fast and friendly way to read rectangular data</li>
 </ul>
-<p>Instead of installing them one by one, we can install the {<a href="https://www.tidyverse.org">tidyverse</a>} package (a collection of previous packages designed for data science).</p>
 <ol type="1">
-<li>Install the {<code>tidyverse</code>} package.</li>
+<li>Install the {<code>readr</code>} and {<code>tidyr</code>} packages.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse") # you only need to install it once</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("readr") # you only need to install it once</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyr") # you only need to install it once</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
-<li><p>Check if you can find <code>{dplyr}</code> and <code>{tidyr}</code> in the “<em>Packages</em>” panel in RStudio.</p></li>
+<li><p>Check if you can find <code>{readr}</code> and <code>{tidyr}</code> in the “<em>Packages</em>” panel in RStudio.</p></li>
 <li><p>Please use the following code to create a data frame of all installed packages in your system. Show a couple of first lines of the data frame.</p></li>
 </ol>
 <div class="cell">
@@ -284,45 +251,52 @@ blob           blob   1.2.4     &lt;NA&gt;</code></pre>
 </div>
 </div>
 <ol start="5" type="1">
-<li>Extract the rows for the “ggplot2”, “tidyr”, “dplyr” packages from <code>my_pkgs</code>.</li>
+<li>Extract the rows for the “ggplot2”, “tidyr”, “readr” packages from <code>my_pkgs</code>.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract by rownames</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>my_pkgs[<span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"tidyr"</span>, <span class="st">"dplyr"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>my_pkgs[<span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"tidyr"</span>, <span class="st">"readr"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Package Version Priority
 ggplot2 ggplot2   3.5.1     &lt;NA&gt;
 tidyr     tidyr   1.3.1     &lt;NA&gt;
-dplyr     dplyr   1.1.4     &lt;NA&gt;</code></pre>
+readr     readr   2.1.5     &lt;NA&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## or</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># extract by filtering the names in the "Package" column</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>my_pkgs[my_pkgs<span class="sc">$</span>Package <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"tidyr"</span>, <span class="st">"dplyr"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>my_pkgs[my_pkgs<span class="sc">$</span>Package <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"tidyr"</span>, <span class="st">"readr"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Package Version Priority
-dplyr     dplyr   1.1.4     &lt;NA&gt;
 ggplot2 ggplot2   3.5.1     &lt;NA&gt;
+readr     readr   2.1.5     &lt;NA&gt;
 tidyr     tidyr   1.3.1     &lt;NA&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="create-a-basic-ggplot" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-basic-ggplot">Create a Basic ggplot</h2>
-<p>We’ll use the built-in data set <code>iris</code>.</p>
+<section id="create-a-basic-histogram" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-basic-histogram">Create a Basic Histogram</h2>
+<p>In the hands-on examples of session 1 and 2, we have drawn histograms with the basic R function <code>hist()</code>.</p>
+<p>Now let’s try with functions from {<code>ggplot2</code>} package.</p>
 <ol start="0" type="1">
-<li>Load the {<code>ggplot2</code>} package.</li>
+<li>Import the <code>read-counts.csv</code> file into RStudio and name the data as <code>counts</code>.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../exos_data/read-counts.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 45 41</code></pre>
+</div>
 </div>
 <ol type="1">
-<li>Create a violin for the petal length by species.</li>
+<li>Load the {<code>ggplot2</code>} package. Then create a histogram with the function <code>geom_histogram()</code> for all genes of the sample “WT.2”. Have you noticed the message from <code>geom_histogram()</code> about the bins?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts, <span class="fu">aes</span>(<span class="at">x =</span> WT<span class="fl">.2</span>)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -332,22 +306,18 @@ tidyr     tidyr   1.3.1     &lt;NA&gt;</code></pre>
 </div>
 </div>
 <ol start="2" type="1">
-<li>Modify labels:</li>
+<li>Create a new histogram for the sample “WT.2”, but this time use the log2 of the gene counts. Do you see the messages from <code>geom_histogram()</code>?</li>
 </ol>
-<ul>
-<li>Remove x-axis title</li>
-<li>Change y-axis title to “Petal Length (cm)”</li>
-<li>Add a plot title “Distribution of iris’ petal length”</li>
-<li>Add a subtitle “The data were collected by Anderson, Edgar (1935)”</li>
-</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> p_base <span class="sc">+</span> <span class="fu">labs</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"Petal Length (cm)"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Distribution of iris' petal length"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">"The data were collected by Anderson, Edgar (1935)"</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log2</span>(WT<span class="fl">.2</span>))) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -357,19 +327,16 @@ tidyr     tidyr   1.3.1     &lt;NA&gt;</code></pre>
 </div>
 </div>
 <ol start="3" type="1">
-<li>Add a layer of boxplot on the violin plot.</li>
+<li>Try 10 and 20 for the <code>bins</code> parameter of <code>geom_histogram()</code>. Observe how the histogram changes.</li>
 </ol>
-<ul>
-<li>Color the boxes by species.</li>
-<li>Use the <code>alpha</code> parameter to let boxes be semi-transparent.</li>
-</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> p_base <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> Species),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log2</span>(WT<span class="fl">.2</span>))) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"10 bins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -377,13 +344,31 @@ tidyr     tidyr   1.3.1     &lt;NA&gt;</code></pre>
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log2</span>(WT<span class="fl">.2</span>))) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"20 bins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <ol start="4" type="1">
-<li>Change the theme to <code>theme_minimal()</code>.</li>
+<li>We will use 10 bins for the histogram. Change the color of the bars to blue.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> p_base <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log2</span>(WT<span class="fl">.2</span>))) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -393,18 +378,15 @@ tidyr     tidyr   1.3.1     &lt;NA&gt;</code></pre>
 </div>
 </div>
 <ol start="5" type="1">
-<li>With the <code>theme()</code> function:</li>
+<li>Based on the previous figure, fill the bars in orange.</li>
 </ol>
-<ul>
-<li>Increase the font size of x-axis’ text.</li>
-<li>Move the legend to the top of the plot.</li>
-</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> p_base <span class="sc">+</span> <span class="fu">theme</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="dv">2</span>)),</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.position =</span> <span class="st">"top"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log2</span>(WT<span class="fl">.2</span>))) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">fill =</span> <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -413,80 +395,198 @@ tidyr     tidyr   1.3.1     &lt;NA&gt;</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="create-a-volcanot-plot-with-ggplot2" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-volcanot-plot-with-ggplot2">Create a Volcanot Plot with ggplot2</h2>
-<p>We will use the same diffenrential expression (DE) analysis result as in the hands-on example of session 4, which is also available <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/toy_DEanalysis.csv">here</a>.</p>
-<p>Reminder: the results were obtained by comparing SET1 samples to WT samples using the data from the <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/read-counts.csv"><code>read-counts.csv</code></a> file.</p>
-<ol type="1">
-<li>Import the results file in R and name it <code>de_res</code>.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>de_res <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"../exos_data/toy_DEanalysis.csv"</span>,  <span class="co"># replace the path with your own</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li>Create a new column (<code>gene_signif</code>) which indicates whether the adjusted p-value is smaller than 0.05.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>de_res<span class="sc">$</span>gene_signif <span class="ot">&lt;-</span> de_res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Volcano Plot</strong></p>
-<p>A volcano plot is a type of scatter plot commonly used in biological data analysis, particularly for differential expression (DE) analysis. It visually combines two key aspects:</p>
-<ul>
-<li><strong>Significance</strong> (<span class="math inline">\(-log_{10}(\text{p-value})\)</span>): How confident we are that a result is not due to chance.</li>
-<li><strong>Effect size</strong> (<span class="math inline">\(log_{2}(\text{Fold Change})\)</span>): The magnitude of change between conditions.</li>
-</ul>
-<p>Volcano plot highlights genes (or features) that are both statistically significant and biologically meaningful.</p>
-</div>
-</div>
-<ol start="3" type="1">
-<li>Create a volcano plot using the DE results <code>de_res</code>.</li>
+<ol start="6" type="1">
+<li>Based on the previous figure, change:</li>
 </ol>
 <ul>
-<li>Let the log2 fold change be on the x-axis.</li>
-<li>Transform the adjusted p-value to <code>-log10()</code>, then let them be on the y-axis.</li>
-<li>Color the points by whether the adjusted p-value is smaller than 0.05 (<em>i.e.</em>, the <code>gene_signif</code> column).</li>
-<li>Use the shape 18 for the points.</li>
-<li>Increase the points size to 3.</li>
-<li>Use the <code>alpha</code> parameter to make points transparent.</li>
-<li>Add a title for the plot, show number of analysed genes in the subtitle.</li>
-<li>Use the <code>theme_bw()</code> for the plot.</li>
-<li>Hide the legend.</li>
+<li>x-axis title to be: “log2 gene expression”</li>
+<li>y-axis title to be: “Counts”</li>
+<li>plot title to show sample name and the number of genes used.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> de_res,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> log2FoldChange, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(padj))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> gene_signif),</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">18</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Volcano plot for DE analysis"</span>,</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Total genes analysed:"</span>, <span class="fu">nrow</span>(de_res))</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log2</span>(WT<span class="fl">.2</span>))) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">fill =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"log2 gene expression"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Counts"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste0</span>(<span class="fu">nrow</span>(counts), <span class="st">" genes of WT.2 sample"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Based on the previous figure, use the theme <code>theme_bw()</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log2</span>(WT<span class="fl">.2</span>))) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">fill =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"log2 gene expression"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Counts"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste0</span>(<span class="fu">nrow</span>(counts), <span class="st">" genes of WT.2 sample"</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="create-a-boxplot-with-ggplot" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-boxplot-with-ggplot">Create a Boxplot with ggplot</h2>
+<p>In the hands-on examples of session 3, we demonstrated that there is a significant difference in the expression of <em>LOH1</em> between WT and SET1 samples.</p>
+<p>This gene is upregulated in SET1 samples compared to WT samples, the log2 fold change is 2.85.</p>
+<p>Now, let’s draw a more sophisticated boxplot with ggplot2.</p>
+<ol start="0" type="1">
+<li>Prepare a data frame for the boxplot. We need:</li>
+</ol>
+<ul>
+<li>a column for the expression levels of different samples</li>
+<li>a column to indicate what is the sample group (WT or SET1)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gg_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">expr_value =</span> <span class="fu">c</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>(counts[counts<span class="sc">$</span>Feature <span class="sc">==</span> <span class="st">"LOH1"</span>, <span class="fu">paste0</span>(<span class="st">"WT."</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)]),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>(counts[counts<span class="sc">$</span>Feature <span class="sc">==</span> <span class="st">"LOH1"</span>, <span class="fu">paste0</span>(<span class="st">"SET1."</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)])</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">gp =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"WT"</span>, <span class="st">"SET1"</span>), <span class="at">each =</span> <span class="dv">10</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>gg_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        expr_value   gp
+WT.1            10   WT
+WT.2             2   WT
+WT.3            14   WT
+WT.4            19   WT
+WT.5            35   WT
+WT.6            17   WT
+WT.7             6   WT
+WT.8             3   WT
+WT.9            31   WT
+WT.10           13   WT
+SET1.1          67 SET1
+SET1.2          49 SET1
+SET1.3          83 SET1
+SET1.4         185 SET1
+SET1.5         203 SET1
+SET1.6          83 SET1
+SET1.7          40 SET1
+SET1.8          84 SET1
+SET1.9         134 SET1
+SET1.10        155 SET1</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>Create a boxplot for the expression level by sample group.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gg_df, <span class="fu">aes</span>(<span class="at">x =</span> gp, <span class="at">y =</span> expr_value)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Modify labels:</li>
+</ol>
+<ul>
+<li>Remove x-axis title</li>
+<li>Change y-axis title to “Expression Level”</li>
+<li>Add a plot title “Expression of LOH1 in SET1 and WT samples”</li>
+<li>Add a subtitle “log2FoldChange = 2.85”</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> p_base <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"Expression Level"</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Expression of LOH1 in SET1 and WT samples"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">"log2FoldChange = 2.85"</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Add a layer of scatter plot over the boxplot.</li>
+</ol>
+<ul>
+<li>Color the points by sample group.</li>
+<li>Use the <code>alpha</code> parameter to let points be semi-transparent.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> p_base <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> gp),</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Change the theme to <code>theme_minimal()</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> p_base <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li>With the <code>theme()</code> function:</li>
+</ol>
+<ul>
+<li>Move the plot title to the center.</li>
+<li>Hide the legend.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p_base <span class="ot">&lt;-</span> p_base <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="co"># center plot title</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>p_base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="r_w05_exos_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

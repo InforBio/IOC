@@ -46,28 +46,28 @@
     "href": "ioc_r/week05/r_w05_exos.html#goals",
     "title": "Week 5 - Hands-On Examples",
     "section": "Goals",
-    "text": "Goals\n\nInstall new R packages\nCreate a basic plot with ggplot2\nCreate a volcano plot with ggplot2"
+    "text": "Goals\n\nInstall new R packages\nCreate basic plots with ggplot2"
   },
   {
     "objectID": "ioc_r/week05/r_w05_exos.html#install-new-packages",
     "href": "ioc_r/week05/r_w05_exos.html#install-new-packages",
     "title": "Week 5 - Hands-On Examples",
     "section": "Install New Packages",
-    "text": "Install New Packages\nWe will use a couple of additional R packages for this training in sessions 8 and 9:\n\n{tidyr}: provides functions that help you get to tidy data\n{dplyr}: for data manipulation\n{tibble}: a modern re-imagining of the data frame\n{stringr}: provides functions designed to make working with strings as easy as possible\n{readr}: provides fast and friendly way to read rectangular data\n\nInstead of installing them one by one, we can install the {tidyverse} package (a collection of previous packages designed for data science).\n\nInstall the {tidyverse} package.\n\n\n# install.packages(\"tidyverse\") # you only need to install it once\n\n\nCheck if you can find {dplyr} and {tidyr} in the “Packages” panel in RStudio.\nPlease use the following code to create a data frame of all installed packages in your system. Show a couple of first lines of the data frame.\n\n\nmy_pkgs &lt;- as.data.frame(installed.packages()[, c(1, 3:4)])\nhead(my_pkgs)\n\n            Package Version Priority\naskpass     askpass   1.2.1     &lt;NA&gt;\nbackports backports   1.5.0     &lt;NA&gt;\nbase64enc base64enc   0.1-3     &lt;NA&gt;\nbit             bit 4.5.0.1     &lt;NA&gt;\nbit64         bit64 4.6.0-1     &lt;NA&gt;\nblob           blob   1.2.4     &lt;NA&gt;\n\n\n\nAccording to my_pkgs, how many packages are installed in your system?\n\n\nnrow(my_pkgs) # the number can be different\n\n[1] 131\n\n\n\nExtract the rows for the “ggplot2”, “tidyr”, “dplyr” packages from my_pkgs.\n\n\n# extract by rownames\nmy_pkgs[c(\"ggplot2\", \"tidyr\", \"dplyr\"), ]\n\n        Package Version Priority\nggplot2 ggplot2   3.5.1     &lt;NA&gt;\ntidyr     tidyr   1.3.1     &lt;NA&gt;\ndplyr     dplyr   1.1.4     &lt;NA&gt;\n\n## or\n# extract by filtering the names in the \"Package\" column\nmy_pkgs[my_pkgs$Package %in% c(\"ggplot2\", \"tidyr\", \"dplyr\"), ]\n\n        Package Version Priority\ndplyr     dplyr   1.1.4     &lt;NA&gt;\nggplot2 ggplot2   3.5.1     &lt;NA&gt;\ntidyr     tidyr   1.3.1     &lt;NA&gt;"
+    "text": "Install New Packages\nWe will use a couple of additional R packages for this training in sessions 8 and 9, for example:\n\n{tidyr}: provides functions that help you get to tidy data\n{readr}: provides fast and friendly way to read rectangular data\n\n\nInstall the {readr} and {tidyr} packages.\n\n\n# install.packages(\"readr\") # you only need to install it once\n# install.packages(\"tidyr\") # you only need to install it once\n\n\nCheck if you can find {readr} and {tidyr} in the “Packages” panel in RStudio.\nPlease use the following code to create a data frame of all installed packages in your system. Show a couple of first lines of the data frame.\n\n\nmy_pkgs &lt;- as.data.frame(installed.packages()[, c(1, 3:4)])\nhead(my_pkgs)\n\n            Package Version Priority\naskpass     askpass   1.2.1     &lt;NA&gt;\nbackports backports   1.5.0     &lt;NA&gt;\nbase64enc base64enc   0.1-3     &lt;NA&gt;\nbit             bit 4.5.0.1     &lt;NA&gt;\nbit64         bit64 4.6.0-1     &lt;NA&gt;\nblob           blob   1.2.4     &lt;NA&gt;\n\n\n\nAccording to my_pkgs, how many packages are installed in your system?\n\n\nnrow(my_pkgs) # the number can be different\n\n[1] 131\n\n\n\nExtract the rows for the “ggplot2”, “tidyr”, “readr” packages from my_pkgs.\n\n\n# extract by rownames\nmy_pkgs[c(\"ggplot2\", \"tidyr\", \"readr\"), ]\n\n        Package Version Priority\nggplot2 ggplot2   3.5.1     &lt;NA&gt;\ntidyr     tidyr   1.3.1     &lt;NA&gt;\nreadr     readr   2.1.5     &lt;NA&gt;\n\n## or\n# extract by filtering the names in the \"Package\" column\nmy_pkgs[my_pkgs$Package %in% c(\"ggplot2\", \"tidyr\", \"readr\"), ]\n\n        Package Version Priority\nggplot2 ggplot2   3.5.1     &lt;NA&gt;\nreadr     readr   2.1.5     &lt;NA&gt;\ntidyr     tidyr   1.3.1     &lt;NA&gt;"
   },
   {
-    "objectID": "ioc_r/week05/r_w05_exos.html#create-a-basic-ggplot",
-    "href": "ioc_r/week05/r_w05_exos.html#create-a-basic-ggplot",
+    "objectID": "ioc_r/week05/r_w05_exos.html#create-a-basic-histogram",
+    "href": "ioc_r/week05/r_w05_exos.html#create-a-basic-histogram",
     "title": "Week 5 - Hands-On Examples",
-    "section": "Create a Basic ggplot",
-    "text": "Create a Basic ggplot\nWe’ll use the built-in data set iris.\n\nLoad the {ggplot2} package.\n\n\nlibrary(ggplot2)\n\n\nCreate a violin for the petal length by species.\n\n\np_base &lt;- ggplot(iris, aes(x = Species, y = Petal.Length)) +\n  geom_violin()\n\np_base\n\n\n\n\n\n\n\n\n\nModify labels:\n\n\nRemove x-axis title\nChange y-axis title to “Petal Length (cm)”\nAdd a plot title “Distribution of iris’ petal length”\nAdd a subtitle “The data were collected by Anderson, Edgar (1935)”\n\n\np_base &lt;- p_base + labs(\n  x = NULL,\n  y = \"Petal Length (cm)\",\n  title = \"Distribution of iris' petal length\",\n  subtitle = \"The data were collected by Anderson, Edgar (1935)\"\n)\np_base\n\n\n\n\n\n\n\n\n\nAdd a layer of boxplot on the violin plot.\n\n\nColor the boxes by species.\nUse the alpha parameter to let boxes be semi-transparent.\n\n\np_base &lt;- p_base +\n  geom_boxplot(\n    aes(color = Species),\n    alpha = 0.5\n  )\np_base\n\n\n\n\n\n\n\n\n\nChange the theme to theme_minimal().\n\n\np_base &lt;- p_base + theme_minimal()\np_base\n\n\n\n\n\n\n\n\n\nWith the theme() function:\n\n\nIncrease the font size of x-axis’ text.\nMove the legend to the top of the plot.\n\n\np_base &lt;- p_base + theme(\n  axis.text.x = element_text(size = rel(2)),\n  legend.position = \"top\"\n)\np_base"
+    "section": "Create a Basic Histogram",
+    "text": "Create a Basic Histogram\nIn the hands-on examples of session 1 and 2, we have drawn histograms with the basic R function hist().\nNow let’s try with functions from {ggplot2} package.\n\nImport the read-counts.csv file into RStudio and name the data as counts.\n\n\ncounts &lt;- read.csv(\"../exos_data/read-counts.csv\", header = TRUE)\ndim(counts)\n\n[1] 45 41\n\n\n\nLoad the {ggplot2} package. Then create a histogram with the function geom_histogram() for all genes of the sample “WT.2”. Have you noticed the message from geom_histogram() about the bins?\n\n\nlibrary(ggplot2)\nggplot(data = counts, aes(x = WT.2)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\nCreate a new histogram for the sample “WT.2”, but this time use the log2 of the gene counts. Do you see the messages from geom_histogram()?\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nTry 10 and 20 for the bins parameter of geom_histogram(). Observe how the histogram changes.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10) +\n  labs(title = \"10 bins\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 20) +\n  labs(title = \"20 bins\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nWe will use 10 bins for the histogram. Change the color of the bars to blue.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, fill the bars in orange.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\")\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, change:\n\n\nx-axis title to be: “log2 gene expression”\ny-axis title to be: “Counts”\nplot title to show sample name and the number of genes used.\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\") +\n  labs(\n    x = \"log2 gene expression\",\n    y = \"Counts\",\n    title = paste0(nrow(counts), \" genes of WT.2 sample\")\n  )\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\nBased on the previous figure, use the theme theme_bw().\n\n\nggplot(data = counts, aes(x = log2(WT.2))) +\n  geom_histogram(bins = 10, color = \"blue\", fill = \"orange\") +\n  labs(\n    x = \"log2 gene expression\",\n    y = \"Counts\",\n    title = paste0(nrow(counts), \" genes of WT.2 sample\")\n  ) +\n  theme_bw()\n\nWarning: Removed 5 rows containing non-finite outside the scale range\n(`stat_bin()`)."
   },
   {
-    "objectID": "ioc_r/week05/r_w05_exos.html#create-a-volcanot-plot-with-ggplot2",
-    "href": "ioc_r/week05/r_w05_exos.html#create-a-volcanot-plot-with-ggplot2",
+    "objectID": "ioc_r/week05/r_w05_exos.html#create-a-boxplot-with-ggplot",
+    "href": "ioc_r/week05/r_w05_exos.html#create-a-boxplot-with-ggplot",
     "title": "Week 5 - Hands-On Examples",
-    "section": "Create a Volcanot Plot with ggplot2",
-    "text": "Create a Volcanot Plot with ggplot2\nWe will use the same diffenrential expression (DE) analysis result as in the hands-on example of session 4, which is also available here.\nReminder: the results were obtained by comparing SET1 samples to WT samples using the data from the read-counts.csv file.\n\nImport the results file in R and name it de_res.\n\n\nde_res &lt;- read.csv(\n  file = \"../exos_data/toy_DEanalysis.csv\",  # replace the path with your own\n  header = TRUE\n)\n\n\nCreate a new column (gene_signif) which indicates whether the adjusted p-value is smaller than 0.05.\n\n\nde_res$gene_signif &lt;- de_res$padj &lt; 0.05\n\n\n\n\n\n\n\nTip\n\n\n\nVolcano Plot\nA volcano plot is a type of scatter plot commonly used in biological data analysis, particularly for differential expression (DE) analysis. It visually combines two key aspects:\n\nSignificance (\\(-log_{10}(\\text{p-value})\\)): How confident we are that a result is not due to chance.\nEffect size (\\(log_{2}(\\text{Fold Change})\\)): The magnitude of change between conditions.\n\nVolcano plot highlights genes (or features) that are both statistically significant and biologically meaningful.\n\n\n\nCreate a volcano plot using the DE results de_res.\n\n\nLet the log2 fold change be on the x-axis.\nTransform the adjusted p-value to -log10(), then let them be on the y-axis.\nColor the points by whether the adjusted p-value is smaller than 0.05 (i.e., the gene_signif column).\nUse the shape 18 for the points.\nIncrease the points size to 3.\nUse the alpha parameter to make points transparent.\nAdd a title for the plot, show number of analysed genes in the subtitle.\nUse the theme_bw() for the plot.\nHide the legend.\n\n\nggplot(\n  data = de_res,\n  mapping = aes(x = log2FoldChange, y = -log10(padj))\n) +\n  geom_point(\n    aes(color = gene_signif),\n    shape = 18,\n    size = 3,\n    alpha = 0.5\n  ) +\n  labs(\n    title = \"Volcano plot for DE analysis\",\n    subtitle = paste(\"Total genes analysed:\", nrow(de_res))\n  ) +\n  theme_bw() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\nGood job! 👏👏 You’ve taken your first big steps into ggplot2, keep it up!"
+    "section": "Create a Boxplot with ggplot",
+    "text": "Create a Boxplot with ggplot\nIn the hands-on examples of session 3, we demonstrated that there is a significant difference in the expression of LOH1 between WT and SET1 samples.\nThis gene is upregulated in SET1 samples compared to WT samples, the log2 fold change is 2.85.\nNow, let’s draw a more sophisticated boxplot with ggplot2.\n\nPrepare a data frame for the boxplot. We need:\n\n\na column for the expression levels of different samples\na column to indicate what is the sample group (WT or SET1)\n\n\ngg_df &lt;- data.frame(\n  expr_value = c(\n    unlist(counts[counts$Feature == \"LOH1\", paste0(\"WT.\", 1:10)]),\n    unlist(counts[counts$Feature == \"LOH1\", paste0(\"SET1.\", 1:10)])\n  ),\n  gp = rep(c(\"WT\", \"SET1\"), each = 10)\n)\ngg_df\n\n        expr_value   gp\nWT.1            10   WT\nWT.2             2   WT\nWT.3            14   WT\nWT.4            19   WT\nWT.5            35   WT\nWT.6            17   WT\nWT.7             6   WT\nWT.8             3   WT\nWT.9            31   WT\nWT.10           13   WT\nSET1.1          67 SET1\nSET1.2          49 SET1\nSET1.3          83 SET1\nSET1.4         185 SET1\nSET1.5         203 SET1\nSET1.6          83 SET1\nSET1.7          40 SET1\nSET1.8          84 SET1\nSET1.9         134 SET1\nSET1.10        155 SET1\n\n\n\nCreate a boxplot for the expression level by sample group.\n\n\np_base &lt;- ggplot(gg_df, aes(x = gp, y = expr_value)) +\n  geom_boxplot()\n\np_base\n\n\n\n\n\n\n\n\n\nModify labels:\n\n\nRemove x-axis title\nChange y-axis title to “Expression Level”\nAdd a plot title “Expression of LOH1 in SET1 and WT samples”\nAdd a subtitle “log2FoldChange = 2.85”\n\n\np_base &lt;- p_base + labs(\n  x = NULL,\n  y = \"Expression Level\",\n  title = \"Expression of LOH1 in SET1 and WT samples\",\n  subtitle = \"log2FoldChange = 2.85\"\n)\np_base\n\n\n\n\n\n\n\n\n\nAdd a layer of scatter plot over the boxplot.\n\n\nColor the points by sample group.\nUse the alpha parameter to let points be semi-transparent.\n\n\np_base &lt;- p_base +\n  geom_point(\n    aes(color = gp),\n    alpha = 0.5\n  )\np_base\n\n\n\n\n\n\n\n\n\nChange the theme to theme_minimal().\n\n\np_base &lt;- p_base + theme_minimal()\np_base\n\n\n\n\n\n\n\n\n\nWith the theme() function:\n\n\nMove the plot title to the center.\nHide the legend.\n\n\np_base &lt;- p_base + theme(\n  plot.title = element_text(hjust = 0.5), # center plot title\n  legend.position = \"none\"\n)\np_base\n\n\n\n\n\n\n\n\n\n\nGood job! 👏👏 You’ve taken your first big steps into ggplot2, keep it up!"
   },
   {
     "objectID": "ioc_r/week05/r_w05_work.html",
@@ -809,7 +809,14 @@
     "href": "ioc_r/week05/r_w05_slides.html#brief-recap-week-4",
     "title": "Graphing with {ggplot2}",
     "section": "Brief Recap Week 4",
-    "text": "Brief Recap Week 4\n\n\n\nOperators\n\nLogical: &, |, !, return TRUE or FALSE.\nComparison: ==, !=, &lt;, &lt;=, &gt;, &gt;=.\nThe %in%: check membership\n\nConditions\n\nstatements: if, if…else\nifelse() function\n\n\n\n\n\n\nWhat does the following code do?\n\n\n\nif (lfc &gt; 2 & pvalue &lt; 0.05 ) {\n  print(\"gene of interest\")\n} else {\n  print(\"gene to remove\")\n}\n\n\n\nFunctions\n\n## syntax\nmy_function &lt;- function(arg1, arg2) {\n  # code\n  return(result)\n}\n\n\n\n\nBased on the following code:\n\nwhat will you get when calling times_three(2)?\nWhat will you get if you type time_factor in the console?\n\n\n\n\ntimes_three &lt;- function(number) {\n  time_factor &lt;- 3\n  res &lt;- number * time_factor\n  return(res)\n}\ntimes_three(2)\ntime_factor"
+    "text": "Brief Recap Week 4\n\n\n\nOperators\n\nLogical: &, |, !, return TRUE or FALSE.\nComparison: ==, !=, &lt;, &lt;=, &gt;, &gt;=.\nThe %in%: check membership\n\n\n\n\n\nWhat does the following code do?\n\n\n\n(2.1 &gt; 1) & (0.049 &gt; 0.05)\n(2.1 &gt; 1) | (0.049 &gt; 0.05)\n\n# df is a data frame, \n# one of the columns is called \"pvalue\"\ndf[df$pvalue &lt; 0.05, ]\n\n\"a\" %in% c(\"c\", \"ba\")\n\n\nConditions\n\nstatements: if, if…else\nifelse() function\n\n\n\n\n\nWhat does the following code do?\n\n\n\nif (lfc &gt; 2 & pvalue &lt; 0.05 ) {\n  print(\"gene of interest\")\n} else {\n  print(\"gene to remove\")\n}"
+  },
+  {
+    "objectID": "ioc_r/week05/r_w05_slides.html#brief-recap-week-4-1",
+    "href": "ioc_r/week05/r_w05_slides.html#brief-recap-week-4-1",
+    "title": "Graphing with {ggplot2}",
+    "section": "Brief Recap Week 4",
+    "text": "Brief Recap Week 4\n\n\n\nFunctions\n\n## syntax\nmy_function &lt;- function(arg1, arg2) {\n  # code\n  return(result)\n}\n\n\n\n\nBased on the following code:\n\nwhat will you get when calling times_three(2)?\nWhat will you get if you type time_factor in the console?\n\n\n\n\ntimes_three &lt;- function(number) {\n  time_factor &lt;- 3\n  res &lt;- number * time_factor\n  return(res)\n}\ntimes_three(2)\ntime_factor"
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#what-are-packages-in-r",
@@ -823,7 +830,7 @@
     "href": "ioc_r/week05/r_w05_slides.html#installing-packages",
     "title": "Graphing with {ggplot2}",
     "section": "Installing Packages",
-    "text": "Installing Packages\nBy default, R will install the lastest version of a package.\n\nClick-button way:\n\n\n\nVia command, i.e., install.package(\"ggplot2\")\n\n\n\n\nCRAN (Comprehensive R Archive Network) is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.\n\n\n\n\nOnly need install once for the system, the load the package."
+    "text": "Installing Packages\nBy default, R will install the lastest version of a package.\n\nClick-button way:\n\n\n\nVia command, i.e., install.package(\"ggplot2\")\n\n\n\n\n\nCRAN (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.\nBioconductor is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.\n\n\n\n\n\nOnly need install once for the system, the load the package."
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#management-of-packages",
@@ -837,7 +844,7 @@
     "href": "ioc_r/week05/r_w05_slides.html#using-functions-of-package",
     "title": "Graphing with {ggplot2}",
     "section": "Using Functions of Package",
-    "text": "Using Functions of Package\nTo use (call) a function from a package, we can either:\n\nload the entire package (attach it to the environment)\n\nlibrary(ggplot2) # load the package\nggplot() # call the function to iniate a ggplot\nA loaded package will be checked in the “Packages” panel.\n\n\n\nYou only need to load a package once per R session.\nHowever, if you’re running your script in a non-interactive way, make sure to include the library() calls in your script, ideally at the beginning.\n\n\n\n\nor use the syntax pkg_name::fct_name\n\nggplot2::ggplot()\n\n\n\nRecommand this way if you need to use only one function of a package."
+    "text": "Using Functions of Package\nTo use (call) a function from a package, we can either:\n\nload the entire package (attach it to the environment)\n\nlibrary(ggplot2) # load the package\nggplot() # call the function to iniate a ggplot\nA loaded package will be checked in the “Packages” panel.\n\n\n\nYou only need to load a package once per R session.\nHowever, if you’re running your script in a non-interactive way, make sure to include the library() calls in your script, ideally at the beginning.\n\n\n\n\nor load one function of the package at the time with the syntax pkg_name::fct_name\n\nggplot2::ggplot()\n\n\n\nThis way is recommanded if you need to use only one function of a package."
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#before-plotting",
@@ -851,7 +858,7 @@
     "href": "ioc_r/week05/r_w05_slides.html#compositions-of-a-ggplot",
     "title": "Graphing with {ggplot2}",
     "section": "Compositions of a ggplot",
-    "text": "Compositions of a ggplot"
+    "text": "Compositions of a ggplot\n\n(Figure adpated from QCBS R Workshop Series.)"
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#how-to-build-a-ggplot",
@@ -865,7 +872,7 @@
     "href": "ioc_r/week05/r_w05_slides.html#basic-plot",
     "title": "Graphing with {ggplot2}",
     "section": "Basic Plot",
-    "text": "Basic Plot\n\nlibrary(\"ggplot2\") # load package\n\n\n\nStart by calling ggplot():\n\np0 &lt;- ggplot(\n  data = iris,\n  mapping = aes(x = Sepal.Length, y = Petal.Length)\n)\np0\n\n\n\n\n\n\n\n\nSpecify data, x and y axes.\n\nAdd a geometric layer:\n\n# geom_point() is used for scatter plots\nbase_plot &lt;- p0 + geom_point()\n\n\nbase_plot\n\n\n\n\n\n\n\n\nUse points for visualisation.\n\n\nggplot() creates a canvas to draw on. data contains columns fro the plot aes() matches columns of data to aesthetics of the plot. geom_point() adds point geometry."
+    "text": "Basic Plot\n\nlibrary(\"ggplot2\") # load package\n\n\n\nStart by calling ggplot():\n\np0 &lt;- ggplot(\n  data = iris, # a data frame\n  mapping = aes(x = Sepal.Length, y = Petal.Length)\n)\np0\n\n\n\n\n\n\n\n\nSpecify data, x and y axes.\n\n\n\nThe data should be a data frame containing both variables needed for the plot.\n\n\n\n\nAdd a geometric layer:\n\n# geom_point() is used for scatter plots\nbase_plot &lt;- p0 + geom_point()\n\n\nbase_plot\n\n\n\n\n\n\n\n\nUse points for visualisation.\n\n\nggplot() creates a canvas to draw on. data contains columns fro the plot aes() matches columns of data to aesthetics of the plot. geom_point() adds point geometry."
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#aesthetics---color",
@@ -896,18 +903,18 @@
     "text": "Aesthetics - Alpha\nThe most common aesthetics: color, fill, shape, size, alpha (transparency), etc.\n\n\nWith no transparency:\n\np0 + geom_point(size = 3)\n\n\n\n\n\n\n\n\n\nUse the alpha (between 0 and 1) parameter:\n\np0 + geom_point(size = 3, alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\n\n\nReference: https://ggplot2.tidyverse.org/articles/ggplot2-specs.html"
   },
   {
-    "objectID": "ioc_r/week05/r_w05_slides.html#labels",
-    "href": "ioc_r/week05/r_w05_slides.html#labels",
+    "objectID": "ioc_r/week05/r_w05_slides.html#labels-axes---titles---legend",
+    "href": "ioc_r/week05/r_w05_slides.html#labels-axes---titles---legend",
     "title": "Graphing with {ggplot2}",
-    "section": "Labels",
-    "text": "Labels\n\n\n\nbase_plot\n\n\n\n\n\n\n\n\nUse labs() to modify labels of plot, axes, legend.\n\n\np_labs &lt;- base_plot + labs(\n  x = \"Sepal Length (cm)\",\n  y = \"Petal Length (cm)\",\n  title = \"Scatter plot with customized labels.\",\n  color = NULL # remove legend title\n)\np_labs"
+    "section": "Labels (Axes - Titles - Legend)",
+    "text": "Labels (Axes - Titles - Legend)\n\n\n\nbase_plot\n\n\n\n\n\n\n\n\nUse labs() to modify labels of plot, axes, legend.\n\n\np_labs &lt;- base_plot + labs(\n  x = \"Sepal Length (cm)\",\n  y = \"Petal Length (cm)\",\n  title = \"Scatter plot with customized labels.\",\n  color = NULL # remove legend title\n)\np_labs"
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#add-other-layers",
     "href": "ioc_r/week05/r_w05_slides.html#add-other-layers",
     "title": "Graphing with {ggplot2}",
     "section": "Add Other Layers",
-    "text": "Add Other Layers\n\n\n\n# the scatter plot with modified lables\np_labs\n\n\n\n\n\n\n\n\n\nAdd a linear regression line using geom_smooth():\n\np_regline &lt;- p_labs + geom_smooth(method = \"lm\", se = FALSE)\np_regline"
+    "text": "Add Other Layers\n\n\n\n# the scatter plot with modified lables\np_labs\n\n\n\n\n\n\n\n\n\nAdd a linear regression line using geom_smooth():\n\np_regline &lt;- p_labs + geom_smooth(method = \"lm\", se = FALSE)\np_regline\n\n\n\n\n\n\n\n\n\n\n\n\n\nEach geom_*() function adds a new layer to the plot, just like stacking transparent sheets on top of each other to build the final image."
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#aesthetic-mappings",
@@ -928,14 +935,14 @@
     "href": "ioc_r/week05/r_w05_slides.html#common-used-geometries-2",
     "title": "Graphing with {ggplot2}",
     "section": "Common Used Geometries (2)",
-    "text": "Common Used Geometries (2)\n\n\n\nHistogram:\n\n\nggplot(iris, aes(x = Sepal.Length)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\n\n\nBar plot:\n\n\nggplot(iris, aes(x = Species)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\ngeom_histogram() and geom_bar() only require one variable for the x-axis. The y-axis is automatically calculated."
+    "text": "Common Used Geometries (2)\n\n\n\nHistogram:\n\n\nggplot(iris, aes(x = Sepal.Length)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\n\n\nBar plot:\n\n\nggplot(iris, aes(x = Species)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n\n\ngeom_histogram() and geom_bar() only require one variable for the x-axis. The y-axis is automatically calculated."
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#themes",
     "href": "ioc_r/week05/r_w05_slides.html#themes",
     "title": "Graphing with {ggplot2}",
     "section": "Themes",
-    "text": "Themes\n\n\n\nBuilt-in themes (theme_*()): theme_grey() (default),theme_bw(), theme_light(), theme_classic(), etc.\n\n\nbase_plot + theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\nUse theme() function to tweak elements, e.g.:\n\n\nbase_plot + theme(\n  legend.position = \"none\", # hide legend\n  plot.title = element_text(\n    hjust = 0.5, # center plot title\n    size = 5, # plot title size\n  ), \n  axis.text.x = element_text(angle = 90) # rotate axis' text\n)"
+    "text": "Themes\n\n\n\nBuilt-in themes (theme_*()): theme_grey() (default),theme_bw(), theme_light(), theme_classic(), etc.\n\n\np_labs + theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\nUse theme() function to tweak elements, e.g.:\n\n\np_labs + theme(\n  legend.position = \"none\", # hide legend\n  plot.title = element_text(\n    hjust = 0.5, # center plot title\n    size = 5, # plot title size\n  ), \n  axis.text.x = element_text(angle = 90) # rotate axis' text\n)"
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#saving-your-graphs",
@@ -949,7 +956,7 @@
     "href": "ioc_r/week05/r_w05_slides.html#todays-goals",
     "title": "Graphing with {ggplot2}",
     "section": "Today’s Goals",
-    "text": "Today’s Goals\n\nInstall new R packages\nCreate a basic plot with ggplot2\nCreate a volcano plot with ggplot2"
+    "text": "Today’s Goals\n\nInstall new R packages\nCreate basic plots with ggplot2"
   },
   {
     "objectID": "ioc_r_toc.html",
