@@ -301,6 +301,36 @@ p_bar_error +
   theme_minimal()
 ```
 
+
+**Bonus question**: What if we want to add the expression level of each sample to the bar plot?
+
+Hint: Add another layer for drawing points (`geom_point`), using the data frame that contains the individual data (`data_clean`).
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+# change labels and theme
+p_bar_error +
+  labs(
+    title = "Mean Gene Expression by Sample Group",
+    subtitle = "The error bars represent the standard deviation.",
+    x = NULL, y = "Mean Expression Level"
+  ) +
+  theme_minimal() +
+  geom_point( # add the layer of points
+    data = data_clean, # use the individual data
+    aes(x = sample_group, y = expression), # map axes
+    position = position_jitter( # add random noise to avoid overlap between points
+      width = 0.1, height = 0, # allow the points to be spread across a small horizontal range (width = 0.1),
+      # while keeping the value on y-axis fixed (height = 0)
+      seed = 1
+    ) 
+  )
+```
+
+
+
 ---
 
 #### Good job! 👏👏 You've taken your first big steps into R, and you're off to a great start, keep it up! 

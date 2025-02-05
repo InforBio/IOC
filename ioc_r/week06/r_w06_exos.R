@@ -101,3 +101,9 @@ data
 ##    - Plot bars for mean expression (`geom_bar(stat = "identity")`)
 ##    - Add error bars for standard deviation (`geom_errorbar()`)
 ##    - Change the aesthetic apsects as you want, *e.g.*: color, title, legend, *etc.*
+
+
+## Bonus question:
+## What if we want to add the expression level of each sample to the bar plot?
+## Hint: Add another layer for drawing points (`geom_point`),
+##       using the data frame that contains the individual data (`data_clean`).
