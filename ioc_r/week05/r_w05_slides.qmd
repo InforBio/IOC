@@ -137,7 +137,7 @@ By default, R will install the lastest version of a package.
 
 ![](images/pkg_install.png)
 
-- Via command, *i.e.*, `install.package("ggplot2")`
+- Via command, *i.e.*, `install.packages("ggplot2")`
 
 ::: {.callout-tip appearance="minimal"}
 - **[CRAN](https://cran.r-project.org)** (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.
