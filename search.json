@@ -830,7 +830,7 @@
     "href": "ioc_r/week05/r_w05_slides.html#installing-packages",
     "title": "Graphing with {ggplot2}",
     "section": "Installing Packages",
-    "text": "Installing Packages\nBy default, R will install the lastest version of a package.\n\nClick-button way:\n\n\n\nVia command, i.e., install.package(\"ggplot2\")\n\n\n\n\n\nCRAN (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.\nBioconductor is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.\n\n\n\n\n\nOnly need install once for the system, the load the package."
+    "text": "Installing Packages\nBy default, R will install the lastest version of a package.\n\nClick-button way:\n\n\n\nVia command, i.e., install.packages(\"ggplot2\")\n\n\n\n\n\nCRAN (Comprehensive R Archive Network) is a network of servers around the world that store identical, up-to-date, versions of code and documentation for R.\nBioconductor is a specialized repository like CRAN, but focused on bioinformatics. It provides R packages for analyzing genomic and biological data.\n\n\n\n\n\nOnly need install once for the system, the load the package."
   },
   {
     "objectID": "ioc_r/week05/r_w05_slides.html#management-of-packages",
