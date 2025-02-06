@@ -174,7 +174,7 @@ df[which(df$Mutation), ]  # Filter mutated genes
 
   - Flexible structure, can hold anything (vectors, matrices, data frames or lists).
   - Use `[]` to subset a list.
-  - Use `[[ ]]` or `$` to access elements inside a list.
+  - Use `[[ ]]` or `$` to select a specific component of a list.
 
 ```{r}
 bio_data <- list(
@@ -210,7 +210,7 @@ bio_data$metadata$Condition  # Get sample conditions
 <br>
 
 ::: {.columns}
-::: {.column}
+::: {.column .fragment}
 
 ```{r}
 expression <- 25.3
@@ -221,18 +221,30 @@ if (expression > 20) {
   print("Low expression")
 }
 
+ifelse(test = expression > 20, yes = "High expression", no = "Low expression")
 ```
 
+:::{.fragment}
+
+```{r}
+age <- c(18, 27, 20, 23, 22)
+age[age < 20 | age > 25]
+```
 :::
-::: {.column}
+:::
+::: {.column .fragment}
 
 ```{r}
 genes <- data.frame(
-  Gene = c("TP53", "BRCA1", "EGFR"),
-  Expression = c(25.3, 12.5, 30.1)
+  gene = c("TP53", "BRCA1", "EGFR"),
+  expr = c(25.3, 12.5, 30.1),
+  gene_family = c("A", "A", "B")
+  
 )
+genes[genes$expr > 20, ]
+# subset(genes, expr > 20) # idem
 
-genes[genes$Expression > 20, ]
+subset(genes, expr > 20, select = c("gene", "expr")) # filter and select some columns
 ```
 
 :::
