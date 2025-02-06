@@ -51,12 +51,30 @@ my_project/
 
 <br>
 
+::: {.columns}
+::: {.column}
 ```{r}
 gene <- "TP53"       # Character
 expression <- 25.3   # Numeric
 is_mutant <- TRUE    # Logical
 mut_gp <- factor(c("wt", "wt", "mut", "mut"))
 ```
+
+:::
+::: {.column .fragment}
+
+```{r}
+x <- 1
+y <- 2
+total <- x + y
+total
+```
+:::{.callout-note appearance="minimal"}
+- If we change `x` to 5, is the value stored in `total` changed?
+- If `total` is not changed, what do you need to do to update the value in `total`?
+:::
+:::
+:::
 
 
 # Data Structures
@@ -88,7 +106,7 @@ gene_names[c(2, 4)]  # Select multiple genes
 ::: {.column}
 - **Matrices**:
 
-  - 2D homogeneous data (only numbers or only characters).
+  - 2D homogeneous data, a collection of equal-length vectors of the same data type.
   - Use case: gene expression table, rows = genes, columns = samples
   - Use `[, ]` for indexing.
 
@@ -121,7 +139,7 @@ expr_matrix[2, 1]  # Specific value at row 2, column 1
 ::: {.column}
 - **Data Frames**
 
-  - 2D heterogeneous data (mix of characters, numbers, logicals, factors).
+  - 2D heterogeneous data, a collection of equal-length vectors of different data types.
   - Use `[, ]` for indexing; use `$` and `[[ ]]` to extract one column.
 
 ```{r}
