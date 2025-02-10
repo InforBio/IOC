@@ -58,7 +58,7 @@ data[data$value<-0.5, ]
 
 ## A researcher has collected some gene expression data from 12 samples.
 ## However, some values are missing.
-## Please help the researcher to clean the data and calculate some basic statistics.
+## Please help the researcher to clean the data and to performs some basic analyses.
 
 # Simulated dataset with missing values
 data <- data.frame(
@@ -86,24 +86,31 @@ data
 ##    - What is the max and min expression?
 
 
-## 4. Find the average expression (`mean()`) and the standard deviation (`sd()`) 
+## 4. Find the average expression (`mean()`) and the standard deviation (`sd()`)
 ##    for each sample group (Control *vs.* Case)
 
 
-## 5. Visualise the average expression of each group using barplot.
-##    Prepare data for barplot with error bars. We need:
-##    - A column for the two groups;
-##    - A column for the two means;
-##    - A column for the two standard deviation.
+## 5. Use `data_clean` to draw the graphs you have already seen,
+##    e.g.: box plots, scatter plots, etc.
 
 
-## 6. Draw the bar plot:
+
+## 6. To go futhur: Let's visualise the average expression of each group using barplot,
+##                  with the help of ChatGPT (or any other AI tool).
+
+## 6a. Prepare data for barplot with error bars.
+##    We need to reorganize the data in a dataframe with 2 rows and 3 columns:
+##    - the column `group` contain the name of each group
+##    - the column `mean` contain the mean expression in  of each group
+##    - the column `mean` contain the standard deviations
+
+
+## 6b. Draw the bar plot:
 ##    - Plot bars for mean expression (`geom_bar(stat = "identity")`)
 ##    - Add error bars for standard deviation (`geom_errorbar()`)
 ##    - Change the aesthetic apsects as you want, *e.g.*: color, title, legend, *etc.*
 
 
-## Bonus question:
-## What if we want to add the expression level of each sample to the bar plot?
+## 6c. What if we want to add the expression level of each sample to the bar plot?
 ## Hint: Add another layer for drawing points (`geom_point`),
 ##       using the data frame that contains the individual data (`data_clean`).

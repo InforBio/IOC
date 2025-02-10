@@ -160,7 +160,7 @@ data[data$value < -0.5, ]
 
 A researcher has collected some gene expression data from 12 samples.
 However, some values are missing.
-Please help the researcher to clean the data and calculate some basic statistics.
+Please help the researcher to clean the data and to performs some basic analyses.
 
 ```{r}
 # Simulated dataset with missing values
@@ -248,12 +248,57 @@ mean(expr_case)
 sd(expr_case)
 ```
 
-5. Visualise the average expression of each group using barplot.
-Prepare data for barplot with error bars. We need:
+5. Use `data_clean` to draw the graphs you have already seen, *e.g.*: box plots, scatter plots, *etc.*
 
-- A column for the two groups;
-- A column for the two means;
-- A column for the two standard deviation.
+```{r}
+## a boxplot to show if "Case" has higher/lower expression than "Control."
+ggplot(
+  data_clean,
+  aes(x = sample_group, y = expression, fill = sample_group)
+) +
+  geom_boxplot() +
+  labs(
+    title = "Expression Levels by Group",
+    x = "Sample Group",
+    y = "Expression"
+  ) +
+  theme(legend.position = "none")
+
+## Violin plot to show variability and density of expression levels
+ggplot(data, aes(x = sample_group, y = expression, fill = sample_group)) +
+  geom_violin() +
+  labs(
+    title = "Expression Distribution per Group",
+    x = "Sample Group",
+    y = "Expression"
+  ) +
+  theme(legend.position = "none")
+
+## Spotting individual variations
+ggplot(
+  data_clean,
+  aes(x = sample_id, y = expression, color = sample_group)
+) +
+  geom_point(size = 3) +
+  labs(
+    title = "Expression per Sample",
+    x = "Sample ID",
+    y = "Expression"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) # rotate x-axis' text to avoid overlap
+```
+
+
+6. **To go futhur**: Let's visualise the average expression of each group using barplot,
+with the help of ChatGPT (or any other AI tool).
+
+6a. Prepare data for barplot with error bars.
+We need to reorganize the data in a dataframe with 2 rows and 3 columns:
+
+- the column `group` contain the name of each group 
+- the column `mean` contain the mean expression in  of each group 
+- the column `mean` contain the standard deviations
+
 
 ```{r}
 #| code-fold: true
@@ -268,7 +313,7 @@ gg_data <- data.frame(
 gg_data
 ```
 
-6. Draw the bar plot:
+6b. Draw the bar plot:
 
 - Plot bars for mean expression (`geom_bar(stat = "identity")`)
 - Add error bars for standard deviation (`geom_errorbar()`)
@@ -302,7 +347,7 @@ p_bar_error +
 ```
 
 
-**Bonus question**: What if we want to add the expression level of each sample to the bar plot?
+6c: What if we want to add the expression level of each sample to the bar plot?
 
 Hint: Add another layer for drawing points (`geom_point`), using the data frame that contains the individual data (`data_clean`).
 
