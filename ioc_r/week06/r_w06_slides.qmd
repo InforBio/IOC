@@ -44,20 +44,18 @@ my_project/
 
 | Data Type  |	Example in Biology |
 |:-----------|:---------------------|
-| Numeric    |	Expression levels (`log2FC <- 1.5`)|
+| Numeric    |	Expression levels (`25.3`)|
 | Character  |	Gene names (`"TP53"`,` "BRCA1"`)|
 | Logical    |	Mutation status (`TRUE` for mutated, `FALSE` for WT)|
-| Factor     |	Mutation status (mutated group or WT group)|
 
 <br>
 
 ::: {.columns}
 ::: {.column}
 ```{r}
-gene <- "TP53"       # Character
 expression <- 25.3   # Numeric
+gene <- "TP53"       # Character
 is_mutant <- TRUE    # Logical
-mut_gp <- factor(c("wt", "wt", "mut", "mut"))
 ```
 
 :::
@@ -94,6 +92,11 @@ total
 gene_names <- c("TP53", "BRCA1", "EGFR", "INS")
 gene_names[1]  # First gene: "TP53"
 gene_names[c(2, 4)]  # Select multiple genes
+
+# factor
+mut_gp <- factor(c("wt", "wt", "mut", "mut"))
+mut_gp
+mut_gp[3]
 ```
 
 :::
@@ -107,14 +110,14 @@ gene_names[c(2, 4)]  # Select multiple genes
 - **Matrices**:
 
   - 2D homogeneous data, a collection of equal-length vectors of the same data type.
-  - Use case: gene expression table, rows = genes, columns = samples
+  - Use case: gene expression counting table, rows = genes, columns = samples
   - Use `[, ]` for indexing.
 
 ```{r}
 expr_matrix <- matrix(
   c(10, 12, 15, 20, 8, 30),
   nrow = 3, byrow = TRUE,
-  dimnames = list(
+  dimnames = list( # name the rows and columns   
     c("gene1", "gene2", "gene3"),
     c("sample1", "sample2")
   )
@@ -139,7 +142,7 @@ expr_matrix[2, 1]  # Specific value at row 2, column 1
 ::: {.column}
 - **Data Frames**
 
-  - 2D heterogeneous data, a collection of equal-length vectors of different data types.
+  - 2D heterogeneous data, a collection of equal-length vectors of one or more data types.
   - Use `[, ]` for indexing; use `$` and `[[ ]]` to extract one column.
 
 ```{r}
@@ -200,7 +203,7 @@ bio_data$metadata$Condition  # Get sample conditions
 
 # Conditions & Operators
 
-## Making Decisions in R {.smaller}
+## Filtering Data with Accuracy in R {.smaller}
 
 | Type |	Operator |	Example |
 |:----------|:---------------------:|:--------------:|
@@ -294,7 +297,9 @@ theme_update(
 ```{r}
 library(ggplot2)
 df <- data.frame(
-  Expression = c(25.3, 12.5, 30.1, 27.8, 18.2, 35.6),
+  Expression = c(
+    25.3, 12.5, 30.1, 27.8, 18.2, 35.6
+  ),
   Condition = rep(c("WT", "KO"), 3)
 )
 df
@@ -305,41 +310,97 @@ df
 ```{r}
 ggplot(
   data = df,
-  aes(x = Condition, y = Expression, fill = Condition)
+  aes(x = Condition, y = Expression)
 ) +
-  geom_boxplot() +
-  theme_minimal()
+  geom_boxplot()
 ```
 
+:::{.content-smaller}
+Possible to change aesthetics (color, fill, shape, alpha (transparency), *etc.*), theme, scales, *etc.*
 :::
-:::
-
-
-## Exporting Results {.smaller}
-
-::: {.columns}
-::: {.column}
-- **CSV** format
 
 ```{r}
 #| eval: false
 
-# use base function
+## save figure
+ggsave(filename = "path/to/my_figure.png")
+```
+:::
+:::
+
+# Data Import and Export
+
+## Text and Excel Files {.smaller}
+
+::: {.columns}
+::: {.column}
+- Text format (.txt, .csv)
+
+```{r}
+#| eval: false
+
+# use {base}'s functions
+## Import
+text_file <- read.table("path/to/file.txt")
+csv_file <- read.csv("path/to/file.csv")
+
+## Export
+write.table(
+  x = df,
+  file = "outputs/cleaned_gene_expression.txt"
+)
 write.csv(
   x = df,
   file = "outputs/cleaned_gene_expression.csv"
 )
 
-# use readr's function
+# use {readr}'s functions
+## Import
 readr::write_csv(
   x = df,
   file = "outputs/cleaned_gene_expression.csv"
 )
+## Export
+readr::write_csv()
 ```
+
+:::{.callout-tip appearance="minimal"}
+Don't forget to use arguments to specify if your data has header, row names, *etc.*
+:::
 
 :::
 ::: {.column}
-- **RDS** format (for preserving a single R object)
+
+- Excel format (.xlsx, .xls)
+
+```{r}
+#| eval: false
+
+# use {readxl}'s functions
+## Import
+xlsx_file <- readxl::read_xlsx("path/to/file.xlsx")
+xls_file <- readxl::read_xls("path/to/file.xls")
+
+# use {xlsx}'s function
+## Export
+xlsx::write.xlsx(
+  x = df,
+  file = "outputs/cleaned_gene_expression.xlsx"
+)
+```
+
+:::{.callout-tip appearance="minimal" .fragment}
+Cheat sheet for data import/export with {readr} and {readxl} in R: <https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf>
+:::
+
+:::
+:::
+
+## R Specific Formats {.smaller}
+
+::: {.columns}
+::: {.column}
+- **RDS** (for preserving a single R object)
 
 ```{r}
 #| eval: false
@@ -350,10 +411,14 @@ saveRDS(
 )
 
 # load RDS data into environment
-my_df <- readRDS("outputs/cleaned_gene_expression.rds")
+my_df <- readRDS(
+  file = "outputs/cleaned_gene_expression.rds"
+)
 ```
 
-- **RData** format (for saving multiple R objects at once)
+:::
+::: {.column}
+- **RData** (for saving multiple R objects at once)
 
 ```{r}
 #| eval: false
@@ -365,13 +430,35 @@ save(
 )
 
 # Load all objects back into the environment
+# with their original names
 load("outputs/analysis_results.RData")
 ```
+:::
+:::
 
+<br>
+
+:::{.callout-tip appearance="minimal" .fragment}
+Both `.RDS` and `.Rdata` preserve data structures, such as column data types (numeric, character or factor).
 :::
-:::
+
 
 # Using AI to Solve Coding Problems in R
+
+## How Can AI help Us? {.smaller}
+
+- Debugging: Identify and troubleshoot error/warning messages
+- Generate code snippets (filter data, visualize, define functions, etc.)
+- Explain unfamiliar code and documentation
+- Enhance code quality (readability, efficiency, optimization)
+- ...
+
+Different AI tools: ChatGPT, Gemini, Perplexity, Claude, Le Chat, DeepSeek, *etc.*
+
+:::{.callout-important appearance="minimal"}
+AI is a great assistant, but it can make mistakes, always verify outputs!
+:::
+
 
 ## How to ask AI for help effectively? {.smaller}
 
@@ -381,6 +468,7 @@ load("outputs/analysis_results.RData")
 
 ✅ Provide context:
 
+- A quick mention of your background can guide the response (*e.g.*: "I'm biologist working with gene expression data")
 - What is your goal?
 - What error message do you see?
 - What does your dataset look like?
