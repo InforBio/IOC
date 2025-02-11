@@ -29,6 +29,7 @@ if (x = 5) {
 
 
 ## 4. Fix error in ggplot2.
+##    The goal is to show petal length with a boxplot for each species.
 
 ggplot(iris, aes(x = Sepal.Length, y = Species))
 geom_boxplot()
@@ -57,7 +58,7 @@ data[data$value<-0.5, ]
 ## Mini Data Project -------------------------------------------------------------------------
 
 ## A researcher has collected some gene expression data from 12 samples.
-## However, some values are missing.
+## However, some expression values are missing.
 ## Please help the researcher to clean the data and to performs some basic analyses.
 
 # Simulated dataset with missing values
@@ -90,7 +91,7 @@ data
 ##    for each sample group (Control *vs.* Case)
 
 
-## 5. Use `data_clean` to draw the graphs you have already seen,
+## 5. Use `data_clean` to draw a graph you have already seen,
 ##    e.g.: box plots, scatter plots, etc.
 
 

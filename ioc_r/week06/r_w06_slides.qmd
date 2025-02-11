@@ -143,7 +143,8 @@ expr_matrix[2, 1]  # Specific value at row 2, column 1
 - **Data Frames**
 
   - 2D heterogeneous data, a collection of equal-length vectors of one or more data types.
-  - Use `[, ]` for indexing; use `$` and `[[ ]]` to extract one column.
+  - Use `[, ]` for indexing
+  - Use `$` and `[[ ]]` to extract one column.
 
 ```{r}
 df <- data.frame(
@@ -151,13 +152,13 @@ df <- data.frame(
   Expression = c(25.3, 12.5, 30.1),
   Mutation = c(TRUE, FALSE, TRUE)
 )
+df
 ```
 
 :::
 ::: {.column}
 
 ```{r}
-df
 df$Gene  # Select column as a vector
 df[, "Expression"]  # Same as df$Expression
 df[[2]]  # Same as df$Expression
@@ -192,7 +193,7 @@ bio_data <- list(
 
 ```{r}
 bio_data
-bio_data[1]  # a sub list
+bio_data[1]  # A sub list
 bio_data[[1]]  # Get gene names
 bio_data$expression  # Get expression matrix
 bio_data$metadata$Condition  # Get sample conditions
@@ -255,7 +256,7 @@ subset(genes, expr > 20, select = c("gene", "expr")) # filter and select some co
 
 # Functions
 
-## Automate Task in R
+## Automate Task in R {.smaller}
 
 ```{r}
 classify_expression <- function(expr, cutoff = 20) {
@@ -267,9 +268,30 @@ classify_expression <- function(expr, cutoff = 20) {
   }
 }
 
+```
+
+<br>
+
+::: {.columns .fragment}
+::: {.column}
+
+```{r}
+#| message: true
+
+classify_expression(expr = 25.3, cutoff = 20)
 classify_expression(25.3)
+```
+:::
+::: {.column}
+
+```{r}
+#| message: true
+
+classify_expression(25.3, 30)
 classify_expression(25.3, 10)
 ```
+:::
+:::
 
 # Ggplot2: Visualizing Your Results
 
@@ -364,10 +386,6 @@ readr::write_csv(
 readr::write_csv()
 ```
 
-:::{.callout-tip appearance="minimal"}
-Don't forget to use arguments to specify if your data has header, row names, *etc.*
-:::
-
 :::
 ::: {.column}
 
@@ -390,7 +408,8 @@ xlsx::write.xlsx(
 ```
 
 :::{.callout-tip appearance="minimal" .fragment}
-Cheat sheet for data import/export with {readr} and {readxl} in R: <https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf>
+- Don't forget to use arguments to specify if your data has header, row names, *etc.*
+- Cheat sheet for data import/export with {readr} and {readxl} in R: <https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf>
 :::
 
 :::

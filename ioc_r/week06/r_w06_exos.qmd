@@ -92,6 +92,7 @@ if (x == 5) {
 
 
 4. Fix error in ggplot2.
+The goal is to show petal length with a boxplot for each species.
 
 ```r
 ggplot(iris, aes(x = Sepal.Length, y = Species))
@@ -140,13 +141,15 @@ ggplot(data, aes(x = factor(gp), y = value)) +
 ```{r}
 # try to keep rows where the value is smaller than -0.5
 data[data$value<-0.5, ]
-str(data) # the original data was changed!
 ```
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Correction"
 
+str(data) # the original data was changed!
+
+# rebuild the data frame
 set.seed(1)
 data <- data.frame(
   gp = rep(1:2, each = 20),
@@ -159,7 +162,7 @@ data[data$value < -0.5, ]
 ## Mini Data Project
 
 A researcher has collected some gene expression data from 12 samples.
-However, some values are missing.
+However, some expression values are missing.
 Please help the researcher to clean the data and to performs some basic analyses.
 
 ```{r}
@@ -192,6 +195,10 @@ is.na(data$expression)
 
 # Show only rows with missing values
 data[is.na(data$expression), ]
+
+## or find the index of NAs
+which(is.na(data$expression))
+data[which(is.na(data$expression)), ]
 ```
 
 2. Remove rows with missing values.
@@ -248,9 +255,12 @@ mean(expr_case)
 sd(expr_case)
 ```
 
-5. Use `data_clean` to draw the graphs you have already seen, *e.g.*: box plots, scatter plots, *etc.*
+5. Use `data_clean` to draw a graph you have already seen, *e.g.*: box plots, scatter plots, *etc.*
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
 ## a boxplot to show if "Case" has higher/lower expression than "Control."
 ggplot(
   data_clean,
@@ -259,17 +269,20 @@ ggplot(
   geom_boxplot() +
   labs(
     title = "Expression Levels by Group",
-    x = "Sample Group",
+    x = NULL,
     y = "Expression"
   ) +
   theme(legend.position = "none")
 
 ## Violin plot to show variability and density of expression levels
-ggplot(data, aes(x = sample_group, y = expression, fill = sample_group)) +
+ggplot(
+  data_clean,
+  aes(x = sample_group, y = expression, fill = sample_group)
+) +
   geom_violin() +
   labs(
-    title = "Expression Distribution per Group",
-    x = "Sample Group",
+    title = "Violin Plot - Expression Distribution per Group",
+    x = NULL,
     y = "Expression"
   ) +
   theme(legend.position = "none")
@@ -281,11 +294,34 @@ ggplot(
 ) +
   geom_point(size = 3) +
   labs(
-    title = "Expression per Sample",
-    x = "Sample ID",
-    y = "Expression"
+    title = "Scatter Plot - Expression per Sample",
+    x = NULL,
+    y = "Expression",
+    color = NULL
+  )
+
+## better solution
+ggplot(
+  data_clean,
+  aes(
+    # recode variable as factor with the wanted order
+    x = factor(sample_id, levels = sample_id),
+    y = expression,
+    color = sample_group
+  )
+) +
+  geom_point(size = 3) +
+  labs(
+    title = "Scatter Plot - Expression per Sample",
+    subtitle = "Improved Version :)",
+    x = NULL,
+    y = "Expression",
+    color = NULL
   ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) # rotate x-axis' text to avoid overlap
+  theme(
+    # rotate x-axis' text to avoid overlap
+    axis.text.x = element_text(angle = 30, hjust = 1)
+  )
 ```
 
 
