@@ -378,12 +378,14 @@ write.csv(
 
 # use {readr}'s functions
 ## Import
+readr::read_csv(
+  file = "outputs/cleaned_gene_expression.csv"
+)
+## Export
 readr::write_csv(
   x = df,
   file = "outputs/cleaned_gene_expression.csv"
 )
-## Export
-readr::write_csv()
 ```
 
 :::
