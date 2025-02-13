@@ -1,0 +1,95 @@
+---
+title: "Smart Shortcuts:<br>Mastering the `apply` Family"
+subtitle: "IOC-R Week 7"
+date: "2025-03-03"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+categories: 
+  - week07
+  - slides
+image: images/preview_s7.png
+---
+
+# Recap Functions
+
+## Custom Functions {.smaller}
+
+Functions = Reusable blocks of code.
+
+::: {.columns}
+::: {.column}
+- Syntax
+
+```r
+my_function <- function(arg1, ...) {
+  # function body
+  return(result)
+}
+```
+
+- Example
+
+```{r}
+get_avg <- function(x) {
+  ## check the structure and transforme the data to vector
+  if (is.vector(x)) {
+    tmp_vec <- x
+  } else if (is.matrix(x)) {
+    tmp_vec <- as.vector(x)
+  } else if (is.data.frame(x)) {
+    tmp_vec <- unlist(x)
+  } else {
+    stop("x can be either a vector, matrix or data frame")
+  }
+
+  ## calculte the average
+  res <- sum(tmp_vec) / length(tmp_vec)
+  return(res)
+}
+```
+
+:::
+::: {.column}
+
+```{r}
+get_avg(1:12)
+get_avg(matrix(1:12, nrow = 3))
+get_avg(data.frame(x = 1:6, y = 7:12))
+```
+
+:::
+:::
+
+
+
+# `apply` Family Functions
+
+## apply
+
+## sapply
+
+## lapply
+
+## Other Functions
+
+vapply, mapply, tappy
+
+# Let's Practice !
+
+## Today's Goals
+
+- 
+- 
+- 
+- 
