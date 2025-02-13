@@ -1,0 +1,22 @@
+---
+title: "Week 7 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+date: "2025-03-04"
+date-format: " "
+categories: 
+  - week07
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week07/r_w07_exos.R)
+
+---
+
+#### Good job! 👏👏 You've taken your first big steps into R, and you're off to a great start, keep it up! 
+
+

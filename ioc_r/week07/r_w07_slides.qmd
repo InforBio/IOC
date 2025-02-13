@@ -1,0 +1,43 @@
+---
+title: "Smart Shortcuts:<br>Mastering the `apply` Family"
+subtitle: "IOC-R Week 7"
+date: "2025-03-03"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+categories: 
+  - week07
+  - slides
+image: images/preview_s7.png
+---
+
+# Level Up Your Code
+
+## apply
+
+## sapply
+
+## lapply
+
+## Other Functions
+
+vapply, mapply, tappy
+
+# Let's Practice !
+
+## Today's Goals
+
+- 
+- 
+- 
+- 
