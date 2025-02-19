@@ -72,8 +72,30 @@ get_avg(data.frame(x = 1:6, y = 7:12))
 :::
 
 
+:::{.callout-note appearance="minimal"}
+What will happen if you type `tmp_vec` in the R Console?
+:::
+
 
 # `apply` Family Functions
+
+## Efficient Data Processing {.smaller}
+
+What happens when we need to apply a function multiple times?
+
+*E.g.*: calculate the median of each row of the following matrix.
+
+```{r}
+mat <- matrix(1:100, nrow = 25)
+dim(mat)
+
+median(mat[1, ])
+median(mat[2, ])
+median(mat[3, ])
+median(mat[4, ])
+```
+
+
 
 ## apply
 
