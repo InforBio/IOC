@@ -98,13 +98,13 @@ de_res$gene_name[which.min(avg_rank)]
 ## Add Significance Level on ggplot
 
 During the exercise, we've created a boxplot with p-value shown using the {`ggsignif`} package function.
-We can also annotate the level of significance (NS, *, **, ***).
+We can also annotate the level of significance (ns, \*, \*\*, \*\*\*).
 
 Tasks:
 
 - Import gene expression data [counts.csv](../exos_data/read-counts.csv).
 - From the differential expression results ([toy_DEanalysis.csv](../exos_data/toy_DEanalysis.csv)):
-  - create a new column call `signif`, which shows
+  - create a new column called `signif`, which shows:
     - "***" for adjusted p-value < 0.001,
     - "**" for adjusted p-value < 0.01,
     - "*" for adjusted p-value < 0.05,
