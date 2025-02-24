@@ -26,7 +26,7 @@ image: images/preview_s7.png
 ## Functions {.smaller}
 
 - Functions = Reusable blocks of code.
-- Can take 0, 1 or more paramters (arguments) as input
+- Can take 0, 1 or more parameters (arguments) as input
 - Local variable (created inside the function) cannot be accessed outside of the function
 
 Syntax:
@@ -47,15 +47,15 @@ my_function <- function(arg1, ...) {
 
 ## Custom Functions {.smaller}
 
-- Example: rank gene based on log2FC and p-value using weighted sum
+- Example: Create a score to rank the results of a differential expression analysis. The score should be a weighted sum of log2 fold change (log2FC) and p-value. We will use:
+  - the absolute value of log2 fold change to avoid negative scores,
+  - -log10(p-value) for better interpretability (so that lower p-values correspond to higher values).
 
 ```{r}
 ## Define a function to calculate weighted score for genes
 weighted_gene_score <- function(
   log2fc, p_value, fc_weight = 0.7, p_weight = 0.3
 ) {
-  # We use the negative log10 of the p-value because lower p-values are better
-  # use the absolute value of log2 fold change to avoid negative score 
   weighted_score <- fc_weight * abs(log2fc) + p_weight * (-log10(p_value))
   return(weighted_score)
 }
@@ -86,10 +86,11 @@ weighted_gene_score(
   p_value = gene_data$p_value[1]
 )
 # score for geneC
-weighted_gene_score(
+score_geneC <- weighted_gene_score(
   log2fc = gene_data$log2FC[3],
   p_value = gene_data$p_value[3]
 )
+score_geneC
 ```
 
 :::
@@ -140,10 +141,10 @@ Applies a function across **rows** or **columns**.
 
 ```r
 ?apply
-apply(X, MARGIN, FUN, ..., simplified = TRUE)
+apply(X, MARGIN, FUN)
 ```
 
-- `X`: Matrix or data frame
+- `X`: Matrix (or data frame)
 - `MARGIN` = 1: Apply function to rows; `MARGIN` = 2: Apply function to columns
 - `FUN`: The function to apply
 
@@ -179,7 +180,7 @@ colSums(mat)
 How to apply a more complex/custom function?
 
 ```{r}
-gene_expr <- matrix(c(1, 2, 3, 2, 2, 3, 3, 3, 3), nrow = 3)
+gene_expr <- matrix(c(1, 2, 3, 2, 2, 3, 3, 3, 3, 4, 5, 6), nrow = 3)
 gene_expr
 ```
 
@@ -192,7 +193,7 @@ apply(
   X = gene_expr,
   MARGIN = 1,
   FUN = function(row_i) {
-    length(unique(row_i))
+    return(length(unique(row_i)))
   }
 )
 
@@ -204,7 +205,7 @@ apply(gene_expr, 1, FUN = unique_len)
 :::
 ::: {.column}
 :::{.callout-note appearance="minimal" .fragment}
-how many value is bigger than 2 in each column?
+how many values are bigger than 2 in each column?
 :::
 
 :::{.fragment}
