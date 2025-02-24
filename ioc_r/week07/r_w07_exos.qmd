@@ -129,7 +129,7 @@ sapply(dna_sequences, gc_content)
 ```
 
 
-### Automate Tasks for a List of Genes.
+### Automate Tasks for a List of Genes
 
 Based on differential gene expression analysis (SET1 *vs.* WT) results,
 draw the boxplot of for the top 3 genes with the smallest adjusted p-value.
@@ -200,6 +200,7 @@ Please install the [ggsignif](https://const-ae.github.io/ggsignif/) package.
 We will use the function `geom_signif()` to add a layer to show p-value on the figure with a horizontal bar.
 
 ```{r}
+# install.packages(ggsignif)
 library(ggsignif)
 p_table <- de_res[order(de_res$padj), ][1:3, c("gene_name", "padj")]
 
