@@ -23,95 +23,321 @@ image: images/preview_s7.png
 
 # Recap Functions
 
-## Custom Functions {.smaller}
+## Functions {.smaller}
 
-Functions = Reusable blocks of code.
+- Functions = Reusable blocks of code.
+- Can take 0, 1 or more paramters (arguments) as input
+- Local variable (created inside the function) cannot be accessed outside of the function
 
-::: {.columns}
-::: {.column}
-- Syntax
+Syntax:
 
 ```r
 my_function <- function(arg1, ...) {
   # function body
-  return(result)
+  return(res)
 }
 ```
 
-- Example
+::: {.content-smaller .fragment}
+- How to use functions in R?
+  - Use base R functions (e.g., `sum()`, `mean()`, `log2()`)
+  - For functions from additional packages: load the package first (`library(package_name)`), or use the function with its prefix (`package_name::function_name()`)
+  - Create custom functions for specific tasks
+:::
+
+## Custom Functions {.smaller}
+
+- Example: rank gene based on log2FC and p-value using weighted sum
 
 ```{r}
-get_avg <- function(x) {
-  ## check the structure and transforme the data to vector
-  if (is.vector(x)) {
-    tmp_vec <- x
-  } else if (is.matrix(x)) {
-    tmp_vec <- as.vector(x)
-  } else if (is.data.frame(x)) {
-    tmp_vec <- unlist(x)
-  } else {
-    stop("x can be either a vector, matrix or data frame")
-  }
-
-  ## calculte the average
-  res <- sum(tmp_vec) / length(tmp_vec)
-  return(res)
+## Define a function to calculate weighted score for genes
+weighted_gene_score <- function(
+  log2fc, p_value, fc_weight = 0.7, p_weight = 0.3
+) {
+  # We use the negative log10 of the p-value because lower p-values are better
+  # use the absolute value of log2 fold change to avoid negative score 
+  weighted_score <- fc_weight * abs(log2fc) + p_weight * (-log10(p_value))
+  return(weighted_score)
 }
+```
+
+<br>
+
+::: {.columns .fragment}
+::: {.column}
+
+```{r}
+## moke gene data
+gene_data <- data.frame(
+  gene = c("GeneA", "GeneB", "GeneC", "GeneD", "GeneE"),
+  log2FC = c(2.5, -1.8, 0.8, 1.6, -0.5), 
+  p_value = c(0.0001, 0.03, 0.2, 0.0005, 0.05)
+)
+gene_data
 ```
 
 :::
 ::: {.column}
 
 ```{r}
-get_avg(1:12)
-get_avg(matrix(1:12, nrow = 3))
-get_avg(data.frame(x = 1:6, y = 7:12))
+# score for geneA
+weighted_gene_score(
+  log2fc = gene_data$log2FC[1],
+  p_value = gene_data$p_value[1]
+)
+# score for geneC
+weighted_gene_score(
+  log2fc = gene_data$log2FC[3],
+  p_value = gene_data$p_value[3]
+)
 ```
 
 :::
 :::
 
+# Meet the `apply` Family Functions
 
-:::{.callout-note appearance="minimal"}
-What will happen if you type `tmp_vec` in the R Console?
-:::
-
-
-# `apply` Family Functions
-
-## Efficient Data Processing {.smaller}
+## Why Learn the `apply` Family? {.smaller}
 
 What happens when we need to apply a function multiple times?
 
 *E.g.*: calculate the median of each row of the following matrix.
 
+::: {.columns}
+::: {.column}
+
 ```{r}
 mat <- matrix(1:100, nrow = 25)
 dim(mat)
+head(mat, 3)
+tail(mat, 3)
+```
+:::
 
+::: {.column .fragment}
+```{r}
 median(mat[1, ])
 median(mat[2, ])
 median(mat[3, ])
-median(mat[4, ])
 ```
 
+```r
+median(mat[4, ])
+...
+median(mat[25, ])
+```
+
+:::{.callout-warning appearance="minimal" .fragment}
+Write 25 times the similar code? Or some more efficient way?
+:::
+
+:::
+:::
+
+## The `apply()` Function {.smaller}
+
+Applies a function across **rows** or **columns**.
+
+```r
+?apply
+apply(X, MARGIN, FUN, ..., simplified = TRUE)
+```
+
+- `X`: Matrix or data frame
+- `MARGIN` = 1: Apply function to rows; `MARGIN` = 2: Apply function to columns
+- `FUN`: The function to apply
+
+::: {.columns}
+::: {.column .fragment}
+
+```{r}
+dim(mat)
+
+# median of each row
+apply(X = mat, MARGIN = 1, FUN = median)
+
+# median of each column
+apply(X = mat, MARGIN = 2, FUN = median)
+```
+:::
+::: {.column .fragment}
+
+```{r}
+# sum of each column
+apply(X = mat, MARGIN = 2, FUN = sum)
+
+# compare result with the built-in function
+colSums(mat)
+```
+
+:::
+:::
 
 
-## apply
+## The `apply()` Function {.smaller}
 
-## sapply
+How to apply a more complex/custom function?
 
-## lapply
+```{r}
+gene_expr <- matrix(c(1, 2, 3, 2, 2, 3, 3, 3, 3), nrow = 3)
+gene_expr
+```
 
-## Other Functions
+::: {.columns}
+::: {.column .fragment}
+*E.g.*: how many unique value each row contains?
 
-vapply, mapply, tappy
+```{r}
+apply(
+  X = gene_expr,
+  MARGIN = 1,
+  FUN = function(row_i) {
+    length(unique(row_i))
+  }
+)
+
+# or write your function then provide to "FUN"
+unique_len <- function(row_i) length(unique(row_i))
+apply(gene_expr, 1, FUN = unique_len)
+```
+
+:::
+::: {.column}
+:::{.callout-note appearance="minimal" .fragment}
+how many value is bigger than 2 in each column?
+:::
+
+:::{.fragment}
+
+```{r}
+apply(
+  X = gene_expr,
+  MARGIN = 2,
+  FUN = function(col_i) {
+    sum(col_i > 2)
+  }
+)
+```
+
+:::
+:::
+:::
+
+
+## The `lapply()` Function {.smaller}
+
+Applies a function to each element of a **list** or **vector**.
+
+```r
+?lapply
+lapply(X, FUN, ...)
+```
+
+- `X`: A list or vector
+- `FUN`: The function to apply
+
+<p>
+
+::: {.columns}
+::: {.column}
+
+```{r}
+# List of genes with their exon start positions
+gene_exons <- list(
+  gene1 = c(100, 200, 300),
+  gene2 = c(50, 150),
+  gene3 = c(10, 110, 210, 310),
+  gene4 = c(500)
+)
+```
+
+How many exons does each gene have?
+
+:::
+::: {.column .fragment}
+```{r}
+lapply(X = gene_exons, FUN = length)
+```
+
+Returns always a **list**.
+
+:::
+:::
+</p>
+
+## `sapply()` – A Simpler `lapply()` {.smaller}
+
+`sapply()` simplifies `lapply()`’s output, it **tries to return a vector or matrix when possible**.
+
+```r
+?sapply
+sapply(X, FUN, ...)
+```
+
+<br>
+
+::: {.columns}
+::: {.column}
+```{r}
+gene_exons # A list
+```
+
+:::
+::: {.column}
+
+```{r}
+lapply(gene_exons, length)  # Returns a list
+sapply(gene_exons, length)  # Returns a vector
+```
+
+:::
+:::
+
+## `sapply()` – A Simpler `lapply()` {.smaller}
+
+::: {.columns}
+::: {.column}
+
+```{r}
+# Function to return exon count and whether it has more than 2 exons
+exon_info <- function(exons) {
+  count <- length(exons)
+  more_than_2 <- ifelse(count > 2, "yes", "no")
+  # Returns a vector of length 2
+  return(c(count, more_than_2))
+}
+
+lapply(gene_exons, exon_info)
+sapply(gene_exons, exon_info)
+```
+
+Results are simplified into matrix.
+
+:::
+::: {.column}
+```{r}
+# Function that returns exon count + some info for each gene
+exon_info2 <- function(exons) {
+  count <- length(exons)
+  if (count > 2) {
+    return(c(count, "high exon number")) # Returns 2 elements
+  } else {
+    return(count)  # Returns 1 element if <= 2
+  }
+}
+
+sapply(gene_exons, exon_info2)
+```
+
+Results cannot be simplified, still stored in a list.
+
+:::
+:::
+
 
 # Let's Practice !
 
 ## Today's Goals
 
-- 
-- 
-- 
-- 
+- Use `apply()` for column-wise and row-wise operations (*e.g.*, calculation variance of each rows or columns)
+- Leverage `lapply()` for list-based computations (*e.g.*, repeating generation of plot for a list of genes)
