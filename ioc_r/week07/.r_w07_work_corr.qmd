@@ -56,11 +56,11 @@ Store the rank in a new column called `rank_padj`.
 ```{r}
 de_res$rank_padj <- rank(log10(de_res$padj))
 
-de_res[de_res$rank_padj %in% 1:3, ] # the top 3 adjusted p-value
+de_res[de_res$rank_padj <= 3, ] # the top 3 adjusted p-value
 ```
 
 4. With the help of the `order()` function,
-rank genes based on the weighted sum of log2 fold change and -log10 adjusted p-value,
+rank genes based on the weighted sum of absolute log2 fold change and -log10 adjusted p-value,
 with 0.7 the weight for log2 fold change and 0.3 the weight for -log10 adjusted p-value.
 Store the rank in a new column called `rand_weighted`.
 
@@ -97,23 +97,23 @@ de_res$gene_name[which.min(avg_rank)]
 
 ## Add Significance Level on ggplot
 
-During the exercise, we've created a boxplot with p-value shown using the {`ggsignif`} package function.
-We can also annotate the level of significance (ns, \*, \*\*, \*\*\*).
+During the exercise, we've created a boxplot with p-value shown using the {`ggsignif`} package's function.
+We can also annotate the level of significance (ns, \*, \*\*, \*\*\*) instead of showing the p-value.
 
 Tasks:
 
 - Import gene expression data [counts.csv](../exos_data/read-counts.csv).
 - From the differential expression results ([toy_DEanalysis.csv](../exos_data/toy_DEanalysis.csv)):
   - create a new column called `signif`, which shows:
-    - "***" for adjusted p-value < 0.001,
-    - "**" for adjusted p-value < 0.01,
-    - "*" for adjusted p-value < 0.05,
-    - "ns" for adjusted p-value >= 0.05;
+    - "***" if adjusted p-value < 0.001,
+    - "**" if adjusted p-value < 0.01,
+    - "*" if adjusted p-value < 0.05,
+    - "ns" if adjusted p-value >= 0.05;
   - extract the 3 genes with the smallest adjusted p-value.
 - Build data frame for boxplot for the *PIR3* gene of WT and SET1 samples.
 - Draw boxplot with individual data points and significance level annotation (`geom_signif()`)
 - Generalise the previous steps to draw boxplot for any genes, *e.g.*: "TOS6"
-- Apply your function for a list of any genes from the analysis results.
+- Apply your function for a list of any genes from the "toy_DEanalysis" results.
 
 ```{r}
 library(ggplot2)
@@ -133,19 +133,20 @@ de_res$signif <- ifelse(
 head(de_res)
 
 # extract gene of interest
-target_genes <- de_res[order(de_res$padj), ][1:3, c("gene_name", "padj")]
-target_genes$gene_name[1] # the 1st gene
+target_genes <- de_res[order(de_res$padj), ][1:3, "gene_name"]
+target_genes
 
 
-# data frame for LOH1 boxplot
-my_gene <- "PIR3"
+# data frame for PIR3 boxplot
+my_gene <- target_genes[2]
+nb_sample <- 10
 
 gg_df <- data.frame(
   expr_val = c(
-    unlist(counts[counts$Feature == my_gene, paste0("WT.", 1:10)]),
-    unlist(counts[counts$Feature == my_gene, paste0("SET1.", 1:10)])
+    unlist(counts[counts$Feature == my_gene, paste0("WT.", seq_len(nb_sample))]),
+    unlist(counts[counts$Feature == my_gene, paste0("SET1.", seq_len(nb_sample))])
   ),
-  group = factor(rep(c("WT", "SET1"), each = 10), levels = c("WT", "SET1"))
+  group = factor(rep(c("WT", "SET1"), each = nb_sample), levels = c("WT", "SET1"))
 )
 
 
@@ -158,7 +159,7 @@ ggplot(gg_df, aes(x = group, y = expr_val)) +
   labs(x = NULL, y = "Expression Counts", title = my_gene) +
   geom_signif(
     comparisons = list(c("WT", "SET1")),
-    annotations = target_genes$signif[target_genes$gene_name == my_gene]
+    annotations = de_res$signif[de_res$gene_name == my_gene]
   ) +
   theme_bw()
 

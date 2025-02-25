@@ -41,7 +41,7 @@ Store the rank in a new column called `rank_padj`.
 
 
 4. With the help of the `order()` function,
-rank genes based on the weighted sum of log2 fold change and -log10 adjusted p-value,
+rank genes based on the weighted sum of absolute log2 fold change and -log10 adjusted p-value,
 with 0.7 the weight for log2 fold change and 0.3 the weight for -log10 adjusted p-value.
 Store the rank in a new column called `rand_weighted`.
 
@@ -54,7 +54,7 @@ Store the rank in a new column called `rand_weighted`.
 
 ## Add Significance Level on ggplot
 
-During the exercise, we've created a boxplot with p-value shown using the {`ggsignif`} package function.
+During the exercise, we've created a boxplot with p-value shown using the {`ggsignif`} package's function.
 We can also annotate the level of significance (ns, \*, \*\*, \*\*\*) instead of showing the p-value.
 
 Tasks:
@@ -62,15 +62,15 @@ Tasks:
 - Import gene expression data [counts.csv](../exos_data/read-counts.csv).
 - From the differential expression results ([toy_DEanalysis.csv](../exos_data/toy_DEanalysis.csv)):
   - create a new column called `signif`, which shows:
-    - "***" for adjusted p-value < 0.001,
-    - "**" for adjusted p-value < 0.01,
-    - "*" for adjusted p-value < 0.05,
-    - "ns" for adjusted p-value >= 0.05;
+    - "***" if adjusted p-value < 0.001,
+    - "**" if adjusted p-value < 0.01,
+    - "*" if adjusted p-value < 0.05,
+    - "ns" if adjusted p-value >= 0.05;
   - extract the 3 genes with the smallest adjusted p-value.
 - Build data frame for boxplot for the *PIR3* gene of WT and SET1 samples.
 - Draw boxplot with individual data points and significance level annotation (`geom_signif()`)
 - Generalise the previous steps to draw boxplot for any genes, *e.g.*: "TOS6"
-- Apply your function for a list of any genes from the analysis results.
+- Apply your function for a list of any genes from the "toy_DEanalysis" results.
 
 
 ---
