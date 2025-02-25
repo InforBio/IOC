@@ -9,10 +9,13 @@
 
 
 
-## 2. Calculate following metrics for each row and column using the `apply()` function:
-##    - Variance (`var()`) (it's a measure of dispersion)
+## 2. Calculate following metrics for each row (genes) and
+##    column (samples) using the `apply()` function:
+##    - Mean (`mean()`)
+##    - Variance (`var()`)
 ##    - Minimum and maximum (`min()`, `max()` or use `range()`)
 ## What is the expected length or dimension of the outputs?
+## Attention: exclude the 1st column for the calculation.
 
 
 ## The `lapply()` Function ------------------------------------------------------------
@@ -60,41 +63,39 @@ seq1
 ### Automate Tasks for a List of Genes ------------------------------------------------------------
 
 ## Based on differential gene expression analysis (SET1 *vs.* WT) results,
-## draw the boxplot of for the top 3 genes with the smallest adjusted p-value.
-
-## Tasks:
-## - Import the differential gene expression analysis results, extract the genes of interest.
-## - Based on the `counts` data, build a data frame containing for the *LOH1* gene, with
-##   - a column of count for SET1 and WT samples,
-##   - and a column for corresponding the sample group.
-## - Draw boxplot and show the individual data points on the same figure.
-## - Add signifcance level on the figure.
-##   - install the `ggsignif` package
-##   - extract the adjsuted p-value with the gene name for the targeted genes.
-## - Write a function to generalise previous step, test it with another gene.
-## - Apply the function to the list of genes.
+## draw the boxplot of for the top 3 genes with the smallest adjusted p-value,
+## add individual data points on the boxplot and
+## show p-value above the boxes with horizontal bar
+## (with the help of the ggsignif pacakge).
 
 
 ## 1. Import the differential gene expression analysis (SET1 *vs.* WT) results file "toy_DEanalysis.csv"
 ##    into RStudio and name it as `de_res`.
 
 
-
-## 2. Build data frame for the *LOH1* gene for the boxplot.
-
-
-## 3. Draw boxplot with individual data points.
+## 2. Extract the genes of interest, i.e., 3 genes with the smallest adjusted p-value.
 
 
-## 4. Add p-value on the figure.
-##    Please install the "ggsignif" package.
-##    We will use the function `geom_signif()` to add a layer to show p-value on the figure with a horizontal bar.
+## 3. Based on the `counts` data, build data frame for the *LOH1* gene for the boxplot.
+## This data frame should contain:
+##   - a column of counts for SET1 and WT samples,
+##   - and a column for corresponding the sample group.
+## Attention: In order to avoid hardcoding the gene name or sample name,
+##            use a variable instead.
 
 
+## 4. Draw boxplot and show the individual data points on the same figure.
 
-## 5. Generalise previous steps with a function which take the name of gene as input.
+
+## 5. Add p-value with a horizontal bar on the figure:
+##   - install the [`ggsignif`](https://const-ae.github.io/ggsignif/) package,
+##   - use the function `geom_signif()` to add a layer to show p-value on the figure.
+## Check the documentation of `geom_signif()`, what do we need to add p-value?
+
+
+## 6. Generalise previous steps with a function which take the name of gene as input.
 ##    Test the function with another gene.
 
 
-## 6. Apply the function to the list of genes.
+## 7. Apply the function to the targeted genes.
 
