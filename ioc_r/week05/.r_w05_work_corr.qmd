@@ -154,6 +154,3 @@ draw_boxplot(target_genes[3])
 ---
 
 Click "Render" to generate your Quarto report.
-
-The homework correction is available here:
-[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week05/.r_w05_work_corr.qmd)
