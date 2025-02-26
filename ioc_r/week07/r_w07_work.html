@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>IOC Single-cell RNAseq Training Information – IOC</title>
+<title>Week 7 - Homework – IOC</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8647a4a42273f773479d27c00df3f9ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logoInforBio_fond_blanc.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-8647a4a42273f773479d27c00df3f9ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -78,10 +107,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logoInforBio_fond_blanc_small.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">IOC</span>
     </a>
   </div>
@@ -97,21 +126,21 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-calendar--info">    
         <li>
-    <a class="dropdown-item" href="./ioc_r_info.html">
+    <a class="dropdown-item" href="../../ioc_r_info.html">
  <span class="dropdown-text">IOC-R Info</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ioc_scrnaseq_info.html">
+    <a class="dropdown-item" href="../../ioc_scrnaseq_info.html">
  <span class="dropdown-text">IOC-scRNAseq Info</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./ioc_r_toc.html"> 
+    <a class="nav-link" href="../../ioc_r_toc.html"> 
 <span class="menu-text">IOC-R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ioc_scrnaseq.html"> 
+    <a class="nav-link" href="../../ioc_scrnaseq.html"> 
 <span class="menu-text">IOC-scRNAseq</span></a>
   </li>  
   <li class="nav-item compact">
@@ -130,16 +159,27 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ranking-genes" id="toc-ranking-genes" class="nav-link active" data-scroll-target="#ranking-genes">Ranking Genes</a></li>
+  <li><a href="#add-significance-level-on-ggplot" id="toc-add-significance-level-on-ggplot" class="nav-link" data-scroll-target="#add-significance-level-on-ggplot">Add Significance Level on ggplot</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">IOC Single-cell RNAseq Training Information</h1>
-</div>
+<h1 class="title">Week 7 - Homework</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">week07</div>
+    <div class="quarto-category">homework</div>
+  </div>
+  </div>
 
 
 
@@ -155,10 +195,53 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to the IOC-scRNAseq Training!</p>
-<p>The online course will be started from end March 2025. More details will be shared later.</p>
+<p>Write your code directly in a Quarto document.</p>
+<p>To create a Quarto document: go to <strong>File</strong> -&gt; <strong>New File</strong> -&gt; <strong>Quarto Document</strong>, then click <strong>Create</strong>.</p>
+<section id="ranking-genes" class="level2">
+<h2 class="anchored" data-anchor-id="ranking-genes">Ranking Genes</h2>
+<p>To target the genes of interest, we can rank genes based on different metrics:</p>
+<ul>
+<li>by p-values (raw or adjusted p-value)</li>
+<li>by log2 fold change</li>
+<li>by combinaison of p-value and log2 fold change (weighted sum), e.g., <span class="math inline">\(0.7\times|log_{2}(\text{FC})|+0.3\times(-log_{10}(\text{p-value}))\)</span></li>
+</ul>
+<ol type="1">
+<li><p>Import the differential gene expression analysis (SET1 <em>vs.</em> WT) results file <a href="../exos_data/toy_DEanalysis.csv">toy_DEanalysis.csv</a> into RStudio and name it as <code>de_res</code>.</p></li>
+<li><p>With the help of the <code>rank()</code> function (<code>?rank</code>), rank genes based on the negative absolute (<code>abs()</code>) log2 fold change, so that larger absolute log2FC → higher rank (smaller rank number). Store the rank in a new column called <code>rank_lfc</code>.</p></li>
+<li><p>With the help of the <code>rank()</code> function, rank genes based on the log10 of adjusted p-values (<code>pajd</code>), so that smaller adjusted p-value → higher rank. Store the rank in a new column called <code>rank_padj</code>.</p></li>
+<li><p>With the help of the <code>rank()</code> function, rank genes based on the weighted sum of absolute log2 fold change and -log10 adjusted p-value, with 0.7 the weight for log2 fold change and 0.3 the weight for -log10 adjusted p-value. Store the rank in a new column called <code>rand_weighted</code>.</p></li>
+<li><p>Identify the best and the worst rank for each gene.</p></li>
+<li><p>Compute the average rank for each gene. Which gene has the smallest average rank?</p></li>
+</ol>
+</section>
+<section id="add-significance-level-on-ggplot" class="level2">
+<h2 class="anchored" data-anchor-id="add-significance-level-on-ggplot">Add Significance Level on ggplot</h2>
+<p>During the exercise, we’ve created a boxplot with p-value shown using the {<code>ggsignif</code>} package’s function. We can also annotate the level of significance (ns, *, **, ***) instead of showing the p-value.</p>
+<p>Tasks:</p>
+<ul>
+<li>Import gene expression data <a href="../exos_data/read-counts.csv">counts.csv</a>.</li>
+<li>From the differential expression results (<a href="../exos_data/toy_DEanalysis.csv">toy_DEanalysis.csv</a>):
+<ul>
+<li>create a new column called <code>signif</code>, which shows:
+<ul>
+<li>“***” if adjusted p-value &lt; 0.001,</li>
+<li>“**” if adjusted p-value &lt; 0.01,</li>
+<li>“*” if adjusted p-value &lt; 0.05,</li>
+<li>“ns” if adjusted p-value &gt;= 0.05;</li>
+</ul></li>
+<li>extract the 3 genes with the smallest adjusted p-value.</li>
+</ul></li>
+<li>Build data frame for boxplot for the <em>PIR3</em> gene of WT and SET1 samples.</li>
+<li>Draw boxplot with individual data points and significance level annotation (<code>geom_signif()</code>)</li>
+<li>Generalise the previous steps to draw boxplot for any genes, <em>e.g.</em>: “TOS6”</li>
+<li>Apply your function for a list of any genes from the “toy_DEanalysis” results.</li>
+</ul>
+<hr>
+<p>Click “Render” to generate your Quarto report.</p>
+<p>The homework correction is available here: <a href="https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week07/.r_w07_work_corr.qmd">link</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
