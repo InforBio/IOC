@@ -61,9 +61,34 @@ weighted_gene_score <- function(
 }
 ```
 
+:::{.callout-note appearance="minimal" .fragment}
+Why the following command returns error?
+
+```{r}
+#| error: true
+
+weighted_score
+```
+
+:::
+
+
+
+## Custom Functions {.smaller}
+
+```{r}
+## Define a function to calculate weighted score for genes
+weighted_gene_score <- function(
+  log2fc, p_value, fc_weight = 0.7, p_weight = 0.3
+) {
+  weighted_score <- fc_weight * abs(log2fc) + p_weight * (-log10(p_value))
+  return(weighted_score)
+}
+```
+
 <br>
 
-::: {.columns .fragment}
+::: {.columns}
 ::: {.column}
 
 ```{r}
@@ -77,7 +102,7 @@ gene_data
 ```
 
 :::
-::: {.column}
+::: {.column .fragment}
 
 ```{r}
 # score for geneA
