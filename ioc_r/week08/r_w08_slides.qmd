@@ -18,16 +18,73 @@ echo: true
 categories: 
   - week08
   - slides
-# image: images/xxx.png
+image: images/preview_w8.png
 ---
 
-# Chapter 1
+# Recap `apply()` and `lapply()`
 
-## Slide 1
+## `apply()` and `lapply()` {.smaller}
 
-Check the demo here: https://quarto.org/docs/presentations/revealjs/
+::: {.columns}
+::: {.column}
 
-## Slide 2
+```r
+apply(X, MARGIN, FUN)
+```
+
+- `X`: a matrix or a data frame (coerced to a matrix)
+- `MARGIN`: 1 for rows and 2 for columns
+- `FUN`: the function to be applied
+
+```{r}
+mat <- matrix(1:9, nrow = 3)
+apply(mat, 1, sum)
+```
+
+:::
+::: {.column}
+
+```r
+lapply(X, FUN)
+```
+
+- `X`: a list or a vector
+- `FUN`: the function to be applied
+
+```{r}
+my_list <- list(1, 2:3, 4:6)
+lapply(my_list, sum)
+sapply(my_list, sum) # simplified output
+```
+
+:::
+:::
+
+# Tidy Data with {`tidyr`} and {`dplyr`}
+
+## Why Do We Need {`tidyr`} and {`dplyr`}? {.smaller}
+
+- Data cleaning and manipulation
+- Base R can be cumbersome → {`tidyverse`} makes it simpler, with core packages such as:
+[ggplot2](https://ggplot2.tidyverse.org/),
+[dplyr](https://dplyr.tidyverse.org/),
+[tidyr](https://tidyr.tidyverse.org/),
+[readr](https://readr.tidyverse.org/),
+[stringr](https://stringr.tidyverse.org/), *etc.*
+- {`tidyr`} helps structure data, {`dplyr`} helps manipulate it
+
+
+## The {`dplyr`} Package {.smaller}
+
+Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf>
+
+## What is Tidy Data? {.smaller}
+
+## The {`tidyr`} Package {.smaller}
+
+Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf>
+
+
 
 # Let's Practice !
 
