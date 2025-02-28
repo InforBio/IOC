@@ -1,0 +1,39 @@
+---
+title: "Tidy Your Data:<br>Exploring {`tidyr`} and {`dplyr`}"
+subtitle: "IOC-R Week 8"
+date: "2025-03-10"
+date-format: " "
+format:
+  revealjs: 
+    toc: true
+    toc-title: "Plan"
+    toc-depth: 1
+    slide-number: true
+    preview-links: auto
+    logo: ../../images/logoInforBio_fond_blanc_small.png
+    css: ../custom.css
+  # pdf:
+  #   toc: true
+echo: true
+categories: 
+  - week08
+  - slides
+# image: images/xxx.png
+---
+
+# Chapter 1
+
+## Slide 1
+
+Check the demo here: https://quarto.org/docs/presentations/revealjs/
+
+## Slide 2
+
+# Let's Practice !
+
+## Today's Goals
+
+- 
+- 
+- 
+- 
