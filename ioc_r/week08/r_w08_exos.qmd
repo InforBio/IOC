@@ -1,0 +1,41 @@
+---
+title: "Week 8 - Hands-On Examples"
+format: 
+  html: default
+  # pdf: default
+date: "2025-03-11"
+date-format: " "
+categories: 
+  - week08
+  - exercise
+editor_options: 
+  chunk_output_type: console
+---
+
+The R script is available here:
+[link](https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/week08/r_w08_exos.R)
+
+## Goals
+
+## Install {tidyverse} and Load the Package
+
+```{r}
+#| eval: false
+
+install.packages("tidyverse")
+```
+
+```{r}
+library(tidyverse)
+```
+
+Core packages: `tibble`, `readr`, `dplyr`, `tidyr`, `purrr`, `ggplot2`, `stringr`, *etc.*
+
+
+
+
+---
+
+#### Good job! 👏👏
+
+
