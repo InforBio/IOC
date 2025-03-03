@@ -73,6 +73,11 @@ sapply(my_list, sum) # simplified output
 [stringr](https://stringr.tidyverse.org/), *etc.*
 - {`tidyr`} helps structure data, {`dplyr`} helps manipulate it
 
+## Chaining with the Pipe `|`
+
+The pipe command helps to execute codes in sequential.
+
+
 
 ## The {`dplyr`} Package {.smaller}
 
