@@ -42,7 +42,7 @@ apply(mat, 1, sum)
 ```
 
 :::
-::: {.column}
+::: {.column .fragment}
 
 ```r
 lapply(X, FUN)
@@ -62,28 +62,112 @@ sapply(my_list, sum) # simplified output
 
 # Tidy Data with {`tidyr`} and {`dplyr`}
 
-## Why Do We Need {`tidyr`} and {`dplyr`}? {.smaller}
+## Why Do We Need {`tidyverse`}? {.smaller}
 
-- Data cleaning and manipulation
-- Base R can be cumbersome → {`tidyverse`} makes it simpler, with core packages such as:
-[ggplot2](https://ggplot2.tidyverse.org/),
-[dplyr](https://dplyr.tidyverse.org/),
-[tidyr](https://tidyr.tidyverse.org/),
-[readr](https://readr.tidyverse.org/),
-[stringr](https://stringr.tidyverse.org/), *etc.*
-- {`tidyr`} helps structure data, {`dplyr`} helps manipulate it
+Base R can be cumbersome → {`tidyverse`} makes it simpler, with core packages such as:
 
-## Chaining with the Pipe `|`
+  - [ggplot2](https://ggplot2.tidyverse.org/) (see session 5);
+  - [**dplyr**](https://dplyr.tidyverse.org/): helps to manipulate data;
+  - [**tidyr**](https://tidyr.tidyverse.org/): helps to structure data;
+  - [readr](https://readr.tidyverse.org/): import data into R;
+  - [stringr](https://stringr.tidyverse.org/): helps to manipulate strings (see session 9);
+  - ...
 
-The pipe command helps to execute codes in sequential.
+```r
+## install the core tidyverse packages
+install.packages("tidyverse")
+
+## load the core tidyverse packages
+library(tidyverse)
+```
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+```
+
+## The Pipe `|>` Operator {.smaller}
+
+The pipe operator `|>` helps to execute codes in sequential, it allows passing the input to the first argument of the function on the right-hand side.
+
+::: {.columns}
+::: {.column .fragment}
+
+```{r}
+# create a vector
+x <- c(-3, -5, NA, 8)
+
+# calculation with nested function
+sqrt(mean(abs(x), na.rm = TRUE))
+
+# alternative
+# use intermediate variable for each step
+abs_vals <- abs(x)
+mean_val <- mean(abs_vals, na.rm = TRUE)
+result <- sqrt(mean_val)
+result
+```
+
+:::
+::: {.column .fragment}
+
+```{r}
+# use pipe to make code easier to read
+abs(x) |> mean(na.rm = TRUE) |> sqrt()
+
+## or each function in one line
+abs(x) |>
+  mean(na.rm = TRUE) |>
+  sqrt()
+```
+
+:::
+:::
+
+
+:::{.callout-tip appearance="minimal" .fragment}
+- `|>` native pipe operator, built into base R (version 4.1+)
+- `%>%` pipe from the {`magrittr`} package
+:::
+
+## What is a `tibble`? {.smaller}
+
+A "modern" data frame.
+
+
+- Data imported by {`readr`} is in tibble format.
+```{r}
+head(readr::read_csv("../exos_data/toy_DEanalysis.csv"), 3)
+```
+
+- Convert a data frame or a matrix into a tibble.
+
+```{r}
+head(as_tibble(iris), 3)
+```
+
+
+:::{.callout-note appearance="minimal"}
+`chr`: character; `dbl`: double; `int`: integer; `fct`: factor; `lgl`: logical; `dttm`: time/date
+:::
+
+
+# Manipulate Data with {`dplyr`}
+
+## {`dplyr`} - Selection {.smaller}
+
+Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf>
+
+```{r}
+as_tibble(iris) |> head(3) |> select(Species)
+```
 
 
 
 ## The {`dplyr`} Package {.smaller}
 
 Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf>
-
-## What is Tidy Data? {.smaller}
 
 ## The {`tidyr`} Package {.smaller}
 
