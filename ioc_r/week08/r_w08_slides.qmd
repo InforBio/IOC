@@ -67,10 +67,10 @@ sapply(my_list, sum) # simplified output
 Base R can be cumbersome → {`tidyverse`} makes it simpler, with core packages such as:
 
   - [ggplot2](https://ggplot2.tidyverse.org/) (see session 5);
-  - [**dplyr**](https://dplyr.tidyverse.org/): helps to manipulate data;
-  - [**tidyr**](https://tidyr.tidyverse.org/): helps to structure data;
+  - [**dplyr**](https://dplyr.tidyverse.org/): manipulate data;
+  - [**tidyr**](https://tidyr.tidyverse.org/): restructure data;
   - [readr](https://readr.tidyverse.org/): import data into R;
-  - [stringr](https://stringr.tidyverse.org/): helps to manipulate strings (see session 9);
+  - [stringr](https://stringr.tidyverse.org/): manipulate strings (see session 9);
   - ...
 
 ```r
@@ -102,7 +102,7 @@ x <- c(-3, -5, NA, 8)
 sqrt(mean(abs(x), na.rm = TRUE))
 
 # alternative
-# use intermediate variable for each step
+# use variables to store intermediate result
 abs_vals <- abs(x)
 mean_val <- mean(abs_vals, na.rm = TRUE)
 result <- sqrt(mean_val)
@@ -133,23 +133,52 @@ abs(x) |>
 
 ## What is a `tibble`? {.smaller}
 
-A "modern" data frame.
-
+A "modern" data frame, compatible with the data frame.
 
 - Data imported by {`readr`} is in tibble format.
-```{r}
-head(readr::read_csv("../exos_data/toy_DEanalysis.csv"), 3)
-```
-
-- Convert a data frame or a matrix into a tibble.
 
 ```{r}
-head(as_tibble(iris), 3)
+readr::read_csv("../exos_data/read-counts.csv")
 ```
 
+:::{.notes}
+By default, tibble show a preview of the 10 first rows and
+all columns adjust to the screen with additional information.
+:::
 
-:::{.callout-note appearance="minimal"}
-`chr`: character; `dbl`: double; `int`: integer; `fct`: factor; `lgl`: logical; `dttm`: time/date
+
+## What is a `tibble`? {.smaller}
+
+A "modern" data frame, compatible with the data frame.
+
+- Convert a data frame or a matrix into a tibble, with `as_tibble()` function.
+
+```{r}
+as_tibble(iris) |> head(3)
+```
+
+<br>
+
+::: {.columns}
+::: {.column}
+<ul>
+  <ul>
+    <li>`chr`: character</li>
+    <li>`dbl`: double</li>
+    <li>`int`: integer</li>
+  </ul>
+</ul>
+:::
+::: {.column}
+
+<ul>
+  <ul>
+    <li>`fct`: factor</li>
+    <li>`lgl`: logical</li>
+    <li>`dttm`: time/date</li>
+  </ul>
+</ul>
+:::
 :::
 
 
