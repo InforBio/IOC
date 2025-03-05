@@ -203,7 +203,7 @@ gg_df <- data.frame(
 )
 head(gg_df)
 
-# alternative
+## alternative
 # gg_df <- as.data.frame(t(
 #   counts[
 #     counts$Feature == my_gene,
@@ -213,7 +213,24 @@ head(gg_df)
 #     )
 #   ]
 # ))
-# gg_df$group <- rep(c("WT", "SET1"), each = n_sample)
+# colnames(gg_df) <- "expr_val"
+# gg_df$group <- factor(rep(c("WT", "SET1"), each = n_sample), levels = c("WT", "SET1"))
+## or
+# gg_df <- data.frame(
+#   expr_val = unlist(
+#     counts[
+#       counts$Feature == my_gene,
+#       paste0(
+#         rep(c("WT.", "SET1."), each = n_sample),
+#         seq_len(n_sample)
+#       )
+#     ]
+#   ),
+#   group = factor(
+#     rep(c("WT", "SET1"), each = n_sample),
+#     levels = c("WT", "SET1")
+#   )
+# )
 ```
 
 4. Draw boxplot and show the individual data points on the same figure.
