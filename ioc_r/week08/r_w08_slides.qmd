@@ -89,7 +89,8 @@ library(tidyverse)
 
 ## The Pipe `|>` Operator {.smaller}
 
-The pipe operator `|>` helps to execute codes in sequential, it allows passing the input to the first argument of the function on the right-hand side.
+The pipe operator `|>` helps to execute codes in sequential,
+it allows passing the input to the **first argument** of the function on the right-hand side.
 
 ::: {.columns}
 ::: {.column .fragment}
@@ -143,7 +144,7 @@ readr::read_csv("../exos_data/read-counts.csv")
 
 :::{.notes}
 By default, tibble show a preview of the 10 first rows and
-all columns adjust to the screen with additional information.
+all columns that fit the screen with additional information.
 :::
 
 
@@ -151,56 +152,148 @@ all columns adjust to the screen with additional information.
 
 A "modern" data frame, compatible with the data frame.
 
-- Convert a data frame or a matrix into a tibble, with `as_tibble()` function.
-
-```{r}
-as_tibble(iris) |> head(3)
-```
-
-<br>
 
 ::: {.columns}
 ::: {.column}
+
 <ul>
+  <li> Create a tibble. </li>
+
+```{r}
+tibble(
+  col1 = 1:2, col2 = c(TRUE, FALSE)
+)
+```
+
+:::{.content-smaller}
+
   <ul>
     <li>`chr`: character</li>
     <li>`dbl`: double</li>
     <li>`int`: integer</li>
+    <li>`fct`: factor</li>
+    <li>`lgl`: logical</li>
+    <li>`dttm`: date and time</li>
   </ul>
+  
+:::
+
 </ul>
+
 :::
 ::: {.column}
 
-<ul>
-  <ul>
-    <li>`fct`: factor</li>
-    <li>`lgl`: logical</li>
-    <li>`dttm`: time/date</li>
-  </ul>
-</ul>
+- Convert a data frame or a matrix into a tibble, with `as_tibble()` function. </li>
+
+```{r}
+iris <- as_tibble(iris)
+iris |> head(3)
+```
+
 :::
 :::
 
 
 # Manipulate Data with {`dplyr`}
 
+Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf>
+
 ## {`dplyr`} - Selection {.smaller}
 
-Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf>
-
-```{r}
-as_tibble(iris) |> head(3) |> select(Species)
+```r
+?select
 ```
 
+Select by column index.
+
+::: {.columns}
+::: {.column}
+```{r}
+colnames(iris)
+# select one column
+iris |> select(1) |> head(3)
+# select mutiple columns
+iris |> select(1, 3) |> head(3)
+```
+
+:::
+::: {.column .fragment}
+```{r}
+# select a range of consecutive indices
+iris |> select(1:3) |> head(3)
+# use ! or - operator to negate a selection
+iris |> select(!1:3) |> head(3)
+iris |> select(-c(1:3)) |> head(3)
+```
+
+:::
+:::
 
 
-## The {`dplyr`} Package {.smaller}
+## {`dplyr`} - Selection {.smaller}
 
-Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf>
+Select by column name.
+
+::: {.columns}
+::: {.column}
+
+```{r}
+colnames(iris)
+# select one column
+iris |> select(Species) |> head(3)
+# select mutiple columns
+iris |> select(Species, Sepal.Length) |> head(3) 
+```
+
+:::
+::: {.column .fragment}
+```{r}
+# select a range of consecutive variables
+iris |> select(Sepal.Length:Petal.Length) |> head(3)
+# use ! or - operator to negate a selection
+iris |> select(!(Sepal.Length:Petal.Length)) |> head(3)
+iris |> select(-(Sepal.Length:Petal.Length)) |> head(3)
+```
+
+:::
+:::
+
+
+## {`dplyr`} - Selection {.smaller}
+
+Select by using helper functions, by default case ignored when matching name.
+
+::: {.columns}
+::: {.column}
+
+```{r}
+colnames(iris)
+iris |> select(starts_with("s")) |> head(3)
+iris |> select(ends_with("S")) |> head(3)
+```
+
+:::
+::: {.column}
+```{r}
+iris |> select(contains("Len")) |> head(3)
+iris |> select(matches("len")) |> head(3)
+# do not ignore case
+select(iris, matches("len", ignore.case = FALSE))
+```
+
+:::
+:::
+
+## {`dplyr`} - Selection {.smaller}
+
+
+# Restructure Data with {`tidyr`}
+
+Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf>
 
 ## The {`tidyr`} Package {.smaller}
 
-Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf>
+
 
 
 
