@@ -559,21 +559,97 @@ please check the function's document.
 
 Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf>
 
+## What is Tidy Data? {.smaller}
+
+> Each variable is a column, each observation is a row, and each type of observational unit is a table. ---- Notion introduced by [Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
+
+::: {.columns}
+::: {.column}
+
+```{r}
+not_tidy <- tibble(
+  gene = paste0("gene", LETTERS[1:3]),
+  control = c(NA, 20, 30),
+  treatment = c(15, 25, 35)
+)
+not_tidy
+```
+
+:::
+::: {.column}
+
+```{r}
+tidy_data <- tibble(
+  gene = rep(paste0("gene", LETTERS[1:3]), 2),
+  condition = rep(c("control", "treatment"), each = 3),
+  expression_level = c(NA, 20, 30, 15, 25, 35)
+)
+tidy_data
+```
+
+:::
+:::
 
 
+## {`tidyr`} - `pivot_longer()` {.smaller}
 
+Pivot data into longer format by increasing the number of rows and decreasing the number of columns.
 
-## The {`tidyr`} Package {.smaller}
+```{r}
+not_tidy |>
+  pivot_longer(
+    cols = c(control, treatment),
+    names_to = "condition",
+    values_to = "expression_level"
+  )
+```
 
+## {`tidyr`} - `pivot_wider()` {.smaller}
 
+Pivot data into wider format by increasing the number of columns and decreasing the number of rows. It's the inverse transformation of `pivot_longer()`.
 
+```{r}
+# widens by condition
+tidy_data |>
+  pivot_wider(names_from = condition, values_from = expression_level)
 
+# widens by gene
+tidy_data |>
+  pivot_wider(names_from = gene, values_from = expression_level)
+```
+
+## {`tidyr`} - `drop_na()` in Table {.smaller}
+
+::: {.columns}
+::: {.column}
+```{r}
+# by default keep only rows with no missing value across all column
+tidy_data |> drop_na()
+
+gene_info <- tibble(
+  gene = paste0("gene", LETTERS[1:3]),
+  description = c("growth regulation", "stress response", NA)
+)
+tidy_data_annot <- left_join(tidy_data, gene_info, by = "gene")
+tidy_data_annot
+```
+
+:::
+::: {.column .fragment}
+
+```{r}
+# drop rows with NA in any columns
+tidy_data_annot |> drop_na()
+# drop rows with NA in specified column(s)
+tidy_data_annot |> drop_na(description)
+```
+
+:::
+::: 
 
 # Let's Practice !
 
 ## Today's Goals
 
-- 
-- 
-- 
-- 
+- Clean, reshape, and manipulate real-world data using {`dplyr`} and {`tidyr`} 
+- Integrate tidy data into downstream analysis (e.g., for visualization or statistical modeling)
