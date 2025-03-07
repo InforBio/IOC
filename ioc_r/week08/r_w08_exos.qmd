@@ -17,6 +17,9 @@ The R script is available here:
 
 ## Goals
 
+- Clean, reshape, and manipulate real-world data using {`dplyr`} and {`tidyr`} 
+- Integrate tidy data into downstream analysis (e.g., for visualization or statistical modeling)
+
 ## Install {tidyverse} and Load the Package
 
 ```{r}
@@ -31,8 +34,20 @@ library(tidyverse)
 
 Core packages: `tibble`, `readr`, `dplyr`, `tidyr`, `purrr`, `ggplot2`, `stringr`, *etc.*
 
+## Mini Data Project
 
+design:
 
+1. Import data:
+check sep, header, dec?
+
+2. reshape to long format
+
+3. filter, mutate, drop_na, count by group, summarise, arrange, etc.
+
+4. ggplot2
+
+5. linear regression: log(expr) ~ age + sex
 
 ---
 
