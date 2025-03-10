@@ -23,34 +23,309 @@ The R script is available here:
 ## Install {tidyverse} and Load the Package
 
 ```{r}
-#| eval: false
-
-install.packages("tidyverse")
-```
-
-```{r}
+# install.packages("tidyverse")
 library(tidyverse)
 ```
 
-Core packages: `tibble`, `readr`, `dplyr`, `tidyr`, `purrr`, `ggplot2`, `stringr`, *etc.*
 
 ## Mini Data Project
 
-design:
+A researcher has measured the expression levels of **20 genes** (anonymed as 1 to 20) using the RT-qPCR technique.
+The gene expression was assessed in **two structures** of the mouse brain.
+Mice ranged in age from 10 to 60 days (**10, 15, 20, 25, 30, 35, 40, 45, 50, 60 days**),
+and the experiment was repeated with both **male** and **female** mice,
+with **6 animals** (named from A to F) in each group.
 
-1. Import data:
-check sep, header, dec?
+According to the researcher, the data was stored in two files, one for each brain structure.
+Within each file, rows represent the different ages,
+and columns represent the gene, sex, and animal.
 
-2. reshape to long format
+A small Gaussian noise has been added to the original data, preserving the overall structure.
 
-3. filter, mutate, drop_na, count by group, summarise, arrange, etc.
+The data is available in two CSV files:
 
-4. ggplot2
+- [data_anonym_struc1_noise.csv](../exos_data/data_anonym_struc1_noise.csv)
+- [data_anonym_struc2_noise.csv](../exos_data/data_anonym_struc2_noise.csv)
 
-5. linear regression: log(expr) ~ age + sex
+We will focus on the data from the brain structure 1.
+
+1. Please download the `data_anonym_struc1_noise.csv` file.
+Observe your data file (for example with a text editor or via terminal):
+
+- Is there a header line? 
+- What is the separator between columns?
+- Which character was used for decimal points?
+- Which character was used for missing data (between two seperators where there's no value)?
+
+2. Import the `data_anonym_struc1_noise.csv` into RStudio, you can use either:
+
+- the `read_csv2()` from the package {`readr`} (`?readr::read_csv2`), or
+- use the click-button way and copy-paste the code in your script.
+
+**Don't forget to use/select the appropriate parameters to make sure you import correctly the data.**
+
+Name the data as `data1`.
+Convert your imported data to tibble format if it's not the case.
+
+What is the data dimension?
+
+```{r}
+data1 <- readr::read_csv2(
+  file = "../exos_data/data_anonym_struc1_noise.csv",
+  locale = locale(decimal_mark = ",")
+)
+data1
+
+# or use the read_delim() with appropriate parameters
+# data1 <- read_delim(
+#   "../exos_data/data_anonym_struc1_noise.csv", 
+#   delim = ";", locale = locale(decimal_mark = ",")
+# )
+```
+
+3. Show the first 10 columns of your data.
+
+```{r}
+# classic way
+data1[, 1:10]
+
+# use select()
+select(data1, 1:10)
+```
+
+4. What are the column names?
+
+```{r}
+colnames(data1)
+```
+
+5. Rename the first column as `age`.
+
+```{r}
+data1 <- data1 |>
+  rename(age = ...1)
+
+```
+
+6. Reshape data to long format with the `pivot_longer()` function.
+What are the columns to be included to pivot into longer format?
+ 
+```{r}
+# use column index
+data1_long <- data1 |>
+  pivot_longer(cols = -1, names_to = "id", values_to = "value")
+
+# use column name
+# data1_long <- data1 |>
+#   pivot_longer(cols = -age, names_to = "id", values_to = "value")
+
+data1_long 
+```
+
+7. Add a column `struc` which contains the name of the measured structure `s1`.
+
+```{r}
+data1_long <- data1_long |>
+  mutate(struc = "s1")
+data1_long
+```
+
+8. Extract information about gene, sex and animal from the column `id` using the `extract()` function. Name the new columns as "gene_id", "sex" and "animal".
+
+Hint: Find the patterns for the extraction.
+You can use AI to help you to write the regular expression.
+
+```{r}
+data1_long <- data1_long |>
+  extract(
+    col = id,
+    into = c("gene_id", "sex", "animal"),
+    regex = "([0-9]+)([MF])([A-F])"
+  )
+```
+
+If you want to write all previous codes together:
+
+```{r}
+#| eval: false
+
+data1_long <- readr::read_csv2(
+    file = "../exos_data/data_anonym_struc1_noise.csv",
+    locale = locale(decimal_mark = ",")
+  ) |>
+  rename(age = ...1) |>
+  pivot_longer(cols = -1, names_to = "id", values_to = "value") |>
+  mutate(struc = "s1") |>
+  extract(
+    col = id,
+    into = c("gene_id", "sex", "animal"),
+    regex = "([0-9]+)([MF])([A-F])"
+  )
+```
+
+Now, the data is ready for downstream analysis. Let's focus on gene 1.
+
+9. At age of 10 days, which animal has the highest expression value for gene 1 overall?
+And which animal has the highest expression value in each sex?
+
+```{r}
+# overall
+data1_long |>
+  filter(gene_id == "1" & age == 10) |>
+  arrange(desc(value)) |>
+  slice(1)
+
+
+# in each sex
+data1_long |>
+  filter(gene_id == "1" & age == 10) |>
+  group_by(sex) |>
+  arrange(desc(value)) |>
+  slice(1)
+```
+
+10. Is there any missing value for gene 1?
+If yes, how to remove lines with NA?
+
+```{r}
+data1_long |>
+  filter(gene_id == "1") |>
+  pull(value) |>
+  is.na() |>
+  table()
+
+data1_long |>
+  filter(gene_id == "1") |>
+  drop_na(value)
+```
+
+11. After removing NAs, how many animals are there for each sex in gene 1?
+
+```{r}
+data1_long |>
+  filter(gene_id == "1") |>
+  drop_na(value) |>
+  group_by(sex) |>
+  count()
+```
+
+12. Summarize the median, mean, and standard deviation of gene 1 expression for both sexes.
+
+```{r}
+data1_long |>
+  filter(gene_id == "1") |>
+  drop_na(value) |>
+  group_by(sex) |>
+  summarise(
+    median_gene1 = median(value),
+    mean_gene1 = mean(value),
+    sd_gene1 = sd(value)
+  )
+```
+
+13. Draw a boxplot to show gene 20 expression level (with NA removed) for both sexes at different time point (age).
+
+```{r}
+data1_long |>
+  filter(gene_id == "1") |>
+  drop_na(value) |>
+  ggplot(aes(x = as.character(age), y = value)) +
+  geom_boxplot(aes(color = sex)) +
+  labs(
+    x = "Age (days)", y = "Expression Level", color = "Sex",
+    title = "Gene 1"
+  ) +
+  theme_light()
+```
+
+At age of 10 days, it seems that there's a difference between male and female at all age.
+Let's perform a linear regression to test it.
+
+:::{.callout-note title="Stats Time!"}
+**Univariate Linear Regression**
+
+Univariate linear regression is a statistical method used to model the relationship between a single independent variable (predictor, for example the sex) and a dependent variable (response, for example the gene expression). 
+The goal is to fit a straight line (linear model) to the data that best represents the relationship.
+This can be used for predictions or to understand the strength and direction of the relationship between the variables.
+The model is typically represented as:
+
+$$
+Y = \beta_0 + \beta_1 X + \epsilon
+$$
+
+Where:
+
+- $Y$ is the dependent variable (response),
+- $X$ is the independent variable (predictor),
+- $\beta_0$ is the intercept,
+- $\beta_1$ is the slope,
+- $\epsilon$ is the error term.
+
+In R, we use the `lm()` function to perform a linear regression.
+:::
+
+```{r}
+# fit the model
+res_g1_d10 <- lm(
+  formula = value ~ sex,
+  data = data1_long |> filter(gene_id == "1" & age == 10)
+)
+
+# View the summary of model
+summary(res_g1_d10)
+```
+
+The reference level in sex is "F" (female).
+
+Taking $\alpha = 0.05$ (type I error), coefficient interpretation:
+
+- `Intercept` = 2.1531: on average, the gene expression level for females (the reference group) is 2.1531. The p-value indicates that the baseline gene expression for females is significantly different from zero.
+- `sexM` = -1.0233: on average, gene expression for males is 1.0233 units lower than for females, assuming all other factors remain constant. The p-value indicates that sex does have a significant effect on gene expression.
+
+Overall, the linear regression suggest that there is a statistically significant difference in gene expression between males and females at age of 10 days for gene 1.
+Males have lower expression levels than females, with the difference being approximately 1.0233 units.
+
+
+## Bonus
+
+Use the `read.table()` function to import the data and continue to reshape the data based on the imported data.
+
+(Check the approporiate parameters to be included with `?read.table`)
+
+```{r}
+#| code-fold: true
+#| code-summary: "Correction"
+
+# import data with the basic function
+data1 <- read.table(
+  file = "../exos_data/data_anonym_struc1_noise.csv",
+  header = TRUE, sep = ";", dec = ",", na.strings = ""
+)
+# convert to a tibble
+data1 <- as_tibble(data1)
+
+# transform to long format and 
+data_long <- data1 |>
+  rename(age = X) |>
+  pivot_longer(cols = -1, names_to = "id", values_to = "value") |>
+  mutate(
+    id = sub("X", "", id), # remove the X in ID
+    struc = paste0("s", 1) # store info of brain structure
+  ) |>
+  extract( # extract column into multiple columns
+    id,
+    into = c("gene_id", "sex", "animal"),
+    regex = "([0-9]+)([MF])([A-F])"
+  ) |>
+  mutate(
+    gene_id = paste0("g", gene_id) # recode the gene column
+  )
+
+data_long
+```
 
 ---
 
-#### Good job! 👏👏
+#### Good job! 👏👏 You've made great progress in mastering data manipulation techniques.
 
 
