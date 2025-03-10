@@ -8,7 +8,7 @@
 
 
 ## Mini Data Project -------------------------------------------------------------
-
+# This mini data project is based on a real project that focuses on gene expression across different time points.
 # A researcher has measured the expression levels of 20 genes (anonymed as 1 to 20) using the RT-qPCR technique.
 # The gene expression was assessed in two structures of the mouse brain.
 # Mice ranged in age from 10 to 60 days (10, 15, 20, 25, 30, 35, 40, 45, 50, 60 days),
@@ -55,9 +55,10 @@
 # 5. Rename the first column as `age`.
 
 
-# 6. Reshape data to long format with the `pivot_longer()` function.
+# 6. Reshape data to "tidy" format with the `pivot_longer()` function.
+# (tidy format: each variable is a column, each observation is a row.)
 # What are the columns to be included to pivot into longer format?
- 
+
 
 # 7. Add a column `struc` which contains the name of the measured structure `s1`.
 
@@ -69,14 +70,15 @@
 
 
 
-# Now, the data is ready for downstream analysis. Let's focus on gene 1.
+# Now, the data is ready for downstream analysis.
+# For question 9 to 12, let's focus on gene 1 from the data.
 
 # 9. At age of 10 days, which animal has the highest expression value for gene 1 overall?
-# And which animal has the highest expression value in each sex?
+#     And which animal has the highest expression value in each sex?
 
 
 # 10. Is there any missing value for gene 1?
-# If yes, how to remove lines with NA?
+#     If yes, how to remove lines with NA?
 
 
 # 11. After removing NAs, how many animals are there for each sex in gene 1?
@@ -85,22 +87,59 @@
 # 12. Summarize the median, mean, and standard deviation of gene 1 expression for both sexes.
 
 
-# 13. Draw a boxplot to show gene 1 expression level (with NA removed) for both sex at different time point (age).
+# What kind of analysis would you like to perform with this data?
+# In statistics, it's common to begin by exploring the dataset as a whole and visualizing the relationships
+#   between different variables.
+# The basic R function `pairs()` (`?pairs`) is useful for creating a matrix of scatter plots to examine
+#   the relationships between each pair of continuous variables.
+# For instance, we can explore the relationships between continuous variables such as age and
+#   the expression levels of genes 1, 2, 3, *etc.*
+
+# 13. How will you reshape the `data1_long` to provide the necessary data for the `pairs()` function?
 
 
-# At age of 10 days, it seems that there's a difference between male and female at all age.
-# Let's perform a linear regression to test it.
+# To save space, we will focus on examining the relationship between age and the first 5 genes.
+# 14. What did you observe from these scatter plots?
 
-# fit the model
-res_g1_d10 <- lm(
-  formula = value ~ sex,
-  data = data1_long |> filter(gene_id == "1" & age == 10)
+panel.hist <- function(x, ...) {
+  usr <- par("usr")
+  par(usr = c(usr[1:2], 0, 1.5) )
+  h <- hist(x, plot = FALSE)
+  breaks <- h$breaks; nB <- length(breaks)
+  y <- h$counts; y <- y/max(y)
+  rect(breaks[-nB], 0, breaks[-1], y, col = "cyan", ...)
+}
+## put (absolute) correlations on the upper panels,
+## with size proportional to the correlations.
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...) {
+  par(usr = c(0, 1, 0, 1))
+  r <- abs(cor(x, y, use = "na.or.complete")) # modified to allow NA
+  txt <- format(c(r, 0.123456789), digits = digits)[1]
+  txt <- paste0(prefix, txt)
+  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+  text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+
+pairs(
+  x = data1_wider[, c(1, 5:9)], # age and the first 5 genes
+  diag.panel = panel.hist,
+  lower.panel = panel.smooth,
+  upper.panel = panel.cor
 )
-# View the summary of model
-summary(res_g1_d10)
 
 
-## Bonus
 
-# Use the `read.table()` function to import the data and continue to reshape the data based on the imported data.
-# (Check the approporiate parameters to be included with `?read.table`)
+# 15. Calculate the correlation between gene 1 and 2. (`?cor`)
+
+
+# It seems that there are two groups of mice that express genes 4 and 5 in a similar way.
+# 16. Draw a scatter plot using {`ggplot2`} to show the expression levels of genes 4 and 5.
+#     Color the points by different categorical variables that we have, *i.e.*, age, sex, and animal.
+#     Is there any categorical variable that can explain the groups we observed in the figure?
+
+
+
+# ## Bonus
+
+# # Use the `read.table()` function to import the data and continue to reshape the data based on the imported data.
+# # (Check the approporiate parameters to be included with `?read.table`)
