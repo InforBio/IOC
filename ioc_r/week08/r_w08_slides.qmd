@@ -60,15 +60,15 @@ sapply(my_list, sum) # simplified output
 :::
 :::
 
-# Tidy Data with {`tidyr`} and {`dplyr`}
+# {`tidyverse`} Package
 
 ## Why Do We Need {`tidyverse`}? {.smaller}
 
 Base R can be cumbersome → {`tidyverse`} makes it simpler, with core packages such as:
 
   - [ggplot2](https://ggplot2.tidyverse.org/) (see session 5);
-  - [**dplyr**](https://dplyr.tidyverse.org/): manipulate data;
   - [**tidyr**](https://tidyr.tidyverse.org/): restructure data;
+  - [**dplyr**](https://dplyr.tidyverse.org/): manipulate data;
   - [readr](https://readr.tidyverse.org/): import data into R;
   - [stringr](https://stringr.tidyverse.org/): manipulate strings (see session 9);
   - ...
@@ -196,6 +196,101 @@ iris |> head(3)
 :::
 
 
+# Restructure Data with {`tidyr`}
+
+Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf>
+
+## What is Tidy Data? {.smaller}
+
+> Each variable is a column, each observation is a row, and each type of observational unit is a table. ---- Notion introduced by [Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
+
+::: {.columns}
+::: {.column}
+
+```{r}
+not_tidy <- tibble(
+  gene = paste0("gene", LETTERS[1:3]),
+  control = c(NA, 20, 30),
+  treatment = c(15, 25, 35)
+)
+not_tidy
+```
+
+:::
+::: {.column}
+
+```{r}
+tidy_data <- tibble(
+  gene = rep(paste0("gene", LETTERS[1:3]), 2),
+  condition = rep(c("control", "treatment"), each = 3),
+  expression_level = c(NA, 20, 30, 15, 25, 35)
+)
+tidy_data
+```
+
+:::
+:::
+
+
+## {`tidyr`} - `pivot_longer()` {.smaller}
+
+Pivot data into longer format by increasing the number of rows and decreasing the number of columns.
+
+```{r}
+not_tidy |>
+  pivot_longer(
+    cols = c(control, treatment),
+    names_to = "condition",
+    values_to = "expression_level"
+  )
+```
+
+## {`tidyr`} - `pivot_wider()` {.smaller}
+
+Pivot data into wider format by increasing the number of columns and decreasing the number of rows. It's the inverse transformation of `pivot_longer()`.
+
+```{r}
+# widens by condition
+tidy_data |>
+  pivot_wider(names_from = condition, values_from = expression_level)
+
+# widens by gene
+tidy_data |>
+  pivot_wider(names_from = gene, values_from = expression_level)
+```
+
+## {`tidyr`} - `drop_na()` in Table {.smaller}
+
+::: {.columns}
+::: {.column}
+```{r}
+# by default keep only rows with no missing value across all column
+tidy_data |> drop_na()
+
+tidy_data <- tidy_data |> 
+  mutate(
+    description = rep(
+      c("growth regulation", "stress response", NA),
+      times = 2
+    )
+  )
+tidy_data
+```
+
+:::
+::: {.column .fragment}
+
+```{r}
+# drop rows with NA in any columns
+tidy_data |> drop_na()
+# drop rows with NA in specified column(s)
+tidy_data |> drop_na(description)
+```
+
+:::
+::: 
+
+
 # Manipulate Data with {`dplyr`}
 
 Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf>
@@ -233,9 +328,9 @@ iris |>
 iris |>
   select(!1:3) |>
   head(3)
-iris |>
-  select(-c(1:3)) |>
-  head(3)
+# iris |> # idem
+#   select(-c(1:3)) |>
+#   head(3)
 ```
 
 :::
@@ -272,9 +367,9 @@ iris |>
 iris |>
   select(!(Sepal.Length:Petal.Length)) |>
   head(3)
-iris |>
-  select(-(Sepal.Length:Petal.Length)) |>
-  head(3)
+# iris |> # idem
+#   select(-(Sepal.Length:Petal.Length)) |>
+#   head(3)
 ```
 
 :::
@@ -347,8 +442,7 @@ iris |>
   mutate(
     sepal_len_mm = Sepal.Length * 100,
     petal_len_mm = Petal.Length * 100
-  ) |>
-  head(3)
+  ) |> head(2)
 ```
 
 ## {`dplyr`} - `if_else()` Function {.smaller}
@@ -480,28 +574,6 @@ iris |> arrange(desc(Sepal.Length), Sepal.Width) |> head(5)
 
 ```
 
-## {`dplyr`} - `distinct()` Rows  {.smaller}
-
-::: {.columns}
-::: {.column}
-
-```{r}
-# use one variable to determine unique rows
-iris |> distinct(Species)
-# keep other columns 
-iris |> distinct(Species, .keep_all = TRUE)
-```
-
-:::
-::: {.column .fragment}
-```{r}
-# provide a data frame
-iris |> select(Sepal.Length, Sepal.Width) |> distinct()
-```
-
-:::
-:::
-
 
 ## {`dplyr`} - `count()` Rows  {.smaller}
 
@@ -527,125 +599,6 @@ iris |>
   )
 ```
 
-## {`dplyr`} - `left_join()` Tables  {.smaller}
-
-```{r}
-data_geo <- tibble(
-  Species = c("setosa", "virginica"),
-  longitude = c(65.30, -20),
-  latitude = c(45, -22.13)
-)
-
-left_join(x = iris, y = data_geo, by = "Species") |>
-  group_by(Species) |>
-  slice(1:2)
-```
-
-
-## {`dplyr`} - `right_join()` Tables  {.smaller}
-
-```{r}
-right_join(x = iris, y = data_geo, by = "Species") |>
-  group_by(Species) |>
-  slice(1:2)
-```
-
-:::{.callout-tip appearance="minimal"}
-There are other types of join, such as `inner_join()`, `full_join()`, `anti_join()`,
-please check the function's document.
-:::
-
-# Restructure Data with {`tidyr`}
-
-Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf>
-
-## What is Tidy Data? {.smaller}
-
-> Each variable is a column, each observation is a row, and each type of observational unit is a table. ---- Notion introduced by [Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
-
-::: {.columns}
-::: {.column}
-
-```{r}
-not_tidy <- tibble(
-  gene = paste0("gene", LETTERS[1:3]),
-  control = c(NA, 20, 30),
-  treatment = c(15, 25, 35)
-)
-not_tidy
-```
-
-:::
-::: {.column}
-
-```{r}
-tidy_data <- tibble(
-  gene = rep(paste0("gene", LETTERS[1:3]), 2),
-  condition = rep(c("control", "treatment"), each = 3),
-  expression_level = c(NA, 20, 30, 15, 25, 35)
-)
-tidy_data
-```
-
-:::
-:::
-
-
-## {`tidyr`} - `pivot_longer()` {.smaller}
-
-Pivot data into longer format by increasing the number of rows and decreasing the number of columns.
-
-```{r}
-not_tidy |>
-  pivot_longer(
-    cols = c(control, treatment),
-    names_to = "condition",
-    values_to = "expression_level"
-  )
-```
-
-## {`tidyr`} - `pivot_wider()` {.smaller}
-
-Pivot data into wider format by increasing the number of columns and decreasing the number of rows. It's the inverse transformation of `pivot_longer()`.
-
-```{r}
-# widens by condition
-tidy_data |>
-  pivot_wider(names_from = condition, values_from = expression_level)
-
-# widens by gene
-tidy_data |>
-  pivot_wider(names_from = gene, values_from = expression_level)
-```
-
-## {`tidyr`} - `drop_na()` in Table {.smaller}
-
-::: {.columns}
-::: {.column}
-```{r}
-# by default keep only rows with no missing value across all column
-tidy_data |> drop_na()
-
-gene_info <- tibble(
-  gene = paste0("gene", LETTERS[1:3]),
-  description = c("growth regulation", "stress response", NA)
-)
-tidy_data_annot <- left_join(tidy_data, gene_info, by = "gene")
-tidy_data_annot
-```
-
-:::
-::: {.column .fragment}
-
-```{r}
-# drop rows with NA in any columns
-tidy_data_annot |> drop_na()
-# drop rows with NA in specified column(s)
-tidy_data_annot |> drop_na(description)
-```
-
-:::
-::: 
 
 # Let's Practice !
 
