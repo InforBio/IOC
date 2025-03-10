@@ -309,7 +309,7 @@ draw_boxplot <- function(gene_i) {
   return(p)
 }
 
-draw_boxplot(target_genes[[2]])
+draw_boxplot(target_genes[2])
 ```
 
 7. Apply the function to the targeted genes.
