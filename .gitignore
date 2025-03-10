@@ -6,3 +6,4 @@ data/
 /.quarto/
 .DS_Store
 docs/
+ioc_r/week08/add_noise.R
