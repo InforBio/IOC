@@ -60,37 +60,45 @@ sapply(my_list, sum) # simplified output
 :::
 :::
 
-# {`tidyverse`} Package
+# The {`tidyverse`} Ecosystem
 
 ## Why Do We Need {`tidyverse`}? {.smaller}
 
-Base R can be cumbersome → {`tidyverse`} makes it simpler, with core packages such as:
+{`tidyverse`} provides a consistent and intuitive set of packages for data manipulation, visualization and analysis. The core packages include:
 
-  - [ggplot2](https://ggplot2.tidyverse.org/) (see session 5);
-  - [**tidyr**](https://tidyr.tidyverse.org/): restructure data;
-  - [**dplyr**](https://dplyr.tidyverse.org/): manipulate data;
-  - [readr](https://readr.tidyverse.org/): import data into R;
-  - [stringr](https://stringr.tidyverse.org/): manipulate strings (see session 9);
-  - ...
+::: {.columns}
+::: {.column}
+- [ggplot2](https://ggplot2.tidyverse.org/): visualisation (see session 5);
+- [readr](https://readr.tidyverse.org/): import data into R;
+:::
+::: {.column}
+- [**tidyr**](https://tidyr.tidyverse.org/): restructure data;
+- [**dplyr**](https://dplyr.tidyverse.org/): manipulate data;
+- [stringr](https://stringr.tidyverse.org/): manipulate strings (see session 9)
+:::
+:::
+
 
 ```r
 ## install the core tidyverse packages
 install.packages("tidyverse")
+```
+<br>
+
+```{r}
+#| message: true
 
 ## load the core tidyverse packages
 library(tidyverse)
 ```
 
-```{r}
-#| echo: false
+## Forward Chaining with Pipe `|>` {.smaller}
 
-library(tidyverse)
-```
+The pipe operator `|>` takes the output from one function and feed it to the first argument of the next function.
 
-## The Pipe `|>` Operator {.smaller}
-
-The pipe operator `|>` helps to execute codes in sequential,
-it allows passing the input to the **first argument** of the function on the right-hand side.
+:::{.content-smaller}
+Compare the 3 ways to do calculate the square root of the mean of abolute values of `x` ($\sqrt{\frac{1}{n} \sum_{i=1}^{n} |x_i|}$).
+:::
 
 ::: {.columns}
 ::: {.column .fragment}
@@ -99,11 +107,10 @@ it allows passing the input to the **first argument** of the function on the rig
 # create a vector
 x <- c(-3, -5, NA, 8)
 
-# calculation with nested function
+# version 1: calculation with nested function
 sqrt(mean(abs(x), na.rm = TRUE))
 
-# alternative
-# use variables to store intermediate result
+# version 2: use variables to store intermediate results
 abs_vals <- abs(x)
 mean_val <- mean(abs_vals, na.rm = TRUE)
 result <- sqrt(mean_val)
@@ -114,15 +121,14 @@ result
 ::: {.column .fragment}
 
 ```{r}
-# use pipe to make code easier to read
+# version 3: use pipe to execute code sequentially
 abs(x) |>
   mean(na.rm = TRUE) |>
   sqrt()
 
-## or each function in one line
-abs(x) |>
-  mean(na.rm = TRUE) |>
-  sqrt()
+## version 3bis: or each function in one line
+abs(x) |> mean(na.rm = TRUE) |> sqrt()
+
 ```
 
 :::
@@ -136,7 +142,7 @@ abs(x) |>
 
 ## What is a `tibble`? {.smaller}
 
-A "modern" data frame, compatible with the data frame.
+A "modern" data frame, compatible with the data frame, but with some enhancements.
 
 - Data imported by {`readr`} is in tibble format.
 
@@ -145,15 +151,13 @@ readr::read_csv("../exos_data/read-counts.csv")
 ```
 
 :::{.notes}
-By default, tibble show a preview of the 10 first rows and
-all columns that fit the screen with additional information.
+Better printing, less strict on column name, consistent subset (tb[, 1] always a tibble), support for list stored in a column.
 :::
 
 
 ## What is a `tibble`? {.smaller}
 
-A "modern" data frame, compatible with the data frame.
-
+A "modern" data frame, compatible with the data frame, but with some enhancements.
 
 ::: {.columns}
 ::: {.column}
@@ -162,9 +166,7 @@ A "modern" data frame, compatible with the data frame.
   <li> Create a tibble. </li>
 
 ```{r}
-tibble(
-  col1 = 1:2, col2 = c(TRUE, FALSE)
-)
+tibble(col1 = 7:8, col2 = c(TRUE, FALSE))
 ```
 
 :::{.content-smaller}
@@ -192,6 +194,10 @@ iris <- as_tibble(iris)
 iris |> head(3)
 ```
 
+:::{.callout-important appearance="minimal"}
+`tibbles` don’t store row names.
+The numbers before the first column in the printed tibble are **not row names or an index** stored in the data. They are simply row numbers displayed for readability.
+:::
 :::
 :::
 
@@ -202,7 +208,7 @@ Cheat sheet: <https://github.com/rstudio/cheatsheets/blob/master/tidyr.pdf>
 
 ## What is Tidy Data? {.smaller}
 
-> Each variable is a column, each observation is a row, and each type of observational unit is a table. ---- Notion introduced by [Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
+> Each variable is a column, each observation is a row ... ---- Notion introduced by [Hadley Wickham](https://www.jstatsoft.org/article/view/v059i10)
 
 ::: {.columns}
 ::: {.column}
@@ -234,7 +240,17 @@ tidy_data
 
 ## {`tidyr`} - `pivot_longer()` {.smaller}
 
-Pivot data into longer format by increasing the number of rows and decreasing the number of columns.
+Pivot data into **longer** format by **increasing the number of rows**.
+
+::: {.columns}
+::: {.column}
+
+```{r}
+not_tidy
+```
+:::
+
+::: {.column}
 
 ```{r}
 not_tidy |>
@@ -245,9 +261,12 @@ not_tidy |>
   )
 ```
 
+:::
+:::
+
 ## {`tidyr`} - `pivot_wider()` {.smaller}
 
-Pivot data into wider format by increasing the number of columns and decreasing the number of rows. It's the inverse transformation of `pivot_longer()`.
+Pivot data into **wider** format by **increasing the number of columns**. It's the inverse transformation of `pivot_longer()`.
 
 ```{r}
 # widens by condition
@@ -261,32 +280,33 @@ tidy_data |>
 
 ## {`tidyr`} - `drop_na()` in Table {.smaller}
 
+By default keep only rows with no missing value across all columns.
+
 ::: {.columns}
 ::: {.column}
 ```{r}
-# by default keep only rows with no missing value across all column
-tidy_data |> drop_na()
-
-tidy_data <- tidy_data |> 
-  mutate(
-    description = rep(
-      c("growth regulation", "stress response", NA),
-      times = 2
-    )
-  )
+tidy_data$description <- rep(
+  c("growth regulation", "stress response", NA),
+  times = 2
+)
 tidy_data
+
+# drop rows with NA in any columns
+tidy_data |> drop_na()
 ```
 
 :::
 ::: {.column .fragment}
 
 ```{r}
-# drop rows with NA in any columns
-tidy_data |> drop_na()
 # drop rows with NA in specified column(s)
 tidy_data |> drop_na(description)
 ```
 
+:::{.callout-important appearance="minimal" .fragment}
+In tidyverse, column names can be used as-is **without quotes**,
+if a column name starts with number, has spaces or special characters, you must use backticks (``` `column name`, `1col` ```) 
+:::
 :::
 ::: 
 
@@ -322,14 +342,14 @@ iris |>
 ```{r}
 # select a range of consecutive indices
 iris |>
-  select(1:3) |>
+  select(1:4) |>
   head(3)
 # use ! or - operator to negate a selection
 iris |>
-  select(!1:3) |>
+  select(!1:4) |>
   head(3)
 # iris |> # idem
-#   select(-c(1:3)) |>
+#   select(-c(1:4)) |>
 #   head(3)
 ```
 
@@ -378,7 +398,7 @@ iris |>
 
 ## {`dplyr`} - `select()` Columns {.smaller}
 
-Select by using helper functions, by default case ignored when matching name.
+Select by using *helper functions*, by default case ignored when matching name.
 
 ::: {.columns}
 ::: {.column}
@@ -409,6 +429,163 @@ select(iris, matches("len", ignore.case = FALSE))
 :::
 :::
 
+## {`dplyr`} - `mutate()` Columns {.smaller}
+
+- Use `mutate()` to add or modify columns
+
+```{r}
+# create a new column
+iris |> mutate(sepal_len_mm = Sepal.Length * 100) |> head(3)
+# remove the column
+iris |> mutate(index = NULL) |> head(3)
+
+mutate(iris, sepal_len_mm = Sepal.Length * 100, petal_len_mm = Petal.Length * 100) |>
+  head(2)
+```
+
+
+## {`dplyr`} - `rename()` Columns  {.smaller}
+
+```{r}
+iris |> rename(espece = Species, petal_width = Petal.Width)
+```
+
+## {`dplyr`} - `filter()` Rows {.smaller}
+
+Filter rows based on column values.
+
+```{r}
+iris |> filter(Sepal.Length > 6.8)
+```
+
+## {`dplyr`} - `filter()` Rows {.smaller}
+
+Filter rows based on column values.
+
+```{r}
+# combine conditions
+iris |> filter(Sepal.Length > 6.8 & Species == "versicolor")
+
+# chaining with other operation
+iris |>
+  filter(Sepal.Length > 6.8 & Species == "versicolor") |>
+  select(contains(c("sepal", "speci")))
+
+```
+
+:::{.callout-note appearance="minimal" .fragment}
+Extract rows which correspond to setosa having sepal length smaller than 4.5 cm or
+versicolor having petal width bigger than 1.5 cm.
+:::
+
+## {`dplyr`} - `arrange()` Rows {.smaller}
+
+Order rows using column values.
+
+```{r}
+# by default in ascending order
+iris |> arrange(Sepal.Length) |> head(3)
+
+# by descending order
+iris |> arrange(desc(Sepal.Length)) |> head(3)
+```
+
+
+## {`dplyr`} - `slice()` Rows {.smaller}
+
+- Use the function `slice()` to select rows.
+
+```{r}
+# create a column containing row index
+iris <- mutate(iris, index = seq_len(nrow(iris)))
+
+tail(iris, 4)
+
+# extract rows 5 and 3
+iris |> slice(5, 3)
+```
+
+
+## {`dplyr`} - `group_by` Data {.smaller}
+
+- Use `group_by` to group data if we need operation based on defined group(s).
+
+```{r}
+iris |> group_by(Species)
+```
+
+:::{.callout-important appearance="minimal"}
+`group_by` does not change the actual data, it just adds a grouping structure to it.
+:::
+
+## {`dplyr`} - `group_by` Data {.smaller}
+
+- Use `group_by` to group data if we need operation based on defined group(s).
+
+```{r}
+iris |> group_by(Species) |> slice(2) # the 2nd row of each species
+iris |> group_by(Species) |> slice(5, 3) # the 5th and the 3rd rows of each species
+```
+
+## {`dplyr`} - `ungroup()` Data {.smaller}
+
+- Use `ungroup()` to remove grouping.
+
+```{r}
+iris_grouped <- iris |> group_by(Species)
+head(iris_grouped, 3)
+iris_ungrouped <-  iris_grouped |> ungroup()
+head(iris_ungrouped, 3)
+```
+
+
+## {`dplyr`} - `count()` Rows  {.smaller}
+
+- Check unique values of one or more variables.
+
+```{r}
+# count based on one variable
+iris |> count(Species)
+
+# count for the entire data frame
+iris |> count()
+# count for the "entire" data frame for each species
+iris |> group_by(Species) |> count()
+```
+
+## {`dplyr`} - `summarise()` Function  {.smaller}
+
+```{r}
+# across all species
+iris |>
+  summarise(
+    mean_sepal_len = mean(Sepal.Length, na.rm = TRUE),
+    sd_sepal_len = sd(Sepal.Length, na.rm = TRUE),
+    var_sepal_len = var(Sepal.Length, na.rm = TRUE)
+  )
+```
+
+```{r}
+# summarise by species
+iris |>
+  group_by(Species) |>
+  summarise(
+    mean_sepal_len = mean(Sepal.Length, na.rm = TRUE),
+    sd_sepal_len = sd(Sepal.Length, na.rm = TRUE),
+    var_sepal_len = var(Sepal.Length, na.rm = TRUE)
+  )
+```
+
+
+# Let's Practice !
+
+## Today's Goals
+
+- Clean, reshape, and manipulate real-world data using {`dplyr`} and {`tidyr`} 
+- Integrate tidy data into downstream analysis (e.g., for visualization or statistical analysis)
+
+# Appendices
+
 ## {`dplyr`} - `pull()` Column {.smaller}
 
 Similar to `$` operator, `pull()` extracts one column and return results in a vector.
@@ -428,22 +605,6 @@ iris |>
   head()
 ```
 
-## {`dplyr`} - Adding/Modifying Columns {.smaller}
-
-- Use `mutate()` to manipulate columns
-
-```{r}
-# create a new column
-iris |> mutate(sepal_len_mm = Sepal.Length * 100) |> head(3)
-# remove the column
-iris |> mutate(index = NULL) |> head(3)
-
-iris |>
-  mutate(
-    sepal_len_mm = Sepal.Length * 100,
-    petal_len_mm = Petal.Length * 100
-  ) |> head(2)
-```
 
 ## {`dplyr`} - `if_else()` Function {.smaller}
 
@@ -475,49 +636,7 @@ iris |>
 :::
 :::
 
-## {`dplyr`} - `rename()` Columns  {.smaller}
-
-```{r}
-iris |> rename(espece = Species, petal_width = Petal.Width)
-```
-
-## {`dplyr`} - `filter()` Rows {.smaller}
-
-```{r}
-iris |>
-  filter(Species == "setosa") |>
-  head(3)
-iris |> filter(Sepal.Length >= 7.5)
-```
-
-## {`dplyr`} - `filter()` Rows {.smaller}
-
-```{r}
-# combine conditions
-iris |> filter(Sepal.Length >= 7.5 & Petal.Length >= 6.5)
-
-# chaining with other operation
-iris |>
-  filter(Sepal.Length >= 7.5 & Petal.Length >= 6.5) |>
-  select(contains(c("sepal", "speci")))
-
-```
-
-:::{.callout-note appearance="minimal" .fragment}
-Extract rows which correspond to setosa having sepal length smaller than 4.5 cm or
-versicolor having petal width bigger than 1.5 cm.
-:::
-
 ## {`dplyr`} - `slice()` Rows {.smaller}
-
-- Use the function `slice()` to select rows.
-```{r}
-# create a column containing row index
-iris$index <- seq_len(nrow(iris))
-
-# extract rows 5 and 3
-iris |> slice(5, 3)
-```
 
 - Use the `slice_head()` or `slice_tail()` to select the first or last rows.
 
@@ -531,78 +650,19 @@ If data is a grouped data frame, `slice_head()` and `slice_tail()` will show the
 :::
 
 
-## {`dplyr`} - Grouping Data {.smaller}
-
-- Use `group_by` to group data if we need operation based on defined group(s).
-
 ```{r}
-iris |> slice_head(n = 2)
-iris <- iris |> group_by(Species)
-iris
-```
-
-
-## {`dplyr`} - Grouping Data {.smaller}
-
-- Use `group_by` to group data if we need operation based on defined group(s).
-
-```{r}
-iris |> slice(2) # the 2nd row of each species
-iris |> slice_head(n = 2) # the first 2 rows of each species
-```
-
-## {`dplyr`} - Grouping Data {.smaller}
-
-- Use `ungroup()` to remove grouping
-
-```{r}
-iris <- iris |> ungroup()
-iris |> slice_head(n = 5)
+iris |>
+  group_by(Species) |>
+  slice_head(n = 2) # the first 2 rows of each species
 ```
 
 ## {`dplyr`} - `arrange()` Rows {.smaller}
 
+Order rows using column values.
+
 ```{r}
-# by default in ascending order
-iris |> arrange(Sepal.Length) |> head(3)
-
-# by descending order
-iris |> arrange(desc(Sepal.Length)) |> head(3)
-
 # based on multiple variables
 iris |> arrange(desc(Sepal.Length), Sepal.Width) |> head(5)
 
 ```
 
-
-## {`dplyr`} - `count()` Rows  {.smaller}
-
-- Check unique values of one or more variables.
-
-```{r}
-# count based on one variable
-iris |> count(Species)
-
-# count for the entire data frame
-iris |> count()
-```
-
-## {`dplyr`} - `summarise()` Function  {.smaller}
-
-```{r}
-iris |>
-  group_by(Species) |>
-  summarise(
-    mean_sepal_len = mean(Sepal.Length, na.rm = TRUE),
-    sd_sepal_len = sd(Sepal.Length, na.rm = TRUE),
-    n_sample = n() # n() gives the current group size
-  )
-```
-
-
-# Let's Practice !
-
-## Today's Goals
-
-- Clean, reshape, and manipulate real-world data using {`dplyr`} and {`tidyr`} 
-- Integrate tidy data into downstream analysis (e.g., for visualization or statistical modeling)

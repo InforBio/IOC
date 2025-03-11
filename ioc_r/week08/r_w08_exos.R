@@ -28,8 +28,10 @@
 # We will focus on the data from the brain structure 1.
 
 # 1. Please download the `data_anonym_struc1_noise.csv` file.
-# Observe your data file (for example with a text editor or via terminal):
-# - Is there a header line? 
+# Observe your data file (for example with a text editor or
+#   via terminal (`head -n2 data_anonym_struc1_noise.csv` or `more data_anonym_struc1_noise.csv`),
+#   or click the file name and select "View File" in the RStudio File Pane):
+# - Is there a header line?
 # - What is the separator between columns?
 # - Which character was used for decimal points?
 # - Which character was used for missing data (between two seperators where there's no value)?
@@ -55,6 +57,7 @@
 # 5. Rename the first column as `age`.
 
 
+# How should the data be organized?
 # 6. Reshape data to "tidy" format with the `pivot_longer()` function.
 # (tidy format: each variable is a column, each observation is a row.)
 # What are the columns to be included to pivot into longer format?

@@ -18,7 +18,7 @@ The R script is available here:
 ## Goals
 
 - Clean, reshape, and manipulate real-world data using {`dplyr`} and {`tidyr`} 
-- Integrate tidy data into downstream analysis (e.g., for visualization or statistical modeling)
+- Integrate tidy data into downstream analysis (e.g., for visualization or statistical analysis)
 
 ## Install {tidyverse} and Load the Package
 
@@ -52,7 +52,9 @@ The data is available in two CSV files:
 We will focus on the data from the brain structure 1.
 
 1. Please download the `data_anonym_struc1_noise.csv` file.
-Observe your data file (for example with a text editor or via terminal):
+Observe your data file (for example with a text editor or
+via terminal (`head -n2 data_anonym_struc1_noise.csv` or `more data_anonym_struc1_noise.csv`),
+or click the file name and select "View File" in the RStudio *File Pane*):
 
 - Is there a header line? 
 - What is the separator between columns?
@@ -108,6 +110,8 @@ data1 <- data1 |>
   rename(age = ...1)
 
 ```
+
+**How should the data be organized?**
 
 6. Reshape data to "tidy" format with the `pivot_longer()` function.
 (tidy format: each variable is a column, each observation is a row.)
