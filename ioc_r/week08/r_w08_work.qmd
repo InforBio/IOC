@@ -32,7 +32,7 @@ Hints:
 
 - Create a vector to store the data files' path.
 - Use `lapply()` to repeat the import and reshape steps on the created path vector.
-- Bind rows to have a final data frame for both structures.
+- Bind rows to have a final data frame for both structures. (Use `dplyr::bind_rows()` or `rbind()`)
 
 
 2. Remove lines with NA in expression value.
