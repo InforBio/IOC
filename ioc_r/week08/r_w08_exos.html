@@ -171,7 +171,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals">Goals</a></li>
   <li><a href="#install-tidyverse-and-load-the-package" id="toc-install-tidyverse-and-load-the-package" class="nav-link" data-scroll-target="#install-tidyverse-and-load-the-package">Install {tidyverse} and Load the Package</a></li>
-  <li><a href="#mini-data-project" id="toc-mini-data-project" class="nav-link" data-scroll-target="#mini-data-project">Mini Data Project</a></li>
+  <li><a href="#mini-data-project" id="toc-mini-data-project" class="nav-link" data-scroll-target="#mini-data-project">Mini Data Project</a>
+  <ul class="collapse">
+  <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data">Import the Data</a></li>
+  <li><a href="#reshape-the-data" id="toc-reshape-the-data" class="nav-link" data-scroll-target="#reshape-the-data">Reshape the Data</a></li>
+  <li><a href="#manipulate-the-data" id="toc-manipulate-the-data" class="nav-link" data-scroll-target="#manipulate-the-data">Manipulate the Data</a></li>
+  <li><a href="#explore-the-data" id="toc-explore-the-data" class="nav-link" data-scroll-target="#explore-the-data">Explore the Data</a></li>
+  </ul></li>
   <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">Bonus</a></li>
   </ul>
 </nav>
@@ -241,6 +247,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="../exos_data/data_anonym_struc2_noise.csv">data_anonym_struc2_noise.csv</a></li>
 </ul>
 <p>We will focus on the data from the brain structure 1.</p>
+<section id="import-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="import-the-data">Import the Data</h3>
 <ol type="1">
 <li>Please download the <code>data_anonym_struc1_noise.csv</code> file. Observe your data file:</li>
 </ol>
@@ -345,7 +353,10 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> data1 <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">age =</span> ...<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>How should the data be organized?</strong></p>
+</section>
+<section id="reshape-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="reshape-the-data">Reshape the Data</h3>
+<p>How should the data be organized?</p>
 <ol start="5" type="1">
 <li>Reshape data to “tidy” format with the <code>pivot_longer()</code> function. (tidy format: each variable is a column, each observation is a row.) What are the columns to be included to pivot into longer format?</li>
 </ol>
@@ -437,6 +448,9 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, the data is ready for downstream analysis.</p>
+</section>
+<section id="manipulate-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="manipulate-the-data">Manipulate the Data</h3>
 <p>For question 8 to 11, let’s focus on gene 1 from the data.</p>
 <ol start="8" type="1">
 <li>At age of 10 days, which animal has the highest expression value for gene 1 overall? And which animal has the highest expression value in each sex?</li>
@@ -541,6 +555,9 @@ FALSE  TRUE
 2 M             1.09       1.11    0.488</code></pre>
 </div>
 </div>
+</section>
+<section id="explore-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="explore-the-data">Explore the Data</h3>
 <p>What kind of analysis would you like to perform with this data?</p>
 <p>In statistics, it’s common to begin by exploring the dataset as a whole and visualizing the relationships between different variables. The basic R function <code>pairs()</code> (<code>?pairs</code>) is useful for creating a matrix of scatter plots to examine the relationships between each pair of continuous variables.</p>
 <p>For instance, we can explore the relationships between continuous variables such as age and the expression levels of genes 1, 2, 3, <em>etc.</em></p>
@@ -683,6 +700,7 @@ FALSE  TRUE
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="bonus" class="level2">
 <h2 class="anchored" data-anchor-id="bonus">Bonus</h2>
