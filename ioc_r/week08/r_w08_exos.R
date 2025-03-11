@@ -28,9 +28,7 @@
 # We will focus on the data from the brain structure 1.
 
 # 1. Please download the `data_anonym_struc1_noise.csv` file.
-# Observe your data file (for example with a text editor or
-#   via terminal (`head -n2 data_anonym_struc1_noise.csv` or `more data_anonym_struc1_noise.csv`),
-#   or click the file name and select "View File" in the RStudio File Pane):
+# Observe your data file:
 # - Is there a header line?
 # - What is the separator between columns?
 # - Which character was used for decimal points?
@@ -51,22 +49,19 @@
 # 3. Show the first 10 columns of your data.
 
 
-# 4. What are the column names?
-
-
-# 5. Rename the first column as `age`.
+# 4. Rename the first column as `age`.
 
 
 # How should the data be organized?
-# 6. Reshape data to "tidy" format with the `pivot_longer()` function.
+# 5. Reshape data to "tidy" format with the `pivot_longer()` function.
 # (tidy format: each variable is a column, each observation is a row.)
 # What are the columns to be included to pivot into longer format?
 
 
-# 7. Add a column `struc` which contains the name of the measured structure `s1`.
+# 6. Add a column `struc` which contains the name of the measured structure `s1`.
 
 
-# 8. Extract information about gene, sex and animal from the column `id` using the `extract()` function. Name the new columns as "gene_id", "sex" and "animal".
+# 7. Extract information about gene, sex and animal from the column `id` using the `extract()` function. Name the new columns as "gene_id", "sex" and "animal".
 
 # Hint: Find the patterns for the extraction.
 # You can use AI to help you to write the regular expression.
@@ -74,20 +69,20 @@
 
 
 # Now, the data is ready for downstream analysis.
-# For question 9 to 12, let's focus on gene 1 from the data.
+# For question 8 to 11, let's focus on gene 1 from the data.
 
-# 9. At age of 10 days, which animal has the highest expression value for gene 1 overall?
+# 8. At age of 10 days, which animal has the highest expression value for gene 1 overall?
 #     And which animal has the highest expression value in each sex?
 
 
-# 10. Is there any missing value for gene 1?
+# 9. Is there any missing value for gene 1?
 #     If yes, how to remove lines with NA?
 
 
-# 11. After removing NAs, how many animals are there for each sex in gene 1?
+# 10. After removing NAs, how many animals are there for each sex in gene 1?
 
 
-# 12. Summarize the median, mean, and standard deviation of gene 1 expression for both sexes.
+# 11. Summarize the median, mean, and standard deviation of gene 1 expression for both sexes.
 
 
 # What kind of analysis would you like to perform with this data?
@@ -98,12 +93,13 @@
 # For instance, we can explore the relationships between continuous variables such as age and
 #   the expression levels of genes 1, 2, 3, *etc.*
 
-# 13. How will you reshape the `data1_long` to provide the necessary data for the `pairs()` function?
+# 12. How will you reshape the `data1_long` to provide the necessary data for the `pairs()` function?
 
 
 # To save space, we will focus on examining the relationship between age and the first 5 genes.
-# 14. What did you observe from these scatter plots?
+# 13. What did you observe from these scatter plots?
 
+## put histograms on the diagonal
 panel.hist <- function(x, ...) {
   usr <- par("usr")
   par(usr = c(usr[1:2], 0, 1.5) )
@@ -132,11 +128,11 @@ pairs(
 
 
 
-# 15. Calculate the correlation between gene 1 and 2. (`?cor`)
+# 14. Calculate the correlation between gene 1 and 2. (`?cor`)
 
 
 # It seems that there are two groups of mice that express genes 4 and 5 in a similar way.
-# 16. Draw a scatter plot using {`ggplot2`} to show the expression levels of genes 4 and 5.
+# 15. Draw a scatter plot using {`ggplot2`} to show the expression levels of genes 4 and 5.
 #     Color the points by different categorical variables that we have, *i.e.*, age, sex, and animal.
 #     Is there any categorical variable that can explain the groups we observed in the figure?
 
