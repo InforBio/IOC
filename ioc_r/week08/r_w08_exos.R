@@ -27,6 +27,8 @@
 
 # We will focus on the data from the brain structure 1.
 
+### Import the Data ---------------------------------------------------------------
+
 # 1. Please download the `data_anonym_struc1_noise.csv` file.
 # Observe your data file:
 # - Is there a header line?
@@ -52,6 +54,8 @@
 # 4. Rename the first column as `age`.
 
 
+### Reshape the Data --------------------------------------------------------------
+
 # How should the data be organized?
 # 5. Reshape data to "tidy" format with the `pivot_longer()` function.
 # (tidy format: each variable is a column, each observation is a row.)
@@ -69,6 +73,9 @@
 
 
 # Now, the data is ready for downstream analysis.
+
+### Manipulate the Data -----------------------------------------------------------
+
 # For question 8 to 11, let's focus on gene 1 from the data.
 
 # 8. At age of 10 days, which animal has the highest expression value for gene 1 overall?
@@ -84,6 +91,8 @@
 
 # 11. Summarize the median, mean, and standard deviation of gene 1 expression for both sexes.
 
+
+### Explore the Data ---------------------------------------------------------------
 
 # What kind of analysis would you like to perform with this data?
 # In statistics, it's common to begin by exploring the dataset as a whole and visualizing the relationships
