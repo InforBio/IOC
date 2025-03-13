@@ -21,13 +21,46 @@ categories:
 image: images/preview_w9.jpg
 ---
 
-# Chapter 1
+# String Manipulation with {`stringr`}
 
-## Slide 1
+## Strings Everywhere in Biological Data! {.smaller}
 
-Check the demo here: https://quarto.org/docs/presentations/revealjs/
+Where do we actually encounter strings (text) in our data?
 
-## Slide 2
+. . .
+
+- Strings stored in data columns, such as gene name, sample name.
+- Colnames or rownames of data frame, names of named list or vector.
+- File names and paths: *e.g.*, "GSE12345_raw.txt", "data/results_2023-10.csv"
+
+. . .
+
+What happens when these strings are messy, inconsistent, or need to be extracted?
+
+
+## The {`stringr`} Package {.smaller}
+
+```{r}
+library(readr) # load the package if not already load tidyverse
+```
+
+Almost all functions start with `str_`.
+
+- Basic function: str_length(), str_sub, str_to_upper(), etc.
+- Pattern Matching: str_detect(), str_extract()
+
+Works with regular expression.
+
+```{r}
+aa <- readr::read_csv("ioc_r/exos_data/yeast_gene_annot.csv")
+```
+
+:::{.callout-tip appearance="minimal"}
+Cheat sheet for `stringr`: <https://github.com/rstudio/cheatsheets/blob/main/strings.pdf>
+:::
+
+# Recap {`tidyr`} and {`dplyr`}
+
 
 # Let's Practice !
 
