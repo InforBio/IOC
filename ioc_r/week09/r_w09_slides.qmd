@@ -361,7 +361,7 @@ annot |>
 
 # RStudio Server
 
-## Creat Account via IFB {.smaller}
+## Create Account via IFB {.smaller}
 
 ???
 
