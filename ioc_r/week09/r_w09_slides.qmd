@@ -29,9 +29,10 @@ Where do we actually encounter strings (text) in our data?
 
 . . .
 
-- Strings stored in data columns, such as gene name, sample name.
+- Strings stored in data columns, such as gene name, sample name, category.
 - Colnames or rownames of data frame, names of named list or vector.
 - File names and paths: *e.g.*, "GSE12345_raw.txt", "data/results_2023-10.csv"
+- Figure labels: *e.g.*, axes' title, plot title.
 
 . . .
 
@@ -41,32 +42,347 @@ What happens when these strings are messy, inconsistent, or need to be extracted
 ## The {`stringr`} Package {.smaller}
 
 ```{r}
-library(readr) # load the package if not already load tidyverse
+library(tidyverse)
+# library(stringr) # or load only this package if needed
 ```
 
 Almost all functions start with `str_`.
 
-- Basic function: str_length(), str_sub, str_to_upper(), etc.
-- Pattern Matching: str_detect(), str_extract()
+- Manage strings: `str_length()`, `str_trunc()`
+- Mutate strings: `str_to_upper()`, `str_to_lower()`, `str_to_title()`
+- Detect strings<sup>1</sup>: `str_detect()`, `str_count()`
+- Subset strings<sup>1</sup>: `str_subset`
+- Split strings<sup>1</sup>: `str_split()`, `str_split_1()`
 
-Works with regular expression.
-
-```{r}
-aa <- readr::read_csv("ioc_r/exos_data/yeast_gene_annot.csv")
-```
+<sup>1</sup>: Need to provide a **pattern** which works with regular expressions (regex). By default, the pattern is **case-sensitive**, but this can be changed.
 
 :::{.callout-tip appearance="minimal"}
 Cheat sheet for `stringr`: <https://github.com/rstudio/cheatsheets/blob/main/strings.pdf>
 :::
 
-# Recap {`tidyr`} and {`dplyr`}
+## Data Example {.smaller}
 
+The annotation data for the Yeast (*Saccharomyces cerevisiae*) gene was obtained from the [Ensembl](https://www.ensembl.org/index.html) data base.
+
+```{r}
+annot <- readr::read_csv("../exos_data/mart_export.txt.gz")
+annot
+```
+
+## `stringr` - Manage Strings {.smaller}
+
+- `str_length()`: count string width
+
+```{r}
+seq1 <- "ATGCGTAGCTAGGCTATCCGA"
+str_length(string = seq1)
+```
+
+- `str_trunc()`: truncate a string to specified width
+
+```{r}
+annot[["Gene description"]][1]
+str_trunc(string = annot[["Gene description"]][1], width = 10)
+str_trunc(string = annot[["Gene description"]][1], width = 30)
+```
+
+## `stringr` - Mutate Strings {.smaller}
+
+::: {.columns}
+::: {.column}
+- `str_to_upper()`: convert string to upper case.
+
+```{r}
+colnames(annot)
+str_to_upper(colnames(annot))
+```
+
+:::
+::: {.column}
+- `str_to_lower()`: convert string to lower case.
+
+```{r}
+str_to_lower(colnames(annot))
+```
+
+- `str_to_title()`: convert string to title case.
+
+```{r}
+str_to_title(colnames(annot))
+```
+
+:::
+:::
+
+## `stringr` - Detect Strings {.smaller}
+
+::: {.columns}
+::: {.column}
+- `str_detect()`: detect presence of a match, returns `TRUE` or `FALSE`.
+
+```{r}
+str_detect(string = seq1, pattern = "CG")
+str_detect(string = seq1, pattern = "c")
+annot[["Gene description"]][1]
+str_detect(
+  string = annot[["Gene description"]][1],
+  pattern = "duplication"
+)
+```
+
+:::
+::: {.column}
+- `str_count()`: count number of matches.
+
+```{r}
+seq1
+# how many C and G present in the string?
+str_count(string = seq1, pattern = "C")
+str_count(string = seq1, pattern = "G")
+str_count(string = seq1, pattern = "CG")
+```
+
+:::{.fragment}
+How to write the pattern to match either C or G?
+:::
+
+:::
+:::
+
+## Regular Expression {.smaller}
+
+![](images/pattern_img.png){.absolute top=10 right=10 width="27%"}
+
+Some examples:
+
+:::{.content-smaller}
+| **Pattern** | **Meaning** | **Example** |
+|:-------:|------------|--------------------------------|
+| `.`  | Any **single** character | `A.C` → Matches `"AAC", "AGC"` |
+| `^`  | Start of a string | `^ENSG` → Finds strings starting with "ENSG" (Ensembl IDs) |
+| `$`  | End of a string | `TCG$` → Finds strings ending with `TCG` |
+| `[]` | Match **one** of the characters between brackets| `ATG[CG]` → Matches `"ATGC"` or `"ATGG"` in sequences |
+| `|` | OR (one pattern OR another) | `tumor|normal` → Matches either `"tumor"` or `"normal"` |
+:::
+
+. . .
+
+```{r}
+str_count(string = seq1, pattern = "[CG]")
+str_count(string = seq1, pattern = "[CG]") / str_width(seq1) # GC %
+```
+
+
+## `stringr` - Subset Strings {.smaller}
+
+- `str_subset`: returns strings that contain matched pattern.
+
+```{r}
+colnames(annot)
+str_subset(colnames(annot), pattern = "bp")
+str_subset(
+  c("kinase", "transcript", "kinetic", "phosphatase", "receptor", "lipase"),
+  pattern = "ase"
+)
+```
+
+## `stringr` - Subset Strings {.smaller}
+
+Split a string into pieces, similar to `strsplit()`.
+
+```{r}
+str_split("Sample_001_ctrl", pattern = "_") # return a list
+str_split("Sample_001_ctrl", pattern = "_", simplify = TRUE) # simplified into a matrix
+str_split_1("Sample_001_ctrl", pattern = "_") # return a vector
+```
+
+# Refresher on {`tidyverse`}
+
+## Import and Export with {`readr`} {.smaller}
+
+- Read structured (CSV, TSV) and unstructured (TXT) files.
+
+```r
+read_delim(file, delim, ...) # the general function
+read_csv()
+read_csv2() # use ";" as separator and "," for decimal
+read_tsv()
+```
+
+The `file` can be a path to a file (compressed or not) or a connection (a link).
+
+Observe your data before import: header, separator, decimal, NA strings, quotes, *etc.*
+
+- Write structured (CSV, TSV) and unstructured (TXT) files.
+
+```r
+write_delim(x , file, delim, na, ...)
+write_csv()
+write_csv2()
+write_tsv()
+```
+
+## Reshape Data with {`tidyr`} {.smaller}
+
+- Reshape data to longer or wider format as needed.
+
+```r
+data |> pivot_longer(cols, names_to, values_to)
+data |> pivot_wider(names_from, values_from)
+```
+
+- Remove rows with missing values.
+
+```r
+data |> drop_na() # check across all columns
+data |> drop_na(col1, col2) # specify columns where to check NA
+```
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+::: {.columns}
+::: {.column}
+
+- `count()` occurence.
+
+```{r}
+annot |> count(`Gene type`)
+annot |>
+  count(`Chromosome/scaffold name`) |>
+  head()
+```
+
+:::
+::: {.column}
+
+```{r}
+annot |>
+  count(`Gene type`, `Chromosome/scaffold name`)
+```
+
+:::
+:::
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+- `filter()` rows based on values in columns.
+
+```{r}
+annot |>
+  filter(`Gene type` == "ncRNA" & `Chromosome/scaffold name` == "V")
+```
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+- `filter()` rows based on values in columns.
+
+```{r}
+annot |>
+  filter(stringr::str_detect(`Gene type`, "RNA"))
+```
+
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+- `arrange()` rows based on values in columns.
+
+```{r}
+annot |>
+  count(`Gene type`, `Chromosome/scaffold name`) |>
+  arrange(`Chromosome/scaffold name`, desc(n))
+```
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+- `select()` columns (with helper functions).
+
+```{r}
+annot |> select(1, 3, 5) |> head(3)
+
+annot |>
+  filter(stringr::str_detect(`Gene type`, "RNA")) |>
+  select(contains(c("ID", "chrom", "descr"))) |>
+  head(3)
+```
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+- `mutate()` columns.
+
+```{r}
+annot |>
+  mutate(gene_group = ifelse(
+    test = `Gene type` == "protein_coding",
+    yes = "protein_coding",
+    no = "non protein_coding"
+  )) |>
+  select(1:2, gene_group)
+```
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+- `summarize()` data.
+
+```{r}
+annot |>
+  summarize(
+    mean_gc = mean(`Gene % GC content`),
+    max_gc = max(`Gene % GC content`),
+    min_gc = min(`Gene % GC content`),
+  )
+```
+
+## Manipulate Data with {`dplyr`} {.smaller}
+
+- `group()` data. (Use `ungroup()` to remove grouping.)
+
+```{r}
+annot |>
+  group_by(`Chromosome/scaffold name`) |>
+  summarize(
+    mean_gc = mean(`Gene % GC content`),
+    max_gc = max(`Gene % GC content`),
+    min_gc = min(`Gene % GC content`),
+  )
+```
+
+## Visualisation with {`ggplot2`} {.smaller}
+
+Syntax: `ggplot(data, aes(x, y)) + geom_xxx() + ...`
+
+```{r}
+annot |>
+  filter(`Gene type` == "protein_coding") |>
+  ggplot(aes(x = `Chromosome/scaffold name`, y = `Gene % GC content`)) +
+  geom_boxplot() +
+  labs(title = str_to_title("distribution across chromosome")) +
+  theme_light()
+```
+
+# RStudio Server
+
+## Creat Account via IFB {.smaller}
+
+???
 
 # Let's Practice !
 
 ## Today's Goals
 
-- 
-- 
-- 
-- 
+- Know how to process strings in the data
+- Get familiar with the main tidyverse packege for data manipulation and visualisation.
+
+# Final Project
+
+## Reproducing a Scientific Figure with {`ggplot2`} {.smaller}
+
+**Task:** Select a figure from a scientific paper and recreate it using ggplot2. Document your process in a **Quarto script** and present your work (15 min / person).  
+
+Your report should include:
+
+- **Figure Selection:** Why did you choose this figure?  
+- **Data & Preprocessing:** Source of data, cleaning, transformations.  
+- **Packages Used:** List and explain key packages.  
+- **Challenges & Solutions:** Issues faced and how you resolved them.  
+- **Plot Construction:** Steps taken to build the visualization.  
+- **Final Comparison & Insights:** How close is your result? What did you learn?  
