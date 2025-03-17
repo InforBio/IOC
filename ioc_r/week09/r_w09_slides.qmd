@@ -1,5 +1,5 @@
 ---
-title: "String Tricks & Final Review"
+title: "String Tricks &<br>Final Review"
 subtitle: "IOC-R Week 9"
 date: "2025-03-17"
 date-format: " "
@@ -48,10 +48,9 @@ library(tidyverse)
 
 Almost all functions start with `str_`.
 
-- Manage strings: `str_length()`, `str_trunc()`
-- Mutate strings: `str_to_upper()`, `str_to_lower()`, `str_to_title()`
+- Manage strings: `str_length()`
+- Mutate strings: `str_to_title()`, `str_to_upper()`, `str_to_lower()`
 - Detect strings<sup>1</sup>: `str_detect()`, `str_count()`
-- Subset strings<sup>1</sup>: `str_subset`
 - Split strings<sup>1</sup>: `str_split()`, `str_split_1()`
 
 <sup>1</sup>: Need to provide a **pattern** which works with regular expressions (regex). By default, the pattern is **case-sensitive**, but this can be changed.
@@ -60,78 +59,60 @@ Almost all functions start with `str_`.
 Cheat sheet for `stringr`: <https://github.com/rstudio/cheatsheets/blob/main/strings.pdf>
 :::
 
-## Data Example {.smaller}
-
-The annotation data for the Yeast (*Saccharomyces cerevisiae*) gene was obtained from the [Ensembl](https://www.ensembl.org/index.html) data base.
-
-```{r}
-annot <- readr::read_csv("../exos_data/mart_export.txt.gz")
-annot
-```
-
 ## `stringr` - Manage Strings {.smaller}
 
 - `str_length()`: count string width
 
 ```{r}
 seq1 <- "ATGCGTAGCTAGGCTATCCGA"
+
+# using basic functions
+length(unlist(strsplit(x = seq1, split = ""))) 
+
+# use stringr's function
 str_length(string = seq1)
 ```
 
-- `str_trunc()`: truncate a string to specified width
-
-```{r}
-annot[["Gene description"]][1]
-str_trunc(string = annot[["Gene description"]][1], width = 10)
-str_trunc(string = annot[["Gene description"]][1], width = 30)
-```
 
 ## `stringr` - Mutate Strings {.smaller}
-
-::: {.columns}
-::: {.column}
-- `str_to_upper()`: convert string to upper case.
-
-```{r}
-colnames(annot)
-str_to_upper(colnames(annot))
-```
-
-:::
-::: {.column}
-- `str_to_lower()`: convert string to lower case.
-
-```{r}
-str_to_lower(colnames(annot))
-```
 
 - `str_to_title()`: convert string to title case.
 
 ```{r}
-str_to_title(colnames(annot))
+human_gene <- c("ADCY3", "SOX5", "LEP")
+mouse_gene <- str_to_title(human_gene)
+mouse_gene
 ```
 
-:::
-:::
+- `str_to_upper()`: convert string to upper case.
+
+```{r}
+str_to_upper(mouse_gene)
+```
+
+- `str_to_lower()`: convert string to lower case.
+
+```{r}
+str_to_lower(mouse_gene)
+```
+
 
 ## `stringr` - Detect Strings {.smaller}
 
 ::: {.columns}
 ::: {.column}
+
 - `str_detect()`: detect presence of a match, returns `TRUE` or `FALSE`.
 
 ```{r}
+seq1
 str_detect(string = seq1, pattern = "CG")
 str_detect(string = seq1, pattern = "c")
-annot[["Gene description"]][1]
-str_detect(
-  string = annot[["Gene description"]][1],
-  pattern = "duplication"
-)
 ```
 
 :::
 ::: {.column}
+
 - `str_count()`: count number of matches.
 
 ```{r}
@@ -140,11 +121,10 @@ seq1
 str_count(string = seq1, pattern = "C")
 str_count(string = seq1, pattern = "G")
 str_count(string = seq1, pattern = "CG")
-```
 
-:::{.fragment}
-How to write the pattern to match either C or G?
-:::
+# using regular expression
+str_count(string = seq1, pattern = "[CG]")
+```
 
 :::
 :::
@@ -153,38 +133,36 @@ How to write the pattern to match either C or G?
 
 ![](images/pattern_img.png){.absolute top=10 right=10 width="27%"}
 
-Some examples:
-
-:::{.content-smaller}
-| **Pattern** | **Meaning** | **Example** |
-|:-------:|------------|--------------------------------|
-| `.`  | Any **single** character | `A.C` → Matches `"AAC", "AGC"` |
-| `^`  | Start of a string | `^ENSG` → Finds strings starting with "ENSG" (Ensembl IDs) |
-| `$`  | End of a string | `TCG$` → Finds strings ending with `TCG` |
-| `[]` | Match **one** of the characters between brackets| `ATG[CG]` → Matches `"ATGC"` or `"ATGG"` in sequences |
-| `|` | OR (one pattern OR another) | `tumor|normal` → Matches either `"tumor"` or `"normal"` |
-:::
-
-. . .
+- `[]`: Match any one of the characters inside.
 
 ```{r}
-str_count(string = seq1, pattern = "[CG]")
-str_count(string = seq1, pattern = "[CG]") / str_width(seq1) # GC %
+str_count(string = seq1, pattern = "[CG]") # using regular expression
 ```
 
-
-## `stringr` - Subset Strings {.smaller}
-
-- `str_subset`: returns strings that contain matched pattern.
+- `^` or `$`: Matches the beginning or the end of a string.
 
 ```{r}
-colnames(annot)
-str_subset(colnames(annot), pattern = "bp")
-str_subset(
-  c("kinase", "transcript", "kinetic", "phosphatase", "receptor", "lipase"),
-  pattern = "ase"
+pathways <- c(
+  "Adaptive Immune Response", "Cytokine Signaling in Immune System",
+  "Inflammatory Response Pathway", "Cell Cycle Regulation",
+  "Innate Immune System", "Toll-like Receptor Signaling Pathway"
 )
 ```
+
+```{r}
+str_detect(pathways, pattern = "^In") # starts with "In"
+str_detect(pathways, pattern = "em$") # ends with "em"
+```
+
+- `|`: one pattern Or another
+
+```{r}
+str_detect(pathways, pattern = "Response|Receptor")
+```
+
+:::{.callout-tip appearance="minimal"}
+Cheat sheet for regular expression: <https://github.com/rstudio/cheatsheets/blob/main/regex.pdf>
+:::
 
 ## `stringr` - Subset Strings {.smaller}
 
@@ -192,7 +170,6 @@ Split a string into pieces, similar to `strsplit()`.
 
 ```{r}
 str_split("Sample_001_ctrl", pattern = "_") # return a list
-str_split("Sample_001_ctrl", pattern = "_", simplify = TRUE) # simplified into a matrix
 str_split_1("Sample_001_ctrl", pattern = "_") # return a vector
 ```
 
@@ -206,7 +183,6 @@ str_split_1("Sample_001_ctrl", pattern = "_") # return a vector
 read_delim(file, delim, ...) # the general function
 read_csv()
 read_csv2() # use ";" as separator and "," for decimal
-read_tsv()
 ```
 
 The `file` can be a path to a file (compressed or not) or a connection (a link).
@@ -219,23 +195,37 @@ Observe your data before import: header, separator, decimal, NA strings, quotes,
 write_delim(x , file, delim, na, ...)
 write_csv()
 write_csv2()
-write_tsv()
 ```
 
 ## Reshape Data with {`tidyr`} {.smaller}
 
 - Reshape data to longer or wider format as needed.
 
+![](images/pivot_img.png){width=70px}
+
+. . .
+
 ```r
 data |> pivot_longer(cols, names_to, values_to)
 data |> pivot_wider(names_from, values_from)
 ```
+
+## Remove NA with {`tidyr`} {.smaller}
 
 - Remove rows with missing values.
 
 ```r
 data |> drop_na() # check across all columns
 data |> drop_na(col1, col2) # specify columns where to check NA
+```
+
+## Data Example {.smaller}
+
+The annotation data for the Yeast (*Saccharomyces cerevisiae*) gene was obtained from the [Ensembl](https://www.ensembl.org/index.html) data base.
+
+```{r}
+annot <- readr::read_csv("../exos_data/mart_export.txt.gz") # read a compresseed file
+annot
 ```
 
 ## Manipulate Data with {`dplyr`} {.smaller}
@@ -247,9 +237,6 @@ data |> drop_na(col1, col2) # specify columns where to check NA
 
 ```{r}
 annot |> count(`Gene type`)
-annot |>
-  count(`Chromosome/scaffold name`) |>
-  head()
 ```
 
 :::
@@ -358,12 +345,6 @@ annot |>
   labs(title = str_to_title("distribution across chromosome")) +
   theme_light()
 ```
-
-# RStudio Server
-
-## Create Account via IFB {.smaller}
-
-???
 
 # Let's Practice !
 
