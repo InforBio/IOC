@@ -143,18 +143,14 @@ str_count(string = seq1, pattern = "[CG]") # using regular expression
 
 ```{r}
 pathways <- c(
-  "Adaptive Immune Response", "Cytokine Signaling in Immune System",
-  "Inflammatory Response Pathway", "Cell Cycle Regulation",
-  "Innate Immune System", "Toll-like Receptor Signaling Pathway"
+  "Adaptive Immune Response", "Cytokine Signaling in Immune System", "Inflammatory Response Pathway",
+  "Cell Cycle Regulation", "Innate Immune System", "Toll-like Receptor Signaling Pathway"
 )
-```
-
-```{r}
 str_detect(pathways, pattern = "^In") # starts with "In"
 str_detect(pathways, pattern = "em$") # ends with "em"
 ```
 
-- `|`: one pattern Or another
+- `|`: Matches one pattern Or another
 
 ```{r}
 str_detect(pathways, pattern = "Response|Receptor")
@@ -184,10 +180,15 @@ read_delim(file, delim, ...) # the general function
 read_csv()
 read_csv2() # use ";" as separator and "," for decimal
 ```
+:::{.callout-tip appearance="minimal"}
+- The `file` can be a path to a file (compressed or not) or a connection (a link), *e.g.*:
 
-The `file` can be a path to a file (compressed or not) or a connection (a link).
+```r
+read_csv2(file = "https://inforbio.github.io/IOC/ioc_r/exos_data/data_anonym_struc1_noise.csv")
+```
 
-Observe your data before import: header, separator, decimal, NA strings, quotes, *etc.*
+- Observe your data before import: header, separator, decimal, NA strings, quotes, *etc.*
+:::
 
 - Write structured (CSV, TSV) and unstructured (TXT) files.
 
@@ -206,8 +207,8 @@ write_csv2()
 . . .
 
 ```r
-data |> pivot_longer(cols, names_to, values_to)
-data |> pivot_wider(names_from, values_from)
+data |> pivot_longer(cols = -1, names_to = "condition", values_to = "value")
+data |> pivot_wider(names_from = gene, values_from = value)
 ```
 
 ## Remove NA with {`tidyr`} {.smaller}
