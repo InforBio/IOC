@@ -123,3 +123,25 @@ fviz_pca_ind(
   addEllipses = TRUE, # Concentration ellipses
   legend.title = "Age"
 )
+
+
+## data for python -------------------------------------------------------------------
+all_data_wider <- do.call(rbind, lapply(seq_along(file_names), function(i) {
+  file_path <- file.path(input_dir, file_names[i])
+  data <- read.csv(file_path, sep = ";", header = TRUE, na.strings = "", dec = ",")
+  data_wide <- pivot_longer(data, cols = -c("X"), names_to = "id", values_to = "value") |>
+    rename(age = X) |>
+    mutate(
+      id = sub("X", "", id),
+      struc = paste0("s", i)
+    ) |>
+    extract(id, into = c("gene_id", "sex", "animal"), regex = "([0-9]+)([MF])([A-F])") |>
+    pivot_wider(names_from = gene_id, values_from = value, names_prefix = "gene")
+  return(data_wide)
+}))
+
+write.csv(
+  all_data_wider,
+  file.path(outpur_dir, "all_data_python.csv"),
+  row.names = FALSE
+)
