@@ -66,7 +66,7 @@
 
 
 # 9. Perform an ANOVA (`aov()`) test and use `summary()` to obtain the results.
-
+# If we take alpha = 0.05, what is your conclusion?
 
 # 10. Conduct a Tukey Honest Significant Differences (TukeyHSD) test to check
 #     which groups differ significantly. (`?TukeyHSD`)

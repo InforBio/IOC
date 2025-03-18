@@ -154,7 +154,7 @@ ANOVA calculates the F statistic, which is a ratio:
 
 $F = \frac{\sigma^2_{\text{inter group}}}{\sigma^2_{\text{intra group}}}$
 
-, and the probability of obtaining this F statistic (the p-value).
+, and the probability of obtaining an F-statistic as extreme as the observed one (the p-value), assuming the null hypothesis is true.
 
 Conditions of applying ANOVA:
 
@@ -203,6 +203,7 @@ anova_data
 ```
 
 9. Perform an ANOVA (`aov()`) test and use `summary()` to obtain the results.
+If we take $\alpha=0.05$, what is your conclusion?
 
 ```{r}
 res_aov <- aov(value ~ group, data = anova_data)
