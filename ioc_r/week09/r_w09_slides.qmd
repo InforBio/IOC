@@ -51,7 +51,6 @@ Almost all functions start with `str_`.
 - Manage strings: `str_length()`
 - Mutate strings: `str_to_title()`, `str_to_upper()`, `str_to_lower()`
 - Detect strings<sup>1</sup>: `str_detect()`, `str_count()`
-- Split strings<sup>1</sup>: `str_split()`, `str_split_1()`
 
 <sup>1</sup>: Need to provide a **pattern** which works with regular expressions (regex). By default, the pattern is **case-sensitive**, but this can be changed.
 
@@ -160,14 +159,6 @@ str_detect(pathways, pattern = "Response|Receptor")
 Cheat sheet for regular expression: <https://github.com/rstudio/cheatsheets/blob/main/regex.pdf>
 :::
 
-## `stringr` - Subset Strings {.smaller}
-
-Split a string into pieces, similar to `strsplit()`.
-
-```{r}
-str_split("Sample_001_ctrl", pattern = "_") # return a list
-str_split_1("Sample_001_ctrl", pattern = "_") # return a vector
-```
 
 # Refresher on {`tidyverse`}
 
