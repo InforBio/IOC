@@ -22,14 +22,17 @@ The R script is available here:
 
 ## Mini Data Project
 
-1. Import the following data using the file link with appropriate functions:
+### Data Import & Exploration
 
-- The annotation of yeast's genes:
+1. Import the following datasets using the appropriate functions:
+
+- Yeast gene annotation data::
 `https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz`, name the data as `annot`.
-- The gene differential expression analysis (SET1 *vs.* WT):
+- Gene differential expression analysis (SET1 *vs.* WT):
 `https://inforbio.github.io/IOC/ioc_r/exos_data/toy_DEanalysis.csv`, name the data as `de_res`.
 
-What are the data dimension?
+What are the dimensions of each dataset?
+
 ```{r}
 library(tidyverse)
 # annot <- read_csv("https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz")
@@ -37,8 +40,8 @@ annot <- read_csv("../exos_data/mart_export.txt.gz")
 de_res <- read_csv("https://inforbio.github.io/IOC/ioc_r/exos_data/toy_DEanalysis.csv")
 ```
 
-2. In the annotation data, which chromosome has the most genes?
-Which chromosome has the least genes?
+2. Which chromosome has the highest number of genes?
+Which chromosome has the lowest number of genes?
 
 ```{r}
 annot |>
@@ -52,8 +55,8 @@ annot |>
 
 ```
 
-3. Among the mitochondrial genes, which genes have a gene description containing the word `ATP6` or `ATP8`?
-Select the columns `Gene name` and `Gene description` to show the results.
+3. Among mitochondrial genes, find those where the gene description contains "ATP6" or "ATP8".
+Then select and display only the columns: "Gene name" and "Gene description".
 
 ```{r}
 annot |>
@@ -71,16 +74,16 @@ annot |>
   select(contains(c("gene name", "descri")))
 ```
 
-4. Compare genes in `de_res` and genes in `annot`. Are all genes from `de_res` exist in `annot`? How many genes do not have annotation information?
+4. Comparing `de_res` and `annot` genes. Do all genes in `de_res` exist in `annot`? How many genes in `de_res` lack annotation information?
 
 ```{r}
 table(de_res$gene_name %in% annot[["Gene name"]])
 ```
 
 
-5. Add the annotation information for the genes in `de_res`, you can use either:
-- the `merge()` function from the base package,
-- or the `left_join()` function from the dplyr package. (`?left_join`)
+5. Add the annotation information to `de_res`, merge the `annot` data with `de_res` using either:
+- the `merge()` function (base R), or
+- the `left_join()` function (from the dplyr package, `?left_join`)
 
 ```{r}
 de_res_annot <- merge(
@@ -94,15 +97,16 @@ de_res_annot <- as_tibble(de_res_annot) # convert to a tibble
 de_res_annot <- de_res |>
   left_join(annot, by = c("gene_name" = "Gene name"))
 ```
----
 
-6. Draw a volcano plot to show the differential expression analysis results:
+### Data Visualization & Statistical Analysis
 
-- Put log2 fold change on x-axis
-- Put -log10(p-value) on y-axis
-- Color the points if the gene description contains the word "Histone" or "histone". (You need to create a new column which indicates whether the gene description contains the key word for the color in ggplot2.)
-- Add gene name for the genes having absolute log2 fold change is bigger than 1.5 (`?geom_text`)
-- Show the gene name as plot title, the gene description as subtitle
+6. Create a Volcano plot for differential expression results:
+
+- X-axis: Log2 fold change
+- Y-axis: -log10(p-value)
+- Color: Highlight genes where the description contains "Histone" or "histone". (Hint: Create a new column for this.)
+- Labels some data points: Add gene names for those with an absolute log2 fold change greater than 1.5 (`?geom_text`).
+- Theme: use the `theme_light`.
 
 ```{r}
 de_res_annot |>
@@ -121,15 +125,16 @@ de_res_annot |>
   theme_light()
 ```
 
-Until now, we have studied the gene expression between two groups (SET1 *vs.* WT). How about if we want to compare the 4 groups (WT, SET1, SET1.RRP6 and RRP6)? For example to check if the average expression value of a gene is the same among the 4 groups?
+So far, we've analyzed gene expression between two groups (SET1 *vs.* WT).
+How can we compare expression levels across four groups (WT, SET1, SET1.RRP6, RRP6)?
+For example, how can we test if the average expression level of a gene is the same across these four groups?
 
 :::{.callout-tip title="Stats Time!"}
 **One-way ANOVA**
 
-With ANOVA (ANalysis Of VAriance), we can determine if the average is the same among all groups based on the observation.
+ANOVA (**AN**alysis **O**f **VA**riance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests), ANOVA compares the variances to infer differences in means.
 
-To compare the average between more than two groups, we can compare the variance.
-We can suppose that the the variance within each group is the same across all groups.
+We assume that the the variance within each group is the same across all groups.
 
 ![](images/anova_img.png){width=80%}
 
@@ -140,61 +145,77 @@ We can suppose that the the variance within each group is the same across all gr
 
 Which is equals to test:
 
-- $H_0: \sigma_{\text{inter group}} = \sigma_{\text{intra group}}$
-- $H_1: \sigma_{\text{inter group}} > \sigma_{\text{intra group}}$
+- $H_0: \sigma^2_{\text{inter group}} = \sigma^2_{\text{intra group}}$
+- $H_1: \sigma^2_{\text{inter group}} > \sigma^2_{\text{intra group}}$
 
-Conditions of application:
+If the means are truly different, the variation between groups ($\sigma^2_{\text{inter group}}$) should be greater than the variation within groups ($\sigma^2_{\text{intra group}}$).
 
-- Samples should be independent
-- Data is normally distributed (Shapiro test)
-- The variance is the same in all populations (homogeneity of variance, Levene's test or Bartlett's test)
+ANOVA calculates the F statistic, which is a ratio:
 
-The R function `aov()` helps us to perform an ANOVA.
+$F = \frac{\sigma^2_{\text{inter group}}}{\sigma^2_{\text{intra group}}}$
+
+, and the probability of obtaining this F statistic (the p-value).
+
+Conditions of applying ANOVA:
+
+- Independence: Observations in each group must be independent.
+- Normality: Data should be approximately normally distributed (can be checked using the Shapiro test).
+- Homogeneity of Variance: Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).
+
+In R, the function `aov()` is used to perform ANOVA.
 ::: 
 
-Let's take the experssion of gene *LOH1* as example.
+Let's take the gene *LOH1* as example.
 
 7. Import the expression data using this link:
 `https://inforbio.github.io/IOC/ioc_r/exos_data/read-counts.csv`
 
 ```{r}
-counts <- read_csv("https://inforbio.github.io/IOC/ioc_r/exos_data/read-counts.csv")
+counts <- read_csv(
+  "https://inforbio.github.io/IOC/ioc_r/exos_data/read-counts.csv"
+)
 ```
 
 
-8. Build a data frame or a tibble with two columns:
+8. Given the imported counts data, how can we reshape it to extract the necessary information and obtain a tibble with the following columns?
 
-- "group": sample groups
-- "value": expression values
-
-Check how to use the function `str_replace()`.
+- "value": Expression values of the gene *LOH1*
+- "group": Sample groups (Explore how to use the `str_replace()` function to extract group based on sample name)
 
 ```{r}
 ?str_replace
 
 anova_data <- counts |>
   filter(Feature == "LOH1") |>
-  pivot_longer(cols = -1, names_to = "sample_id", values_to = "value") |>
+  pivot_longer(
+    cols = -1,
+    names_to = "sample_id",
+    values_to = "value"
+  ) |>
   mutate(
-    group = str_replace(sample_id, pattern = "\\.([0-9]+)$", replace = "")
+    group = str_replace(
+      string = sample_id,
+      pattern = "\\.([0-9]+)$",
+      replace = ""
+    )
   )
 anova_data
 ```
 
-Perform ANOVA and use `summary` to get the results.
+9. Perform an ANOVA (`aov()`) test and use `summary()` to obtain the results.
 
 ```{r}
 res_aov <- aov(value ~ group, data = anova_data)
 summary(res_aov)
 ```
 
-9. Perform a `TukeyHSD()` (Tukey Honest Significant Differences) test on the ANOVA results to check the pair-wise difference. (`?TukeyHSD`)
+10. Conduct a Tukey Honest Significant Differences (TukeyHSD) test to check which groups differ significantly. (`?TukeyHSD`)
 
 ```{r}
 TukeyHSD(res_aov)
 ```
 
-10. Visualise the expression level of *LOH1* of the 4 groups with a boxplot.
+11. Visualize the expression levels of the *LOH1* gene across the four groups using a boxplot.
 
 ```{r}
 ggplot(
@@ -204,7 +225,9 @@ ggplot(
     y = value
   )
 ) +
-  geom_boxplot() +
+  geom_boxplot(
+    outliers = FALSE # do not display outliers by boxplot
+  ) +
   geom_point(
     aes(color = group),
     position = position_jitter(height = 0, width = 0.3, seed = 1)
