@@ -134,7 +134,7 @@ For example, how can we test if the average expression level of a gene is the sa
 
 ANOVA (**AN**alysis **O**f **VA**riance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests), ANOVA compares the variances to infer differences in means.
 
-We assume that the the variance within each group is the same across all groups.
+We assume that the variance within each group is the same across all groups.
 
 ![](images/anova_img.png){width=80%}
 
