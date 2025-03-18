@@ -27,9 +27,9 @@ The R script is available here:
 1. Import the following datasets using the appropriate functions:
 
 - Yeast gene annotation data::
-`https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz`, name the data as `annot`.
+`"https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz"`, name the data as `annot`.
 - Gene differential expression analysis (SET1 *vs.* WT):
-`https://inforbio.github.io/IOC/ioc_r/exos_data/toy_DEanalysis.csv`, name the data as `de_res`.
+`"https://inforbio.github.io/IOC/ioc_r/exos_data/toy_DEanalysis.csv"`, name the data as `de_res`.
 
 What are the dimensions of each dataset?
 
@@ -168,7 +168,7 @@ In R, the function `aov()` is used to perform ANOVA.
 Let's take the gene *LOH1* as example.
 
 7. Import the expression data using this link:
-`https://inforbio.github.io/IOC/ioc_r/exos_data/read-counts.csv`
+`"https://inforbio.github.io/IOC/ioc_r/exos_data/read-counts.csv"`
 
 ```{r}
 counts <- read_csv(
