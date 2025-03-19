@@ -5,8 +5,8 @@
 ### Data Import & Exploration ----------------------------------------------
 
 # 1. Import the following datasets using the appropriate functions:
-# - Yeast gene annotation data::
-# "https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz",
+# - Yeast gene annotation data:
+#   "https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz",
 #   name the data as `annot`.
 # - Gene differential expression analysis (SET1 *vs.* WT):
 #   "https://inforbio.github.io/IOC/ioc_r/exos_data/toy_DEanalysis.csv",

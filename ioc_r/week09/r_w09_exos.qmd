@@ -26,8 +26,9 @@ The R script is available here:
 
 1. Import the following datasets using the appropriate functions:
 
-- Yeast gene annotation data::
-`"https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz"`, name the data as `annot`.
+- Yeast gene annotation data:
+`"https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"`,
+  name the data as `annot`.
 - Gene differential expression analysis (SET1 *vs.* WT):
 `"https://inforbio.github.io/IOC/ioc_r/exos_data/toy_DEanalysis.csv"`, name the data as `de_res`.
 
@@ -35,8 +36,9 @@ What are the dimensions of each dataset?
 
 ```{r}
 library(tidyverse)
-# annot <- read_csv("https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz")
-annot <- read_csv("../exos_data/mart_export.txt.gz")
+annot <- read_csv(
+  "https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"
+)
 de_res <- read_csv("https://inforbio.github.io/IOC/ioc_r/exos_data/toy_DEanalysis.csv")
 ```
 
@@ -61,7 +63,7 @@ Then select and display only the columns: "Gene name" and "Gene description".
 ```{r}
 annot |>
   filter(`Chromosome/scaffold name` == "Mito") |>
-  filter(str_detect(`Gene description`, "ATP synthase")) |>
+  filter(str_detect(`Gene description`, "ATP[68]")) |>
   select(`Gene name`, `Gene description`)
 
 # or combine the two conditions in filter,
@@ -69,7 +71,7 @@ annot |>
 annot |>
   filter(
     `Chromosome/scaffold name` == "Mito" &
-      str_detect(`Gene description`, "ATP synthase")
+      str_detect(`Gene description`, "ATP[68]")
     ) |>
   select(contains(c("gene name", "descri")))
 ```
