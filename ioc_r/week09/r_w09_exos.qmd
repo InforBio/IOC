@@ -134,7 +134,8 @@ For example, how can we test if the average expression level of a gene is the sa
 :::{.callout-tip title="Stats Time!"}
 **One-way ANOVA**
 
-ANOVA (**AN**alysis **O**f **VA**riance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests), ANOVA compares the variances to infer differences in means.
+ANOVA (**AN**alysis **O**f **VA**riance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests),
+ANOVA compares the variances within (intra) and between groups (inter) to infer differences in means.
 
 We assume that the variance within each group is the same across all groups.
 
@@ -162,7 +163,7 @@ Conditions of applying ANOVA:
 
 - Independence: Observations in each group must be independent.
 - Normality: Data should be approximately normally distributed (can be checked using the Shapiro test).
-- Homogeneity of Variance: Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).
+- Homoscedasticity (homogeneity of variance): Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).
 
 In R, the function `aov()` is used to perform ANOVA.
 ::: 
@@ -204,7 +205,8 @@ anova_data <- counts |>
 anova_data
 ```
 
-9. Perform an ANOVA (`aov()`) test and use `summary()` to obtain the results.
+9. Assume that all conditions of ANOVA are verified.
+Perform an ANOVA (`aov()`) test and use `summary()` to obtain the results.
 If we take $\alpha=0.05$, what is your conclusion?
 
 ```{r}
@@ -240,6 +242,40 @@ ggplot(
   theme(legend.position = "none")
 ```
 
+### Bonus
+
+Verify the assumptions for conducting an ANOVA test:
+
+```{r}
+# Check data normality with Shapiro test
+shapiro.test(anova_data$value[anova_data$group == "WT"])
+shapiro.test(anova_data$value[anova_data$group == "SET1"])
+shapiro.test(anova_data$value[anova_data$group == "SET1.RRP6"])
+shapiro.test(anova_data$value[anova_data$group == "RRP6"])
+
+# or use lapply() to repeat test for each group
+# lapply(
+#   X = unique(anova_data$group),
+#   FUN = function(grp) {
+#     shapiro.test(anova_data$value[anova_data$group == grp])
+#   }
+# )
+```
+
+The RRP6 data does not follow a normal distribution.
+
+```{r}
+# Check homogeneity of variance with Bartlett test
+bartlett.test(value ~ group, data = anova_data)
+```
+
+Moreover, the assumption of homoscedasticity (equal variance) is not met.
+
+Therefore, an ANOVA is not appropriate, and a non-parametric Kruskal-Wallis test should be used instead.
+
+```{r}
+kruskal.test(value ~ group, data = anova_data)
+```
 
 ---
 
