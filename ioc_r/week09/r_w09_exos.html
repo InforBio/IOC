@@ -203,6 +203,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#data-import-exploration" id="toc-data-import-exploration" class="nav-link" data-scroll-target="#data-import-exploration">Data Import &amp; Exploration</a></li>
   <li><a href="#data-visualization-statistical-analysis" id="toc-data-visualization-statistical-analysis" class="nav-link" data-scroll-target="#data-visualization-statistical-analysis">Data Visualization &amp; Statistical Analysis</a></li>
+  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">Bonus</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -249,7 +250,7 @@ window.Quarto = {
 <li>Import the following datasets using the appropriate functions:</li>
 </ol>
 <ul>
-<li>Yeast gene annotation data:: <code>"https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz"</code>, name the data as <code>annot</code>.</li>
+<li>Yeast gene annotation data: <code>"https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"</code>, name the data as <code>annot</code>.</li>
 <li>Gene differential expression analysis (SET1 <em>vs.</em> WT): <code>"https://inforbio.github.io/IOC/ioc_r/exos_data/toy_DEanalysis.csv"</code>, name the data as <code>de_res</code>.</li>
 </ul>
 <p>What are the dimensions of each dataset?</p>
@@ -267,8 +268,9 @@ window.Quarto = {
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># annot &lt;- read_csv("https://inforbio.github.io/IOC/ioc_r/exos_data/mart_export.txt.gz")</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>annot <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../exos_data/mart_export.txt.gz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>annot <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/InforBio/IOC/refs/heads/main/ioc_r/exos_data/mart_export.txt.gz"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 7127 Columns: 9
 ── Column specification ────────────────────────────────────────────────────────
@@ -338,31 +340,29 @@ dbl (6): baseMean, log2FoldChange, lfcSE, stat, pvalue, padj
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>annot <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Chromosome/scaffold name</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Mito"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Gene description</span><span class="st">`</span>, <span class="st">"ATP synthase"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Gene description</span><span class="st">`</span>, <span class="st">"ATP[68]"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Gene name</span><span class="st">`</span>, <span class="st">`</span><span class="at">Gene description</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
+<pre><code># A tibble: 2 × 2
   `Gene name` `Gene description`                                                
   &lt;chr&gt;       &lt;chr&gt;                                                             
 1 ATP6        Subunit a of the F0 sector of mitochondrial F1F0 ATP synthase; mi…
-2 OLI1        F0-ATP synthase subunit c (ATPase-associated proteolipid); encode…
-3 ATP8        Subunit 8 of the F0 sector of mitochondrial F1F0 ATP synthase; en…</code></pre>
+2 ATP8        Subunit 8 of the F0 sector of mitochondrial F1F0 ATP synthase; en…</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or combine the two conditions in filter,</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># select by matching column names</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>annot <span class="sc">|&gt;</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Chromosome/scaffold name</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Mito"</span> <span class="sc">&amp;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Gene description</span><span class="st">`</span>, <span class="st">"ATP synthase"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(<span class="st">`</span><span class="at">Gene description</span><span class="st">`</span>, <span class="st">"ATP[68]"</span>)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">"gene name"</span>, <span class="st">"descri"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
+<pre><code># A tibble: 2 × 2
   `Gene name` `Gene description`                                                
   &lt;chr&gt;       &lt;chr&gt;                                                             
 1 ATP6        Subunit a of the F0 sector of mitochondrial F1F0 ATP synthase; mi…
-2 OLI1        F0-ATP synthase subunit c (ATPase-associated proteolipid); encode…
-3 ATP8        Subunit 8 of the F0 sector of mitochondrial F1F0 ATP synthase; en…</code></pre>
+2 ATP8        Subunit 8 of the F0 sector of mitochondrial F1F0 ATP synthase; en…</code></pre>
 </div>
 </div>
 <ol start="4" type="1">
@@ -443,7 +443,7 @@ Stats Time!
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>One-way ANOVA</strong></p>
-<p>ANOVA (<strong>AN</strong>alysis <strong>O</strong>f <strong>VA</strong>riance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests), ANOVA compares the variances to infer differences in means.</p>
+<p>ANOVA (<strong>AN</strong>alysis <strong>O</strong>f <strong>VA</strong>riance) helps us determine whether the means of multiple groups are different. Instead of comparing means directly (as in t-tests), ANOVA compares the variances within (intra) and between groups (inter) to infer differences in means.</p>
 <p>We assume that the variance within each group is the same across all groups.</p>
 <p><img src="images/anova_img.png" class="img-fluid" style="width:80.0%"></p>
 <p>(Figure credit: Lorette Noiret)</p>
@@ -464,7 +464,7 @@ Stats Time!
 <ul>
 <li>Independence: Observations in each group must be independent.</li>
 <li>Normality: Data should be approximately normally distributed (can be checked using the Shapiro test).</li>
-<li>Homogeneity of Variance: Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).</li>
+<li>Homoscedasticity (homogeneity of variance): Variances across groups should be roughly equal (Levene’s test or Bartlett’s test can check this).</li>
 </ul>
 <p>In R, the function <code>aov()</code> is used to perform ANOVA.</p>
 </div>
@@ -531,7 +531,7 @@ dbl (40): WT.1, WT.2, WT.3, WT.4, WT.5, WT.6, WT.7, WT.8, WT.9, WT.10, SET1....
 </div>
 </div>
 <ol start="9" type="1">
-<li>Perform an ANOVA (<code>aov()</code>) test and use <code>summary()</code> to obtain the results. If we take <span class="math inline">\(\alpha=0.05\)</span>, what is your conclusion?</li>
+<li>Assume that all conditions of ANOVA are verified. Perform an ANOVA (<code>aov()</code>) test and use <code>summary()</code> to obtain the results. If we take <span class="math inline">\(\alpha=0.05\)</span>, what is your conclusion?</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>res_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> anova_data)</span>
@@ -592,6 +592,76 @@ WT-SET1.RRP6   -38.9  -78.84833   1.048326 0.0587008</code></pre>
 <p><img src="r_w09_exos_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
+</div>
+</div>
+</section>
+<section id="bonus" class="level3">
+<h3 class="anchored" data-anchor-id="bonus">Bonus</h3>
+<p>Verify the assumptions for conducting an ANOVA test:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check data normality with Shapiro test</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(anova_data<span class="sc">$</span>value[anova_data<span class="sc">$</span>group <span class="sc">==</span> <span class="st">"WT"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  anova_data$value[anova_data$group == "WT"]
+W = 0.92104, p-value = 0.3657</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(anova_data<span class="sc">$</span>value[anova_data<span class="sc">$</span>group <span class="sc">==</span> <span class="st">"SET1"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  anova_data$value[anova_data$group == "SET1"]
+W = 0.90683, p-value = 0.2599</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(anova_data<span class="sc">$</span>value[anova_data<span class="sc">$</span>group <span class="sc">==</span> <span class="st">"SET1.RRP6"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  anova_data$value[anova_data$group == "SET1.RRP6"]
+W = 0.92342, p-value = 0.3864</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(anova_data<span class="sc">$</span>value[anova_data<span class="sc">$</span>group <span class="sc">==</span> <span class="st">"RRP6"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  anova_data$value[anova_data$group == "RRP6"]
+W = 0.81775, p-value = 0.02381</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or use lapply() to repeat test for each group</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lapply(</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   X = unique(anova_data$group),</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   FUN = function(grp) {</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     shapiro.test(anova_data$value[anova_data$group == grp])</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   }</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The RRP6 data does not follow a normal distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check homogeneity of variance with Bartlett test</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> anova_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  value by group
+Bartlett's K-squared = 25.242, df = 3, p-value = 1.374e-05</code></pre>
+</div>
+</div>
+<p>Moreover, the assumption of homoscedasticity (equal variance) is not met.</p>
+<p>Therefore, an ANOVA is not appropriate, and a non-parametric Kruskal-Wallis test should be used instead.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> anova_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  value by group
+Kruskal-Wallis chi-squared = 24.631, df = 3, p-value = 1.845e-05</code></pre>
 </div>
 </div>
 <hr>
