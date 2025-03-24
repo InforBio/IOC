@@ -72,7 +72,7 @@ annot |>
   filter(
     `Chromosome/scaffold name` == "Mito" &
       str_detect(`Gene description`, "ATP[68]")
-    ) |>
+  ) |>
   select(contains(c("gene name", "descri")))
 ```
 

@@ -313,7 +313,7 @@ annot |>
 
 ## Manipulate Data with {`dplyr`} {.smaller}
 
-- `group()` data. (Use `ungroup()` to remove grouping.)
+- `group_by()` data. (Use `ungroup()` to remove grouping.)
 
 ```{r}
 annot |>
