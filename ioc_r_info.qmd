@@ -26,7 +26,7 @@ Please bookmark this page for quick access.
   | Week 7         | Smart Shortcuts: Mastering the `apply` Family        |  5th March    | 9:30 am – 12:00 pm |
   | Week 8         | Tidy Your Data: Exploring {`tidyr`} and {`dplyr`}    | 12th March    | 9:30 am – 12:00 pm |
   | Week 9         | String Tricks & Final Review                         | 19nd March    | 9:30 am – 12:00 pm |
-  | Week 10        | Your project presentation                            | TBD           | TBD |
+  | Week 10        | Your project presentation                            | **11th June**      | **9:00 am - 12:00 pm** |
 
 
 #### **English Group**
